@@ -1,0 +1,59 @@
+{
+  "name": "microsoft-taxi-dataset",
+  "version": "1.0.0",
+  "description": "https://www.microsoft.com/en-us/research/publication/t-drive-trajectory-data-sample/  \r ## [User_guide_T-drive](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/User_guide_T-drive.pdf)\r ### 1.数据描述  \r 这个数据集包含了北京市10357辆出租车从2008年1月2日到1月7日的GPS轨迹数据. 这个数据集的包含了1500万的点数据, 轨迹长度达到900万千米.  \r ### 2.数据格式  \r >> 示例:  \r 1,2008-02-02 15:36:08,116.51172,39.92123  \r 1,2008-02-02 15:46:08,116.51135,39.93883  \r 1,2008-02-02 15:46:08,116.51135,39.93883  \r 1,2008-02-02 15:56:08,116.51627,39.91034  \r 1,2008-02-02 16:06:08,116.47186,39.91248  \r 1,2008-02-02 16:16:08,116.47217,39.92498  \r 1,2008-02-02 16:26:08,116.47179,39.90718  \r 1,2008-02-02 16:36:08,116.45617,39.90531  \r 1,2008-02-02 17:00:24,116.47191,39.90577  \r 1,2008-02-02 17:10:24,116.50661,39.9145  \r 1,2008-02-02 20:30:34,116.49625,39.9146  \r 每条数据包含下面的字段:  \r 出租车id, 日期, 经度, 纬度",
+  "main": "postcss.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuanzhaokang/microsoft-taxi-dataset.git"
+  },
+  "author": "yuanzhaokang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuanzhaokang/microsoft-taxi-dataset/issues"
+  },
+  "homepage": "https://github.com/yuanzhaokang/microsoft-taxi-dataset#readme",
+  "devDependencies": {
+    "antd": "^2.12.4",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "~1.16.0",
+    "cookie-parser": "~1.4.3",
+    "css-loader": "^0.28.0",
+    "debug": "~2.6.0",
+    "express": "~4.14.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.10.1",
+    "images": "^3.0.0",
+    "jade": "~1.11.0",
+    "json-loader": "^0.5.4",
+    "jsx-loader": "^0.13.2",
+    "log4js": "^2.3.3",
+    "morgan": "~1.7.0",
+    "node-sass": "^4.5.2",
+    "normalize.css": "^5.0.0",
+    "postcss-loader": "^2.0.5",
+    "raw-loader": "^0.5.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^6.0.3",
+    "serve-favicon": "~2.3.2",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+}
