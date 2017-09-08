@@ -6,7 +6,7 @@ import path from 'path';
 
 let router = express.Router();
 
-router.all('/', function (req, res, next) {
+router.get('/', function (req, res, next) {
    res.setHeader('Content-type', 'text/html');
    res.sendFile(path.join(__dirname, '../../../index.html'));
 });

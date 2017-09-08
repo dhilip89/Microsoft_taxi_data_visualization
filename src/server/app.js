@@ -5,16 +5,17 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import logger from 'morgan';
 import log4js from 'log4js';
-import use from './routes/use';
 
 // ----------------- my modules ---------------------------------
-import config from './config';
+import config from '../../config/config.json';
+import home from './routes/home';
+import sv from './routes/sv';
 // --------------------------------------------------
 
 export default class App {
    constructor() {
       this.logger = log4js.getLogger();
-      this.logger.setLevel(log4js.levels.INFO);
+      this.logger.level = log4js.levels.INFO;
    }
 
    run() {
@@ -33,8 +34,8 @@ export default class App {
       app.use(express.static(path.join(__dirname, '../../config'))); //配置文件
 
       //----------------- use router----------------------------
-      use(app);
-      // app.use('/', 'portal');
+      app.use('/', home);
+      app.use('/req', sv);
       //--------------------------------------------------------
 
       // catch 404 and forward to error handler
