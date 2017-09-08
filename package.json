@@ -5,7 +5,9 @@
   "main": "postcss.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "dev": "webpack-dev-server --color --port 8000",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -51,6 +53,7 @@
     "sass-lint": "^1.10.2",
     "sass-loader": "^6.0.3",
     "serve-favicon": "~2.3.2",
+    "sqlite3": "^3.1.9",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",

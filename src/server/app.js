@@ -34,6 +34,7 @@ export default class App {
 
       //----------------- use router----------------------------
       use(app);
+      // app.use('/', 'portal');
       //--------------------------------------------------------
 
       // catch 404 and forward to error handler
