@@ -78,7 +78,7 @@ var App = function () {
          app.use(_bodyParser2.default.urlencoded({ extended: false }));
          app.use((0, _cookieParser2.default)());
          app.use(_express2.default.static(_path2.default.join(__dirname, '../../dist/app'))); //编译文件
-         app.use(_express2.default.static(_path2.default.join(__dirname, '../../config'))); //配置文件
+         // app.use(express.static(path.join(__dirname, '../../config'))); //配置文件
 
          //----------------- use router----------------------------
          app.use('/', _home2.default);

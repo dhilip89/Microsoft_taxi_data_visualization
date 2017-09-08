@@ -31,7 +31,7 @@ export default class App {
       app.use(bodyParser.urlencoded({ extended: false }));
       app.use(cookieParser());
       app.use(express.static(path.join(__dirname, '../../dist/app'))); //编译文件
-      app.use(express.static(path.join(__dirname, '../../config'))); //配置文件
+      // app.use(express.static(path.join(__dirname, '../../config'))); //配置文件
 
       //----------------- use router----------------------------
       app.use('/', home);
