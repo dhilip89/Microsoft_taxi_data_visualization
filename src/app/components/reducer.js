@@ -1,17 +1,28 @@
 import * as actions from './actions';
+import Constant from './constant';
 
-function reducer(state = {}, action) {
-   switch(action.type) {
-      case actions.FETCH:
-         break;
-      case actions.LOADING:
-         break;
-      case actions.END:
-         break;
+let initState = {
+    pageName: Constant.homepage
+};
 
-      default:
-         break;
-   }
+function reducer(state = initState, action) {
+    switch (action.type) {
+        case actions.FETCH:
+            return {...state};
+            break;
+        case actions.LOADING:
+            return {...state};
+            break;
+        case actions.END:
+            return {...state};
+            break;
+        case actions.SWITCH_PAGE:
+            return Object.assign({}, state);
+            break;
+        default:
+            return {...state};
+            break;
+    }
 }
 
 export default reducer;
