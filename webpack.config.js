@@ -20,10 +20,10 @@ module.exports = {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!postcss-loader' })
             },
-            {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!less-loader!postcss-loader' })
-            },
+            // {
+            //     test: /\.less$/,
+            //     loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!less-loader!postcss-loader' })
+            // },
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader!postcss-loader' })

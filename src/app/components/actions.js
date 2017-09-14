@@ -3,7 +3,7 @@ const LOADING = 'loading';
 const END = 'end';
 
 export {
-   FETCH,
-   LOADING,
-   END
+    FETCH,
+    LOADING,
+    END
 };
