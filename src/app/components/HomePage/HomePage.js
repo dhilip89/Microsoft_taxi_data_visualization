@@ -1,3 +1,6 @@
+import Button from 'app/components/widget/button/Button';
+import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
+import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
 import React, {
     Component
 } from 'react';
@@ -11,12 +14,17 @@ class HomePage extends Component {
     }
 
     render() {
-        return (<div></div>);
+        return (
+            <div>
+                <Button />
+            </div>
+        );
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {};
+    return {
+    };
 };
 
 export default connect(mapStateToProps)(HomePage);

@@ -1,0 +1,8 @@
+@import '../../../style/variables.scss';
+
+.#{$namespace}-button {
+   width: 100px;
+   height: 30px;
+
+   background-color: skyblue;
+}

@@ -1,5 +1,5 @@
-import App from './App';
-import reducer from './components/reducer';
+import App from 'app/App';
+import reducer from 'app/components/reducer';
 import React, {Component} from 'react';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';

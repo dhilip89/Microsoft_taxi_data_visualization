@@ -1,7 +1,7 @@
-import React, {Componnet} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class TaxiDistribution extends Componnet {
+class TaxiDistribution extends Component {
     constructor(props) {
         super(props);
     }

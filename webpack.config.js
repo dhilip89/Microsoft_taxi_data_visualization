@@ -26,7 +26,7 @@ module.exports = {
             // },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader!postcss-loader' })
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!postcss-loader!sass-loader' })
             },
 
             {
@@ -68,5 +68,12 @@ module.exports = {
             name: ['vendor'],
             minChunks: 2
         })
-    ]
+    ],
+    // context: __dirname + "/src",
+    resolve: {
+        modules: [
+            path.resolve("./node_modules"),
+            path.resolve("./src/")
+        ]
+    }
 }

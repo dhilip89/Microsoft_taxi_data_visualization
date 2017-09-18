@@ -1,11 +1,11 @@
-import * as actions from './components/actions';
-import Constant from './components/constant'
-import HomePage from './components/HomePage/HomePage';
-import TraceDisplay from './components/TraceDisplay/TraceDisplay';
-import TaxiDistribution from './components/TaxiDistribution/TaxiDistribution';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import './style/app.scss';
+import * as actions from 'app/components/actions';
+import Constant from 'app/components/constant'
+import HomePage from 'app/components/HomePage/HomePage';
+import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
+import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import 'app/style/app.scss';
 
 class App extends Component {
     constructor(props) {
@@ -13,25 +13,31 @@ class App extends Component {
     }
 
     render() {
-        let {pageName} = this.props;
-        let page;
-
-        switch (pageName) {
-            case Constant.homepage:
-                page = HomePage;
-                break;
-            case Constant.traceDisplay:
-                page = TraceDisplay;
-                break;
-            case Constant.taxiDistribution:
-                page = TaxiDistribution;
-            default:
-                page = null;
-        }
+        let Page = this._switchPage();
 
         return (
-            <page/>
+            <Page />
         );
+    }
+
+    _switchPage() {
+        let { pageName } = this.props;
+        let Page;
+
+        switch(pageName) {
+            case Constant.homepage:
+                Page = HomePage;
+                break;
+            case Constant.traceDisplay:
+                Page = TraceDisplay;
+                break;
+            case Constant.taxiDistribution:
+                Page = TaxiDistribution;
+            default:
+                Page = HomePage;
+        }
+
+        return Page;
     }
 }
 
