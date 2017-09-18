@@ -1,6 +1,7 @@
+import AppI18n from 'app/AppI18n';
 import Button from 'app/components/widget/button/Button';
-import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
-import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
+// import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
+// import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
 import React, {
     Component
 } from 'react';
@@ -16,9 +17,9 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Button />
-                <Button />
-                <Button />
+                <Button label={AppI18n.HOME_PAGE}/>
+                <Button label={AppI18n.TAXI_DISTRIBUTION}/>
+                <Button label={AppI18n.TRACE_DISPLAY}/>
             </div>
         );
     }
