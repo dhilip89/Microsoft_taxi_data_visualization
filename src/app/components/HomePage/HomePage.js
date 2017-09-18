@@ -1,4 +1,4 @@
-import AppI18n from 'app/AppI18n';
+import AppI18n from 'app/config/AppI18n';
 import Button from 'app/components/widget/button/Button';
 // import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
 // import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
