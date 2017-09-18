@@ -8,11 +8,17 @@ export default class Button extends Component {
    }
 
    render() {
-      let { style, classNames } = this.props;
+      let {
+         classNames,
+         label,
+         ...restProps
+      } = this.props;
       let classes = getClassSet([classNames, 'button']);
 
       return (
-         <div onClick={this.onClick} style={style} className={classes}></div>
+         <div onClick={this.onClick} className={classes} {...restProps}>
+            {label}
+         </div>
       );
    }
 

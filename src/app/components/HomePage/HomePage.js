@@ -17,6 +17,8 @@ class HomePage extends Component {
         return (
             <div>
                 <Button />
+                <Button />
+                <Button />
             </div>
         );
     }
