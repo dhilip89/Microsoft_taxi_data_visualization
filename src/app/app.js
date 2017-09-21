@@ -1,3 +1,4 @@
+import {fire} from 'app/data/req';
 import Constant from 'app/components/constant'
 import HomePage from 'app/components/HomePage/HomePage';
 import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
@@ -15,7 +16,7 @@ class App extends Component {
         let Page = this._switchPage();
 
         return (
-            <Page/>
+            <Page fire={fire}/>
         );
     }
 

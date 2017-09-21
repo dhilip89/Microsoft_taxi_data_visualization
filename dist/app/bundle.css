@@ -52,7 +52,6 @@
           align-items: center;
   width: 100px;
   height: 30px;
-  background-color: skyblue;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -63,6 +62,21 @@
   height: 100%;
   top: 0px;
   left: 0px; }
+  .wind-taxi-trace-display .wind-taxi-title {
+    width: 100%;
+    height: 50px; }
+  .wind-taxi-trace-display .wind-taxi-canvas {
+    width: 100%;
+    height: 100%; }
+  .wind-taxi-trace-display .wind-taxi-control {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    width: 20%;
+    height: 100%; }
+  .wind-taxi-trace-display .wind-taxi-map {
+    width: 80%;
+    height: 100%; }
 body {
   background: black;
   color: #ffffff; }

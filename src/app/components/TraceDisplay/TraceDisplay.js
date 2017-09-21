@@ -1,6 +1,7 @@
 import {getClassSet} from "app/util/ClassNameUtil";
 import AppI18n from 'app/config/AppI18n';
 import Button from 'app/components/widget/button/Button';
+import Map from 'app/graphic/Map';
 import Util from 'app/util/util';
 import Input from 'app/components/widget/input/Input';
 import Label from 'app/components/widget/label/Label.js';
@@ -19,7 +20,9 @@ class TraceDisplay extends Component {
     }
 
     componentDidMount() {
-        console.log(this.canvas);
+        this.props.fire({
+            url: '/data/beijing.json'
+        }, this);
     }
 
     render() {
@@ -27,14 +30,30 @@ class TraceDisplay extends Component {
 
         return (
             <div className={classes}>
-                <Label label={Util.getI18n(AppI18n.TRACE_DISPLAY)}/>
-                <Input/>
-                <Button label={Util.getI18n(AppI18n.SEARCH)}/>
-                <div ref={(canvas) => {
+                <Label classNames={"title"} label={Util.getI18n(AppI18n.TRACE_DISPLAY)}/>
+                <div className={getClassSet(["control"])}>
+                    <Input/>
+                    <Button label={Util.getI18n(AppI18n.SEARCH)}/>
+                </div>
+                <div className={getClassSet(["canvas"])} ref={(canvas) => {
                     this.canvas = canvas
-                }}></div>
+                }}>
+                </div>
             </div>
         );
+    }
+
+    success(data) {
+        let map = new Map({
+            dom: this.canvas,
+            geojson: data
+        });
+
+        map.createMap();
+    }
+
+    error(err) {
+        console.error(err);
     }
 }
 

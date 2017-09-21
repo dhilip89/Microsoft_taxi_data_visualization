@@ -1,23 +1,20 @@
-import $ from 'jquery';
-
-function fetch(info, caller) {
-    $.ajax({
-        url: '/',
-        data: info.info,
-        type: 'post',
-        success: function (data) {
-            if (caller && caller.success) {
-                caller.success(data);
+function fire(info, caller) {
+    fetch(info.url)
+        .then((res) => {
+            if (res.ok && caller && caller.success) {
+                res.json()
+                    .then((data) => {
+                        caller.success(data);
+                    });
             }
-        },
-        error: function (err) {
+        })
+        .catch((err) => {
             if (caller && caller.error) {
                 caller.error(err);
             }
-        }
-    });
+        });
 }
 
 export {
-    fetch
+    fire
 };
