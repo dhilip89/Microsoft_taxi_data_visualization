@@ -1,10 +1,9 @@
-import * as actions from 'app/components/actions';
 import Constant from 'app/components/constant'
 import HomePage from 'app/components/HomePage/HomePage';
 import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
 import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import 'app/style/app.scss';
 
 class App extends Component {
@@ -16,15 +15,15 @@ class App extends Component {
         let Page = this._switchPage();
 
         return (
-            <Page />
+            <Page/>
         );
     }
 
     _switchPage() {
-        let { pageName } = this.props;
+        let {pageName} = this.props;
         let Page;
 
-        switch(pageName) {
+        switch (pageName) {
             case Constant.homepage:
                 Page = HomePage;
                 break;
@@ -33,6 +32,7 @@ class App extends Component {
                 break;
             case Constant.taxiDistribution:
                 Page = TaxiDistribution;
+                break;
             default:
                 Page = HomePage;
         }

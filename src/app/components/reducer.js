@@ -17,7 +17,7 @@ function reducer(state = initState, action) {
             return {...state};
             break;
         case actions.SWITCH_PAGE:
-            return Object.assign({}, state);
+            return Object.assign({}, state, {pageName: action.pageName});
             break;
         default:
             return {...state};

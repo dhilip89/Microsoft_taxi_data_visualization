@@ -4,6 +4,6 @@ export default class Util {
 
     // Get i18n from label.
     static getI18n(label) {
-        return !!label ? label[config.language] : '';
+        return !!label ? (label[config.language] ? label[config.language] : label) : '';
     }
 }
