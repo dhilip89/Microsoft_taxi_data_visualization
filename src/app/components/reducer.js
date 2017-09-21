@@ -2,7 +2,7 @@ import * as actions from './actions';
 import Constant from './constant';
 
 let initState = {
-    pageName: Constant.traceDisplay
+    pageName: Constant.homepage
 };
 
 function reducer(state = initState, action) {

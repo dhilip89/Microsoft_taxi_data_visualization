@@ -8,6 +8,7 @@ import Label from 'app/components/widget/label/Label.js';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import 'app/components/TraceDisplay/tracedisplay.scss';
+import Circle from 'zrender/src/graphic/shape/Circle';
 
 /**
  * Show the trace of taxi.

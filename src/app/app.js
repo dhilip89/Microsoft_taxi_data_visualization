@@ -1,4 +1,5 @@
 import {fire} from 'app/data/req';
+import * as actions from 'app/components/actions';
 import Constant from 'app/components/constant'
 import HomePage from 'app/components/HomePage/HomePage';
 import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
@@ -12,16 +13,21 @@ class App extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        document.addEventListener('keydown', (e) => {
+            this.props.keyToSwitchPage(e.key);
+        });
+    }
+
     render() {
-        let Page = this._switchPage();
+        let Page = this._switchPage(this.props.pageName);
 
         return (
             <Page fire={fire}/>
         );
     }
 
-    _switchPage() {
-        let {pageName} = this.props;
+    _switchPage(pageName) {
         let Page;
 
         switch (pageName) {
@@ -48,4 +54,15 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        keyToSwitchPage: (pageName) => {
+            dispatch({
+                type: actions.SWITCH_PAGE,
+                pageName: parseInt(pageName)
+            });
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
