@@ -1,18 +1,21 @@
-function fire(info, caller) {
-    fetch(info.url)
-        .then((res) => {
-            if (res.ok && caller && caller.success) {
-                res.json()
-                    .then((data) => {
-                        caller.success(data);
-                    });
+import $ from 'jquery';
+
+function fire(info, success, error) {
+    $.ajax({
+        url: info.url,
+        data: info.data,
+        type: info.method || 'post',
+        success: function(data) {
+            if(success) {
+                success(data);
             }
-        })
-        .catch((err) => {
-            if (caller && caller.error) {
-                caller.error(err);
+        },
+        error: function(err) {
+            if(error) {
+                error(err);
             }
-        });
+        }
+    });
 }
 
 export {

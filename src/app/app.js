@@ -1,4 +1,3 @@
-import {fire} from 'app/data/req';
 import * as actions from 'app/components/actions';
 import Constant from 'app/components/constant'
 import HomePage from 'app/components/HomePage/HomePage';
@@ -11,40 +10,46 @@ import 'app/style/app.scss';
 class App extends Component {
     constructor(props) {
         super(props);
+        this.Page = null;
+        this._pressToSwitchPage = this._pressToSwitchPage.bind(this);
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', (e) => {
-            this.props.keyToSwitchPage(e.key);
-        });
+        document.addEventListener('keydown', this._pressToSwitchPage);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this._pressToSwitchPage);
     }
 
     render() {
         let Page = this._switchPage(this.props.pageName);
 
         return (
-            <Page fire={fire}/>
+            <Page />
         );
     }
 
     _switchPage(pageName) {
-        let Page;
-
         switch (pageName) {
             case Constant.homepage:
-                Page = HomePage;
+                this.Page = HomePage;
                 break;
             case Constant.traceDisplay:
-                Page = TraceDisplay;
+                this.Page = TraceDisplay;
                 break;
             case Constant.taxiDistribution:
-                Page = TaxiDistribution;
+                this.Page = TaxiDistribution;
                 break;
             default:
-                Page = HomePage;
+                // Page = HomePage;
         }
 
-        return Page;
+        return this.Page;
+    }
+
+    _pressToSwitchPage(e) {
+        this.props.keyToSwitchPage(e.key);
     }
 }
 

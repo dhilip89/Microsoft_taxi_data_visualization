@@ -1,12 +1,13 @@
-import {getClassSet} from "app/util/ClassNameUtil";
+import { fire } from 'app/data/req';
+import { getClassSet } from "app/util/ClassNameUtil";
 import AppI18n from 'app/config/AppI18n';
 import Button from 'app/components/widget/button/Button';
 import Map from 'app/graphic/Map';
 import Util from 'app/util/util';
 import Input from 'app/components/widget/input/Input';
 import Label from 'app/components/widget/label/Label.js';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import 'app/components/TraceDisplay/tracedisplay.scss';
 import Circle from 'zrender/src/graphic/shape/Circle';
 
@@ -18,12 +19,13 @@ class TraceDisplay extends Component {
         super(props);
 
         this.canvas = null;
+        this.success = this.success.bind(this);
+        this.drawTrace = this.drawTrace.bind(this);
+        this.error = this.error.bind(this);
     }
 
     componentDidMount() {
-        this.props.fire({
-            url: '/data/beijing.json'
-        }, this);
+        fire({ url: '/data/beijing.json', method:'get' }, this.success, this.error);
     }
 
     render() {
@@ -31,11 +33,11 @@ class TraceDisplay extends Component {
 
         return (
             <div className={classes}>
-                <Label classNames={"title"} label={Util.getI18n(AppI18n.TRACE_DISPLAY)}/>
-                <div className={getClassSet(["control"])}>
+                <Label classNames={"title"} label={Util.getI18n(AppI18n.TRACE_DISPLAY)} />
+                {/* <div className={getClassSet(["control"])}>
                     <Input/>
                     <Button label={Util.getI18n(AppI18n.SEARCH)}/>
-                </div>
+                </div> */}
                 <div className={getClassSet(["canvas"])} ref={(canvas) => {
                     this.canvas = canvas
                 }}>
@@ -47,10 +49,26 @@ class TraceDisplay extends Component {
     success(data) {
         let map = new Map({
             dom: this.canvas,
-            geojson: data
+            geojson: data,
         });
 
         map.createMap();
+        map.drawTrace([
+            {
+                id: 100, trace: [
+                    { x: 100, y: 200 },
+                    { x: 300, y: 400 },
+                    { x: 500, y: 120 },
+                    { x: 300, y: 200 }
+                ]
+            }
+        ]);
+
+        fire({url: "/req", data:{idx: 1}}, this.drawTrace, this.error);
+    }
+
+    drawTrace(data) {
+        console.log(data);
     }
 
     error(err) {

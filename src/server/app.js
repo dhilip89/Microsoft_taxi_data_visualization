@@ -32,7 +32,7 @@ export default class App {
         app.use(cookieParser());
         app.use(express.static(path.join(__dirname, '../../dist/app'))); //编译文件
         app.use("/data", express.static(path.join(__dirname, '../../data'))); // 数据文件
-        // app.use(express.static(path.join(__dirname, '../../config'))); //配置文件
+        app.use("/config", express.static(path.join(__dirname, '../../config'))); //配置文件
 
         //----------------- use router----------------------------
         app.use('/', home);
