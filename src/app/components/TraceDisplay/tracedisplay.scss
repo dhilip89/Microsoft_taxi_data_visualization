@@ -8,7 +8,14 @@ $height: 100%;
   height: 100%;
   top: 0px;
   left: 0px;
-  //color: deepskyblue;
+
+  .#{$namespace}-row {
+    height: 100%;
+  }
+
+  .#{$namespace}-col {
+    height: 100%;
+  }
 
   .#{$namespace}-title {
     width: 100%;

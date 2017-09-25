@@ -1,10 +1,10 @@
 import * as actions from 'app/components/actions';
-import {getClassSet} from 'app/util/ClassNameUtil';
+import { getClassSet } from 'app/util/ClassNameUtil';
+import { Button } from 'app/components/widget/index';
 import constants from 'app/components/constant';
 import AppI18n from 'app/config/AppI18n';
-import Button from 'app/components/widget/button/Button';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import 'app/components/HomePage/homepage.scss';
 
 /**
@@ -17,13 +17,13 @@ class HomePage extends Component {
 
     render() {
         let classes = getClassSet(['homePage']);
-        let {clickToOpenHomePage, clickToOpenDistributionPage, clickToOpenTracePage} = this.props;
+        let { clickToOpenHomePage, clickToOpenDistributionPage, clickToOpenTracePage } = this.props;
 
         return (
             <div className={classes}>
-                <Button label={AppI18n.HOME_PAGE} onClick={clickToOpenHomePage}/>
-                <Button label={AppI18n.TRACE_DISPLAY} onClick={clickToOpenTracePage}/>
-                <Button label={AppI18n.TAXI_DISTRIBUTION} onClick={clickToOpenDistributionPage}/>
+                <Button onclick={clickToOpenHomePage}>{AppI18n.HOME_PAGE}</Button>
+                <Button onclick={clickToOpenTracePage}>{AppI18n.TRACE_DISPLAY}</Button>
+                <Button onclick={clickToOpenDistributionPage}>{AppI18n.TAXI_DISTRIBUTION}</Button>
             </div>
         );
     }

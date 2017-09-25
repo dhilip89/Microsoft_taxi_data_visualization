@@ -1,16 +1,13 @@
 import { fire } from 'app/data/req';
 import { getClassSet } from "app/util/ClassNameUtil";
-import {info} from 'app/graphic/config';
+import { info } from 'app/graphic/config';
+import { DatePicker, Button, Input, Row, Col } from 'app/components/widget/index';
 import AppI18n from 'app/config/AppI18n';
-import Button from 'app/components/widget/button/Button';
 import Map from 'app/graphic/Map';
 import Util from 'app/util/util';
-import Input from 'app/components/widget/input/Input';
-import Label from 'app/components/widget/label/Label.js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'app/components/TraceDisplay/tracedisplay.scss';
-import Circle from 'zrender/src/graphic/shape/Circle';
 
 /**
  * Show the trace of taxi.
@@ -26,7 +23,7 @@ class TraceDisplay extends Component {
     }
 
     componentDidMount() {
-        fire({ url: '/data/beijing.json', method:'get' }, this.success, this.error);
+        fire({ url: '/data/beijing.json', method: 'get' }, this.success, this.error);
     }
 
     render() {
@@ -34,15 +31,26 @@ class TraceDisplay extends Component {
 
         return (
             <div className={classes}>
-                <Label classNames={"title"} label={Util.getI18n(AppI18n.TRACE_DISPLAY)} />
-                <div className={getClassSet(["control"])}>
-                    <Input/>
-                    <Button label={Util.getI18n(AppI18n.SEARCH)}/>
-                </div>
-                <div className={getClassSet(["canvas"])} ref={(canvas) => {
-                    this.canvas = canvas
-                }}>
-                </div>
+                <Row className={getClassSet(['row'])}>
+                    <Col className={getClassSet(['col'])} span={6}>
+                        <Row>
+                            <Col span={24}>
+                                <Input />
+                            </Col>
+                            <Col span={24}>
+                                <DatePicker />
+                            </Col>
+                            <Col span={24}>
+                                <Button>{Util.getI18n(AppI18n.SEARCH)}</Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col className={getClassSet(['col'])} span={18}>
+                        <div className={getClassSet(["canvas"])} ref={(canvas) => {
+                            this.canvas = canvas;
+                        }}></div>
+                    </Col>
+                </Row>
             </div>
         );
     }
@@ -67,7 +75,7 @@ class TraceDisplay extends Component {
         ]);
 
         //绘制轨迹
-        fire({url: info.sv_trace_getTraceRoute, method: "post"}, this.drawTrace, this.error);
+        fire({ url: info.sv_trace_getTraceRoute, method: "post" }, this.drawTrace, this.error);
     }
 
     drawTrace(data) {
