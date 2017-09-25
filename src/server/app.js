@@ -36,7 +36,7 @@ export default class App {
 
         //----------------- use router----------------------------
         app.use('/', home);
-        app.use('/req', sv);
+        sv(app);
         //--------------------------------------------------------
 
         // catch 404 and forward to error handler

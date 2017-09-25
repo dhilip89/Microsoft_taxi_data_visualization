@@ -83,7 +83,7 @@ var App = function () {
 
             //----------------- use router----------------------------
             app.use('/', _home2.default);
-            app.use('/req', _sv2.default);
+            (0, _sv2.default)(app);
             //--------------------------------------------------------
 
             // catch 404 and forward to error handler

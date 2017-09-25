@@ -1,20 +1,17 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-   value: true
+  value: true
 });
 
-var _express = require('express');
+exports.default = function (app) {
+  // trace
+  app.use(_info2.default.sv_trace_getTraceRoute, TraceDisplay.GetTraceRoute);
+};
 
-var _express2 = _interopRequireDefault(_express);
+var _index = require('./trace/index');
 
-var _log4js = require('log4js');
-
-var _log4js2 = _interopRequireDefault(_log4js);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
+var TraceDisplay = _interopRequireWildcard(_index);
 
 var _info = require('../../../config/info.json');
 
@@ -22,24 +19,4 @@ var _info2 = _interopRequireDefault(_info);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var sv = _express2.default.Router();
-var logger = _log4js2.default.getLogger();
-logger.level = _log4js2.default.levels.INFO;
-
-sv.all('/', function (req, res, next) {
-   var idx = req.body.idx;
-
-   var route = _info2.default[idx];
-   logger.info('request ====> ' + route);
-
-   var func = require('./' + route);
-   func(res);
-
-   // func('select * from taxi limit 10', (err, row)=>{
-   //    console.log(row);
-   // });
-
-   // res.end(`{'day': 'hello world'}`);
-});
-
-exports.default = sv;
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }

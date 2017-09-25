@@ -1,5 +1,6 @@
 import { fire } from 'app/data/req';
 import { getClassSet } from "app/util/ClassNameUtil";
+import {info} from 'app/graphic/config';
 import AppI18n from 'app/config/AppI18n';
 import Button from 'app/components/widget/button/Button';
 import Map from 'app/graphic/Map';
@@ -34,10 +35,10 @@ class TraceDisplay extends Component {
         return (
             <div className={classes}>
                 <Label classNames={"title"} label={Util.getI18n(AppI18n.TRACE_DISPLAY)} />
-                {/* <div className={getClassSet(["control"])}>
+                <div className={getClassSet(["control"])}>
                     <Input/>
                     <Button label={Util.getI18n(AppI18n.SEARCH)}/>
-                </div> */}
+                </div>
                 <div className={getClassSet(["canvas"])} ref={(canvas) => {
                     this.canvas = canvas
                 }}>
@@ -47,6 +48,7 @@ class TraceDisplay extends Component {
     }
 
     success(data) {
+        // 绘制地图
         let map = new Map({
             dom: this.canvas,
             geojson: data,
@@ -64,7 +66,8 @@ class TraceDisplay extends Component {
             }
         ]);
 
-        fire({url: "/req", data:{idx: 1}}, this.drawTrace, this.error);
+        //绘制轨迹
+        fire({url: info.sv_trace_getTraceRoute, method: "post"}, this.drawTrace, this.error);
     }
 
     drawTrace(data) {
