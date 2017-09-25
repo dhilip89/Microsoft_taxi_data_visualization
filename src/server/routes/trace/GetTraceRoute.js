@@ -1,12 +1,10 @@
-import db from '../../util/db';
+import express from 'express';
 
-let getTraceRoute = function (res, info) {
-   db('select * from taxi limit 10', (err, rows) => {
-      for(let i = 0; i < rows.length; i++) {
-         console.log(rows[i]);
-         res.end("==========");
-      }
-   });
-}
+let router = express.Router();
 
-module.exports = getTraceRoute;
+router.get('/', function (req, res, next) {
+   res.setHeader('Content-type', 'text/html');
+   res.end();
+});
+
+export default router;
