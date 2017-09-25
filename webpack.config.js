@@ -4,11 +4,12 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var babelpolyfill = require("babel-polyfill");
 
 module.exports = {
-    devtool: 'inline-source-map', //可以在调试面板source中打开源文件
+    // devtool: 'inline-source-map', //可以在调试面板source中打开源文件
     watch: true,
     entry: {
         bundle: './src/app/view.js',
-        vendor: ['react', 'react-dom', "babel-polyfill"]
+        vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-devtools-extension',
+            "babel-polyfill", 'zrender', 'd3', 'antd', 'jquery', 'leaflet']
     },
     output: {
         path: __dirname + '/dist/app/',
