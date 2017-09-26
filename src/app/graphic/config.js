@@ -1,10 +1,6 @@
-import info from  '../../../config/info.json';
-
 const config = {
    traceTime: 5000,
-   traceLevel: 1,
-   info: info
+   traceLevel: 1
 };
 
-export {info};
 export default config;

@@ -1,6 +1,6 @@
 import { fire } from 'app/data/req';
 import { getClassSet } from "app/util/ClassNameUtil";
-import { info } from 'app/graphic/config';
+import { routers } from 'app/config/config';
 import { DatePicker, Button, Input, Row, Col } from 'app/components/widget/index';
 import moment from 'moment';
 import AppI18n from 'app/config/AppI18n';
@@ -23,8 +23,8 @@ class TraceDisplay extends Component {
         this.error = this.error.bind(this);
 
         this.state = {
-            number: null,
-            date: null
+            id: null,
+            date: moment('2008/02/02', 'YYYY/MM/DD')
         };
     }
 
@@ -41,18 +41,31 @@ class TraceDisplay extends Component {
                     <Col className={getClassSet(['col'])} span={6}>
                         <Row>
                             <Col span={24}>
-                                <Input value={this.state.number} onChange={(e) => {
-                                    this.setState({ number: e.target.value })
+                                <Input value={this.state.id} onChange={(e) => {
+                                    this.setState({ id: e.target.value })
                                 }} />
                             </Col>
                             <Col span={24}>
-                                <DatePicker defaultValue={moment('2008/08/08', 'YYYY/MM/DD')} value={this.state.date} onChange={(date, dateString) => {
-                                    {/* console.log(date, dateString); */ }
-                                    this.setState({ date: date });
-                                }} />
+                                <DatePicker defaultValue={moment('2008/01/02', 'YYYY/MM/DD')}
+                                    value={this.state.date}
+                                    onChange={(date, dateString) => {
+                                        this.setState({ date: date });
+                                    }} />
                             </Col>
                             <Col span={24}>
                                 <Button onClick={(e) => {
+                                    let info = {};
+                                    info.date = this.state.date && this.state.date.valueOf();
+                                    info.id = this.state.id;
+
+                                    fire({
+                                        url: routers.sv_trace_getTraceRoute,
+                                        method: "post",
+                                        data: info
+                                    },
+                                        this.drawTrace,
+                                        this.error
+                                    );
                                 }}>{Util.getI18n(AppI18n.SEARCH)}</Button>
                             </Col>
                         </Row>
@@ -87,7 +100,7 @@ class TraceDisplay extends Component {
         ]);
 
         //绘制轨迹
-        fire({ url: info.sv_trace_getTraceRoute, method: "post" }, this.drawTrace, this.error);
+        // fire({ url: info.sv_trace_getTraceRoute, method: "post" }, this.drawTrace, this.error);
     }
 
     drawTrace(data) {

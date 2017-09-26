@@ -3,6 +3,7 @@ import { config } from './config';
 var sqlite3 = require('sqlite3');
 let sql = sqlite3.verbose();
 
+// Cache in the memory.
 let db = new sql.Database(config.dbPath);
 
 export default function (query, callback) {
@@ -12,5 +13,5 @@ export default function (query, callback) {
       });
    });
 
-   db.close();
+   // db.close();
 }

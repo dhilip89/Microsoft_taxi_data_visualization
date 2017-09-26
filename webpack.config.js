@@ -9,7 +9,7 @@ module.exports = {
     entry: {
         bundle: './src/app/view.js',
         vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-devtools-extension',
-            "babel-polyfill", 'zrender', 'd3', 'antd', 'jquery', 'leaflet']
+            "babel-polyfill", 'zrender', 'd3', 'antd', 'jquery']
     },
     output: {
         path: __dirname + '/dist/app/',
