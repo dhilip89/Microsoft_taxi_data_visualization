@@ -15,11 +15,11 @@ class App extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', this._pressToSwitchPage);
+        // document.addEventListener('keydown', this._pressToSwitchPage);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this._pressToSwitchPage);
+        // document.removeEventListener('keydown', this._pressToSwitchPage);
     }
 
     render() {

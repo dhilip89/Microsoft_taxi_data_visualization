@@ -2,6 +2,7 @@ import { fire } from 'app/data/req';
 import { getClassSet } from "app/util/ClassNameUtil";
 import { info } from 'app/graphic/config';
 import { DatePicker, Button, Input, Row, Col } from 'app/components/widget/index';
+import moment from 'moment';
 import AppI18n from 'app/config/AppI18n';
 import Map from 'app/graphic/Map';
 import Util from 'app/util/util';
@@ -20,6 +21,11 @@ class TraceDisplay extends Component {
         this.success = this.success.bind(this);
         this.drawTrace = this.drawTrace.bind(this);
         this.error = this.error.bind(this);
+
+        this.state = {
+            number: null,
+            date: null
+        };
     }
 
     componentDidMount() {
@@ -35,13 +41,19 @@ class TraceDisplay extends Component {
                     <Col className={getClassSet(['col'])} span={6}>
                         <Row>
                             <Col span={24}>
-                                <Input />
+                                <Input value={this.state.number} onChange={(e) => {
+                                    this.setState({ number: e.target.value })
+                                }} />
                             </Col>
                             <Col span={24}>
-                                <DatePicker />
+                                <DatePicker defaultValue={moment('2008/08/08', 'YYYY/MM/DD')} value={this.state.date} onChange={(date, dateString) => {
+                                    {/* console.log(date, dateString); */ }
+                                    this.setState({ date: date });
+                                }} />
                             </Col>
                             <Col span={24}>
-                                <Button>{Util.getI18n(AppI18n.SEARCH)}</Button>
+                                <Button onClick={(e) => {
+                                }}>{Util.getI18n(AppI18n.SEARCH)}</Button>
                             </Col>
                         </Row>
                     </Col>

@@ -47,6 +47,7 @@
     "jsx-loader": "^0.13.2",
     "leaflet": "^1.2.0",
     "log4js": "^2.3.3",
+    "moment": "^2.18.1",
     "morgan": "~1.7.0",
     "node-sass": "^4.5.2",
     "normalize.css": "^5.0.0",

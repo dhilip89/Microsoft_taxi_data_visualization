@@ -1,1 +1,23278 @@
-webpackJsonp([0],{138:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=(0,m.default)();return t.locale(e.locale()).utcOffset(e.utcOffset()),t}function i(e){return e.format("L")}function o(e){return i(a(e))}function l(e){var t=e.locale();return e.localeData()["zh-cn"===t?"months":"monthsShort"](e)}function s(e,t){m.default.isMoment(e)&&m.default.isMoment(t)&&(t.hour(e.hour()),t.minute(e.minute()),t.second(e.second()))}function u(e,t){var n=t?t(e):{};return n=(0,p.default)({},g,n)}function c(e,t){var n=!1;if(e){var r=e.hour(),a=e.minute(),i=e.second();if(-1===t.disabledHours().indexOf(r)){if(-1===t.disabledMinutes(r).indexOf(a)){n=-1!==t.disabledSeconds(r,a).indexOf(i)}else n=!0}else n=!0}return!n}function f(e,t){return c(e,u(e,t))}function d(e,t,n){return(!t||!t(e))&&!(n&&!f(e,n))}Object.defineProperty(t,"__esModule",{value:!0});var h=n(2),p=r(h);t.getTodayTime=a,t.getTitleString=i,t.getTodayTimeStr=o,t.getMonthName=l,t.syncTime=s,t.getTimeConfig=u,t.isTimeValidByConfig=c,t.isTimeValid=f,t.isAllowedDate=d;var v=n(7),m=r(v),g={disabledHours:function(){return[]},disabledMinutes:function(){return[]},disabledSeconds:function(){return[]}}},146:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e,t,n,r){n<0&&(e+=n,n=-n),r<0&&(t+=r,r=-r),this.x=e,this.y=t,this.width=n,this.height=r}var r=n(147),a=n(837),i=r.applyTransform,o=Math.min,l=Math.max;return t.prototype={constructor:t,union:function(e){var t=o(e.x,this.x),n=o(e.y,this.y);this.width=l(e.x+e.width,this.x+this.width)-t,this.height=l(e.y+e.height,this.y+this.height)-n,this.x=t,this.y=n},applyTransform:function(){var e=[],t=[],n=[],r=[];return function(a){if(a){e[0]=n[0]=this.x,e[1]=r[1]=this.y,t[0]=r[0]=this.x+this.width,t[1]=n[1]=this.y+this.height,i(e,e,a),i(t,t,a),i(n,n,a),i(r,r,a),this.x=o(e[0],t[0],n[0],r[0]),this.y=o(e[1],t[1],n[1],r[1]);var s=l(e[0],t[0],n[0],r[0]),u=l(e[1],t[1],n[1],r[1]);this.width=s-this.x,this.height=u-this.y}}}(),calculateTransform:function(e){var t=this,n=e.width/t.width,r=e.height/t.height,i=a.create();return a.translate(i,i,[-t.x,-t.y]),a.scale(i,i,[n,r]),a.translate(i,i,[e.x,e.y]),i},intersect:function(e){if(!e)return!1;e instanceof t||(e=t.create(e));var n=this,r=n.x,a=n.x+n.width,i=n.y,o=n.y+n.height,l=e.x,s=e.x+e.width,u=e.y,c=e.y+e.height;return!(a<l||s<r||o<u||c<i)},contain:function(e,t){var n=this;return e>=n.x&&e<=n.x+n.width&&t>=n.y&&t<=n.y+n.height},clone:function(){return new t(this.x,this.y,this.width,this.height)},copy:function(e){this.x=e.x,this.y=e.y,this.width=e.width,this.height=e.height},plain:function(){return{x:this.x,y:this.y,width:this.width,height:this.height}}},t.create=function(e){return new t(e.x,e.y,e.width,e.height)},t}.call(t,n,t,e))&&(e.exports=r)},147:function(e,t,n){var r;void 0!==(r=function(){var e="undefined"==typeof Float32Array?Array:Float32Array,t={create:function(t,n){var r=new e(2);return null==t&&(t=0),null==n&&(n=0),r[0]=t,r[1]=n,r},copy:function(e,t){return e[0]=t[0],e[1]=t[1],e},clone:function(t){var n=new e(2);return n[0]=t[0],n[1]=t[1],n},set:function(e,t,n){return e[0]=t,e[1]=n,e},add:function(e,t,n){return e[0]=t[0]+n[0],e[1]=t[1]+n[1],e},scaleAndAdd:function(e,t,n,r){return e[0]=t[0]+n[0]*r,e[1]=t[1]+n[1]*r,e},sub:function(e,t,n){return e[0]=t[0]-n[0],e[1]=t[1]-n[1],e},len:function(e){return Math.sqrt(this.lenSquare(e))},lenSquare:function(e){return e[0]*e[0]+e[1]*e[1]},mul:function(e,t,n){return e[0]=t[0]*n[0],e[1]=t[1]*n[1],e},div:function(e,t,n){return e[0]=t[0]/n[0],e[1]=t[1]/n[1],e},dot:function(e,t){return e[0]*t[0]+e[1]*t[1]},scale:function(e,t,n){return e[0]=t[0]*n,e[1]=t[1]*n,e},normalize:function(e,n){var r=t.len(n);return 0===r?(e[0]=0,e[1]=0):(e[0]=n[0]/r,e[1]=n[1]/r),e},distance:function(e,t){return Math.sqrt((e[0]-t[0])*(e[0]-t[0])+(e[1]-t[1])*(e[1]-t[1]))},distanceSquare:function(e,t){return(e[0]-t[0])*(e[0]-t[0])+(e[1]-t[1])*(e[1]-t[1])},negate:function(e,t){return e[0]=-t[0],e[1]=-t[1],e},lerp:function(e,t,n,r){return e[0]=t[0]+r*(n[0]-t[0]),e[1]=t[1]+r*(n[1]-t[1]),e},applyTransform:function(e,t,n){var r=t[0],a=t[1];return e[0]=n[0]*r+n[2]*a+n[4],e[1]=n[1]*r+n[3]*a+n[5],e},min:function(e,t,n){return e[0]=Math.min(t[0],n[0]),e[1]=Math.min(t[1],n[1]),e},max:function(e,t,n){return e[0]=Math.max(t[0],n[0]),e[1]=Math.max(t[1],n[1]),e}};return t.length=t.len,t.lengthSquare=t.lenSquare,t.dist=t.distance,t.distSquare=t.distanceSquare,t}.call(t,n,t,e))&&(e.exports=r)},1618:function(e,t){},1619:function(e,t){},1620:function(e,t){},1642:function(e,t){e.exports={sv_trace_getTraceRoute:"/sv_trace_getTraceRoute"}},1744:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(){}function i(e){return Array.isArray(e)&&(0===e.length||e.every(function(e){return!e}))}function o(e){var t=(0,g.default)(e,2),n=t[0],r=t[1];return[n,r&&r.isSame(n,"month")?r.clone().add(1,"month"):r]}function l(e,t){var n=e.selectedValue||t&&e.defaultSelectedValue,r=e.value||t&&e.defaultValue,a=o(r?r:n);return i(a)?t&&[(0,k.default)(),(0,k.default)().add(1,"months")]:a}function s(e){for(var t=[],n=0;n<e;n++)t.push(n);return t}function u(e,t){if(t){var n=this.state.selectedValue,r=n.concat(),a="left"===e?0:1;r[a]=t,r[0]&&this.compare(r[0],r[1])>0&&(r[1-a]=this.state.showTimePicker?r[a]:void 0),this.fireSelectValueChange(r)}}Object.defineProperty(t,"__esModule",{value:!0});var c=n(2),f=r(c),d=n(10),h=r(d),p=n(45),v=r(p),m=n(190),g=r(m),y=n(0),_=r(y),b=n(16),x=r(b),w=n(5),C=r(w),P=n(7),k=r(P),S=n(8),O=r(S),T=n(1758),M=r(T),E=n(1748),D=r(E),j=n(1746),N=r(j),A=n(1747),V=r(A),L=n(747),R=r(L),I=n(138),H=(0,x.default)({displayName:"RangeCalendar",propTypes:{prefixCls:C.default.string,dateInputPlaceholder:C.default.any,defaultValue:C.default.any,value:C.default.any,hoverValue:C.default.any,timePicker:C.default.any,showOk:C.default.bool,showToday:C.default.bool,defaultSelectedValue:C.default.array,selectedValue:C.default.array,onOk:C.default.func,showClear:C.default.bool,locale:C.default.object,onChange:C.default.func,onSelect:C.default.func,onValueChange:C.default.func,onHoverChange:C.default.func,format:C.default.oneOfType([C.default.object,C.default.string]),onClear:C.default.func,type:C.default.any,disabledDate:C.default.func,disabledTime:C.default.func},mixins:[R.default],getDefaultProps:function(){return{type:"both",defaultSelectedValue:[],onValueChange:a,onHoverChange:a,disabledTime:a,showToday:!0}},getInitialState:function(){var e=this.props,t=e.selectedValue||e.defaultSelectedValue,n=l(e,1);return{selectedValue:t,prevSelectedValue:t,firstSelectedValue:null,hoverValue:e.hoverValue||[],value:n,showTimePicker:!1,isStartMonthYearPanelShow:!1,isEndMonthYearPanelShow:!1}},componentWillReceiveProps:function(e){var t={};"value"in e&&(t.value=l(e,0),this.setState(t)),"hoverValue"in e&&this.setState({hoverValue:e.hoverValue}),"selectedValue"in e&&(t.selectedValue=e.selectedValue,t.prevSelectedValue=e.selectedValue,this.setState(t))},onDatePanelEnter:function(){this.hasSelectedValue()&&this.fireHoverValueChange(this.state.selectedValue.concat())},onDatePanelLeave:function(){this.hasSelectedValue()&&this.fireHoverValueChange([])},onSelect:function(e){var t=this.props.type,n=this.state,r=n.selectedValue,a=n.prevSelectedValue,i=n.firstSelectedValue,o=void 0;if("both"===t)i?this.compare(i,e)<0?((0,I.syncTime)(a[1],e),o=[i,e]):((0,I.syncTime)(a[0],e),(0,I.syncTime)(a[1],i),o=[e,i]):((0,I.syncTime)(a[0],e),o=[e]);else if("start"===t){(0,I.syncTime)(a[0],e);var l=r[1];o=l&&this.compare(l,e)>0?[e,l]:[e]}else{var s=r[0];s&&this.compare(s,e)<=0?((0,I.syncTime)(a[1],e),o=[s,e]):((0,I.syncTime)(a[0],e),o=[e])}this.fireSelectValueChange(o)},onDayHover:function(e){var t=[],n=this.state,r=n.selectedValue,a=n.firstSelectedValue,i=this.props.type;if("start"===i&&r[1])t=this.compare(e,r[1])<0?[e,r[1]]:[e];else if("end"===i&&r[0])t=this.compare(e,r[0])>0?[r[0],e]:[];else{if(!a)return;t=this.compare(e,a)<0?[e,a]:[a,e]}this.fireHoverValueChange(t)},onToday:function(){var e=(0,I.getTodayTime)(this.state.value[0]),t=e.clone().add(1,"months");this.setState({value:[e,t]})},onOpenTimePicker:function(){this.setState({showTimePicker:!0})},onCloseTimePicker:function(){this.setState({showTimePicker:!1})},onOk:function(){var e=this.state.selectedValue;this.isAllowedDateAndTime(e)&&this.props.onOk(this.state.selectedValue)},onStartInputSelect:function(){for(var e=arguments.length,t=Array(e),n=0;n<e;n++)t[n]=arguments[n];var r=["left"].concat(t);return u.apply(this,r)},onEndInputSelect:function(){for(var e=arguments.length,t=Array(e),n=0;n<e;n++)t[n]=arguments[n];var r=["right"].concat(t);return u.apply(this,r)},onStartValueChange:function(e){var t=[].concat((0,v.default)(this.state.value));return t[0]=e,this.fireValueChange(t)},onEndValueChange:function(e){var t=[].concat((0,v.default)(this.state.value));return t[1]=e,this.fireValueChange(t)},onStartPanelChange:function(e){var t=e.showMonthPanel,n=e.showYearPanel;this.setState({isStartMonthYearPanelShow:t||n})},onEndPanelChange:function(e){var t=e.showMonthPanel,n=e.showYearPanel;this.setState({isEndMonthYearPanelShow:t||n})},getStartValue:function(){var e=this.state.value[0],t=this.state.selectedValue;return t[0]&&this.props.timePicker&&(e=e.clone(),(0,I.syncTime)(t[0],e)),this.state.showTimePicker&&t[0]?t[0]:e},getEndValue:function(){var e=this.state,t=e.value,n=e.selectedValue,r=e.showTimePicker,a=t[1]?t[1].clone():t[0].clone().add(1,"month");return n[1]&&this.props.timePicker&&(0,I.syncTime)(n[1],a),r?n[1]?n[1]:this.getStartValue():a},getEndDisableTime:function(){var e=this.state,t=e.selectedValue,n=e.value,r=t&&t[0]||n[0].clone();if(!t[1]||r.isSame(t[1],"day")){var a=r.hour(),i=r.minute(),o=r.second(),l=s(a),u=s(i),c=s(o);return{disabledHours:function(){return l},disabledMinutes:function(e){return e===a?u:[]},disabledSeconds:function(e,t){return e===a&&t===i?c:[]}}}return null},isAllowedDateAndTime:function(e){return(0,I.isAllowedDate)(e[0],this.props.disabledDate,this.disabledStartTime)&&(0,I.isAllowedDate)(e[1],this.props.disabledDate,this.disabledEndTime)},hasSelectedValue:function(){var e=this.state.selectedValue;return!!e[1]&&!!e[0]},compare:function(e,t){return this.props.timePicker?e.diff(t):e.diff(t,"days")},fireSelectValueChange:function(e,t){var n=this.props.timePicker,r=this.state.prevSelectedValue;if(n&&n.props.defaultValue){var a=n.props.defaultValue;!r[0]&&e[0]&&(0,I.syncTime)(a[0],e[0]),!r[1]&&e[1]&&(0,I.syncTime)(a[1],e[1])}if("selectedValue"in this.props||this.setState({selectedValue:e}),!this.state.selectedValue[0]||!this.state.selectedValue[1]){var i=e[0]||(0,k.default)(),l=e[1]||i.clone().add(1,"months");this.setState({selectedValue:e,value:o([i,l])})}e[0]&&!e[1]&&(this.setState({firstSelectedValue:e[0]}),this.fireHoverValueChange(e.concat())),this.props.onChange(e),(t||e[0]&&e[1])&&(this.setState({prevSelectedValue:e,firstSelectedValue:null}),this.fireHoverValueChange([]),this.props.onSelect(e))},fireValueChange:function(e){var t=this.props;"value"in t||this.setState({value:e}),t.onValueChange(e)},fireHoverValueChange:function(e){var t=this.props;"hoverValue"in t||this.setState({hoverValue:e}),t.onHoverChange(e)},clear:function(){this.fireSelectValueChange([],!0),this.props.onClear()},disabledStartTime:function(e){return this.props.disabledTime(e,"start")},disabledEndTime:function(e){return this.props.disabledTime(e,"end")},disabledStartMonth:function(e){var t=this.state.value;return e.isSameOrAfter(t[1],"month")},disabledEndMonth:function(e){var t=this.state.value;return e.isSameOrBefore(t[0],"month")},render:function(){var e,t,n=this.props,r=this.state,a=r.showTimePicker,i=r.isStartMonthYearPanelShow,o=r.isEndMonthYearPanelShow,l=n.prefixCls,s=n.dateInputPlaceholder,u=n.timePicker,c=n.showOk,d=n.locale,p=n.showClear,v=n.showToday,m=n.type,y=r.hoverValue,b=r.selectedValue,x=(e={},(0,h.default)(e,n.className,!!n.className),(0,h.default)(e,l,1),(0,h.default)(e,l+"-hidden",!n.visible),(0,h.default)(e,l+"-range",1),(0,h.default)(e,l+"-show-time-picker",a),(0,h.default)(e,l+"-week-number",n.showWeekNumber),e),w=(0,O.default)(x),C={selectedValue:r.selectedValue,onSelect:this.onSelect,onDayHover:"start"===m&&b[1]||"end"===m&&b[0]||y.length?this.onDayHover:void 0},P=void 0,k=void 0;if(s)if(Array.isArray(s)){var S=(0,g.default)(s,2);P=S[0],k=S[1]}else P=k=s;var T=!0===c||!1!==c&&!!u,E=(0,O.default)((t={},(0,h.default)(t,l+"-footer",!0),(0,h.default)(t,l+"-range-bottom",!0),(0,h.default)(t,l+"-footer-show-ok",T),t)),j=this.getStartValue(),A=this.getEndValue(),L=(0,I.getTodayTime)(j),R=L.month(),H=L.year(),z=j.year()===H&&j.month()===R||A.year()===H&&A.month()===R,B=j.clone().add(1,"months"),F=B.year()===A.year()&&B.month()===A.month();return _.default.createElement("div",{ref:this.saveRoot,className:w,style:n.style,tabIndex:"0"},n.renderSidebar(),_.default.createElement("div",{className:l+"-panel"},p&&b[0]&&b[1]?_.default.createElement("a",{className:l+"-clear-btn",role:"button",title:d.clear,onClick:this.clear}):null,_.default.createElement("div",{className:l+"-date-panel",onMouseLeave:"both"!==m?this.onDatePanelLeave:void 0,onMouseEnter:"both"!==m?this.onDatePanelEnter:void 0},_.default.createElement(M.default,(0,f.default)({},n,C,{hoverValue:y,direction:"left",disabledTime:this.disabledStartTime,disabledMonth:this.disabledStartMonth,format:this.getFormat(),value:j,placeholder:P,onInputSelect:this.onStartInputSelect,onValueChange:this.onStartValueChange,onPanelChange:this.onStartPanelChange,timePicker:u,showTimePicker:a,enablePrev:!0,enableNext:!F||o})),_.default.createElement("span",{className:l+"-range-middle"},"~"),_.default.createElement(M.default,(0,f.default)({},n,C,{hoverValue:y,direction:"right",format:this.getFormat(),timePickerDisabledTime:this.getEndDisableTime(),placeholder:k,value:A,onInputSelect:this.onEndInputSelect,onValueChange:this.onEndValueChange,onPanelChange:this.onEndPanelChange,timePicker:u,showTimePicker:a,disabledTime:this.disabledEndTime,disabledMonth:this.disabledEndMonth,enablePrev:!F||i,enableNext:!0}))),_.default.createElement("div",{className:E},n.renderFooter(),v||n.timePicker||T?_.default.createElement("div",{className:l+"-footer-btn"},v?_.default.createElement(D.default,(0,f.default)({},n,{disabled:z,value:r.value[0],onToday:this.onToday,text:d.backToToday})):null,n.timePicker?_.default.createElement(V.default,(0,f.default)({},n,{showTimePicker:a,onOpenTimePicker:this.onOpenTimePicker,onCloseTimePicker:this.onCloseTimePicker,timePickerDisabled:!this.hasSelectedValue()||y.length})):null,T?_.default.createElement(N.default,(0,f.default)({},n,{onOk:this.onOk,okDisabled:!this.isAllowedDateAndTime(b)||!this.hasSelectedValue()||y.length})):null):null)))}});t.default=H,e.exports=t.default},1745:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=this.props.value.clone();t.add(e,"months"),this.props.onValueChange(t)}function i(e){var t=this.props.value.clone();t.add(e,"years"),this.props.onValueChange(t)}function o(e,t){return e?t:null}Object.defineProperty(t,"__esModule",{value:!0});var l=n(0),s=r(l),u=n(16),c=r(u),f=n(5),d=r(f),h=n(748),p=r(h),v=n(749),m=r(v),g=n(1882),y=r(g),_=(0,c.default)({displayName:"CalendarHeader",propTypes:{prefixCls:d.default.string,value:d.default.object,onValueChange:d.default.func,showTimePicker:d.default.bool,showMonthPanel:d.default.bool,showYearPanel:d.default.bool,onPanelChange:d.default.func,locale:d.default.object,enablePrev:d.default.any,enableNext:d.default.any,disabledMonth:d.default.func},getDefaultProps:function(){return{enableNext:1,enablePrev:1,onPanelChange:function(){},onValueChange:function(){}}},getInitialState:function(){this.nextMonth=a.bind(this,1),this.previousMonth=a.bind(this,-1),this.nextYear=i.bind(this,1),this.previousYear=i.bind(this,-1);var e=this.props;return{showMonthPanel:e.showMonthPanel,showYearPanel:e.showYearPanel}},componentWillReceiveProps:function(){var e=this.props;"showMonthpanel"in e&&this.setState({showMonthPanel:e.showMonthPanel}),"showYearpanel"in e&&this.setState({showYearPanel:e.showYearPanel})},onSelect:function(e){this.triggerPanelChange({showMonthPanel:0,showYearPanel:0}),this.props.onValueChange(e)},triggerPanelChange:function(e){"showMonthPanel"in this.props||this.setState({showMonthPanel:e.showMonthPanel}),"showYearPanel"in this.props||this.setState({showYearPanel:e.showYearPanel}),this.props.onPanelChange(e)},monthYearElement:function(e){var t=this.props,n=t.prefixCls,r=t.locale,a=t.value,i=a.localeData(),o=r.monthBeforeYear,l=n+"-"+(o?"my-select":"ym-select"),u=s.default.createElement("a",{className:n+"-year-select",role:"button",onClick:e?null:this.showYearPanel,title:r.yearSelect},a.format(r.yearFormat)),c=s.default.createElement("a",{className:n+"-month-select",role:"button",onClick:e?null:this.showMonthPanel,title:r.monthSelect},i.monthsShort(a)),f=void 0;e&&(f=s.default.createElement("a",{className:n+"-day-select",role:"button"},a.format(r.dayFormat)));var d=[];return d=o?[c,f,u]:[u,c,f],s.default.createElement("span",{className:l},(0,y.default)(d))},showMonthPanel:function(){this.triggerPanelChange({showMonthPanel:1,showYearPanel:0})},showYearPanel:function(){this.triggerPanelChange({showMonthPanel:0,showYearPanel:1})},render:function(){var e=this.props,t=this.state,n=e.prefixCls,r=e.locale,a=e.value,i=e.showTimePicker,l=e.enableNext,u=e.enablePrev,c=e.disabledMonth,f=null;return t.showMonthPanel?f=s.default.createElement(p.default,{locale:r,defaultValue:a,rootPrefixCls:n,onSelect:this.onSelect,disabledDate:c}):t.showYearPanel&&(f=s.default.createElement(m.default,{locale:r,defaultValue:a,rootPrefixCls:n,onSelect:this.onSelect})),s.default.createElement("div",{className:n+"-header"},s.default.createElement("div",{style:{position:"relative"}},o(u&&!i,s.default.createElement("a",{className:n+"-prev-year-btn",role:"button",onClick:this.previousYear,title:r.previousYear})),o(u&&!i,s.default.createElement("a",{className:n+"-prev-month-btn",role:"button",onClick:this.previousMonth,title:r.previousMonth})),this.monthYearElement(i),o(l&&!i,s.default.createElement("a",{className:n+"-next-month-btn",onClick:this.nextMonth,title:r.nextMonth})),o(l&&!i,s.default.createElement("a",{className:n+"-next-year-btn",onClick:this.nextYear,title:r.nextYear}))),f)}});t.default=_,e.exports=t.default},1746:function(e,t,n){"use strict";function r(e){var t=e.prefixCls,n=e.locale,r=e.okDisabled,a=e.onOk,o=t+"-ok-btn";return r&&(o+=" "+t+"-ok-btn-disabled"),i.default.createElement("a",{className:o,role:"button",onClick:r?null:a},n.ok)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var a=n(0),i=function(e){return e&&e.__esModule?e:{default:e}}(a);e.exports=t.default},1747:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t,n=e.prefixCls,r=e.locale,a=e.showTimePicker,i=e.onOpenTimePicker,l=e.onCloseTimePicker,u=e.timePickerDisabled,f=(0,c.default)((t={},(0,o.default)(t,n+"-time-picker-btn",!0),(0,o.default)(t,n+"-time-picker-btn-disabled",u),t)),d=null;return u||(d=a?l:i),s.default.createElement("a",{className:f,role:"button",onClick:d},a?r.dateSelect:r.timeSelect)}Object.defineProperty(t,"__esModule",{value:!0});var i=n(10),o=r(i);t.default=a;var l=n(0),s=r(l),u=n(8),c=r(u);e.exports=t.default},1748:function(e,t,n){"use strict";function r(e){var t=e.prefixCls,n=e.locale,r=e.value,a=e.timePicker,l=e.disabled,s=e.disabledDate,u=e.onToday,c=e.text,f=(!c&&a?n.now:c)||n.today,d=s&&!(0,o.isAllowedDate)((0,o.getTodayTime)(r),s),h=d||l,p=h?t+"-today-btn-disabled":"";return i.default.createElement("a",{className:t+"-today-btn "+p,role:"button",onClick:h?null:u,title:(0,o.getTodayTimeStr)(r)},f)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=r;var a=n(0),i=function(e){return e&&e.__esModule?e:{default:e}}(a),o=n(138);e.exports=t.default},1749:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),i=r(a),o=n(12),l=r(o),s=n(16),u=r(s),c=n(5),f=r(c),d=n(7),h=r(d),p=(0,u.default)({displayName:"DateInput",propTypes:{prefixCls:f.default.string,timePicker:f.default.object,value:f.default.object,disabledTime:f.default.any,format:f.default.string,locale:f.default.object,disabledDate:f.default.func,onChange:f.default.func,onClear:f.default.func,placeholder:f.default.string,onSelect:f.default.func,selectedValue:f.default.object},getInitialState:function(){var e=this.props.selectedValue;return{str:e&&e.format(this.props.format)||"",invalid:!1}},componentWillReceiveProps:function(e){var t=e.selectedValue;this.setState({str:t&&t.format(e.format)||"",invalid:!1})},onInputChange:function(e){var t=e.target.value;this.setState({str:t});var n=void 0,r=this.props,a=r.disabledDate,i=r.format,o=r.onChange;if(t){var l=(0,h.default)(t,i,!0);if(!l.isValid())return void this.setState({invalid:!0});if(n=this.props.value.clone(),n.year(l.year()).month(l.month()).date(l.date()).hour(l.hour()).minute(l.minute()).second(l.second()),!n||a&&a(n))return void this.setState({invalid:!0});var s=this.props.selectedValue;s&&n?s.isSame(n)||o(n):s!==n&&o(n)}else o(null);this.setState({invalid:!1})},onClear:function(){this.setState({str:""}),this.props.onClear(null)},getRootDOMNode:function(){return l.default.findDOMNode(this)},focus:function(){this.dateInputInstance&&this.dateInputInstance.focus()},saveDateInput:function(e){this.dateInputInstance=e},render:function(){var e=this.props,t=this.state,n=t.invalid,r=t.str,a=e.locale,o=e.prefixCls,l=e.placeholder,s=n?o+"-input-invalid":"";return i.default.createElement("div",{className:o+"-input-wrap"},i.default.createElement("div",{className:o+"-date-input-wrap"},i.default.createElement("input",{ref:this.saveDateInput,className:o+"-input "+s,value:r,disabled:e.disabled,placeholder:l,onChange:this.onInputChange})),e.showClear?i.default.createElement("a",{className:o+"-clear-btn",role:"button",title:a.clear,onClick:this.onClear}):null)}});t.default=p,e.exports=t.default},1750:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){return e&&t&&e.isSame(t,"day")}function i(e,t){return e.year()<t.year()?1:e.year()===t.year()&&e.month()<t.month()}function o(e,t){return e.year()>t.year()?1:e.year()===t.year()&&e.month()>t.month()}function l(e){return"rc-calendar-"+e.year()+"-"+e.month()+"-"+e.date()}Object.defineProperty(t,"__esModule",{value:!0});var s=n(10),u=r(s),c=n(0),f=r(c),d=n(16),h=r(d),p=n(5),v=r(p),m=n(8),g=r(m),y=n(745),_=r(y),b=n(138),x=(0,h.default)({displayName:"DateTBody",propTypes:{contentRender:v.default.func,dateRender:v.default.func,disabledDate:v.default.func,prefixCls:v.default.string,selectedValue:v.default.oneOfType([v.default.object,v.default.arrayOf(v.default.object)]),value:v.default.object,hoverValue:v.default.any,showWeekNumber:v.default.bool},getDefaultProps:function(){return{hoverValue:[]}},render:function(){var e=this.props,t=e.contentRender,n=e.prefixCls,r=e.selectedValue,s=e.value,c=e.showWeekNumber,d=e.dateRender,h=e.disabledDate,p=e.hoverValue,v=void 0,m=void 0,y=void 0,x=[],w=(0,b.getTodayTime)(s),C=n+"-cell",P=n+"-week-number-cell",k=n+"-date",S=n+"-today",O=n+"-selected-day",T=n+"-selected-date",M=n+"-in-range-cell",E=n+"-last-month-cell",D=n+"-next-month-btn-day",j=n+"-disabled-cell",N=n+"-disabled-cell-first-of-row",A=n+"-disabled-cell-last-of-row",V=s.clone();V.date(1);var L=V.day(),R=(L+7-s.localeData().firstDayOfWeek())%7,I=V.clone();I.add(0-R,"days");var H=0;for(v=0;v<_.default.DATE_ROW_COUNT;v++)for(m=0;m<_.default.DATE_COL_COUNT;m++)y=I,H&&(y=y.clone(),y.add(H,"days")),x.push(y),H++;var z=[];for(H=0,v=0;v<_.default.DATE_ROW_COUNT;v++){var B,F=void 0,Y=void 0,W=!1,q=[];for(c&&(Y=f.default.createElement("td",{key:x[H].week(),role:"gridcell",className:P},x[H].week())),m=0;m<_.default.DATE_COL_COUNT;m++){var X=null,K=null;y=x[H],m<_.default.DATE_COL_COUNT-1&&(X=x[H+1]),m>0&&(K=x[H-1]);var U=C,G=!1,Z=!1;a(y,w)&&(U+=" "+S,F=!0);var Q=i(y,s),$=o(y,s);if(r&&Array.isArray(r)){var J=p.length?p:r;if(!Q&&!$){var ee=J[0],te=J[1];ee&&a(y,ee)&&(Z=!0,W=!0),ee&&te&&(a(y,te)?(Z=!0,W=!0):y.isAfter(ee,"day")&&y.isBefore(te,"day")&&(U+=" "+M))}}else a(y,s)&&(Z=!0,W=!0);a(y,r)&&(U+=" "+T),Q&&(U+=" "+E),$&&(U+=" "+D),h&&h(y,s)&&(G=!0,K&&h(K,s)||(U+=" "+N),X&&h(X,s)||(U+=" "+A)),Z&&(U+=" "+O),G&&(U+=" "+j);var ne=void 0;if(d)ne=d(y,s);else{var re=t?t(y,s):y.date();ne=f.default.createElement("div",{key:l(y),className:k,"aria-selected":Z,"aria-disabled":G},re)}q.push(f.default.createElement("td",{key:H,onClick:G?void 0:e.onSelect.bind(null,y),onMouseEnter:G?void 0:e.onDayHover&&e.onDayHover.bind(null,y)||void 0,role:"gridcell",title:(0,b.getTitleString)(y),className:U},ne)),H++}z.push(f.default.createElement("tr",{key:v,role:"row",className:(0,g.default)((B={},(0,u.default)(B,n+"-current-week",F),(0,u.default)(B,n+"-active-week",W),B))},Y,q))}return f.default.createElement("tbody",{className:n+"-tbody"},z)}});t.default=x,e.exports=t.default},1751:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(1),i=r(a),o=n(6),l=r(o),s=n(4),u=r(s),c=n(3),f=r(c),d=n(0),h=r(d),p=n(745),v=r(p),m=n(7),g=r(m),y=function(e){function t(){return(0,i.default)(this,t),(0,u.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return(0,f.default)(t,e),(0,l.default)(t,[{key:"render",value:function(){for(var e=this.props,t=e.value,n=t.localeData(),r=e.prefixCls,a=[],i=[],o=n.firstDayOfWeek(),l=void 0,s=(0,g.default)(),u=0;u<v.default.DATE_COL_COUNT;u++){var c=(o+u)%v.default.DATE_COL_COUNT;s.day(c),a[u]=n.weekdaysMin(s),i[u]=n.weekdaysShort(s)}e.showWeekNumber&&(l=h.default.createElement("th",{role:"columnheader",className:r+"-column-header "+r+"-week-number-header"},h.default.createElement("span",{className:r+"-column-header-inner"},"x")));var f=i.map(function(e,t){return h.default.createElement("th",{key:t,role:"columnheader",title:e,className:r+"-column-header"},h.default.createElement("span",{className:r+"-column-header-inner"},a[t]))});return h.default.createElement("thead",null,h.default.createElement("tr",{role:"row"},l,f))}}]),t}(h.default.Component);t.default=y,e.exports=t.default},1752:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(1),i=r(a),o=n(6),l=r(o),s=n(4),u=r(s),c=n(3),f=r(c),d=n(0),h=r(d),p=n(1751),v=r(p),m=n(1750),g=r(m),y=function(e){function t(){return(0,i.default)(this,t),(0,u.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return(0,f.default)(t,e),(0,l.default)(t,[{key:"render",value:function(){var e=this.props,t=e.prefixCls;return h.default.createElement("table",{className:t+"-table",cellSpacing:"0",role:"grid"},h.default.createElement(v.default,e),h.default.createElement(g.default,e))}}]),t}(h.default.Component);t.default=y,e.exports=t.default},1753:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=this.state.value.clone();t.add(e,"years"),this.setState({value:t})}function i(e,t){var n=this.state.value.clone();n.year(e),n.month(this.state.value.month()),this.props.onSelect(n),t.preventDefault()}Object.defineProperty(t,"__esModule",{value:!0});var o=n(10),l=r(o),s=n(1),u=r(s),c=n(6),f=r(c),d=n(4),h=r(d),p=n(3),v=r(p),m=n(0),g=r(m),y=n(5),_=r(y),b=n(8),x=r(b),w=function(e){function t(e){(0,u.default)(this,t);var n=(0,h.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.state={value:e.value||e.defaultValue},n.prefixCls=e.rootPrefixCls+"-decade-panel",n.nextCentury=a.bind(n,100),n.previousCentury=a.bind(n,-100),n}return(0,v.default)(t,e),(0,f.default)(t,[{key:"render",value:function(){for(var e=this,t=this.state.value,n=this.props.locale,r=t.year(),a=100*parseInt(r/100,10),o=a-10,s=a+99,u=[],c=0,f=this.prefixCls,d=0;d<4;d++){u[d]=[];for(var h=0;h<3;h++){var p=o+10*c,v=o+10*c+9;u[d][h]={startDecade:p,endDecade:v},c++}}var m=u.map(function(t,n){var o=t.map(function(t){var n,o=t.startDecade,u=t.endDecade,c=o<a,d=u>s,h=(n={},(0,l.default)(n,f+"-cell",1),(0,l.default)(n,f+"-selected-cell",o<=r&&r<=u),(0,l.default)(n,f+"-last-century-cell",c),(0,l.default)(n,f+"-next-century-cell",d),n),p=o+"-"+u,v=void 0;return v=c?e.previousCentury:d?e.nextCentury:i.bind(e,o),g.default.createElement("td",{key:o,onClick:v,role:"gridcell",className:(0,x.default)(h)},g.default.createElement("a",{className:f+"-decade"},p))});return g.default.createElement("tr",{key:n,role:"row"},o)});return g.default.createElement("div",{className:this.prefixCls},g.default.createElement("div",{className:f+"-header"},g.default.createElement("a",{className:f+"-prev-century-btn",role:"button",onClick:this.previousCentury,title:n.previousCentury}),g.default.createElement("div",{className:f+"-century"},a,"-",s),g.default.createElement("a",{className:f+"-next-century-btn",role:"button",onClick:this.nextCentury,title:n.nextCentury})),g.default.createElement("div",{className:f+"-body"},g.default.createElement("table",{className:f+"-table",cellSpacing:"0",role:"grid"},g.default.createElement("tbody",{className:f+"-tbody"},m))))}}]),t}(g.default.Component);t.default=w,w.propTypes={locale:_.default.object,value:_.default.object,defaultValue:_.default.object,rootPrefixCls:_.default.string},w.defaultProps={onSelect:function(){}},e.exports=t.default},1754:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={today:"Today",now:"Now",backToToday:"Back to today",ok:"Ok",clear:"Clear",month:"Month",year:"Year",timeSelect:"Select time",dateSelect:"Select date",monthSelect:"Choose a month",yearSelect:"Choose a year",decadeSelect:"Choose a decade",yearFormat:"YYYY",dateFormat:"M/D/YYYY",dayFormat:"D",dateTimeFormat:"M/D/YYYY HH:mm:ss",monthBeforeYear:!0,previousMonth:"Previous month (PageUp)",nextMonth:"Next month (PageDown)",previousYear:"Last year (Control + left)",nextYear:"Next year (Control + right)",previousDecade:"Last decade",nextDecade:"Next decade",previousCentury:"Last century",nextCentury:"Next century"},e.exports=t.default},1755:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(){}function i(){return(0,m.default)()}function o(e){return e?(0,g.getTodayTime)(e):i()}Object.defineProperty(t,"__esModule",{value:!0});var l=n(10),s=r(l),u=n(0),c=r(u),f=n(5),d=r(f),h=n(8),p=r(h),v=n(7),m=r(v),g=n(138),y={propTypes:{value:d.default.object,defaultValue:d.default.object,onKeyDown:d.default.func},getDefaultProps:function(){return{onKeyDown:a}},getInitialState:function(){var e=this.props;return{value:e.value||e.defaultValue||i(),selectedValue:e.selectedValue||e.defaultSelectedValue}},componentWillReceiveProps:function(e){var t=e.value,n=e.selectedValue;"value"in e&&(t=t||e.defaultValue||o(this.state.value),this.setState({value:t})),"selectedValue"in e&&this.setState({selectedValue:n})},onSelect:function(e,t){e&&this.setValue(e),this.setSelectedValue(e,t)},renderRoot:function(e){var t,n=this.props,r=n.prefixCls,a=(t={},(0,s.default)(t,r,1),(0,s.default)(t,r+"-hidden",!n.visible),(0,s.default)(t,n.className,!!n.className),(0,s.default)(t,e.className,!!e.className),t);return c.default.createElement("div",{ref:this.saveRoot,className:""+(0,p.default)(a),style:this.props.style,tabIndex:"0",onKeyDown:this.onKeyDown},e.children)},setSelectedValue:function(e,t){"selectedValue"in this.props||this.setState({selectedValue:e}),this.props.onSelect(e,t)},setValue:function(e){var t=this.state.value;"value"in this.props||this.setState({value:e}),(t&&e&&!t.isSame(e)||!t&&e||t&&!e)&&this.props.onChange(e)},isAllowedDate:function(e){var t=this.props.disabledDate,n=this.props.disabledTime;return(0,g.isAllowedDate)(e,t,n)}};t.default=y,e.exports=t.default},1756:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=this.state.value.clone();t.month(e),this.setAndSelectValue(t)}function i(){}Object.defineProperty(t,"__esModule",{value:!0});var o=n(10),l=r(o),s=n(1),u=r(s),c=n(6),f=r(c),d=n(4),h=r(d),p=n(3),v=r(p),m=n(0),g=r(m),y=n(5),_=r(y),b=n(8),x=r(b),w=n(138),C=function(e){function t(e){(0,u.default)(this,t);var n=(0,h.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.state={value:e.value},n}return(0,v.default)(t,e),(0,f.default)(t,[{key:"componentWillReceiveProps",value:function(e){"value"in e&&this.setState({value:e.value})}},{key:"setAndSelectValue",value:function(e){this.setState({value:e}),this.props.onSelect(e)}},{key:"months",value:function(){for(var e=this.state.value,t=e.clone(),n=[],r=0,a=0;a<4;a++){n[a]=[];for(var i=0;i<3;i++){t.month(r);var o=(0,w.getMonthName)(t);n[a][i]={value:r,content:o,title:o},r++}}return n}},{key:"render",value:function(){var e=this,t=this.props,n=this.state.value,r=(0,w.getTodayTime)(n),i=this.months(),o=n.month(),s=t.prefixCls,u=t.locale,c=t.contentRender,f=t.cellRender,d=i.map(function(i,d){var h=i.map(function(i){var d,h=!1;if(t.disabledDate){var p=n.clone();p.month(i.value),h=t.disabledDate(p)}var v=(d={},(0,l.default)(d,s+"-cell",1),(0,l.default)(d,s+"-cell-disabled",h),(0,l.default)(d,s+"-selected-cell",i.value===o),(0,l.default)(d,s+"-current-cell",r.year()===n.year()&&i.value===r.month()),d),m=void 0;if(f){var y=n.clone();y.month(i.value),m=f(y,u)}else{var _=void 0;if(c){var b=n.clone();b.month(i.value),_=c(b,u)}else _=i.content;m=g.default.createElement("a",{className:s+"-month"},_)}return g.default.createElement("td",{role:"gridcell",key:i.value,onClick:h?null:a.bind(e,i.value),title:i.title,className:(0,x.default)(v)},m)});return g.default.createElement("tr",{key:d,role:"row"},h)});return g.default.createElement("table",{className:s+"-table",cellSpacing:"0",role:"grid"},g.default.createElement("tbody",{className:s+"-tbody"},d))}}]),t}(m.Component);C.defaultProps={onSelect:i},C.propTypes={onSelect:_.default.func,cellRender:_.default.func,prefixCls:_.default.string,value:_.default.object},t.default=C,e.exports=t.default},1757:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={adjustX:1,adjustY:1},a=[0,0],i={bottomLeft:{points:["tl","tl"],overflow:r,offset:[0,-3],targetOffset:a},bottomRight:{points:["tr","tr"],overflow:r,offset:[0,-3],targetOffset:a},topRight:{points:["br","br"],overflow:r,offset:[0,3],targetOffset:a},topLeft:{points:["bl","bl"],overflow:r,offset:[0,3],targetOffset:a}};t.default=i,e.exports=t.default},1758:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(0),l=r(o),s=n(16),u=r(s),c=n(5),f=r(c),d=n(1745),h=r(d),p=n(1752),v=r(p),m=n(1749),g=r(m),y=n(138),_=(0,u.default)({displayName:"CalendarPart",propTypes:{prefixCls:f.default.string,value:f.default.any,hoverValue:f.default.any,selectedValue:f.default.any,direction:f.default.any,locale:f.default.any,showTimePicker:f.default.bool,format:f.default.any,placeholder:f.default.any,disabledDate:f.default.any,timePicker:f.default.any,disabledTime:f.default.any,onInputSelect:f.default.func,timePickerDisabledTime:f.default.object,enableNext:f.default.any,enablePrev:f.default.any},render:function(){var e=this.props,t=e.prefixCls,n=e.value,r=e.hoverValue,a=e.selectedValue,o=e.direction,s=e.locale,u=e.format,c=e.placeholder,f=e.disabledDate,d=e.timePicker,p=e.disabledTime,m=e.timePickerDisabledTime,_=e.showTimePicker,b=e.onInputSelect,x=e.enablePrev,w=e.enableNext,C=_&&d,P=C&&p?(0,y.getTimeConfig)(a,p):null,k=t+"-range",S={locale:s,value:n,prefixCls:t,showTimePicker:_},O="left"===o?0:1,T=C&&l.default.cloneElement(d,(0,i.default)({showHour:!0,showMinute:!0,showSecond:!0},d.props,P,m,{onChange:b,defaultOpenValue:n,value:a[O]}));return l.default.createElement("div",{className:k+"-part "+k+"-"+o},l.default.createElement(g.default,{format:u,locale:s,prefixCls:t,timePicker:d,disabledDate:f,placeholder:c,disabledTime:p,value:n,showClear:!1,selectedValue:a[O],onChange:b}),l.default.createElement("div",{style:{outline:"none"}},l.default.createElement(h.default,(0,i.default)({},S,{enableNext:w,enablePrev:x,onValueChange:e.onValueChange,onPanelChange:e.onPanelChange,disabledMonth:e.disabledMonth})),_?l.default.createElement("div",{className:t+"-time-picker"},l.default.createElement("div",{className:t+"-time-picker-panel"},T)):null,l.default.createElement("div",{className:t+"-body"},l.default.createElement(v.default,(0,i.default)({},S,{hoverValue:r,selectedValue:a,dateRender:e.dateRender,onSelect:e.onSelect,onDayHover:e.onDayHover,disabledDate:f,showWeekNumber:e.showWeekNumber})))))}});t.default=_,e.exports=t.default},183:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e){return e>-x&&e<x}function r(e){return e>x||e<-x}function a(e,t,n,r,a){var i=1-a;return i*i*(i*e+3*a*t)+a*a*(a*r+3*i*n)}function i(e,t,n,r,a){var i=1-a;return 3*(((t-e)*i+2*(n-t)*a)*i+(r-n)*a*a)}function o(e,n,r,a,i,o){var l=a+3*(n-r)-e,s=3*(r-2*n+e),u=3*(n-e),c=e-i,f=s*s-3*l*u,d=s*u-9*l*c,h=u*u-3*s*c,p=0;if(t(f)&&t(d))if(t(s))o[0]=0;else{var v=-u/s;v>=0&&v<=1&&(o[p++]=v)}else{var m=d*d-4*f*h;if(t(m)){var g=d/f,v=-s/l+g,y=-g/2;v>=0&&v<=1&&(o[p++]=v),y>=0&&y<=1&&(o[p++]=y)}else if(m>0){var x=b(m),w=f*s+1.5*l*(-d+x),k=f*s+1.5*l*(-d-x);w=w<0?-_(-w,P):_(w,P),k=k<0?-_(-k,P):_(k,P);var v=(-s-(w+k))/(3*l);v>=0&&v<=1&&(o[p++]=v)}else{var S=(2*f*s-3*l*d)/(2*b(f*f*f)),O=Math.acos(S)/3,T=b(f),M=Math.cos(O),v=(-s-2*T*M)/(3*l),y=(-s+T*(M+C*Math.sin(O)))/(3*l),E=(-s+T*(M-C*Math.sin(O)))/(3*l);v>=0&&v<=1&&(o[p++]=v),y>=0&&y<=1&&(o[p++]=y),E>=0&&E<=1&&(o[p++]=E)}}return p}function l(e,n,a,i,o){var l=6*a-12*n+6*e,s=9*n+3*i-3*e-9*a,u=3*n-3*e,c=0;if(t(s)){if(r(l)){var f=-u/l;f>=0&&f<=1&&(o[c++]=f)}}else{var d=l*l-4*s*u;if(t(d))o[0]=-l/(2*s);else if(d>0){var h=b(d),f=(-l+h)/(2*s),p=(-l-h)/(2*s);f>=0&&f<=1&&(o[c++]=f),p>=0&&p<=1&&(o[c++]=p)}}return c}function s(e,t,n,r,a,i){var o=(t-e)*a+e,l=(n-t)*a+t,s=(r-n)*a+n,u=(l-o)*a+o,c=(s-l)*a+l,f=(c-u)*a+u;i[0]=e,i[1]=o,i[2]=u,i[3]=f,i[4]=f,i[5]=c,i[6]=s,i[7]=r}function u(e,t,n,r,i,o,l,s,u,c,f){var d,h,p,v,m,g=.005,_=1/0;k[0]=u,k[1]=c;for(var x=0;x<1;x+=.05)S[0]=a(e,n,i,l,x),S[1]=a(t,r,o,s,x),(v=y(k,S))<_&&(d=x,_=v);_=1/0;for(var C=0;C<32&&!(g<w);C++)h=d-g,p=d+g,S[0]=a(e,n,i,l,h),S[1]=a(t,r,o,s,h),v=y(S,k),h>=0&&v<_?(d=h,_=v):(O[0]=a(e,n,i,l,p),O[1]=a(t,r,o,s,p),m=y(O,k),p<=1&&m<_?(d=p,_=m):g*=.5);return f&&(f[0]=a(e,n,i,l,d),f[1]=a(t,r,o,s,d)),b(_)}function c(e,t,n,r){var a=1-r;return a*(a*e+2*r*t)+r*r*n}function f(e,t,n,r){return 2*((1-r)*(t-e)+r*(n-t))}function d(e,n,a,i,o){var l=e-2*n+a,s=2*(n-e),u=e-i,c=0;if(t(l)){if(r(s)){var f=-u/s;f>=0&&f<=1&&(o[c++]=f)}}else{var d=s*s-4*l*u;if(t(d)){var f=-s/(2*l);f>=0&&f<=1&&(o[c++]=f)}else if(d>0){var h=b(d),f=(-s+h)/(2*l),p=(-s-h)/(2*l);f>=0&&f<=1&&(o[c++]=f),p>=0&&p<=1&&(o[c++]=p)}}return c}function h(e,t,n){var r=e+n-2*t;return 0===r?.5:(e-t)/r}function p(e,t,n,r,a){var i=(t-e)*r+e,o=(n-t)*r+t,l=(o-i)*r+i;a[0]=e,a[1]=i,a[2]=l,a[3]=l,a[4]=o,a[5]=n}function v(e,t,n,r,a,i,o,l,s){var u,f=.005,d=1/0;k[0]=o,k[1]=l;for(var h=0;h<1;h+=.05){S[0]=c(e,n,a,h),S[1]=c(t,r,i,h);var p=y(k,S);p<d&&(u=h,d=p)}d=1/0;for(var v=0;v<32&&!(f<w);v++){var m=u-f,g=u+f;S[0]=c(e,n,a,m),S[1]=c(t,r,i,m);var p=y(S,k);if(m>=0&&p<d)u=m,d=p;else{O[0]=c(e,n,a,g),O[1]=c(t,r,i,g);var _=y(O,k);g<=1&&_<d?(u=g,d=_):f*=.5}}return s&&(s[0]=c(e,n,a,u),s[1]=c(t,r,i,u)),b(d)}var m=n(147),g=m.create,y=m.distSquare,_=Math.pow,b=Math.sqrt,x=1e-8,w=1e-4,C=b(3),P=1/3,k=g(),S=g(),O=g();return{cubicAt:a,cubicDerivativeAt:i,cubicRootAt:o,cubicExtrema:l,cubicSubdivide:s,cubicProjectPoint:u,quadraticAt:c,quadraticDerivativeAt:f,quadraticRootAt:d,quadraticExtremum:h,quadraticSubdivide:p,quadraticProjectPoint:v}}.call(t,n,t,e))&&(e.exports=r)},1858:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(1),i=r(a),o=n(6),l=r(o),s=n(4),u=r(s),c=n(3),f=r(c),d=n(0),h=r(d),p=n(5),v=r(p),m=n(1860),g=r(m),y=function(e,t){var n=""+e;e<10&&(n="0"+e);var r=!1;return t&&t.indexOf(e)>=0&&(r=!0),{value:n,disabled:r}},_=function(e){function t(){var e,n,r,a;(0,i.default)(this,t);for(var o=arguments.length,l=Array(o),s=0;s<o;s++)l[s]=arguments[s];return n=r=(0,u.default)(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(l))),r.onItemChange=function(e,t){var n=r.props,a=n.onChange,i=n.defaultOpenValue,o=n.use12Hours,l=(r.props.value||i).clone();if("hour"===e)o?r.isAM()?l.hour(+t%12):l.hour(+t%12+12):l.hour(+t);else if("minute"===e)l.minute(+t);else if("ampm"===e){var s=t.toUpperCase();o&&("PM"===s&&l.hour()<12&&l.hour(l.hour()%12+12),"AM"===s&&l.hour()>=12&&l.hour(l.hour()-12))}else l.second(+t);a(l)},r.onEnterSelectPanel=function(e){r.props.onCurrentSelectPanelChange(e)},a=n,(0,u.default)(r,a)}return(0,f.default)(t,e),(0,l.default)(t,[{key:"getHourSelect",value:function(e){var t=this.props,n=t.prefixCls,r=t.hourOptions,a=t.disabledHours,i=t.showHour,o=t.use12Hours;if(!i)return null;var l=a(),s=void 0,u=void 0;return o?(s=[12].concat(r.filter(function(e){return e<12&&e>0})),u=e%12||12):(s=r,u=e),h.default.createElement(g.default,{prefixCls:n,options:s.map(function(e){return y(e,l)}),selectedIndex:s.indexOf(u),type:"hour",onSelect:this.onItemChange,onMouseEnter:this.onEnterSelectPanel.bind(this,"hour")})}},{key:"getMinuteSelect",value:function(e){var t=this.props,n=t.prefixCls,r=t.minuteOptions,a=t.disabledMinutes,i=t.defaultOpenValue;if(!t.showMinute)return null;var o=this.props.value||i,l=a(o.hour());return h.default.createElement(g.default,{prefixCls:n,options:r.map(function(e){return y(e,l)}),selectedIndex:r.indexOf(e),type:"minute",onSelect:this.onItemChange,onMouseEnter:this.onEnterSelectPanel.bind(this,"minute")})}},{key:"getSecondSelect",value:function(e){var t=this.props,n=t.prefixCls,r=t.secondOptions,a=t.disabledSeconds,i=t.showSecond,o=t.defaultOpenValue;if(!i)return null;var l=this.props.value||o,s=a(l.hour(),l.minute());return h.default.createElement(g.default,{prefixCls:n,options:r.map(function(e){return y(e,s)}),selectedIndex:r.indexOf(e),type:"second",onSelect:this.onItemChange,onMouseEnter:this.onEnterSelectPanel.bind(this,"second")})}},{key:"getAMPMSelect",value:function(){var e=this.props,t=e.prefixCls,n=e.use12Hours,r=e.format;if(!n)return null;var a=["am","pm"].map(function(e){return r.match(/\sA/)?e.toUpperCase():e}).map(function(e){return{value:e}}),i=this.isAM()?0:1;return h.default.createElement(g.default,{prefixCls:t,options:a,selectedIndex:i,type:"ampm",onSelect:this.onItemChange,onMouseEnter:this.onEnterSelectPanel.bind(this,"ampm")})}},{key:"isAM",value:function(){var e=this.props.value||this.props.defaultOpenValue;return e.hour()>=0&&e.hour()<12}},{key:"render",value:function(){var e=this.props,t=e.prefixCls,n=e.defaultOpenValue,r=this.props.value||n;return h.default.createElement("div",{className:t+"-combobox"},this.getHourSelect(r.hour()),this.getMinuteSelect(r.minute()),this.getSecondSelect(r.second()),this.getAMPMSelect(r.hour()))}}]),t}(d.Component);_.propTypes={format:v.default.string,defaultOpenValue:v.default.object,prefixCls:v.default.string,value:v.default.object,onChange:v.default.func,showHour:v.default.bool,showMinute:v.default.bool,showSecond:v.default.bool,hourOptions:v.default.array,minuteOptions:v.default.array,secondOptions:v.default.array,disabledHours:v.default.func,disabledMinutes:v.default.func,disabledSeconds:v.default.func,onCurrentSelectPanelChange:v.default.func,use12Hours:v.default.bool},t.default=_,e.exports=t.default},1859:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(1),i=r(a),o=n(6),l=r(o),s=n(4),u=r(s),c=n(3),f=r(c),d=n(0),h=r(d),p=n(5),v=r(p),m=n(7),g=r(m),y=function(e){function t(e){(0,i.default)(this,t);var n=(0,u.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));_.call(n);var r=e.value,a=e.format;return n.state={str:r&&r.format(a)||"",invalid:!1},n}return(0,f.default)(t,e),(0,l.default)(t,[{key:"componentWillReceiveProps",value:function(e){var t=e.value,n=e.format;this.setState({str:t&&t.format(n)||"",invalid:!1})}},{key:"getClearButton",value:function(){var e=this.props,t=e.prefixCls;return e.allowEmpty?h.default.createElement("a",{className:t+"-clear-btn",role:"button",title:this.props.clearText,onMouseDown:this.onClear}):null}},{key:"getProtoValue",value:function(){return this.props.value||this.props.defaultOpenValue}},{key:"getInput",value:function(){var e=this.props,t=e.prefixCls,n=e.placeholder,r=this.state,a=r.invalid,i=r.str,o=a?t+"-input-invalid":"";return h.default.createElement("input",{className:t+"-input  "+o,ref:"input",onKeyDown:this.onKeyDown,value:i,placeholder:n,onChange:this.onInputChange})}},{key:"render",value:function(){var e=this.props.prefixCls;return h.default.createElement("div",{className:e+"-input-wrap"},this.getInput(),this.getClearButton())}}]),t}(d.Component);y.propTypes={format:v.default.string,prefixCls:v.default.string,disabledDate:v.default.func,placeholder:v.default.string,clearText:v.default.string,value:v.default.object,hourOptions:v.default.array,minuteOptions:v.default.array,secondOptions:v.default.array,disabledHours:v.default.func,disabledMinutes:v.default.func,disabledSeconds:v.default.func,onChange:v.default.func,onClear:v.default.func,onEsc:v.default.func,allowEmpty:v.default.bool,defaultOpenValue:v.default.object,currentSelectPanel:v.default.string};var _=function(){var e=this;this.onInputChange=function(t){var n=t.target.value;e.setState({str:n});var r=e.props,a=r.format,i=r.hourOptions,o=r.minuteOptions,l=r.secondOptions,s=r.disabledHours,u=r.disabledMinutes,c=r.disabledSeconds,f=r.onChange,d=r.allowEmpty;if(n){var h=e.props.value,p=e.getProtoValue().clone(),v=(0,g.default)(n,a,!0);if(!v.isValid())return void e.setState({invalid:!0});if(p.hour(v.hour()).minute(v.minute()).second(v.second()),i.indexOf(p.hour())<0||o.indexOf(p.minute())<0||l.indexOf(p.second())<0)return void e.setState({invalid:!0});var m=s(),y=u(p.hour()),_=c(p.hour(),p.minute());if(m&&m.indexOf(p.hour())>=0||y&&y.indexOf(p.minute())>=0||_&&_.indexOf(p.second())>=0)return void e.setState({invalid:!0});if(h){if(h.hour()!==p.hour()||h.minute()!==p.minute()||h.second()!==p.second()){var b=h.clone();b.hour(p.hour()),b.minute(p.minute()),b.second(p.second()),f(b)}}else h!==p&&f(p)}else{if(!d)return void e.setState({invalid:!0});f(null)}e.setState({invalid:!1})},this.onKeyDown=function(t){27===t.keyCode&&e.props.onEsc()},this.onClear=function(){e.setState({str:""}),e.props.onClear()}};t.default=y,e.exports=t.default},1860:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(10),i=r(a),o=n(1),l=r(o),s=n(6),u=r(s),c=n(4),f=r(c),d=n(3),h=r(d),p=n(0),v=r(p),m=n(5),g=r(m),y=n(12),_=r(y),b=n(8),x=r(b),w=function e(t,n,r){var a=window.requestAnimationFrame||function(){return setTimeout(arguments[0],10)};if(r<=0)return void(t.scrollTop=n);var i=n-t.scrollTop,o=i/r*10;a(function(){t.scrollTop=t.scrollTop+o,t.scrollTop!==n&&e(t,n,r-10)})},C=function(e){function t(){var e,n,r,a;(0,l.default)(this,t);for(var i=arguments.length,o=Array(i),s=0;s<i;s++)o[s]=arguments[s];return n=r=(0,f.default)(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(o))),r.state={active:!1},r.onSelect=function(e){var t=r.props;(0,t.onSelect)(t.type,e)},r.handleMouseEnter=function(e){r.setState({active:!0}),r.props.onMouseEnter(e)},r.handleMouseLeave=function(){r.setState({active:!1})},a=n,(0,f.default)(r,a)}return(0,h.default)(t,e),(0,u.default)(t,[{key:"componentDidMount",value:function(){this.scrollToSelected(0)}},{key:"componentDidUpdate",value:function(e){e.selectedIndex!==this.props.selectedIndex&&this.scrollToSelected(120)}},{key:"getOptions",value:function(){var e=this,t=this.props,n=t.options,r=t.selectedIndex,a=t.prefixCls;return n.map(function(t,n){var o,l=(0,x.default)((o={},(0,i.default)(o,a+"-select-option-selected",r===n),(0,i.default)(o,a+"-select-option-disabled",t.disabled),o)),s=null;return t.disabled||(s=e.onSelect.bind(e,t.value)),v.default.createElement("li",{className:l,key:n,onClick:s,disabled:t.disabled},t.value)})}},{key:"scrollToSelected",value:function(e){var t=_.default.findDOMNode(this),n=_.default.findDOMNode(this.refs.list);if(n){var r=this.props.selectedIndex;r<0&&(r=0);var a=n.children[r],i=a.offsetTop;w(t,i,e)}}},{key:"render",value:function(){var e;if(0===this.props.options.length)return null;var t=this.props.prefixCls,n=(0,x.default)((e={},(0,i.default)(e,t+"-select",1),(0,i.default)(e,t+"-select-active",this.state.active),e));return v.default.createElement("div",{className:n,onMouseEnter:this.handleMouseEnter,onMouseLeave:this.handleMouseLeave},v.default.createElement("ul",{ref:"list"},this.getOptions()))}}]),t}(p.Component);C.propTypes={prefixCls:g.default.string,options:g.default.array,selectedIndex:g.default.number,type:g.default.string,onSelect:g.default.func,onMouseEnter:g.default.func},t.default=C,e.exports=t.default},1861:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(){}function i(e,t){this[e]=t}Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),l=r(o),s=n(6),u=r(s),c=n(4),f=r(c),d=n(3),h=r(d),p=n(0),v=r(p),m=n(5),g=r(m),y=n(83),_=r(y),b=n(770),x=r(b),w=n(1862),C=r(w),P=n(7),k=r(P),S=function(e){function t(e){(0,l.default)(this,t);var n=(0,f.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));O.call(n),n.saveInputRef=i.bind(n,"picker"),n.savePanelRef=i.bind(n,"panelInstance");var r=e.defaultOpen,a=e.defaultValue,o=e.open,s=void 0===o?r:o,u=e.value,c=void 0===u?a:u;return n.state={open:s,value:c},n}return(0,h.default)(t,e),(0,u.default)(t,[{key:"componentWillReceiveProps",value:function(e){var t=e.value,n=e.open;"value"in e&&this.setState({value:t}),void 0!==n&&this.setState({open:n})}},{key:"setValue",value:function(e){"value"in this.props||this.setState({value:e}),this.props.onChange(e)}},{key:"getFormat",value:function(){var e=this.props,t=e.format,n=e.showHour,r=e.showMinute,a=e.showSecond,i=e.use12Hours;if(t)return t;if(i){return[n?"h":"",r?"mm":"",a?"ss":""].filter(function(e){return!!e}).join(":").concat(" a")}return[n?"HH":"",r?"mm":"",a?"ss":""].filter(function(e){return!!e}).join(":")}},{key:"getPanelElement",value:function(){var e=this.props,t=e.prefixCls,n=e.placeholder,r=e.disabledHours,a=e.disabledMinutes,i=e.disabledSeconds,o=e.hideDisabledOptions,l=e.allowEmpty,s=e.showHour,u=e.showMinute,c=e.showSecond,f=e.defaultOpenValue,d=e.clearText,h=e.addon,p=e.use12Hours;return v.default.createElement(x.default,{clearText:d,prefixCls:t+"-panel",ref:this.savePanelRef,value:this.state.value,onChange:this.onPanelChange,onClear:this.onPanelClear,defaultOpenValue:f,showHour:s,showMinute:u,showSecond:c,onEsc:this.onEsc,allowEmpty:l,format:this.getFormat(),placeholder:n,disabledHours:r,disabledMinutes:a,disabledSeconds:i,hideDisabledOptions:o,use12Hours:p,addon:h})}},{key:"getPopupClassName",value:function(){var e=this.props,t=e.showHour,n=e.showMinute,r=e.showSecond,a=e.use12Hours,i=e.prefixCls,o=this.props.popupClassName;t&&n&&r||a||(o+=" "+i+"-panel-narrow");var l=0;return t&&(l+=1),n&&(l+=1),r&&(l+=1),a&&(l+=1),o+=" "+i+"-panel-column-"+l}},{key:"setOpen",value:function(e){var t=this.props,n=t.onOpen,r=t.onClose;this.state.open!==e&&("open"in this.props||this.setState({open:e}),e?n({open:e}):r({open:e}))}},{key:"focus",value:function(){this.picker.focus()}},{key:"render",value:function(){var e=this.props,t=e.prefixCls,n=e.placeholder,r=e.placement,a=e.align,i=e.disabled,o=e.transitionName,l=e.style,s=e.className,u=e.getPopupContainer,c=e.name,f=e.autoComplete,d=this.state,h=d.open,p=d.value,m=this.getPopupClassName();return v.default.createElement(_.default,{prefixCls:t+"-panel",popupClassName:m,popup:this.getPanelElement(),popupAlign:a,builtinPlacements:C.default,popupPlacement:r,action:i?[]:["click"],destroyPopupOnHide:!0,getPopupContainer:u,popupTransitionName:o,popupVisible:h,onPopupVisibleChange:this.onVisibleChange},v.default.createElement("span",{className:t+" "+s,style:l},v.default.createElement("input",{className:t+"-input",ref:this.saveInputRef,type:"text",placeholder:n,name:c,readOnly:!0,onKeyDown:this.onKeyDown,disabled:i,value:p&&p.format(this.getFormat())||"",autoComplete:f}),v.default.createElement("span",{className:t+"-icon"})))}}]),t}(p.Component);S.propTypes={prefixCls:g.default.string,clearText:g.default.string,value:g.default.object,defaultOpenValue:g.default.object,disabled:g.default.bool,allowEmpty:g.default.bool,defaultValue:g.default.object,open:g.default.bool,defaultOpen:g.default.bool,align:g.default.object,placement:g.default.any,transitionName:g.default.string,getPopupContainer:g.default.func,placeholder:g.default.string,format:g.default.string,showHour:g.default.bool,showMinute:g.default.bool,showSecond:g.default.bool,style:g.default.object,className:g.default.string,popupClassName:g.default.string,disabledHours:g.default.func,disabledMinutes:g.default.func,disabledSeconds:g.default.func,hideDisabledOptions:g.default.bool,onChange:g.default.func,onOpen:g.default.func,onClose:g.default.func,addon:g.default.func,name:g.default.string,autoComplete:g.default.string,use12Hours:g.default.bool},S.defaultProps={clearText:"clear",prefixCls:"rc-time-picker",defaultOpen:!1,style:{},className:"",popupClassName:"",align:{},defaultOpenValue:(0,k.default)(),allowEmpty:!0,showHour:!0,showMinute:!0,showSecond:!0,disabledHours:a,disabledMinutes:a,disabledSeconds:a,hideDisabledOptions:!1,placement:"bottomLeft",onChange:a,onOpen:a,onClose:a,addon:a,use12Hours:!1};var O=function(){var e=this;this.onPanelChange=function(t){e.setValue(t)},this.onPanelClear=function(){e.setValue(null),e.setOpen(!1)},this.onVisibleChange=function(t){e.setOpen(t)},this.onEsc=function(){e.setOpen(!1),e.focus()},this.onKeyDown=function(t){40===t.keyCode&&e.setOpen(!0)}};t.default=S,e.exports=t.default},1862:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={adjustX:1,adjustY:1},a=[0,0],i={bottomLeft:{points:["tl","tl"],overflow:r,offset:[0,-3],targetOffset:a},bottomRight:{points:["tr","tr"],overflow:r,offset:[0,-3],targetOffset:a},topRight:{points:["br","br"],overflow:r,offset:[0,3],targetOffset:a},topLeft:{points:["bl","bl"],overflow:r,offset:[0,3],targetOffset:a}};t.default=i,e.exports=t.default},1882:function(e,t,n){"use strict";function r(e){return e}function a(e){return o.default.Children.map(e,r)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=a;var i=n(0),o=function(e){return e&&e.__esModule?e:{default:e}}(i);e.exports=t.default},189:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(10),l=r(o),s=n(0),u=r(s),c=n(8),f=r(c),d=n(33),h=r(d),p=function(e){var t=e.type,n=e.className,r=void 0===n?"":n,a=e.spin,o=(0,f.default)((0,l.default)({anticon:!0,"anticon-spin":!!a||"loading"===t},"anticon-"+t,!0),r);return u.default.createElement("i",(0,i.default)({},(0,h.default)(e,["type","spin"]),{className:o}))};t.default=p,e.exports=t.default},1982:function(e,t,n){(function(e){!function(e,n){n(t)}(0,function(t){"use strict";function n(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}function r(e,t){Object.defineProperty(this,"kind",{value:e,enumerable:!0}),t&&t.length&&Object.defineProperty(this,"path",{value:t,enumerable:!0})}function a(e,t,n){a.super_.call(this,"E",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0}),Object.defineProperty(this,"rhs",{value:n,enumerable:!0})}function i(e,t){i.super_.call(this,"N",e),Object.defineProperty(this,"rhs",{value:t,enumerable:!0})}function o(e,t){o.super_.call(this,"D",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0})}function l(e,t,n){l.super_.call(this,"A",e),Object.defineProperty(this,"index",{value:t,enumerable:!0}),Object.defineProperty(this,"item",{value:n,enumerable:!0})}function s(e,t,n){var r=e.slice((n||t)+1||e.length);return e.length=t<0?e.length+t:t,e.push.apply(e,r),e}function u(e){var t=void 0===e?"undefined":E(e);return"object"!==t?t:e===Math?"math":null===e?"null":Array.isArray(e)?"array":"[object Date]"===Object.prototype.toString.call(e)?"date":"function"==typeof e.toString&&/^\/.*\//.test(e.toString())?"regexp":"object"}function c(e,t,n,r,f,d,h){f=f||[],h=h||[];var p=f.slice(0);if(void 0!==d){if(r){if("function"==typeof r&&r(p,d))return;if("object"===(void 0===r?"undefined":E(r))){if(r.prefilter&&r.prefilter(p,d))return;if(r.normalize){var v=r.normalize(p,d,e,t);v&&(e=v[0],t=v[1])}}}p.push(d)}"regexp"===u(e)&&"regexp"===u(t)&&(e=e.toString(),t=t.toString());var m=void 0===e?"undefined":E(e),g=void 0===t?"undefined":E(t),y="undefined"!==m||h&&h[h.length-1].lhs&&h[h.length-1].lhs.hasOwnProperty(d),_="undefined"!==g||h&&h[h.length-1].rhs&&h[h.length-1].rhs.hasOwnProperty(d);if(!y&&_)n(new i(p,t));else if(!_&&y)n(new o(p,e));else if(u(e)!==u(t))n(new a(p,e,t));else if("date"===u(e)&&e-t!=0)n(new a(p,e,t));else if("object"===m&&null!==e&&null!==t)if(h.filter(function(t){return t.lhs===e}).length)e!==t&&n(new a(p,e,t));else{if(h.push({lhs:e,rhs:t}),Array.isArray(e)){var b;for(e.length,b=0;b<e.length;b++)b>=t.length?n(new l(p,b,new o(void 0,e[b]))):c(e[b],t[b],n,r,p,b,h);for(;b<t.length;)n(new l(p,b,new i(void 0,t[b++])))}else{var x=Object.keys(e),w=Object.keys(t);x.forEach(function(a,i){var o=w.indexOf(a);o>=0?(c(e[a],t[a],n,r,p,a,h),w=s(w,o)):c(e[a],void 0,n,r,p,a,h)}),w.forEach(function(e){c(void 0,t[e],n,r,p,e,h)})}h.length=h.length-1}else e!==t&&("number"===m&&isNaN(e)&&isNaN(t)||n(new a(p,e,t)))}function f(e,t,n,r){return r=r||[],c(e,t,function(e){e&&r.push(e)},n),r.length?r:void 0}function d(e,t,n){if(n.path&&n.path.length){var r,a=e[t],i=n.path.length-1;for(r=0;r<i;r++)a=a[n.path[r]];switch(n.kind){case"A":d(a[n.path[r]],n.index,n.item);break;case"D":delete a[n.path[r]];break;case"E":case"N":a[n.path[r]]=n.rhs}}else switch(n.kind){case"A":d(e[t],n.index,n.item);break;case"D":e=s(e,t);break;case"E":case"N":e[t]=n.rhs}return e}function h(e,t,n){if(e&&t&&n&&n.kind){for(var r=e,a=-1,i=n.path?n.path.length-1:0;++a<i;)void 0===r[n.path[a]]&&(r[n.path[a]]="number"==typeof n.path[a]?[]:{}),r=r[n.path[a]];switch(n.kind){case"A":d(n.path?r[n.path[a]]:r,n.index,n.item);break;case"D":delete r[n.path[a]];break;case"E":case"N":r[n.path[a]]=n.rhs}}}function p(e,t,n){if(n.path&&n.path.length){var r,a=e[t],i=n.path.length-1;for(r=0;r<i;r++)a=a[n.path[r]];switch(n.kind){case"A":p(a[n.path[r]],n.index,n.item);break;case"D":case"E":a[n.path[r]]=n.lhs;break;case"N":delete a[n.path[r]]}}else switch(n.kind){case"A":p(e[t],n.index,n.item);break;case"D":case"E":e[t]=n.lhs;break;case"N":e=s(e,t)}return e}function v(e,t,n){if(e&&t&&n&&n.kind){var r,a,i=e;for(a=n.path.length-1,r=0;r<a;r++)void 0===i[n.path[r]]&&(i[n.path[r]]={}),i=i[n.path[r]];switch(n.kind){case"A":p(i[n.path[r]],n.index,n.item);break;case"D":case"E":i[n.path[r]]=n.lhs;break;case"N":delete i[n.path[r]]}}}function m(e,t,n){if(e&&t){c(e,t,function(r){n&&!n(e,t,r)||h(e,t,r)})}}function g(e){return"color: "+N[e].color+"; font-weight: bold"}function y(e){var t=e.kind,n=e.path,r=e.lhs,a=e.rhs,i=e.index,o=e.item;switch(t){case"E":return[n.join("."),r,"→",a];case"N":return[n.join("."),a];case"D":return[n.join(".")];case"A":return[n.join(".")+"["+i+"]",o];default:return[]}}function _(e,t,n,r){var a=f(e,t);try{r?n.groupCollapsed("diff"):n.group("diff")}catch(e){n.log("diff")}a?a.forEach(function(e){var t=e.kind,r=y(e);n.log.apply(n,["%c "+N[t].text,g(t)].concat(D(r)))}):n.log("—— no diff ——");try{n.groupEnd()}catch(e){n.log("—— diff end —— ")}}function b(e,t,n,r){switch(void 0===e?"undefined":E(e)){case"object":return"function"==typeof e[r]?e[r].apply(e,D(n)):e[r];case"function":return e(t);default:return e}}function x(e){var t=e.timestamp,n=e.duration;return function(e,r,a){var i=["action"];return i.push("%c"+String(e.type)),t&&i.push("%c@ "+r),n&&i.push("%c(in "+a.toFixed(2)+" ms)"),i.join(" ")}}function w(e,t){var n=t.logger,r=t.actionTransformer,a=t.titleFormatter,i=void 0===a?x(t):a,o=t.collapsed,l=t.colors,s=t.level,u=t.diff,c=void 0===t.titleFormatter;e.forEach(function(a,f){var d=a.started,h=a.startedTime,p=a.action,v=a.prevState,m=a.error,g=a.took,y=a.nextState,x=e[f+1];x&&(y=x.prevState,g=x.started-d);var w=r(p),C="function"==typeof o?o(function(){return y},p,a):o,P=T(h),k=l.title?"color: "+l.title(w)+";":"",S=["color: gray; font-weight: lighter;"];S.push(k),t.timestamp&&S.push("color: gray; font-weight: lighter;"),t.duration&&S.push("color: gray; font-weight: lighter;");var O=i(w,P,g);try{C?l.title&&c?n.groupCollapsed.apply(n,["%c "+O].concat(S)):n.groupCollapsed(O):l.title&&c?n.group.apply(n,["%c "+O].concat(S)):n.group(O)}catch(e){n.log(O)}var M=b(s,w,[v],"prevState"),E=b(s,w,[w],"action"),D=b(s,w,[m,v],"error"),j=b(s,w,[y],"nextState");if(M)if(l.prevState){var N="color: "+l.prevState(v)+"; font-weight: bold";n[M]("%c prev state",N,v)}else n[M]("prev state",v);if(E)if(l.action){var A="color: "+l.action(w)+"; font-weight: bold";n[E]("%c action    ",A,w)}else n[E]("action    ",w);if(m&&D)if(l.error){var V="color: "+l.error(m,v)+"; font-weight: bold;";n[D]("%c error     ",V,m)}else n[D]("error     ",m);if(j)if(l.nextState){var L="color: "+l.nextState(y)+"; font-weight: bold";n[j]("%c next state",L,y)}else n[j]("next state",y);u&&_(v,y,n,C);try{n.groupEnd()}catch(e){n.log("—— log end ——")}})}function C(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=Object.assign({},A,e),n=t.logger,r=t.stateTransformer,a=t.errorTransformer,i=t.predicate,o=t.logErrors,l=t.diffPredicate;if(void 0===n)return function(){return function(e){return function(t){return e(t)}}};if(e.getState&&e.dispatch)return console.error("[redux-logger] redux-logger not installed. Make sure to pass logger instance as middleware:\n// Logger with default options\nimport { logger } from 'redux-logger'\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n// Or you can create your own logger with custom options http://bit.ly/redux-logger-options\nimport createLogger from 'redux-logger'\nconst logger = createLogger({\n  // ...options\n});\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n"),function(){return function(e){return function(t){return e(t)}}};var s=[];return function(e){var n=e.getState;return function(e){return function(u){if("function"==typeof i&&!i(n,u))return e(u);var c={};s.push(c),c.started=M.now(),c.startedTime=new Date,c.prevState=r(n()),c.action=u;var f=void 0;if(o)try{f=e(u)}catch(e){c.error=a(e)}else f=e(u);c.took=M.now()-c.started,c.nextState=r(n());var d=t.diff&&"function"==typeof l?l(n,u):t.diff;if(w(s,Object.assign({},t,{diff:d})),s.length=0,c.error)throw c.error;return f}}}}var P,k,S=function(e,t){return new Array(t+1).join(e)},O=function(e,t){return S("0",t-e.toString().length)+e},T=function(e){return O(e.getHours(),2)+":"+O(e.getMinutes(),2)+":"+O(e.getSeconds(),2)+"."+O(e.getMilliseconds(),3)},M="undefined"!=typeof performance&&null!==performance&&"function"==typeof performance.now?performance:Date,E="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},D=function(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)},j=[];P="object"===(void 0===e?"undefined":E(e))&&e?e:"undefined"!=typeof window?window:{},k=P.DeepDiff,k&&j.push(function(){void 0!==k&&P.DeepDiff===f&&(P.DeepDiff=k,k=void 0)}),n(a,r),n(i,r),n(o,r),n(l,r),Object.defineProperties(f,{diff:{value:f,enumerable:!0},observableDiff:{value:c,enumerable:!0},applyDiff:{value:m,enumerable:!0},applyChange:{value:h,enumerable:!0},revertChange:{value:v,enumerable:!0},isConflict:{value:function(){return void 0!==k},enumerable:!0},noConflict:{value:function(){return j&&(j.forEach(function(e){e()}),j=null),f},enumerable:!0}});var N={E:{color:"#2196F3",text:"CHANGED:"},N:{color:"#4CAF50",text:"ADDED:"},D:{color:"#F44336",text:"DELETED:"},A:{color:"#2196F3",text:"ARRAY:"}},A={level:"log",logger:console,logErrors:!0,collapsed:void 0,predicate:void 0,duration:!1,timestamp:!0,stateTransformer:function(e){return e},actionTransformer:function(e){return e},errorTransformer:function(e){return e},colors:{title:function(){return"inherit"},prevState:function(){return"#9E9E9E"},action:function(){return"#03A9F4"},nextState:function(){return"#4CAF50"},error:function(){return"#F20404"}},diff:!1,diffPredicate:void 0,transformer:void 0},V=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.dispatch,n=e.getState;return"function"==typeof t||"function"==typeof n?C()({dispatch:t,getState:n}):void console.error("\n[redux-logger v3] BREAKING CHANGE\n[redux-logger v3] Since 3.0.0 redux-logger exports by default logger with default settings.\n[redux-logger v3] Change\n[redux-logger v3] import createLogger from 'redux-logger'\n[redux-logger v3] to\n[redux-logger v3] import { createLogger } from 'redux-logger'\n")};t.defaults=A,t.createLogger=C,t.logger=V,t.default=V,Object.defineProperty(t,"__esModule",{value:!0})})}).call(t,n(37))},2014:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e,t,n){return{type:e,event:n,target:t.target,topTarget:t.topTarget,cancelBubble:!1,offsetX:n.zrX,offsetY:n.zrY,gestureEvent:n.gestureEvent,pinchX:n.pinchX,pinchY:n.pinchY,pinchScale:n.pinchScale,wheelDelta:n.zrDelta,zrByTouch:n.zrByTouch}}function r(){}function a(e,t,n){if(e[e.rectHover?"rectContain":"contain"](t,n)){for(var r,a=e;a;){if(a.clipPath&&!a.clipPath.contain(t,n))return!1;a.silent&&(r=!0),a=a.parent}return!r||s}return!1}var i=n(38),o=n(2036),l=n(251),s="silent";r.prototype.dispose=function(){};var u=["click","dblclick","mousewheel","mouseout","mouseup","mousedown","mousemove","contextmenu"],c=function(e,t,n,a){l.call(this),this.storage=e,this.painter=t,this.painterRoot=a,n=n||new r,this.proxy=n,n.handler=this,this._hovered={},this._lastTouchMoment,this._lastX,this._lastY,o.call(this),i.each(u,function(e){n.on&&n.on(e,this[e],this)},this)};return c.prototype={constructor:c,mousemove:function(e){var t=e.zrX,n=e.zrY,r=this._hovered,a=r.target;a&&!a.__zr&&(r=this.findHover(r.x,r.y),a=r.target);var i=this._hovered=this.findHover(t,n),o=i.target,l=this.proxy;l.setCursor&&l.setCursor(o?o.cursor:"default"),a&&o!==a&&this.dispatchToElement(r,"mouseout",e),this.dispatchToElement(i,"mousemove",e),o&&o!==a&&this.dispatchToElement(i,"mouseover",e)},mouseout:function(e){this.dispatchToElement(this._hovered,"mouseout",e);var t,n=e.toElement||e.relatedTarget;do{n=n&&n.parentNode}while(n&&9!=n.nodeType&&!(t=n===this.painterRoot));!t&&this.trigger("globalout",{event:e})},resize:function(e){this._hovered={}},dispatch:function(e,t){var n=this[e];n&&n.call(this,t)},dispose:function(){this.proxy.dispose(),this.storage=this.proxy=this.painter=null},setCursorStyle:function(e){var t=this.proxy;t.setCursor&&t.setCursor(e)},dispatchToElement:function(e,n,r){e=e||{};var a=e.target;if(!a||!a.silent){for(var i="on"+n,o=t(n,e,r);a&&(a[i]&&(o.cancelBubble=a[i].call(a,o)),a.trigger(n,o),a=a.parent,!o.cancelBubble););o.cancelBubble||(this.trigger(n,o),this.painter&&this.painter.eachOtherLayer(function(e){"function"==typeof e[i]&&e[i].call(e,o),e.trigger&&e.trigger(n,o)}))}},findHover:function(e,t,n){for(var r=this.storage.getDisplayList(),i={x:e,y:t},o=r.length-1;o>=0;o--){var l;if(r[o]!==n&&!r[o].ignore&&(l=a(r[o],e,t))&&(!i.topTarget&&(i.topTarget=r[o]),l!==s)){i.target=r[o];break}}return i}},i.each(["click","mousedown","mouseup","mousewheel","dblclick","contextmenu"],function(e){c.prototype[e]=function(t){var n=this.findHover(t.zrX,t.zrY),r=n.target;if("mousedown"===e)this._downel=r,this._upel=r;else if("mosueup"===e)this._upel=r;else if("click"===e&&this._downel!==this._upel)return;this.dispatchToElement(n,e,t)}}),i.mixin(c,l),i.mixin(c,o),c}.call(t,n,t,e))&&(e.exports=r)},2015:function(e,t,n){var r;void 0!==(r=function(e){function t(){return!1}function r(e,t,n,r){var a=document.createElement(t),i=n.getWidth(),o=n.getHeight(),l=a.style;return l.position="absolute",l.left=0,l.top=0,l.width=i+"px",l.height=o+"px",a.width=i*r,a.height=o*r,a.setAttribute("data-zr-dom-id",e),a}var a=n(38),i=n(248),o=n(842),l=n(841),s=function(e,n,o){var l;o=o||i.devicePixelRatio,"string"==typeof e?l=r(e,"canvas",n,o):a.isObject(e)&&(l=e,e=l.id),this.id=e,this.dom=l;var s=l.style;s&&(l.onselectstart=t,s["-webkit-user-select"]="none",s["user-select"]="none",s["-webkit-touch-callout"]="none",s["-webkit-tap-highlight-color"]="rgba(0,0,0,0)",s.padding=0,s.margin=0,s["border-width"]=0),this.domBack=null,this.ctxBack=null,this.painter=n,this.config=null,this.clearColor=0,this.motionBlur=!1,this.lastFrameAlpha=.7,this.dpr=o};return s.prototype={constructor:s,elCount:0,__dirty:!0,initContext:function(){this.ctx=this.dom.getContext("2d"),this.ctx.__currentValues={},this.ctx.dpr=this.dpr},createBackBuffer:function(){var e=this.dpr;this.domBack=r("back-"+this.id,"canvas",this.painter,e),this.ctxBack=this.domBack.getContext("2d"),this.ctxBack.__currentValues={},1!=e&&this.ctxBack.scale(e,e)},resize:function(e,t){var n=this.dpr,r=this.dom,a=r.style,i=this.domBack;a.width=e+"px",a.height=t+"px",r.width=e*n,r.height=t*n,i&&(i.width=e*n,i.height=t*n,1!=n&&this.ctxBack.scale(n,n))},clear:function(e){var t=this.dom,n=this.ctx,r=t.width,a=t.height,i=this.clearColor,s=this.motionBlur&&!e,u=this.lastFrameAlpha,c=this.dpr;if(s&&(this.domBack||this.createBackBuffer(),this.ctxBack.globalCompositeOperation="copy",this.ctxBack.drawImage(t,0,0,r/c,a/c)),n.clearRect(0,0,r,a),i){var f;i.colorStops?(f=i.__canvasGradient||o.getGradient(n,i,{x:0,y:0,width:r,height:a}),i.__canvasGradient=f):i.image&&(f=l.prototype.getCanvasPattern.call(i,n)),n.save(),n.fillStyle=f||i,n.fillRect(0,0,r,a),n.restore()}if(s){var d=this.domBack;n.save(),n.globalAlpha=u,n.drawImage(d,0,0,r,a),n.restore()}}},s}.call(t,n,t,e))&&(e.exports=r)},2016:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e){return parseInt(e,10)}function r(e){return!!e&&(!!e.__builtin__||"function"==typeof e.resize&&"function"==typeof e.refresh)}function a(e){e.__unusedCount++}function i(e){1==e.__unusedCount&&e.clear()}function o(e,t,n){return g.copy(e.getBoundingRect()),e.transform&&g.applyTransform(e.transform),y.width=t,y.height=n,!g.intersect(y)}function l(e,t){if(e==t)return!1;if(!e||!t||e.length!==t.length)return!0;for(var n=0;n<e.length;n++)if(e[n]!==t[n])return!0}function s(e,t){for(var n=0;n<e.length;n++){var r=e[n];r.setTransform(t),t.beginPath(),r.buildPath(t,r.shape),t.clip(),r.restoreTransform(t)}}function u(e,t){var n=document.createElement("div");return n.style.cssText=["position:relative","overflow:hidden","width:"+e+"px","height:"+t+"px","padding:0","margin:0","border-width:0"].join(";")+";",n}var c=n(248),f=n(38),d=n(836),h=n(146),p=n(838),v=n(2015),m=n(831),g=new h(0,0,0,0),y=new h(0,0,0,0),_=function(e,t,n){var r=!e.nodeName||"CANVAS"===e.nodeName.toUpperCase();this._opts=n=f.extend({},n||{}),this.dpr=n.devicePixelRatio||c.devicePixelRatio,this._singleCanvas=r,this.root=e;var a=e.style;a&&(a["-webkit-tap-highlight-color"]="transparent",a["-webkit-user-select"]=a["user-select"]=a["-webkit-touch-callout"]="none",e.innerHTML=""),this.storage=t;var i=this._zlevelList=[],o=this._layers={};if(this._layerConfig={},r){null!=n.width&&(e.width=n.width),null!=n.height&&(e.height=n.height);var l=e.width,s=e.height;this._width=l,this._height=s;var d=new v(e,this,1);d.initContext(),o[0]=d,i.push(0),this._domRoot=e}else{this._width=this._getSize(0),this._height=this._getSize(1);var h=this._domRoot=u(this._width,this._height);e.appendChild(h)}this._progressiveLayers=[],this._hoverlayer,this._hoverElements=[]};return _.prototype={constructor:_,isSingleCanvas:function(){return this._singleCanvas},getViewportRoot:function(){return this._domRoot},getViewportRootOffset:function(){var e=this.getViewportRoot();if(e)return{offsetLeft:e.offsetLeft||0,offsetTop:e.offsetTop||0}},refresh:function(e){var t=this.storage.getDisplayList(!0),n=this._zlevelList;this._paintList(t,e);for(var r=0;r<n.length;r++){var a=n[r],i=this._layers[a];!i.__builtin__&&i.refresh&&i.refresh()}return this.refreshHover(),this._progressiveLayers.length&&this._startProgessive(),this},addHover:function(e,t){if(!e.__hoverMir){var n=new e.constructor({style:e.style,shape:e.shape});n.__from=e,e.__hoverMir=n,n.setStyle(t),this._hoverElements.push(n)}},removeHover:function(e){var t=e.__hoverMir,n=this._hoverElements,r=f.indexOf(n,t);r>=0&&n.splice(r,1),e.__hoverMir=null},clearHover:function(e){for(var t=this._hoverElements,n=0;n<t.length;n++){var r=t[n].__from;r&&(r.__hoverMir=null)}t.length=0},refreshHover:function(){var e=this._hoverElements,t=e.length,n=this._hoverlayer;if(n&&n.clear(),t){p(e,this.storage.displayableSortFunc),n||(n=this._hoverlayer=this.getLayer(1e5));var r={};n.ctx.save();for(var a=0;a<t;){var i=e[a],o=i.__from;o&&o.__zr?(a++,o.invisible||(i.transform=o.transform,i.invTransform=o.invTransform,i.__clipPaths=o.__clipPaths,this._doPaintEl(i,n,!0,r))):(e.splice(a,1),o.__hoverMir=null,t--)}n.ctx.restore()}},_startProgessive:function(){function e(){n===t._progressiveToken&&t.storage&&(t._doPaintList(t.storage.getDisplayList()),t._furtherProgressive?(t._progress++,m(e)):t._progressiveToken=-1)}var t=this;if(t._furtherProgressive){var n=t._progressiveToken=+new Date;t._progress++,m(e)}},_clearProgressive:function(){this._progressiveToken=-1,this._progress=0,f.each(this._progressiveLayers,function(e){e.__dirty&&e.clear()})},_paintList:function(e,t){null==t&&(t=!1),this._updateLayerStatus(e),this._clearProgressive(),this.eachBuiltinLayer(a),this._doPaintList(e,t),this.eachBuiltinLayer(i)},_doPaintList:function(e,t){function n(e){var t=i.dpr||1;i.save(),i.globalAlpha=1,i.shadowBlur=0,r.__dirty=!0,i.setTransform(1,0,0,1,0,0),i.drawImage(e.dom,0,0,c*t,h*t),i.restore()}for(var r,a,i,o,l,s,u=0,c=this._width,h=this._height,p=this._progress,v=0,m=e.length;v<m;v++){var g=e[v],y=this._singleCanvas?0:g.zlevel,_=g.__frame;if(_<0&&l&&(n(l),l=null),a!==y&&(i&&i.restore(),o={},a=y,r=this.getLayer(a),r.__builtin__||d("ZLevel "+a+" has been used by unkown layer "+r.id),i=r.ctx,i.save(),r.__unusedCount=0,(r.__dirty||t)&&r.clear()),r.__dirty||t){if(_>=0){if(!l){if(l=this._progressiveLayers[Math.min(u++,4)],l.ctx.save(),l.renderScope={},l&&l.__progress>l.__maxProgress){v=l.__nextIdxNotProg-1;continue}s=l.__progress,l.__dirty||(p=s),l.__progress=p+1}_===p&&this._doPaintEl(g,l,!0,l.renderScope)}else this._doPaintEl(g,r,t,o);g.__dirty=!1}}l&&n(l),i&&i.restore(),this._furtherProgressive=!1,f.each(this._progressiveLayers,function(e){e.__maxProgress>=e.__progress&&(this._furtherProgressive=!0)},this)},_doPaintEl:function(e,t,n,r){var a=t.ctx,i=e.transform;if((t.__dirty||n)&&!e.invisible&&0!==e.style.opacity&&(!i||i[0]||i[3])&&(!e.culling||!o(e,this._width,this._height))){var u=e.__clipPaths;(r.prevClipLayer!==t||l(u,r.prevElClipPaths))&&(r.prevElClipPaths&&(r.prevClipLayer.ctx.restore(),r.prevClipLayer=r.prevElClipPaths=null,r.prevEl=null),u&&(a.save(),s(u,a),r.prevClipLayer=t,r.prevElClipPaths=u)),e.beforeBrush&&e.beforeBrush(a),e.brush(a,r.prevEl||null),r.prevEl=e,e.afterBrush&&e.afterBrush(a)}},getLayer:function(e){if(this._singleCanvas)return this._layers[0];var t=this._layers[e];return t||(t=new v("zr_"+e,this,this.dpr),t.__builtin__=!0,this._layerConfig[e]&&f.merge(t,this._layerConfig[e],!0),this.insertLayer(e,t),t.initContext()),t},insertLayer:function(e,t){var n=this._layers,a=this._zlevelList,i=a.length,o=null,l=-1,s=this._domRoot;if(n[e])return void d("ZLevel "+e+" has been used already");if(!r(t))return void d("Layer of zlevel "+e+" is not valid");if(i>0&&e>a[0]){for(l=0;l<i-1&&!(a[l]<e&&a[l+1]>e);l++);o=n[a[l]]}if(a.splice(l+1,0,e),n[e]=t,!t.virtual)if(o){var u=o.dom;u.nextSibling?s.insertBefore(t.dom,u.nextSibling):s.appendChild(t.dom)}else s.firstChild?s.insertBefore(t.dom,s.firstChild):s.appendChild(t.dom)},eachLayer:function(e,t){var n,r,a=this._zlevelList;for(r=0;r<a.length;r++)n=a[r],e.call(t,this._layers[n],n)},eachBuiltinLayer:function(e,t){var n,r,a,i=this._zlevelList;for(a=0;a<i.length;a++)r=i[a],n=this._layers[r],n.__builtin__&&e.call(t,n,r)},eachOtherLayer:function(e,t){var n,r,a,i=this._zlevelList;for(a=0;a<i.length;a++)r=i[a],n=this._layers[r],n.__builtin__||e.call(t,n,r)},getLayers:function(){return this._layers},_updateLayerStatus:function(e){var t=this._layers,n=this._progressiveLayers,r={},a={};this.eachBuiltinLayer(function(e,t){r[t]=e.elCount,e.elCount=0,e.__dirty=!1}),f.each(n,function(e,t){a[t]=e.elCount,e.elCount=0,e.__dirty=!1});for(var i,o,l=0,s=0,u=0,c=e.length;u<c;u++){var d=e[u],h=this._singleCanvas?0:d.zlevel,p=t[h],m=d.progressive;if(p&&(p.elCount++,p.__dirty=p.__dirty||d.__dirty),m>=0){o!==m&&(o=m,s++);var g=d.__frame=s-1;if(!i){var y=Math.min(l,4);i=n[y],i||(i=n[y]=new v("progressive",this,this.dpr),i.initContext()),i.__maxProgress=0}i.__dirty=i.__dirty||d.__dirty,i.elCount++,i.__maxProgress=Math.max(i.__maxProgress,g),i.__maxProgress>=i.__progress&&(p.__dirty=!0)}else d.__frame=-1,i&&(i.__nextIdxNotProg=u,l++,i=null)}i&&(l++,i.__nextIdxNotProg=u),this.eachBuiltinLayer(function(e,t){r[t]!==e.elCount&&(e.__dirty=!0)}),n.length=Math.min(l,5),f.each(n,function(e,t){a[t]!==e.elCount&&(d.__dirty=!0),e.__dirty&&(e.__progress=0)})},clear:function(){return this.eachBuiltinLayer(this._clearLayer),this},_clearLayer:function(e){e.clear()},configLayer:function(e,t){if(t){var n=this._layerConfig;n[e]?f.merge(n[e],t,!0):n[e]=t;var r=this._layers[e];r&&f.merge(r,n[e],!0)}},delLayer:function(e){var t=this._layers,n=this._zlevelList,r=t[e];r&&(r.dom.parentNode.removeChild(r.dom),delete t[e],n.splice(f.indexOf(n,e),1))},resize:function(e,t){var n=this._domRoot;n.style.display="none";var r=this._opts;if(null!=e&&(r.width=e),null!=t&&(r.height=t),e=this._getSize(0),t=this._getSize(1),n.style.display="",this._width!=e||t!=this._height){n.style.width=e+"px",n.style.height=t+"px";for(var a in this._layers)this._layers.hasOwnProperty(a)&&this._layers[a].resize(e,t);f.each(this._progressiveLayers,function(n){n.resize(e,t)}),this.refresh(!0)}return this._width=e,this._height=t,this},clearLayer:function(e){var t=this._layers[e];t&&t.clear()},dispose:function(){this.root.innerHTML="",this.root=this.storage=this._domRoot=this._layers=null},getRenderedCanvas:function(e){function t(e,t){var r=o._zlevelList;null==e&&(e=-1/0);for(var a,i=0;i<r.length;i++){var l=r[i],s=o._layers[l];if(!s.__builtin__&&l>e&&l<t){a=s;break}}a&&a.renderToCanvas&&(n.ctx.save(),a.renderToCanvas(n.ctx),n.ctx.restore())}if(e=e||{},this._singleCanvas)return this._layers[0].dom;var n=new v("image",this,e.pixelRatio||this.dpr);n.initContext(),n.clearColor=e.backgroundColor,n.clear();for(var r,a=this.storage.getDisplayList(!0),i={},o=this,l=0;l<a.length;l++){var s=a[l];s.zlevel!==r&&(t(r,s.zlevel),r=s.zlevel),this._doPaintEl(s,n,!0,i)}return t(r,1/0),n.dom},getWidth:function(){return this._width},getHeight:function(){return this._height},_getSize:function(e){var n=this._opts,r=["width","height"][e],a=["clientWidth","clientHeight"][e],i=["paddingLeft","paddingTop"][e],o=["paddingRight","paddingBottom"][e];if(null!=n[r]&&"auto"!==n[r])return parseFloat(n[r]);var l=this.root,s=document.defaultView.getComputedStyle(l);return(l[a]||t(s[r])||t(l.style[r]))-(t(s[i])||0)-(t(s[o])||0)|0},pathToImage:function(e,t){t=t||this.dpr;var r=document.createElement("canvas"),a=r.getContext("2d"),i=e.getBoundingRect(),o=e.style,l=o.shadowBlur,s=o.shadowOffsetX,u=o.shadowOffsetY,c=o.hasStroke()?o.lineWidth:0,f=Math.max(c/2,-s+l),d=Math.max(c/2,s+l),h=Math.max(c/2,-u+l),p=Math.max(c/2,u+l),v=i.width+f+d,m=i.height+h+p;r.width=v*t,r.height=m*t,a.scale(t,t),a.clearRect(0,0,v,m),a.dpr=t;var g={position:e.position,rotation:e.rotation,scale:e.scale};e.position=[f-i.x,h-i.y],e.rotation=0,e.scale=[1,1],e.updateTransform(),e&&e.brush(a);var y=n(2031),_=new y({style:{x:0,y:0,image:r}});return null!=g.position&&(_.position=e.position=g.position),null!=g.rotation&&(_.rotation=e.rotation=g.rotation),null!=g.scale&&(_.scale=e.scale=g.scale),_}},_}.call(t,n,t,e))&&(e.exports=r)},2017:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e,t){return e.zlevel===t.zlevel?e.z===t.z?e.z2-t.z2:e.z-t.z:e.zlevel-t.zlevel}var r=n(38),a=n(250),i=n(833),o=n(838),l=function(){this._roots=[],this._displayList=[],this._displayListLen=0};return l.prototype={constructor:l,traverse:function(e,t){for(var n=0;n<this._roots.length;n++)this._roots[n].traverse(e,t)},getDisplayList:function(e,t){return t=t||!1,e&&this.updateDisplayList(t),this._displayList},updateDisplayList:function(e){this._displayListLen=0;for(var n=this._roots,r=this._displayList,i=0,l=n.length;i<l;i++)this._updateAndAddDisplayable(n[i],null,e);r.length=this._displayListLen,a.canvasSupported&&o(r,t)},_updateAndAddDisplayable:function(e,t,n){if(!e.ignore||n){e.beforeUpdate(),e.__dirty&&e.update(),e.afterUpdate();var r=e.clipPath;if(r){t=t?t.slice():[];for(var a=r,i=e;a;)a.parent=i,a.updateTransform(),t.push(a),i=a,a=a.clipPath}if(e.isGroup){for(var o=e._children,l=0;l<o.length;l++){var s=o[l];e.__dirty&&(s.__dirty=!0),this._updateAndAddDisplayable(s,t,n)}e.__dirty=!1}else e.__clipPaths=t,this._displayList[this._displayListLen++]=e}},addRoot:function(e){e.__storage!==this&&(e instanceof i&&e.addChildrenToStorage(this),this.addToStorage(e),this._roots.push(e))},delRoot:function(e){if(null==e){for(var t=0;t<this._roots.length;t++){var n=this._roots[t];n instanceof i&&n.delChildrenFromStorage(this)}return this._roots=[],this._displayList=[],void(this._displayListLen=0)}if(e instanceof Array)for(var t=0,a=e.length;t<a;t++)this.delRoot(e[t]);else{var o=r.indexOf(this._roots,e);o>=0&&(this.delFromStorage(e),this._roots.splice(o,1),e instanceof i&&e.delChildrenFromStorage(this))}},addToStorage:function(e){return e.__storage=this,e.dirty(!1),this},delFromStorage:function(e){return e&&(e.__storage=null),this},dispose:function(){this._renderList=this._roots=null},displayableSortFunc:t},l}.call(t,n,t,e))&&(e.exports=r)},2018:function(e,t,n){var r;void 0!==(r=function(e){"use strict";var t=n(38),r=n(402).Dispatcher,a=n(831),i=n(830),o=function(e){e=e||{},this.stage=e.stage||{},this.onframe=e.onframe||function(){},this._clips=[],this._running=!1,this._time,this._pausedTime,this._pauseStart,this._paused=!1,r.call(this)};return o.prototype={constructor:o,addClip:function(e){this._clips.push(e)},addAnimator:function(e){e.animation=this;for(var t=e.getClips(),n=0;n<t.length;n++)this.addClip(t[n])},removeClip:function(e){var n=t.indexOf(this._clips,e);n>=0&&this._clips.splice(n,1)},removeAnimator:function(e){for(var t=e.getClips(),n=0;n<t.length;n++)this.removeClip(t[n]);e.animation=null},_update:function(){for(var e=(new Date).getTime()-this._pausedTime,t=e-this._time,n=this._clips,r=n.length,a=[],i=[],o=0;o<r;o++){var l=n[o],s=l.step(e,t);s&&(a.push(s),i.push(l))}for(var o=0;o<r;)n[o]._needsRemove?(n[o]=n[r-1],n.pop(),r--):o++;r=a.length;for(var o=0;o<r;o++)i[o].fire(a[o]);this._time=e,this.onframe(t),this.trigger("frame",t),this.stage.update&&this.stage.update()},_startLoop:function(){function e(){t._running&&(a(e),!t._paused&&t._update())}var t=this;this._running=!0,a(e)},start:function(){this._time=(new Date).getTime(),this._pausedTime=0,this._startLoop()},stop:function(){this._running=!1},pause:function(){this._paused||(this._pauseStart=(new Date).getTime(),this._paused=!0)},resume:function(){this._paused&&(this._pausedTime+=(new Date).getTime()-this._pauseStart,this._paused=!1)},clear:function(){this._clips=[]},animate:function(e,t){t=t||{};var n=new i(e,t.loop,t.getter,t.setter);return this.addAnimator(n),n}},t.mixin(o,r),o}.call(t,n,t,e))&&(e.exports=r)},2019:function(e,t,n){var r;void 0!==(r=function(e){function t(e){this._target=e.target,this._life=e.life||1e3,this._delay=e.delay||0,this._initialized=!1,this.loop=null!=e.loop&&e.loop,this.gap=e.gap||0,this.easing=e.easing||"Linear",this.onframe=e.onframe,this.ondestroy=e.ondestroy,this.onrestart=e.onrestart,this._pausedTime=0,this._paused=!1}var r=n(2020);return t.prototype={constructor:t,step:function(e,t){if(this._initialized||(this._startTime=e+this._delay,this._initialized=!0),this._paused)return void(this._pausedTime+=t);var n=(e-this._startTime-this._pausedTime)/this._life;if(!(n<0)){n=Math.min(n,1);var a=this.easing,i="string"==typeof a?r[a]:a,o="function"==typeof i?i(n):n;return this.fire("frame",o),1==n?this.loop?(this.restart(e),"restart"):(this._needsRemove=!0,"destroy"):null}},restart:function(e){var t=(e-this._startTime-this._pausedTime)%this._life;this._startTime=e-t+this.gap,this._pausedTime=0,this._needsRemove=!1},fire:function(e,t){e="on"+e,this[e]&&this[e](this._target,t)},pause:function(){this._paused=!0},resume:function(){this._paused=!1}},t}.call(t,n,t,e))&&(e.exports=r)},2020:function(e,t,n){var r;void 0!==(r=function(){var e={linear:function(e){return e},quadraticIn:function(e){return e*e},quadraticOut:function(e){return e*(2-e)},quadraticInOut:function(e){return(e*=2)<1?.5*e*e:-.5*(--e*(e-2)-1)},cubicIn:function(e){return e*e*e},cubicOut:function(e){return--e*e*e+1},cubicInOut:function(e){return(e*=2)<1?.5*e*e*e:.5*((e-=2)*e*e+2)},quarticIn:function(e){return e*e*e*e},quarticOut:function(e){return 1- --e*e*e*e},quarticInOut:function(e){return(e*=2)<1?.5*e*e*e*e:-.5*((e-=2)*e*e*e-2)},quinticIn:function(e){return e*e*e*e*e},quinticOut:function(e){return--e*e*e*e*e+1},quinticInOut:function(e){return(e*=2)<1?.5*e*e*e*e*e:.5*((e-=2)*e*e*e*e+2)},sinusoidalIn:function(e){return 1-Math.cos(e*Math.PI/2)},sinusoidalOut:function(e){return Math.sin(e*Math.PI/2)},sinusoidalInOut:function(e){return.5*(1-Math.cos(Math.PI*e))},exponentialIn:function(e){return 0===e?0:Math.pow(1024,e-1)},exponentialOut:function(e){return 1===e?1:1-Math.pow(2,-10*e)},exponentialInOut:function(e){return 0===e?0:1===e?1:(e*=2)<1?.5*Math.pow(1024,e-1):.5*(2-Math.pow(2,-10*(e-1)))},circularIn:function(e){return 1-Math.sqrt(1-e*e)},circularOut:function(e){return Math.sqrt(1- --e*e)},circularInOut:function(e){return(e*=2)<1?-.5*(Math.sqrt(1-e*e)-1):.5*(Math.sqrt(1-(e-=2)*e)+1)},elasticIn:function(e){var t,n=.1;return 0===e?0:1===e?1:(!n||n<1?(n=1,t=.1):t=.4*Math.asin(1/n)/(2*Math.PI),-n*Math.pow(2,10*(e-=1))*Math.sin((e-t)*(2*Math.PI)/.4))},elasticOut:function(e){var t,n=.1;return 0===e?0:1===e?1:(!n||n<1?(n=1,t=.1):t=.4*Math.asin(1/n)/(2*Math.PI),n*Math.pow(2,-10*e)*Math.sin((e-t)*(2*Math.PI)/.4)+1)},elasticInOut:function(e){var t,n=.1;return 0===e?0:1===e?1:(!n||n<1?(n=1,t=.1):t=.4*Math.asin(1/n)/(2*Math.PI),(e*=2)<1?n*Math.pow(2,10*(e-=1))*Math.sin((e-t)*(2*Math.PI)/.4)*-.5:n*Math.pow(2,-10*(e-=1))*Math.sin((e-t)*(2*Math.PI)/.4)*.5+1)},backIn:function(e){var t=1.70158;return e*e*((t+1)*e-t)},backOut:function(e){var t=1.70158;return--e*e*((t+1)*e+t)+1},backInOut:function(e){var t=2.5949095;return(e*=2)<1?e*e*((t+1)*e-t)*.5:.5*((e-=2)*e*((t+1)*e+t)+2)},bounceIn:function(t){return 1-e.bounceOut(1-t)},bounceOut:function(e){return e<1/2.75?7.5625*e*e:e<2/2.75?7.5625*(e-=1.5/2.75)*e+.75:e<2.5/2.75?7.5625*(e-=2.25/2.75)*e+.9375:7.5625*(e-=2.625/2.75)*e+.984375},bounceInOut:function(t){return t<.5?.5*e.bounceIn(2*t):.5*e.bounceOut(2*t-1)+.5}};return e}.call(t,n,t,e))&&(e.exports=r)},2021:function(e,t,n){var r;void 0!==(r=function(e){var t=n(832).normalizeRadian,r=2*Math.PI;return{containStroke:function(e,n,a,i,o,l,s,u,c){if(0===s)return!1;var f=s;u-=e,c-=n;var d=Math.sqrt(u*u+c*c);if(d-f>a||d+f<a)return!1;if(Math.abs(i-o)%r<1e-4)return!0;if(l){var h=i;i=t(o),o=t(h)}else i=t(i),o=t(o);i>o&&(o+=r);var p=Math.atan2(c,u);return p<0&&(p+=r),p>=i&&p<=o||p+r>=i&&p+r<=o}}}.call(t,n,t,e))&&(e.exports=r)},2022:function(e,t,n){var r;void 0!==(r=function(e){var t=n(183);return{containStroke:function(e,n,r,a,i,o,l,s,u,c,f){if(0===u)return!1;var d=u;return!(f>n+d&&f>a+d&&f>o+d&&f>s+d||f<n-d&&f<a-d&&f<o-d&&f<s-d||c>e+d&&c>r+d&&c>i+d&&c>l+d||c<e-d&&c<r-d&&c<i-d&&c<l-d)&&t.cubicProjectPoint(e,n,r,a,i,o,l,s,c,f,null)<=d/2}}}.call(t,n,t,e))&&(e.exports=r)},2023:function(e,t,n){var r;void 0!==(r=function(){return{containStroke:function(e,t,n,r,a,i,o){if(0===a)return!1;var l=a,s=0,u=e;if(o>t+l&&o>r+l||o<t-l&&o<r-l||i>e+l&&i>n+l||i<e-l&&i<n-l)return!1;if(e===n)return Math.abs(i-e)<=l/2;s=(t-r)/(e-n),u=(e*r-n*t)/(e-n);var c=s*i-o+u;return c*c/(s*s+1)<=l/2*l/2}}}.call(t,n,t,e))&&(e.exports=r)},2024:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e,t){return Math.abs(e-t)<y}function r(){var e=b[0];b[0]=b[1],b[1]=e}function a(e,t,n,a,i,o,l,s,u,c){if(c>t&&c>a&&c>o&&c>s||c<t&&c<a&&c<o&&c<s)return 0;var f=p.cubicRootAt(t,a,o,s,c,_);if(0===f)return 0;for(var d,h,v=0,m=-1,g=0;g<f;g++){var y=_[g],x=0===y||1===y?.5:1;p.cubicAt(e,n,i,l,y)<u||(m<0&&(m=p.cubicExtrema(t,a,o,s,b),b[1]<b[0]&&m>1&&r(),d=p.cubicAt(t,a,o,s,b[0]),m>1&&(h=p.cubicAt(t,a,o,s,b[1]))),2==m?y<b[0]?v+=d<t?x:-x:y<b[1]?v+=h<d?x:-x:v+=s<h?x:-x:y<b[0]?v+=d<t?x:-x:v+=s<d?x:-x)}return v}function i(e,t,n,r,a,i,o,l){if(l>t&&l>r&&l>i||l<t&&l<r&&l<i)return 0;var s=p.quadraticRootAt(t,r,i,l,_);if(0===s)return 0;var u=p.quadraticExtremum(t,r,i);if(u>=0&&u<=1){for(var c=0,f=p.quadraticAt(t,r,i,u),d=0;d<s;d++){var h=0===_[d]||1===_[d]?.5:1,v=p.quadraticAt(e,n,a,_[d]);v<o||(_[d]<u?c+=f<t?h:-h:c+=i<f?h:-h)}return c}var h=0===_[0]||1===_[0]?.5:1,v=p.quadraticAt(e,n,a,_[0]);return v<o?0:i<t?h:-h}function o(e,t,n,r,a,i,o,l){if((l-=t)>n||l<-n)return 0;var s=Math.sqrt(n*n-l*l);_[0]=-s,_[1]=s;var u=Math.abs(r-a);if(u<1e-4)return 0;if(u%g<1e-4){r=0,a=g;var c=i?1:-1;return o>=_[0]+e&&o<=_[1]+e?c:0}if(i){var s=r;r=h(a),a=h(s)}else r=h(r),a=h(a);r>a&&(a+=g);for(var f=0,d=0;d<2;d++){var p=_[d];if(p+e>o){var v=Math.atan2(l,p),c=i?1:-1;v<0&&(v=g+v),(v>=r&&v<=a||v+g>=r&&v+g<=a)&&(v>Math.PI/2&&v<1.5*Math.PI&&(c=-c),f+=c)}}return f}function l(e,n,r,l,u){for(var h=0,p=0,g=0,y=0,_=0,b=0;b<e.length;){var x=e[b++];switch(x===s.M&&b>1&&(r||(h+=v(p,g,y,_,l,u))),1==b&&(p=e[b],g=e[b+1],y=p,_=g),x){case s.M:y=e[b++],_=e[b++],p=y,g=_;break;case s.L:if(r){if(m(p,g,e[b],e[b+1],n,l,u))return!0}else h+=v(p,g,e[b],e[b+1],l,u)||0;p=e[b++],g=e[b++];break;case s.C:if(r){if(c.containStroke(p,g,e[b++],e[b++],e[b++],e[b++],e[b],e[b+1],n,l,u))return!0}else h+=a(p,g,e[b++],e[b++],e[b++],e[b++],e[b],e[b+1],l,u)||0;p=e[b++],g=e[b++];break;case s.Q:if(r){if(f.containStroke(p,g,e[b++],e[b++],e[b],e[b+1],n,l,u))return!0}else h+=i(p,g,e[b++],e[b++],e[b],e[b+1],l,u)||0;p=e[b++],g=e[b++];break;case s.A:var w=e[b++],C=e[b++],P=e[b++],k=e[b++],S=e[b++],O=e[b++],T=(e[b++],1-e[b++]),M=Math.cos(S)*P+w,E=Math.sin(S)*k+C;b>1?h+=v(p,g,M,E,l,u):(y=M,_=E);var D=(l-w)*k/P+w;if(r){if(d.containStroke(w,C,k,S,S+O,T,n,D,u))return!0}else h+=o(w,C,k,S,S+O,T,D,u);p=Math.cos(S+O)*P+w,g=Math.sin(S+O)*k+C;break;case s.R:y=p=e[b++],_=g=e[b++];var j=e[b++],N=e[b++],M=y+j,E=_+N;if(r){if(m(y,_,M,_,n,l,u)||m(M,_,M,E,n,l,u)||m(M,E,y,E,n,l,u)||m(y,E,y,_,n,l,u))return!0}else h+=v(M,_,M,E,l,u),h+=v(y,E,y,_,l,u);break;case s.Z:if(r){if(m(p,g,y,_,n,l,u))return!0}else h+=v(p,g,y,_,l,u);p=y,g=_}}return r||t(g,_)||(h+=v(p,g,y,_,l,u)||0),0!==h}var s=n(249).CMD,u=n(2023),c=n(2022),f=n(2025),d=n(2021),h=n(832).normalizeRadian,p=n(183),v=n(2027),m=u.containStroke,g=2*Math.PI,y=1e-4,_=[-1,-1,-1],b=[-1,-1];return{contain:function(e,t,n){return l(e,0,!1,t,n)},containStroke:function(e,t,n,r){return l(e,t,!0,n,r)}}}.call(t,n,t,e))&&(e.exports=r)},2025:function(e,t,n){var r;void 0!==(r=function(e){var t=n(183);return{containStroke:function(e,n,r,a,i,o,l,s,u){if(0===l)return!1;var c=l;return!(u>n+c&&u>a+c&&u>o+c||u<n-c&&u<a-c&&u<o-c||s>e+c&&s>r+c&&s>i+c||s<e-c&&s<r-c&&s<i-c)&&t.quadraticProjectPoint(e,n,r,a,i,o,s,u,null)<=c/2}}}.call(t,n,t,e))&&(e.exports=r)},2026:function(e,t,n){var r;void 0!==(r=function(e){function t(e,t){t=t||S;var n=e+":"+t;if(w[n])return w[n];for(var r=(e+"").split("\n"),a=0,i=0,o=r.length;i<o;i++)a=Math.max(M.measureText(r[i],t).width,a);return C>P&&(C=0,w={}),C++,w[n]=a,a}function r(e,t,n,r,o,l,s){return l?i(e,t,n,r,o,l,s):a(e,t,n,r,o,s)}function a(e,n,r,a,i,s){var u=v(e,n,i,s),c=t(e,n);i&&(c+=i[1]+i[3]);var f=u.outerHeight,d=o(0,c,r),h=l(0,f,a),p=new b(d,h,c,f);return p.lineHeight=u.lineHeight,p}function i(e,t,n,r,a,i,s){var u=m(e,{rich:i,truncate:s,font:t,textAlign:n,textPadding:a}),c=u.outerWidth,f=u.outerHeight,d=o(0,c,n),h=l(0,f,r);return new b(d,h,c,f)}function o(e,t,n){return"right"===n?e-=t:"center"===n&&(e-=t/2),e}function l(e,t,n){return"middle"===n?e-=t/2:"bottom"===n&&(e-=t),e}function s(e,t,n){var r=t.x,a=t.y,i=t.height,o=t.width,l=i/2,s="left",u="top";switch(e){case"left":r-=n,a+=l,s="right",u="middle";break;case"right":r+=n+o,a+=l,u="middle";break;case"top":r+=o/2,a-=n,s="center",u="bottom";break;case"bottom":r+=o/2,a+=i+n,s="center";break;case"inside":r+=o/2,a+=l,s="center",u="middle";break;case"insideLeft":r+=n,a+=l,u="middle";break;case"insideRight":r+=o-n,a+=l,s="right",u="middle";break;case"insideTop":r+=o/2,a+=n,s="center";break;case"insideBottom":r+=o/2,a+=i-n,s="center",u="bottom";break;case"insideTopLeft":r+=n,a+=n;break;case"insideTopRight":r+=o-n,a+=n,s="right";break;case"insideBottomLeft":r+=n,a+=i-n,u="bottom";break;case"insideBottomRight":r+=o-n,a+=i-n,s="right",u="bottom"}return{x:r,y:a,textAlign:s,textVerticalAlign:u}}function u(e,t,n,r,a){if(!t)return"";var i=(e+"").split("\n");a=c(t,n,r,a);for(var o=0,l=i.length;o<l;o++)i[o]=f(i[o],a);return i.join("\n")}function c(e,n,r,a){a=_.extend({},a),a.font=n;var r=O(r,"...");a.maxIterations=O(a.maxIterations,2);var i=a.minChar=O(a.minChar,0);a.cnCharWidth=t("国",n);var o=a.ascCharWidth=t("a",n);a.placeholder=O(a.placeholder,"");for(var l=e=Math.max(0,e-1),s=0;s<i&&l>=o;s++)l-=o;var u=t(r);return u>l&&(r="",u=0),l=e-u,a.ellipsis=r,a.ellipsisWidth=u,a.contentWidth=l,a.containerWidth=e,a}function f(e,n){var r=n.containerWidth,a=n.font,i=n.contentWidth;if(!r)return"";var o=t(e,a);if(o<=r)return e;for(var l=0;;l++){if(o<=i||l>=n.maxIterations){e+=n.ellipsis;break}var s=0===l?d(e,i,n.ascCharWidth,n.cnCharWidth):o>0?Math.floor(e.length*i/o):0;e=e.substr(0,s),o=t(e,a)}return""===e&&(e=n.placeholder),e}function d(e,t,n,r){for(var a=0,i=0,o=e.length;i<o&&a<t;i++){var l=e.charCodeAt(i);a+=0<=l&&l<=127?n:r}return i}function h(e){return t("国",e)}function p(e,t){var n=_.getContext();return n.font=t||S,n.measureText(e)}function v(e,t,n,r){null!=e&&(e+="");var a=h(t),i=e?e.split("\n"):[],o=i.length*a,l=o;if(n&&(l+=n[0]+n[2]),e&&r){var s=r.outerHeight,u=r.outerWidth;if(null!=s&&l>s)e="",i=[];else if(null!=u)for(var d=c(u-(n?n[1]+n[3]:0),t,r.ellipsis,{minChar:r.minChar,placeholder:r.placeholder}),p=0,v=i.length;p<v;p++)i[p]=f(i[p],d)}return{lines:i,height:o,outerHeight:l,lineHeight:a}}function m(e,t){var n={lines:[],width:0,height:0};if(null!=e&&(e+=""),!e)return n;for(var r,a=k.lastIndex=0;null!=(r=k.exec(e));){var i=r.index;i>a&&g(n,e.substring(a,i)),g(n,r[2],r[1]),a=k.lastIndex}a<e.length&&g(n,e.substring(a,e.length));var o=n.lines,l=0,s=0,c=[],f=t.textPadding,d=t.truncate,h=d&&d.outerWidth,p=d&&d.outerHeight;f&&(null!=h&&(h-=f[1]+f[3]),null!=p&&(p-=f[0]+f[2]));for(var v=0;v<o.length;v++){for(var m=o[v],y=0,_=0,b=0;b<m.tokens.length;b++){var w=m.tokens[b],C=w.styleName&&t.rich[w.styleName]||{},P=w.textPadding=C.textPadding,S=w.font=C.font||t.font,E=w.textHeight=O(C.textHeight,M.getLineHeight(S));if(P&&(E+=P[0]+P[2]),w.height=E,w.lineHeight=T(C.textLineHeight,t.textLineHeight,E),w.textAlign=C&&C.textAlign||t.textAlign,w.textVerticalAlign=C&&C.textVerticalAlign||"middle",null!=p&&l+w.lineHeight>p)return{lines:[],width:0,height:0};w.textWidth=M.getWidth(w.text,S);var D=C.textWidth,j=null==D||"auto"===D;if("string"==typeof D&&"%"===D.charAt(D.length-1))w.percentWidth=D,c.push(w),D=0;else{if(j){D=w.textWidth;var N=C.textBackgroundColor,A=N&&N.image;A&&(A=x.findExistImage(A),x.isImageReady(A)&&(D=Math.max(D,A.width*E/A.height)))}var V=P?P[1]+P[3]:0;D+=V;var L=null!=h?h-_:null;null!=L&&L<D&&(!j||L<V?(w.text="",w.textWidth=D=0):(w.text=u(w.text,L-V,S,d.ellipsis,{minChar:d.minChar}),w.textWidth=M.getWidth(w.text,S),D=w.textWidth+V))}_+=w.width=D,C&&(y=Math.max(y,w.lineHeight))}m.width=_,m.lineHeight=y,l+=y,s=Math.max(s,_)}n.outerWidth=n.width=O(t.textWidth,s),n.outerHeight=n.height=O(t.textHeight,l),f&&(n.outerWidth+=f[1]+f[3],n.outerHeight+=f[0]+f[2]);for(var v=0;v<c.length;v++){var w=c[v],R=w.percentWidth;w.width=parseInt(R,10)/100*s}return n}function g(e,t,n){for(var r=""===t,a=t.split("\n"),i=e.lines,o=0;o<a.length;o++){var l=a[o],s={styleName:n,text:l,isLineHolder:!l&&!r};if(o)i.push({tokens:[s]});else{var u=(i[i.length-1]||(i[0]={tokens:[]})).tokens,c=u.length;1===c&&u[0].isLineHolder?u[0]=s:(l||!c||r)&&u.push(s)}}}function y(e){return(e.fontSize||e.fontFamily)&&[e.fontStyle,e.fontWeight,(e.fontSize||12)+"px",e.fontFamily||"sans-serif"].join(" ")||e.textFont||e.font}var _=n(38),b=n(146),x=n(403),w={},C=0,P=5e3,k=/\{([a-zA-Z0-9_]+)\|([^}]*)\}/g,S="12px sans-serif",O=_.retrieve2,T=_.retrieve3,M={getWidth:t,getBoundingRect:r,adjustTextPositionOnRect:s,truncateText:u,measureText:p,getLineHeight:h,parsePlainText:v,parseRichText:m,adjustTextX:o,adjustTextY:l,makeFont:y,DEFAULT_FONT:S};return M}.call(t,n,t,e))&&(e.exports=r)},2027:function(e,t,n){var r;void 0!==(r=function(){return function(e,t,n,r,a,i){if(i>t&&i>r||i<t&&i<r)return 0;if(r===t)return 0;var o=r<t?1:-1,l=(i-t)/(r-t);return 1!==l&&0!==l||(o=r<t?.5:-.5),l*(n-e)+e>a?o:0}}.call(t,n,t,e))&&(e.exports=r)},2028:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e){var t=e[1][0]-e[0][0],n=e[1][1]-e[0][1];return Math.sqrt(t*t+n*n)}function r(e){return[(e[0][0]+e[1][0])/2,(e[0][1]+e[1][1])/2]}var a=n(402),i=function(){this._track=[]};i.prototype={constructor:i,recognize:function(e,t,n){return this._doTrack(e,t,n),this._recognize(e)},clear:function(){return this._track.length=0,this},_doTrack:function(e,t,n){var r=e.touches;if(r){for(var i={points:[],touches:[],target:t,event:e},o=0,l=r.length;o<l;o++){var s=r[o],u=a.clientToLocal(n,s,{});i.points.push([u.zrX,u.zrY]),i.touches.push(s)}this._track.push(i)}},_recognize:function(e){for(var t in o)if(o.hasOwnProperty(t)){var n=o[t](this._track,e);if(n)return n}}};var o={pinch:function(e,n){var a=e.length;if(a){var i=(e[a-1]||{}).points,o=(e[a-2]||{}).points||i;if(o&&o.length>1&&i&&i.length>1){var l=t(i)/t(o);!isFinite(l)&&(l=1),n.pinchScale=l;var s=r(i);return n.pinchX=s[0],n.pinchY=s[1],{type:"pinch",target:e[0].target,event:n}}}}};return i}.call(t,n,t,e))&&(e.exports=r)},2029:function(e,t,n){var r;void 0!==(r=function(e){var t=n(147),r=n(183),a={},i=Math.min,o=Math.max,l=Math.sin,s=Math.cos,u=t.create(),c=t.create(),f=t.create(),d=2*Math.PI;a.fromPoints=function(e,t,n){if(0!==e.length){var r,a=e[0],l=a[0],s=a[0],u=a[1],c=a[1];for(r=1;r<e.length;r++)a=e[r],l=i(l,a[0]),s=o(s,a[0]),u=i(u,a[1]),c=o(c,a[1]);t[0]=l,t[1]=u,n[0]=s,n[1]=c}},a.fromLine=function(e,t,n,r,a,l){a[0]=i(e,n),a[1]=i(t,r),l[0]=o(e,n),l[1]=o(t,r)};var h=[],p=[];return a.fromCubic=function(e,t,n,a,l,s,u,c,f,d){var v,m=r.cubicExtrema,g=r.cubicAt,y=m(e,n,l,u,h);for(f[0]=1/0,f[1]=1/0,d[0]=-1/0,d[1]=-1/0,v=0;v<y;v++){var _=g(e,n,l,u,h[v]);f[0]=i(_,f[0]),d[0]=o(_,d[0])}for(y=m(t,a,s,c,p),v=0;v<y;v++){var b=g(t,a,s,c,p[v]);f[1]=i(b,f[1]),d[1]=o(b,d[1])}f[0]=i(e,f[0]),d[0]=o(e,d[0]),f[0]=i(u,f[0]),d[0]=o(u,d[0]),f[1]=i(t,f[1]),d[1]=o(t,d[1]),f[1]=i(c,f[1]),d[1]=o(c,d[1])},a.fromQuadratic=function(e,t,n,a,l,s,u,c){var f=r.quadraticExtremum,d=r.quadraticAt,h=o(i(f(e,n,l),1),0),p=o(i(f(t,a,s),1),0),v=d(e,n,l,h),m=d(t,a,s,p);u[0]=i(e,l,v),u[1]=i(t,s,m),c[0]=o(e,l,v),c[1]=o(t,s,m)},a.fromArc=function(e,n,r,a,i,o,h,p,v){var m=t.min,g=t.max,y=Math.abs(i-o);if(y%d<1e-4&&y>1e-4)return p[0]=e-r,p[1]=n-a,v[0]=e+r,void(v[1]=n+a);if(u[0]=s(i)*r+e,u[1]=l(i)*a+n,c[0]=s(o)*r+e,c[1]=l(o)*a+n,m(p,u,c),g(v,u,c),i%=d,i<0&&(i+=d),o%=d,o<0&&(o+=d),i>o&&!h?o+=d:i<o&&h&&(i+=d),h){var _=o;o=i,i=_}for(var b=0;b<o;b+=Math.PI/2)b>i&&(f[0]=s(b)*r+e,f[1]=l(b)*a+n,m(p,f,p),g(v,f,v))},a}.call(t,n,t,e))&&(e.exports=r)},2030:function(e,t,n){var r;void 0!==(r=function(e){function t(e){return"mousewheel"===e&&f.browser.firefox?"DOMMouseScroll":e}function r(e,t,n){var r=e._gestureMgr;"start"===n&&r.clear();var a=r.recognize(t,e.handler.findHover(t.zrX,t.zrY,null).target,e.dom);if("end"===n&&r.clear(),a){var i=a.type;t.gestureEvent=i,e.handler.dispatchToElement({target:a.target},i,a.event)}}function a(e){e._touching=!0,clearTimeout(e._touchTimer),e._touchTimer=setTimeout(function(){e._touching=!1},700)}function i(e){var t=e.pointerType;return"pen"===t||"touch"===t}function o(e){function t(e,t){return function(){if(!t._touching)return e.apply(t,arguments)}}u.each(g,function(t){e._handlers[t]=u.bind(b[t],e)}),u.each(_,function(t){e._handlers[t]=u.bind(b[t],e)}),u.each(m,function(n){e._handlers[n]=t(b[n],e)})}function l(e){function n(n,r){u.each(n,function(n){h(e,t(n),r._handlers[n])},r)}c.call(this),this.dom=e,this._touching=!1,this._touchTimer,this._gestureMgr=new d,this._handlers={},o(this),f.pointerEventsSupported?n(_,this):(f.touchEventsSupported&&n(g,this),n(m,this))}var s=n(402),u=n(38),c=n(251),f=n(250),d=n(2028),h=s.addEventListener,p=s.removeEventListener,v=s.normalizeEvent,m=["click","dblclick","mousewheel","mouseout","mouseup","mousedown","mousemove","contextmenu"],g=["touchstart","touchend","touchmove"],y={pointerdown:1,pointerup:1,pointermove:1,pointerout:1},_=u.map(m,function(e){var t=e.replace("mouse","pointer");return y[t]?t:e}),b={mousemove:function(e){e=v(this.dom,e),this.trigger("mousemove",e)},mouseout:function(e){e=v(this.dom,e);var t=e.toElement||e.relatedTarget;if(t!=this.dom)for(;t&&9!=t.nodeType;){if(t===this.dom)return;t=t.parentNode}this.trigger("mouseout",e)},touchstart:function(e){e=v(this.dom,e),e.zrByTouch=!0,this._lastTouchMoment=new Date,r(this,e,"start"),b.mousemove.call(this,e),b.mousedown.call(this,e),a(this)},touchmove:function(e){e=v(this.dom,e),e.zrByTouch=!0,r(this,e,"change"),b.mousemove.call(this,e),a(this)},touchend:function(e){e=v(this.dom,e),e.zrByTouch=!0,r(this,e,"end"),b.mouseup.call(this,e),+new Date-this._lastTouchMoment<300&&b.click.call(this,e),a(this)},pointerdown:function(e){b.mousedown.call(this,e)},pointermove:function(e){i(e)||b.mousemove.call(this,e)},pointerup:function(e){b.mouseup.call(this,e)},pointerout:function(e){i(e)||b.mouseout.call(this,e)}};u.each(["click","mousedown","mouseup","mousewheel","dblclick","contextmenu"],function(e){b[e]=function(t){t=v(this.dom,t),this.trigger(e,t)}});var x=l.prototype;return x.dispose=function(){for(var e=m.concat(g),n=0;n<e.length;n++){var r=e[n];p(this.dom,t(r),this._handlers[r])}},x.setCursor=function(e){this.dom.style.cursor=e||"default"},u.mixin(l,c),l}.call(t,n,t,e))&&(e.exports=r)},2031:function(e,t,n){var r;void 0!==(r=function(e){function t(e){r.call(this,e)}var r=n(839),a=n(146),i=n(38),o=n(403);return t.prototype={constructor:t,type:"image",brush:function(e,t){var n=this.style,r=n.image;n.bind(e,this,t);var a=this._image=o.createOrUpdateImage(r,this._image,this);if(a&&o.isImageReady(a)){var i=n.x||0,l=n.y||0,s=n.width,u=n.height,c=a.width/a.height;if(null==s&&null!=u?s=u*c:null==u&&null!=s?u=s/c:null==s&&null==u&&(s=a.width,u=a.height),this.setTransform(e),n.sWidth&&n.sHeight){var f=n.sx||0,d=n.sy||0;e.drawImage(a,f,d,n.sWidth,n.sHeight,i,l,s,u)}else if(n.sx&&n.sy){var f=n.sx,d=n.sy,h=s-f,p=u-d;e.drawImage(a,f,d,h,p,i,l,s,u)}else e.drawImage(a,i,l,s,u);this.restoreTransform(e),null!=n.text&&this.drawRectText(e,this.getBoundingRect())}},getBoundingRect:function(){var e=this.style;return this._rect||(this._rect=new a(e.x||0,e.y||0,e.width||0,e.height||0)),this._rect}},i.inherits(t,r),t}.call(t,n,t,e))&&(e.exports=r)},2032:function(e,t,n){var r;void 0!==(r=function(e){return{buildPath:function(e,t){var n,r,a,i,o=t.x,l=t.y,s=t.width,u=t.height,c=t.r;s<0&&(o+=s,s=-s),u<0&&(l+=u,u=-u),"number"==typeof c?n=r=a=i=c:c instanceof Array?1===c.length?n=r=a=i=c[0]:2===c.length?(n=a=c[0],r=i=c[1]):3===c.length?(n=c[0],r=i=c[1],a=c[2]):(n=c[0],r=c[1],a=c[2],i=c[3]):n=r=a=i=0;var f;n+r>s&&(f=n+r,n*=s/f,r*=s/f),a+i>s&&(f=a+i,a*=s/f,i*=s/f),r+a>u&&(f=r+a,r*=u/f,a*=u/f),n+i>u&&(f=n+i,n*=u/f,i*=u/f),e.moveTo(o+n,l),e.lineTo(o+s-r,l),0!==r&&e.quadraticCurveTo(o+s,l,o+s,l+r),e.lineTo(o+s,l+u-a),0!==a&&e.quadraticCurveTo(o+s,l+u,o+s-a,l+u),e.lineTo(o+i,l+u),0!==i&&e.quadraticCurveTo(o,l+u,o,l+u-i),e.lineTo(o,l+n),0!==n&&e.quadraticCurveTo(o,l,o+n,l)}}}.call(t,n,t,e))&&(e.exports=r)},2033:function(e,t,n){var r;void 0!==(r=function(e){var t=n(843),r=n(146),a=new r,i=function(){};return i.prototype={constructor:i,drawRectText:function(e,n){var r=this.style;n=r.textRect||n,this.__dirty&&t.normalizeTextStyle(r,!0);var i=r.text;if(null!=i&&(i+=""),t.needDrawText(i,r)){e.save();var o=this.transform;r.transformText?this.setTransform(e):o&&(a.copy(n),a.applyTransform(o),n=a),t.renderText(this,e,i,r,n),e.restore()}}},i}.call(t,n,t,e))&&(e.exports=r)},2034:function(e,t,n){var r;void 0!==(r=function(e){"use strict";return n(840).extend({type:"circle",shape:{cx:0,cy:0,r:0},buildPath:function(e,t,n){n&&e.moveTo(t.cx+t.r,t.cy),e.arc(t.cx,t.cy,t.r,0,2*Math.PI,!0)}})}.call(t,n,t,e))&&(e.exports=r)},2035:function(e,t,n){var r;void 0!==(r=function(e){"use strict";var t=n(830),r=n(38),a=r.isString,i=r.isFunction,o=r.isObject,l=n(836),s=function(){this.animators=[]};return s.prototype={constructor:s,animate:function(e,n){var a,i=!1,o=this,s=this.__zr;if(e){var u=e.split("."),c=o;i="shape"===u[0];for(var f=0,d=u.length;f<d;f++)c&&(c=c[u[f]]);c&&(a=c)}else a=o;if(!a)return void l('Property "'+e+'" is not existed in element '+o.id);var h=o.animators,p=new t(a,n);return p.during(function(e){o.dirty(i)}).done(function(){h.splice(r.indexOf(h,p),1)}),h.push(p),s&&s.animation.addAnimator(p),p},stopAnimation:function(e){for(var t=this.animators,n=t.length,r=0;r<n;r++)t[r].stop(e);return t.length=0,this},animateTo:function(e,t,n,r,o,l){function s(){--c||o&&o()}a(n)?(o=r,r=n,n=0):i(r)?(o=r,r="linear",n=0):i(n)?(o=n,n=0):i(t)?(o=t,t=500):t||(t=500),this.stopAnimation(),this._animateToShallow("",this,e,t,n,r,o);var u=this.animators.slice(),c=u.length;c||o&&o();for(var f=0;f<u.length;f++)u[f].done(s).start(r,l)},_animateToShallow:function(e,t,n,a,i){var l={},s=0;for(var u in n)if(n.hasOwnProperty(u))if(null!=t[u])o(n[u])&&!r.isArrayLike(n[u])?this._animateToShallow(e?e+"."+u:u,t[u],n[u],a,i):(l[u]=n[u],s++);else if(null!=n[u])if(e){var c={};c[e]={},c[e][u]=n[u],this.attr(c)}else this.attr(u,n[u]);return s>0&&this.animate(e,!1).when(null==a?500:a,l).delay(i||0),this}},s}.call(t,n,t,e))&&(e.exports=r)},2036:function(e,t,n){var r;void 0!==(r=function(e){function t(){this.on("mousedown",this._dragStart,this),this.on("mousemove",this._drag,this),this.on("mouseup",this._dragEnd,this),this.on("globalout",this._dragEnd,this)}function n(e,t){return{target:e,topTarget:t&&t.topTarget}}return t.prototype={constructor:t,_dragStart:function(e){var t=e.target;t&&t.draggable&&(this._draggingTarget=t,t.dragging=!0,this._x=e.offsetX,this._y=e.offsetY,this.dispatchToElement(n(t,e),"dragstart",e.event))},_drag:function(e){var t=this._draggingTarget;if(t){var r=e.offsetX,a=e.offsetY,i=r-this._x,o=a-this._y;this._x=r,this._y=a,t.drift(i,o,e),this.dispatchToElement(n(t,e),"drag",e.event);var l=this.findHover(r,a,t).target,s=this._dropTarget;this._dropTarget=l,t!==l&&(s&&l!==s&&this.dispatchToElement(n(s,e),"dragleave",e.event),l&&l!==s&&this.dispatchToElement(n(l,e),"dragenter",e.event))}},_dragEnd:function(e){var t=this._draggingTarget;t&&(t.dragging=!1),this.dispatchToElement(n(t,e),"dragend",e.event),this._dropTarget&&this.dispatchToElement(n(this._dropTarget,e),"drop",e.event),this._draggingTarget=null,this._dropTarget=null}},t}.call(t,n,t,e))&&(e.exports=r)},2037:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e){return e>o||e<-o}var r=n(837),a=n(147),i=r.identity,o=5e-5,l=function(e){e=e||{},e.position||(this.position=[0,0]),null==e.rotation&&(this.rotation=0),e.scale||(this.scale=[1,1]),this.origin=this.origin||null},s=l.prototype;s.transform=null,s.needLocalTransform=function(){return t(this.rotation)||t(this.position[0])||t(this.position[1])||t(this.scale[0]-1)||t(this.scale[1]-1)},s.updateTransform=function(){var e=this.parent,t=e&&e.transform,n=this.needLocalTransform(),a=this.transform;if(!n&&!t)return void(a&&i(a));a=a||r.create(),n?this.getLocalTransform(a):i(a),t&&(n?r.mul(a,e.transform,a):r.copy(a,e.transform)),this.transform=a,this.invTransform=this.invTransform||r.create(),r.invert(this.invTransform,a)},s.getLocalTransform=function(e){return l.getLocalTransform(this,e)},s.setTransform=function(e){var t=this.transform,n=e.dpr||1;t?e.setTransform(n*t[0],n*t[1],n*t[2],n*t[3],n*t[4],n*t[5]):e.setTransform(n,0,0,n,0,0)},s.restoreTransform=function(e){var t=e.dpr||1;e.setTransform(t,0,0,t,0,0)};var u=[];return s.decomposeTransform=function(){if(this.transform){var e=this.parent,n=this.transform;e&&e.transform&&(r.mul(u,e.invTransform,n),n=u);var a=n[0]*n[0]+n[1]*n[1],i=n[2]*n[2]+n[3]*n[3],o=this.position,l=this.scale;t(a-1)&&(a=Math.sqrt(a)),t(i-1)&&(i=Math.sqrt(i)),n[0]<0&&(a=-a),n[3]<0&&(i=-i),o[0]=n[4],o[1]=n[5],l[0]=a,l[1]=i,this.rotation=Math.atan2(-n[1]/i,n[0]/a)}},s.getGlobalScale=function(){var e=this.transform;if(!e)return[1,1];var t=Math.sqrt(e[0]*e[0]+e[1]*e[1]),n=Math.sqrt(e[2]*e[2]+e[3]*e[3]);return e[0]<0&&(t=-t),e[3]<0&&(n=-n),[t,n]},s.transformCoordToLocal=function(e,t){var n=[e,t],r=this.invTransform;return r&&a.applyTransform(n,n,r),n},s.transformCoordToGlobal=function(e,t){var n=[e,t],r=this.transform;return r&&a.applyTransform(n,n,r),n},l.getLocalTransform=function(e,t){t=t||[],i(t);var n=e.origin,a=e.scale||[1,1],o=e.rotation||0,l=e.position||[0,0];return n&&(t[4]-=n[0],t[5]-=n[1]),r.scale(t,t,a),o&&r.rotate(t,t,o),n&&(t[4]+=n[0],t[5]+=n[1]),t[4]+=l[0],t[5]+=l[1],t},l}.call(t,n,t,e))&&(e.exports=r)},2038:function(e,t,n){var r;void 0!==(r=function(e){function t(e){return e=Math.round(e),e<0?0:e>255?255:e}function r(e){return e=Math.round(e),e<0?0:e>360?360:e}function a(e){return e<0?0:e>1?1:e}function i(e){return t(e.length&&"%"===e.charAt(e.length-1)?parseFloat(e)/100*255:parseInt(e,10))}function o(e){return a(e.length&&"%"===e.charAt(e.length-1)?parseFloat(e)/100:parseFloat(e))}function l(e,t,n){return n<0?n+=1:n>1&&(n-=1),6*n<1?e+(t-e)*n*6:2*n<1?t:3*n<2?e+(t-e)*(2/3-n)*6:e}function s(e,t,n){return e+(t-e)*n}function u(e,t,n,r,a){return e[0]=t,e[1]=n,e[2]=r,e[3]=a,e}function c(e,t){return e[0]=t[0],e[1]=t[1],e[2]=t[2],e[3]=t[3],e}function f(e,t){k&&c(k,t),k=P.put(e,k||t.slice())}function d(e,t){if(e){t=t||[];var n=P.get(e);if(n)return c(t,n);e+="";var r=e.replace(/ /g,"").toLowerCase();if(r in C)return c(t,C[r]),f(e,t),t;if("#"!==r.charAt(0)){var a=r.indexOf("("),l=r.indexOf(")");if(-1!==a&&l+1===r.length){var s=r.substr(0,a),d=r.substr(a+1,l-(a+1)).split(","),p=1;switch(s){case"rgba":if(4!==d.length)return void u(t,0,0,0,1);p=o(d.pop());case"rgb":return 3!==d.length?void u(t,0,0,0,1):(u(t,i(d[0]),i(d[1]),i(d[2]),p),f(e,t),t);case"hsla":return 4!==d.length?void u(t,0,0,0,1):(d[3]=o(d[3]),h(d,t),f(e,t),t);case"hsl":return 3!==d.length?void u(t,0,0,0,1):(h(d,t),f(e,t),t);default:return}}u(t,0,0,0,1)}else{if(4===r.length){var v=parseInt(r.substr(1),16);return v>=0&&v<=4095?(u(t,(3840&v)>>4|(3840&v)>>8,240&v|(240&v)>>4,15&v|(15&v)<<4,1),f(e,t),t):void u(t,0,0,0,1)}if(7===r.length){var v=parseInt(r.substr(1),16);return v>=0&&v<=16777215?(u(t,(16711680&v)>>16,(65280&v)>>8,255&v,1),f(e,t),t):void u(t,0,0,0,1)}}}}function h(e,n){var r=(parseFloat(e[0])%360+360)%360/360,a=o(e[1]),i=o(e[2]),s=i<=.5?i*(a+1):i+a-i*a,c=2*i-s;return n=n||[],u(n,t(255*l(c,s,r+1/3)),t(255*l(c,s,r)),t(255*l(c,s,r-1/3)),1),4===e.length&&(n[3]=e[3]),n}function p(e){if(e){var t,n,r=e[0]/255,a=e[1]/255,i=e[2]/255,o=Math.min(r,a,i),l=Math.max(r,a,i),s=l-o,u=(l+o)/2;if(0===s)t=0,n=0;else{n=u<.5?s/(l+o):s/(2-l-o);var c=((l-r)/6+s/2)/s,f=((l-a)/6+s/2)/s,d=((l-i)/6+s/2)/s;r===l?t=d-f:a===l?t=1/3+c-d:i===l&&(t=2/3+f-c),t<0&&(t+=1),t>1&&(t-=1)}var h=[360*t,n,u];return null!=e[3]&&h.push(e[3]),h}}function v(e,t){var n=d(e);if(n){for(var r=0;r<3;r++)n[r]=t<0?n[r]*(1-t)|0:(255-n[r])*t+n[r]|0;return x(n,4===n.length?"rgba":"rgb")}}function m(e,t){var n=d(e);if(n)return((1<<24)+(n[0]<<16)+(n[1]<<8)+ +n[2]).toString(16).slice(1)}function g(e,n,r){if(n&&n.length&&e>=0&&e<=1){r=r||[];var i=e*(n.length-1),o=Math.floor(i),l=Math.ceil(i),u=n[o],c=n[l],f=i-o;return r[0]=t(s(u[0],c[0],f)),r[1]=t(s(u[1],c[1],f)),r[2]=t(s(u[2],c[2],f)),r[3]=a(s(u[3],c[3],f)),r}}function y(e,n,r){if(n&&n.length&&e>=0&&e<=1){var i=e*(n.length-1),o=Math.floor(i),l=Math.ceil(i),u=d(n[o]),c=d(n[l]),f=i-o,h=x([t(s(u[0],c[0],f)),t(s(u[1],c[1],f)),t(s(u[2],c[2],f)),a(s(u[3],c[3],f))],"rgba");return r?{color:h,leftIndex:o,rightIndex:l,value:i}:h}}function _(e,t,n,a){if(e=d(e))return e=p(e),null!=t&&(e[0]=r(t)),null!=n&&(e[1]=o(n)),null!=a&&(e[2]=o(a)),x(h(e),"rgba")}function b(e,t){if((e=d(e))&&null!=t)return e[3]=a(t),x(e,"rgba")}function x(e,t){if(e&&e.length){var n=e[0]+","+e[1]+","+e[2];return"rgba"!==t&&"hsva"!==t&&"hsla"!==t||(n+=","+e[3]),t+"("+n+")"}}var w=n(834),C={transparent:[0,0,0,0],aliceblue:[240,248,255,1],antiquewhite:[250,235,215,1],aqua:[0,255,255,1],aquamarine:[127,255,212,1],azure:[240,255,255,1],beige:[245,245,220,1],bisque:[255,228,196,1],black:[0,0,0,1],blanchedalmond:[255,235,205,1],blue:[0,0,255,1],blueviolet:[138,43,226,1],brown:[165,42,42,1],burlywood:[222,184,135,1],cadetblue:[95,158,160,1],chartreuse:[127,255,0,1],chocolate:[210,105,30,1],coral:[255,127,80,1],cornflowerblue:[100,149,237,1],cornsilk:[255,248,220,1],crimson:[220,20,60,1],cyan:[0,255,255,1],darkblue:[0,0,139,1],darkcyan:[0,139,139,1],darkgoldenrod:[184,134,11,1],darkgray:[169,169,169,1],darkgreen:[0,100,0,1],darkgrey:[169,169,169,1],darkkhaki:[189,183,107,1],darkmagenta:[139,0,139,1],darkolivegreen:[85,107,47,1],darkorange:[255,140,0,1],darkorchid:[153,50,204,1],darkred:[139,0,0,1],darksalmon:[233,150,122,1],darkseagreen:[143,188,143,1],darkslateblue:[72,61,139,1],darkslategray:[47,79,79,1],darkslategrey:[47,79,79,1],darkturquoise:[0,206,209,1],darkviolet:[148,0,211,1],deeppink:[255,20,147,1],deepskyblue:[0,191,255,1],dimgray:[105,105,105,1],dimgrey:[105,105,105,1],dodgerblue:[30,144,255,1],firebrick:[178,34,34,1],floralwhite:[255,250,240,1],forestgreen:[34,139,34,1],fuchsia:[255,0,255,1],gainsboro:[220,220,220,1],ghostwhite:[248,248,255,1],gold:[255,215,0,1],goldenrod:[218,165,32,1],gray:[128,128,128,1],green:[0,128,0,1],greenyellow:[173,255,47,1],grey:[128,128,128,1],honeydew:[240,255,240,1],hotpink:[255,105,180,1],indianred:[205,92,92,1],indigo:[75,0,130,1],ivory:[255,255,240,1],khaki:[240,230,140,1],lavender:[230,230,250,1],lavenderblush:[255,240,245,1],lawngreen:[124,252,0,1],lemonchiffon:[255,250,205,1],lightblue:[173,216,230,1],lightcoral:[240,128,128,1],lightcyan:[224,255,255,1],lightgoldenrodyellow:[250,250,210,1],lightgray:[211,211,211,1],lightgreen:[144,238,144,1],lightgrey:[211,211,211,1],lightpink:[255,182,193,1],lightsalmon:[255,160,122,1],lightseagreen:[32,178,170,1],lightskyblue:[135,206,250,1],lightslategray:[119,136,153,1],lightslategrey:[119,136,153,1],lightsteelblue:[176,196,222,1],lightyellow:[255,255,224,1],lime:[0,255,0,1],limegreen:[50,205,50,1],linen:[250,240,230,1],magenta:[255,0,255,1],maroon:[128,0,0,1],mediumaquamarine:[102,205,170,1],mediumblue:[0,0,205,1],mediumorchid:[186,85,211,1],mediumpurple:[147,112,219,1],mediumseagreen:[60,179,113,1],mediumslateblue:[123,104,238,1],mediumspringgreen:[0,250,154,1],mediumturquoise:[72,209,204,1],mediumvioletred:[199,21,133,1],midnightblue:[25,25,112,1],mintcream:[245,255,250,1],mistyrose:[255,228,225,1],moccasin:[255,228,181,1],navajowhite:[255,222,173,1],navy:[0,0,128,1],oldlace:[253,245,230,1],olive:[128,128,0,1],olivedrab:[107,142,35,1],orange:[255,165,0,1],orangered:[255,69,0,1],orchid:[218,112,214,1],palegoldenrod:[238,232,170,1],palegreen:[152,251,152,1],paleturquoise:[175,238,238,1],palevioletred:[219,112,147,1],papayawhip:[255,239,213,1],peachpuff:[255,218,185,1],peru:[205,133,63,1],pink:[255,192,203,1],plum:[221,160,221,1],powderblue:[176,224,230,1],purple:[128,0,128,1],red:[255,0,0,1],rosybrown:[188,143,143,1],royalblue:[65,105,225,1],saddlebrown:[139,69,19,1],salmon:[250,128,114,1],sandybrown:[244,164,96,1],seagreen:[46,139,87,1],seashell:[255,245,238,1],sienna:[160,82,45,1],silver:[192,192,192,1],skyblue:[135,206,235,1],slateblue:[106,90,205,1],slategray:[112,128,144,1],slategrey:[112,128,144,1],snow:[255,250,250,1],springgreen:[0,255,127,1],steelblue:[70,130,180,1],tan:[210,180,140,1],teal:[0,128,128,1],thistle:[216,191,216,1],tomato:[255,99,71,1],turquoise:[64,224,208,1],violet:[238,130,238,1],wheat:[245,222,179,1],white:[255,255,255,1],whitesmoke:[245,245,245,1],yellow:[255,255,0,1],yellowgreen:[154,205,50,1]},P=new w(20),k=null;return{parse:d,lift:v,toHex:m,fastMapToColor:g,mapToColor:y,modifyHSL:_,modifyAlpha:b,stringify:x}}.call(t,n,t,e))&&(e.exports=r)},2039:function(e,t,n){var r;void 0!==(r=function(e){function t(e,t,n,r,a,i,o,l,s,h,m){var g=s*(d/180),y=f(g)*(e-n)/2+c(g)*(t-r)/2,_=-1*c(g)*(e-n)/2+f(g)*(t-r)/2,b=y*y/(o*o)+_*_/(l*l);b>1&&(o*=u(b),l*=u(b));var x=(a===i?-1:1)*u((o*o*(l*l)-o*o*(_*_)-l*l*(y*y))/(o*o*(_*_)+l*l*(y*y)))||0,w=x*o*_/l,C=x*-l*y/o,P=(e+n)/2+f(g)*w-c(g)*C,k=(t+r)/2+c(g)*w+f(g)*C,S=v([1,0],[(y-w)/o,(_-C)/l]),O=[(y-w)/o,(_-C)/l],T=[(-1*y-w)/o,(-1*_-C)/l],M=v(O,T);p(O,T)<=-1&&(M=d),p(O,T)>=1&&(M=0),0===i&&M>0&&(M-=2*d),1===i&&M<0&&(M+=2*d),m.addData(h,P,k,o,l,S,M,g,i)}function r(e){if(!e)return[];var n,r=e.replace(/-/g," -").replace(/  /g," ").replace(/ /g,",").replace(/,,/g,",");for(n=0;n<s.length;n++)r=r.replace(new RegExp(s[n],"g"),"|"+s[n]);var a,i=r.split("|"),l=0,u=0,c=new o,f=o.CMD;for(n=1;n<i.length;n++){var d,h=i[n],p=h.charAt(0),v=0,m=h.slice(1).replace(/e,-/g,"e-").split(",");m.length>0&&""===m[0]&&m.shift();for(var g=0;g<m.length;g++)m[g]=parseFloat(m[g]);for(;v<m.length&&!isNaN(m[v])&&!isNaN(m[0]);){var y,_,b,x,w,C,P,k=l,S=u;switch(p){case"l":l+=m[v++],u+=m[v++],d=f.L,c.addData(d,l,u);break;case"L":l=m[v++],u=m[v++],d=f.L,c.addData(d,l,u);break;case"m":l+=m[v++],u+=m[v++],d=f.M,c.addData(d,l,u),p="l";break;case"M":l=m[v++],u=m[v++],d=f.M,c.addData(d,l,u),p="L";break;case"h":l+=m[v++],d=f.L,c.addData(d,l,u);break;case"H":l=m[v++],d=f.L,c.addData(d,l,u);break;case"v":u+=m[v++],d=f.L,c.addData(d,l,u);break;case"V":u=m[v++],d=f.L,c.addData(d,l,u);break;case"C":d=f.C,c.addData(d,m[v++],m[v++],m[v++],m[v++],m[v++],m[v++]),l=m[v-2],u=m[v-1];break;case"c":d=f.C,c.addData(d,m[v++]+l,m[v++]+u,m[v++]+l,m[v++]+u,m[v++]+l,m[v++]+u),l+=m[v-2],u+=m[v-1];break;case"S":y=l,_=u;var O=c.len(),T=c.data;a===f.C&&(y+=l-T[O-4],_+=u-T[O-3]),d=f.C,k=m[v++],S=m[v++],l=m[v++],u=m[v++],c.addData(d,y,_,k,S,l,u);break;case"s":y=l,_=u;var O=c.len(),T=c.data;a===f.C&&(y+=l-T[O-4],_+=u-T[O-3]),d=f.C,k=l+m[v++],S=u+m[v++],l+=m[v++],u+=m[v++],c.addData(d,y,_,k,S,l,u);break;case"Q":k=m[v++],S=m[v++],l=m[v++],u=m[v++],d=f.Q,c.addData(d,k,S,l,u);break;case"q":k=m[v++]+l,S=m[v++]+u,l+=m[v++],u+=m[v++],d=f.Q,c.addData(d,k,S,l,u);break;case"T":y=l,_=u;var O=c.len(),T=c.data;a===f.Q&&(y+=l-T[O-4],_+=u-T[O-3]),l=m[v++],u=m[v++],d=f.Q,c.addData(d,y,_,l,u);break;case"t":y=l,_=u;var O=c.len(),T=c.data;a===f.Q&&(y+=l-T[O-4],_+=u-T[O-3]),l+=m[v++],u+=m[v++],d=f.Q,c.addData(d,y,_,l,u);break;case"A":b=m[v++],x=m[v++],w=m[v++],C=m[v++],P=m[v++],k=l,S=u,l=m[v++],u=m[v++],d=f.A,t(k,S,l,u,C,P,b,x,w,d,c);break;case"a":b=m[v++],x=m[v++],w=m[v++],C=m[v++],P=m[v++],k=l,S=u,l+=m[v++],u+=m[v++],d=f.A,t(k,S,l,u,C,P,b,x,w,d,c)}}"z"!==p&&"Z"!==p||(d=f.Z,c.addData(d)),a=d}return c.toStatic(),c}function a(e,t){var n=r(e);return t=t||{},t.buildPath=function(e){if(e.setData){e.setData(n.data);var t=e.getContext();t&&e.rebuildPath(t)}else{var t=e;n.rebuildPath(t)}},t.applyTransform=function(e){l(n,e),this.dirty(!0)},t}var i=n(840),o=n(249),l=n(2040),s=["m","M","l","L","v","V","h","H","z","Z","c","C","q","Q","t","T","s","S","a","A"],u=Math.sqrt,c=Math.sin,f=Math.cos,d=Math.PI,h=function(e){return Math.sqrt(e[0]*e[0]+e[1]*e[1])},p=function(e,t){return(e[0]*t[0]+e[1]*t[1])/(h(e)*h(t))},v=function(e,t){return(e[0]*t[1]<e[1]*t[0]?-1:1)*Math.acos(p(e,t))};return{createFromString:function(e,t){return new i(a(e,t))},extendFromString:function(e,t){return i.extend(a(e,t))},mergePath:function(e,t){for(var n=[],r=e.length,a=0;a<r;a++){var o=e[a];o.path||o.createPathProxy(),o.__dirtyPath&&o.buildPath(o.path,o.shape,!0),n.push(o.path)}var l=new i(t);return l.createPathProxy(),l.buildPath=function(e){e.appendPath(n);var t=e.getContext();t&&e.rebuildPath(t)},l}}}.call(t,n,t,e))&&(e.exports=r)},2040:function(e,t,n){var r;void 0!==(r=function(e){function t(e,t){var n,a,u,c,f,d,h=e.data,p=r.M,v=r.C,m=r.L,g=r.R,y=r.A,_=r.Q;for(u=0,c=0;u<h.length;){switch(n=h[u++],c=u,a=0,n){case p:case m:a=1;break;case v:a=3;break;case _:a=2;break;case y:var b=t[4],x=t[5],w=l(t[0]*t[0]+t[1]*t[1]),C=l(t[2]*t[2]+t[3]*t[3]),P=s(-t[1]/C,t[0]/w);h[u]*=w,h[u++]+=b,h[u]*=C,h[u++]+=x,h[u++]*=w,h[u++]*=C,h[u++]+=P,h[u++]+=P,u+=2,c=u;break;case g:d[0]=h[u++],d[1]=h[u++],i(d,d,t),h[c++]=d[0],h[c++]=d[1],d[0]+=h[u++],d[1]+=h[u++],i(d,d,t),h[c++]=d[0],h[c++]=d[1]}for(f=0;f<a;f++){var d=o[f];d[0]=h[u++],d[1]=h[u++],i(d,d,t),h[c++]=d[0],h[c++]=d[1]}}}var r=n(249).CMD,a=n(147),i=a.applyTransform,o=[[],[],[]],l=Math.sqrt,s=Math.atan2;return t}.call(t,n,t,e))&&(e.exports=r)},2041:function(e,t,n){var r;void 0!==(r=function(e){function t(e){delete d[e]}var r=n(835),a=n(250),i=n(38),o=n(2014),l=n(2017),s=n(2018),u=n(2030),c=!a.canvasSupported,f={canvas:n(2016)},d={},h={};h.version="3.6.1",h.init=function(e,t){var n=new p(r(),e,t);return d[n.id]=n,n},h.dispose=function(e){if(e)e.dispose();else{for(var t in d)d.hasOwnProperty(t)&&d[t].dispose();d={}}return h},h.getInstance=function(e){return d[e]},h.registerPainter=function(e,t){f[e]=t};var p=function(e,t,n){n=n||{},this.dom=t,this.id=e;var r=this,d=new l,h=n.renderer;if(c){if(!f.vml)throw new Error("You need to require 'zrender/vml/vml' to support IE8");h="vml"}else h&&f[h]||(h="canvas");var p=new f[h](t,d,n);this.storage=d,this.painter=p;var v=a.node?null:new u(p.getViewportRoot());this.handler=new o(d,p,v,p.root),this.animation=new s({stage:{update:i.bind(this.flush,this)}}),this.animation.start(),this._needsRefresh;var m=d.delFromStorage,g=d.addToStorage;d.delFromStorage=function(e){m.call(d,e),e&&e.removeSelfFromZr(r)},d.addToStorage=function(e){g.call(d,e),e.addSelfToZr(r)}};return p.prototype={constructor:p,getId:function(){return this.id},add:function(e){this.storage.addRoot(e),this._needsRefresh=!0},remove:function(e){this.storage.delRoot(e),this._needsRefresh=!0},configLayer:function(e,t){this.painter.configLayer(e,t),this._needsRefresh=!0},refreshImmediately:function(){this._needsRefresh=!1,this.painter.refresh(),this._needsRefresh=!1},refresh:function(){this._needsRefresh=!0},flush:function(){this._needsRefresh&&this.refreshImmediately(),this._needsRefreshHover&&this.refreshHoverImmediately()},addHover:function(e,t){this.painter.addHover&&(this.painter.addHover(e,t),this.refreshHover())},removeHover:function(e){this.painter.removeHover&&(this.painter.removeHover(e),this.refreshHover())},clearHover:function(){this.painter.clearHover&&(this.painter.clearHover(),this.refreshHover())},refreshHover:function(){this._needsRefreshHover=!0},refreshHoverImmediately:function(){this._needsRefreshHover=!1,this.painter.refreshHover&&this.painter.refreshHover()},resize:function(e){e=e||{},this.painter.resize(e.width,e.height),this.handler.resize()},clearAnimation:function(){this.animation.clear()},getWidth:function(){return this.painter.getWidth()},getHeight:function(){return this.painter.getHeight()},pathToImage:function(e,t){return this.painter.pathToImage(e,t)},setCursorStyle:function(e){this.handler.setCursorStyle(e)},findHover:function(e,t){return this.handler.findHover(e,t)},on:function(e,t,n){this.handler.on(e,t,n)},off:function(e,t){this.handler.off(e,t)},trigger:function(e,t){this.handler.trigger(e,t)},clear:function(){this.storage.delRoot(),this.painter.clear()},dispose:function(){this.animation.stop(),this.clear(),this.storage.dispose(),this.painter.dispose(),this.handler.dispose(),this.animation=this.storage=this.painter=this.handler=null,t(this.id)}},h}.call(t,n,t,e))&&(e.exports=r)},248:function(e,t,n){var r;void 0!==(r=function(){var e=1;return"undefined"!=typeof window&&(e=Math.max(window.devicePixelRatio||1,1)),{debugMode:0,devicePixelRatio:e}}.call(t,n,t,e))&&(e.exports=r)},249:function(e,t,n){var r;void 0!==(r=function(e){"use strict";var t=n(183),r=n(147),a=n(2029),i=n(146),o=n(248).devicePixelRatio,l={M:1,L:2,C:3,Q:4,A:5,Z:6,R:7},s=[],u=[],c=[],f=[],d=Math.min,h=Math.max,p=Math.cos,v=Math.sin,m=Math.sqrt,g=Math.abs,y="undefined"!=typeof Float32Array,_=function(e){this._saveData=!e,this._saveData&&(this.data=[]),this._ctx=null};return _.prototype={constructor:_,_xi:0,_yi:0,_x0:0,_y0:0,_ux:0,_uy:0,_len:0,_lineDash:null,_dashOffset:0,_dashIdx:0,_dashSum:0,setScale:function(e,t){this._ux=g(1/o/e)||0,this._uy=g(1/o/t)||0},getContext:function(){return this._ctx},beginPath:function(e){return this._ctx=e,e&&e.beginPath(),e&&(this.dpr=e.dpr),this._saveData&&(this._len=0),this._lineDash&&(this._lineDash=null,this._dashOffset=0),this},moveTo:function(e,t){return this.addData(l.M,e,t),this._ctx&&this._ctx.moveTo(e,t),this._x0=e,this._y0=t,this._xi=e,this._yi=t,this},lineTo:function(e,t){var n=g(e-this._xi)>this._ux||g(t-this._yi)>this._uy||this._len<5;return this.addData(l.L,e,t),this._ctx&&n&&(this._needsDash()?this._dashedLineTo(e,t):this._ctx.lineTo(e,t)),n&&(this._xi=e,this._yi=t),this},bezierCurveTo:function(e,t,n,r,a,i){return this.addData(l.C,e,t,n,r,a,i),this._ctx&&(this._needsDash()?this._dashedBezierTo(e,t,n,r,a,i):this._ctx.bezierCurveTo(e,t,n,r,a,i)),this._xi=a,this._yi=i,this},quadraticCurveTo:function(e,t,n,r){return this.addData(l.Q,e,t,n,r),this._ctx&&(this._needsDash()?this._dashedQuadraticTo(e,t,n,r):this._ctx.quadraticCurveTo(e,t,n,r)),this._xi=n,this._yi=r,this},arc:function(e,t,n,r,a,i){return this.addData(l.A,e,t,n,n,r,a-r,0,i?0:1),this._ctx&&this._ctx.arc(e,t,n,r,a,i),this._xi=p(a)*n+e,this._yi=v(a)*n+e,this},arcTo:function(e,t,n,r,a){return this._ctx&&this._ctx.arcTo(e,t,n,r,a),this},rect:function(e,t,n,r){return this._ctx&&this._ctx.rect(e,t,n,r),this.addData(l.R,e,t,n,r),this},closePath:function(){this.addData(l.Z);var e=this._ctx,t=this._x0,n=this._y0;return e&&(this._needsDash()&&this._dashedLineTo(t,n),e.closePath()),this._xi=t,this._yi=n,this},fill:function(e){e&&e.fill(),this.toStatic()},stroke:function(e){e&&e.stroke(),this.toStatic()},setLineDash:function(e){if(e instanceof Array){this._lineDash=e,this._dashIdx=0;for(var t=0,n=0;n<e.length;n++)t+=e[n];this._dashSum=t}return this},setLineDashOffset:function(e){return this._dashOffset=e,this},len:function(){return this._len},setData:function(e){var t=e.length;this.data&&this.data.length==t||!y||(this.data=new Float32Array(t));for(var n=0;n<t;n++)this.data[n]=e[n];this._len=t},appendPath:function(e){e instanceof Array||(e=[e]);for(var t=e.length,n=0,r=this._len,a=0;a<t;a++)n+=e[a].len();y&&this.data instanceof Float32Array&&(this.data=new Float32Array(r+n));for(var a=0;a<t;a++)for(var i=e[a].data,o=0;o<i.length;o++)this.data[r++]=i[o];this._len=r},addData:function(e){if(this._saveData){var t=this.data;this._len+arguments.length>t.length&&(this._expandData(),t=this.data);for(var n=0;n<arguments.length;n++)t[this._len++]=arguments[n];this._prevCmd=e}},_expandData:function(){if(!(this.data instanceof Array)){for(var e=[],t=0;t<this._len;t++)e[t]=this.data[t];this.data=e}},_needsDash:function(){return this._lineDash},_dashedLineTo:function(e,t){var n,r,a=this._dashSum,i=this._dashOffset,o=this._lineDash,l=this._ctx,s=this._xi,u=this._yi,c=e-s,f=t-u,p=m(c*c+f*f),v=s,g=u,y=o.length;for(c/=p,f/=p,i<0&&(i=a+i),i%=a,v-=i*c,g-=i*f;c>0&&v<=e||c<0&&v>=e||0==c&&(f>0&&g<=t||f<0&&g>=t);)r=this._dashIdx,n=o[r],v+=c*n,g+=f*n,this._dashIdx=(r+1)%y,c>0&&v<s||c<0&&v>s||f>0&&g<u||f<0&&g>u||l[r%2?"moveTo":"lineTo"](c>=0?d(v,e):h(v,e),f>=0?d(g,t):h(g,t));c=v-e,f=g-t,this._dashOffset=-m(c*c+f*f)},_dashedBezierTo:function(e,n,r,a,i,o){var l,s,u,c,f,d=this._dashSum,h=this._dashOffset,p=this._lineDash,v=this._ctx,g=this._xi,y=this._yi,_=t.cubicAt,b=0,x=this._dashIdx,w=p.length,C=0;for(h<0&&(h=d+h),h%=d,l=0;l<1;l+=.1)s=_(g,e,r,i,l+.1)-_(g,e,r,i,l),u=_(y,n,a,o,l+.1)-_(y,n,a,o,l),b+=m(s*s+u*u);for(;x<w&&!((C+=p[x])>h);x++);for(l=(C-h)/b;l<=1;)c=_(g,e,r,i,l),f=_(y,n,a,o,l),x%2?v.moveTo(c,f):v.lineTo(c,f),l+=p[x]/b,x=(x+1)%w;x%2!=0&&v.lineTo(i,o),s=i-c,u=o-f,this._dashOffset=-m(s*s+u*u)},_dashedQuadraticTo:function(e,t,n,r){var a=n,i=r;n=(n+2*e)/3,r=(r+2*t)/3,e=(this._xi+2*e)/3,t=(this._yi+2*t)/3,this._dashedBezierTo(e,t,n,r,a,i)},toStatic:function(){var e=this.data;e instanceof Array&&(e.length=this._len,y&&(this.data=new Float32Array(e)))},getBoundingRect:function(){s[0]=s[1]=c[0]=c[1]=Number.MAX_VALUE,u[0]=u[1]=f[0]=f[1]=-Number.MAX_VALUE;for(var e=this.data,t=0,n=0,o=0,d=0,h=0;h<e.length;){var m=e[h++];switch(1==h&&(t=e[h],n=e[h+1],o=t,d=n),m){case l.M:o=e[h++],d=e[h++],t=o,n=d,c[0]=o,c[1]=d,f[0]=o,f[1]=d;break;case l.L:a.fromLine(t,n,e[h],e[h+1],c,f),t=e[h++],n=e[h++];break;case l.C:a.fromCubic(t,n,e[h++],e[h++],e[h++],e[h++],e[h],e[h+1],c,f),t=e[h++],n=e[h++];break;case l.Q:a.fromQuadratic(t,n,e[h++],e[h++],e[h],e[h+1],c,f),t=e[h++],n=e[h++];break;case l.A:var g=e[h++],y=e[h++],_=e[h++],b=e[h++],x=e[h++],w=e[h++]+x,C=(e[h++],1-e[h++]);1==h&&(o=p(x)*_+g,d=v(x)*b+y),a.fromArc(g,y,_,b,x,w,C,c,f),t=p(w)*_+g,n=v(w)*b+y;break;case l.R:o=t=e[h++],d=n=e[h++];var P=e[h++],k=e[h++];a.fromLine(o,d,o+P,d+k,c,f);break;case l.Z:t=o,n=d}r.min(s,s,c),r.max(u,u,f)}return 0===h&&(s[0]=s[1]=u[0]=u[1]=0),new i(s[0],s[1],u[0]-s[0],u[1]-s[1])},rebuildPath:function(e){for(var t,n,r,a,i,o,s=this.data,u=this._ux,c=this._uy,f=this._len,d=0;d<f;){var h=s[d++];switch(1==d&&(r=s[d],a=s[d+1],t=r,n=a),h){case l.M:t=r=s[d++],n=a=s[d++],e.moveTo(r,a);break;case l.L:i=s[d++],o=s[d++],(g(i-r)>u||g(o-a)>c||d===f-1)&&(e.lineTo(i,o),r=i,a=o);break;case l.C:e.bezierCurveTo(s[d++],s[d++],s[d++],s[d++],s[d++],s[d++]),r=s[d-2],a=s[d-1];break;case l.Q:e.quadraticCurveTo(s[d++],s[d++],s[d++],s[d++]),r=s[d-2],a=s[d-1];break;case l.A:var m=s[d++],y=s[d++],_=s[d++],b=s[d++],x=s[d++],w=s[d++],C=s[d++],P=s[d++],k=_>b?_:b,S=_>b?1:_/b,O=_>b?b/_:1,T=Math.abs(_-b)>.001,M=x+w;T?(e.translate(m,y),e.rotate(C),e.scale(S,O),e.arc(0,0,k,x,M,1-P),e.scale(1/S,1/O),e.rotate(-C),e.translate(-m,-y)):e.arc(m,y,k,x,M,1-P),1==d&&(t=p(x)*_+m,n=v(x)*b+y),r=p(M)*_+m,a=v(M)*b+y;break;case l.R:t=r=s[d],n=a=s[d+1],e.rect(s[d++],s[d++],s[d++],s[d++]);break;case l.Z:e.closePath(),r=t,a=n}}}},_.CMD=l,_}.call(t,n,t,e))&&(e.exports=r)},250:function(e,t,n){var r;void 0!==(r=function(){return"undefined"==typeof navigator?{browser:{},os:{},node:!0,canvasSupported:!0}:function(e){var t={},n={},r=e.match(/Firefox\/([\d.]+)/),a=e.match(/MSIE\s([\d.]+)/)||e.match(/Trident\/.+?rv:(([\d.]+))/),i=e.match(/Edge\/([\d.]+)/),o=/micromessenger/i.test(e);return r&&(n.firefox=!0,n.version=r[1]),a&&(n.ie=!0,n.version=a[1]),i&&(n.edge=!0,n.version=i[1]),o&&(n.weChat=!0),{browser:n,os:t,node:!1,canvasSupported:!!document.createElement("canvas").getContext,touchEventsSupported:"ontouchstart"in window&&!n.ie&&!n.edge,pointerEventsSupported:"onpointerdown"in window&&(n.edge||n.ie&&n.version>=11)}}(navigator.userAgent)}.call(t,n,t,e))&&(e.exports=r)},251:function(e,t,n){var r;void 0!==(r=function(e){var t=Array.prototype.slice,n=function(){this._$handlers={}};return n.prototype={constructor:n,one:function(e,t,n){var r=this._$handlers;if(!t||!e)return this;r[e]||(r[e]=[]);for(var a=0;a<r[e].length;a++)if(r[e][a].h===t)return this;return r[e].push({h:t,one:!0,ctx:n||this}),this},on:function(e,t,n){var r=this._$handlers;if(!t||!e)return this;r[e]||(r[e]=[]);for(var a=0;a<r[e].length;a++)if(r[e][a].h===t)return this;return r[e].push({h:t,one:!1,ctx:n||this}),this},isSilent:function(e){var t=this._$handlers;return t[e]&&t[e].length},off:function(e,t){var n=this._$handlers;if(!e)return this._$handlers={},this;if(t){if(n[e]){for(var r=[],a=0,i=n[e].length;a<i;a++)n[e][a].h!=t&&r.push(n[e][a]);n[e]=r}n[e]&&0===n[e].length&&delete n[e]}else delete n[e];return this},trigger:function(e){if(this._$handlers[e]){var n=arguments,r=n.length;r>3&&(n=t.call(n,1));for(var a=this._$handlers[e],i=a.length,o=0;o<i;){switch(r){case 1:a[o].h.call(a[o].ctx);break;case 2:a[o].h.call(a[o].ctx,n[1]);break;case 3:a[o].h.call(a[o].ctx,n[1],n[2]);break;default:a[o].h.apply(a[o].ctx,n)}a[o].one?(a.splice(o,1),i--):o++}}return this},triggerWithContext:function(e){if(this._$handlers[e]){var n=arguments,r=n.length;r>4&&(n=t.call(n,1,n.length-1));for(var a=n[n.length-1],i=this._$handlers[e],o=i.length,l=0;l<o;){switch(r){case 1:i[l].h.call(a);break;case 2:i[l].h.call(a,n[1]);break;case 3:i[l].h.call(a,n[1],n[2]);break;default:i[l].h.apply(a,n)}i[l].one?(i.splice(l,1),o--):l++}}return this}},n}.call(t,n,t,e))&&(e.exports=r)},256:function(e,t,n){"use strict";function r(e,t,n,r){var a={};if(t&&t.antLocale&&t.antLocale[n])a=t.antLocale[n];else{var i=r();a=i.default||i}var l=(0,o.default)({},a,e.locale);return l.lang=(0,o.default)({},a.lang,e.locale.lang),l}function a(e){var t=e.antLocale&&e.antLocale.locale;return e.antLocale&&e.antLocale.exist&&!t?"zh-cn":t}Object.defineProperty(t,"__esModule",{value:!0});var i=n(2),o=function(e){return e&&e.__esModule?e:{default:e}}(i);t.getComponentLocale=r,t.getLocaleCode=a},257:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(54),a=function(e){return e&&e.__esModule?e:{default:e}}(r),i={};t.default=function(e,t){e||i[t]||((0,a.default)(!1,t),i[t]=!0)},e.exports=t.default},259:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.FETCH="fetch",t.LOADING="loading",t.END="end",t.SWITCH_PAGE="switch_page"},260:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={homepage:1,traceDisplay:2,taxiDistribution:3};t.default=r},38:function(e,t,n){var r;void 0!==(r=function(e){function t(e){if(null==e||"object"!=typeof e)return e;var n=e,r=H.call(e);if("[object Array]"===r){n=[];for(var a=0,i=e.length;a<i;a++)n[a]=t(e[a])}else if(I[r]){var o=e.constructor;if(e.constructor.from)n=o.from(e);else{n=new o(e.length);for(var a=0,i=e.length;a<i;a++)n[a]=t(e[a])}}else if(!R[r]&&!N(e)&&!P(e)){n={};for(var l in e)e.hasOwnProperty(l)&&(n[l]=t(e[l]))}return n}function n(e,r,a){if(!w(r)||!w(e))return a?t(r):e;for(var i in r)if(r.hasOwnProperty(i)){var o=e[i],l=r[i];!w(l)||!w(o)||_(l)||_(o)||P(l)||P(o)||C(l)||C(o)||N(l)||N(o)?!a&&i in e||(e[i]=t(r[i],!0)):n(o,l,a)}return e}function r(e,t){for(var r=e[0],a=1,i=e.length;a<i;a++)r=n(r,e[a],t);return r}function a(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e}function i(e,t,n){for(var r in t)t.hasOwnProperty(r)&&(n?null!=t[r]:null==e[r])&&(e[r]=t[r]);return e}function o(){return document.createElement("canvas")}function l(){return L||(L=K.createCanvas().getContext("2d")),L}function s(e,t){if(e){if(e.indexOf)return e.indexOf(t);for(var n=0,r=e.length;n<r;n++)if(e[n]===t)return n}return-1}function u(e,t){function n(){}var r=e.prototype;n.prototype=t.prototype,e.prototype=new n;for(var a in r)e.prototype[a]=r[a];e.prototype.constructor=e,e.superClass=t}function c(e,t,n){e="prototype"in e?e.prototype:e,t="prototype"in t?t.prototype:t,i(e,t,n)}function f(e){if(e)return"string"!=typeof e&&"number"==typeof e.length}function d(e,t,n){if(e&&t)if(e.forEach&&e.forEach===B)e.forEach(t,n);else if(e.length===+e.length)for(var r=0,a=e.length;r<a;r++)t.call(n,e[r],r,e);else for(var i in e)e.hasOwnProperty(i)&&t.call(n,e[i],i,e)}function h(e,t,n){if(e&&t){if(e.map&&e.map===W)return e.map(t,n);for(var r=[],a=0,i=e.length;a<i;a++)r.push(t.call(n,e[a],a,e));return r}}function p(e,t,n,r){if(e&&t){if(e.reduce&&e.reduce===q)return e.reduce(t,n,r);for(var a=0,i=e.length;a<i;a++)n=t.call(r,n,e[a],a,e);return n}}function v(e,t,n){if(e&&t){if(e.filter&&e.filter===F)return e.filter(t,n);for(var r=[],a=0,i=e.length;a<i;a++)t.call(n,e[a],a,e)&&r.push(e[a]);return r}}function m(e,t,n){if(e&&t)for(var r=0,a=e.length;r<a;r++)if(t.call(n,e[r],r,e))return e[r]}function g(e,t){var n=Y.call(arguments,2);return function(){return e.apply(t,n.concat(Y.call(arguments)))}}function y(e){var t=Y.call(arguments,1);return function(){return e.apply(this,t.concat(Y.call(arguments)))}}function _(e){return"[object Array]"===H.call(e)}function b(e){return"function"==typeof e}function x(e){return"[object String]"===H.call(e)}function w(e){var t=typeof e;return"function"===t||!!e&&"object"==t}function C(e){return!!R[H.call(e)]}function P(e){return"object"==typeof e&&"number"==typeof e.nodeType&&"object"==typeof e.ownerDocument}function k(e){return e!==e}function S(e){for(var t=0,n=arguments.length;t<n;t++)if(null!=arguments[t])return arguments[t]}function O(e,t){return null!=e?e:t}function T(e,t,n){return null!=e?e:null!=t?t:n}function M(){return Function.call.apply(Y,arguments)}function E(e){if("number"==typeof e)return[e,e,e,e];var t=e.length;return 2===t?[e[0],e[1],e[0],e[1]]:3===t?[e[0],e[1],e[2],e[1]]:e}function D(e,t){if(!e)throw new Error(t)}function j(e){e[X]=!0}function N(e){return e[X]}function A(e){e&&d(e,function(e,t){this.set(t,e)},this)}function V(e){return new A(e)}var L,R={"[object Function]":1,"[object RegExp]":1,"[object Date]":1,"[object Error]":1,"[object CanvasGradient]":1,"[object CanvasPattern]":1,"[object Image]":1,"[object Canvas]":1},I={"[object Int8Array]":1,"[object Uint8Array]":1,"[object Uint8ClampedArray]":1,"[object Int16Array]":1,"[object Uint16Array]":1,"[object Int32Array]":1,"[object Uint32Array]":1,"[object Float32Array]":1,"[object Float64Array]":1},H=Object.prototype.toString,z=Array.prototype,B=z.forEach,F=z.filter,Y=z.slice,W=z.map,q=z.reduce,X="__ec_primitive__";A.prototype={constructor:A,get:function(e){return this["_ec_"+e]},set:function(e,t){return this["_ec_"+e]=t,t},each:function(e,t){void 0!==t&&(e=g(e,t));for(var n in this)this.hasOwnProperty(n)&&e(this[n],n.slice(4))},removeKey:function(e){delete this["_ec_"+e]}};var K={inherits:u,mixin:c,clone:t,merge:n,mergeAll:r,extend:a,defaults:i,getContext:l,createCanvas:o,indexOf:s,slice:M,find:m,isArrayLike:f,each:d,map:h,reduce:p,filter:v,bind:g,curry:y,isArray:_,isString:x,isObject:w,isFunction:b,isBuiltInObject:C,isDom:P,eqNaN:k,retrieve:S,retrieve2:O,retrieve3:T,assert:D,setAsPrimitive:j,createHashMap:V,normalizeCssArray:E,noop:function(){}};return K}.call(t,n,t,e))&&(e.exports=r)},402:function(e,t,n){var r;void 0!==(r=function(e){"use strict";function t(e){return e.getBoundingClientRect?e.getBoundingClientRect():{left:0,top:0}}function r(e,t,n,r){return n=n||{},r||!u.canvasSupported?a(e,t,n):u.browser.firefox&&null!=t.layerX&&t.layerX!==t.offsetX?(n.zrX=t.layerX,n.zrY=t.layerY):null!=t.offsetX?(n.zrX=t.offsetX,n.zrY=t.offsetY):a(e,t,n),n}function a(e,n,r){var a=t(e);r.zrX=n.clientX-a.left,r.zrY=n.clientY-a.top}function i(e,t,n){if(t=t||window.event,null!=t.zrX)return t;var a=t.type;if(a&&a.indexOf("touch")>=0){var i="touchend"!=a?t.targetTouches[0]:t.changedTouches[0];i&&r(e,i,t,n)}else r(e,t,t,n),t.zrDelta=t.wheelDelta?t.wheelDelta/120:-(t.detail||0)/3;return t}function o(e,t,n){c?e.addEventListener(t,n):e.attachEvent("on"+t,n)}function l(e,t,n){c?e.removeEventListener(t,n):e.detachEvent("on"+t,n)}var s=n(251),u=n(250),c="undefined"!=typeof window&&!!window.addEventListener;return{clientToLocal:r,normalizeEvent:i,addEventListener:o,removeEventListener:l,stop:c?function(e){e.preventDefault(),e.stopPropagation(),e.cancelBubble=!0}:function(e){e.returnValue=!1,e.cancelBubble=!0},Dispatcher:s}}.call(t,n,t,e))&&(e.exports=r)},403:function(e,t,n){var r;void 0!==(r=function(e){function t(){var e=this.__cachedImgObj;this.onload=this.__cachedImgObj=null;for(var t=0;t<e.pending.length;t++){var n=e.pending[t],r=n.cb;r&&r(this,n.cbPayload),n.hostEl.dirty()}e.pending.length=0}var r=n(834),a=new r(50),i={};i.findExistImage=function(e){if("string"==typeof e){var t=a.get(e);return t&&t.image}return e},i.createOrUpdateImage=function(e,n,r,i,l){if(e){if("string"==typeof e){if(n&&n.__zrImageSrc===e||!r)return n;var s=a.get(e),u={hostEl:r,cb:i,cbPayload:l};return s?(n=s.image,!o(n)&&s.pending.push(u)):(!n&&(n=new Image),n.onload=t,a.put(e,n.__cachedImgObj={image:n,pending:[u]}),n.src=n.__zrImageSrc=e),n}return e}return n};var o=i.isImageReady=function(e){return e&&e.width&&e.height};return i}.call(t,n,t,e))&&(e.exports=r)},432:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0}),t.Col=t.Row=void 0;var a=n(953),i=r(a),o=n(952),l=r(o);t.Row=i.default,t.Col=l.default},433:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){return void 0===e||null===e?"":e}Object.defineProperty(t,"__esModule",{value:!0});var i=n(2),o=r(i),l=n(10),s=r(l),u=n(1),c=r(u),f=n(6),d=r(f),h=n(4),p=r(h),v=n(3),m=r(v),g=n(0),y=r(g),_=n(5),b=r(_),x=n(8),w=r(x),C=n(33),P=r(C),k=n(434),S=r(k),O=function(e){function t(){(0,c.default)(this,t);var e=(0,p.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments));return e.handleKeyDown=function(t){var n=e.props,r=n.onPressEnter,a=n.onKeyDown;13===t.keyCode&&r&&r(t),a&&a(t)},e}return(0,m.default)(t,e),(0,d.default)(t,[{key:"focus",value:function(){this.refs.input.focus()}},{key:"blur",value:function(){this.refs.input.blur()}},{key:"getInputClassName",value:function(){var e,t=this.props,n=t.prefixCls,r=t.size,a=t.disabled;return(0,w.default)(n,(e={},(0,s.default)(e,n+"-sm","small"===r),(0,s.default)(e,n+"-lg","large"===r),(0,s.default)(e,n+"-disabled",a),e))}},{key:"renderLabeledInput",value:function(e){var t=this.props;if(!t.addonBefore&&!t.addonAfter)return e;var n=t.prefixCls+"-group",r=n+"-addon",a=t.addonBefore?y.default.createElement("span",{className:r},t.addonBefore):null,i=t.addonAfter?y.default.createElement("span",{className:r},t.addonAfter):null,o=(0,w.default)(t.prefixCls+"-wrapper",(0,s.default)({},n,a||i));return a||i?y.default.createElement("span",{className:t.prefixCls+"-group-wrapper",style:t.style},y.default.createElement("span",{className:o},a,(0,g.cloneElement)(e,{style:null}),i)):y.default.createElement("span",{className:o},a,e,i)}},{key:"renderLabeledIcon",value:function(e){var t=this.props;if(!("prefix"in t||"suffix"in t))return e;var n=t.prefix?y.default.createElement("span",{className:t.prefixCls+"-prefix"},t.prefix):null,r=t.suffix?y.default.createElement("span",{className:t.prefixCls+"-suffix"},t.suffix):null;return y.default.createElement("span",{className:(0,w.default)(t.className,t.prefixCls+"-affix-wrapper"),style:t.style},n,(0,g.cloneElement)(e,{style:null,className:this.getInputClassName()}),r)}},{key:"renderInput",value:function(){var e=this.props,t=e.value,n=e.className,r=(0,P.default)(this.props,["prefixCls","onPressEnter","addonBefore","addonAfter","prefix","suffix"]);return"value"in this.props&&(r.value=a(t),delete r.defaultValue),this.renderLabeledIcon(y.default.createElement("input",(0,o.default)({},r,{className:(0,w.default)(this.getInputClassName(),n),onKeyDown:this.handleKeyDown,ref:"input"})))}},{key:"render",value:function(){return"textarea"===this.props.type?y.default.createElement(S.default,(0,o.default)({},this.props,{ref:"input"})):this.renderLabeledInput(this.renderInput())}}]),t}(g.Component);t.default=O,O.defaultProps={prefixCls:"ant-input",type:"text",disabled:!1},O.propTypes={type:b.default.string,id:b.default.oneOfType([b.default.string,b.default.number]),size:b.default.oneOf(["small","default","large"]),disabled:b.default.bool,value:b.default.any,defaultValue:b.default.any,className:b.default.string,addonBefore:b.default.node,addonAfter:b.default.node,prefixCls:b.default.string,autosize:b.default.oneOfType([b.default.bool,b.default.object]),onPressEnter:b.default.func,onKeyDown:b.default.func,onFocus:b.default.func,onBlur:b.default.func,prefix:b.default.node,suffix:b.default.node},e.exports=t.default},434:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){return window.requestAnimationFrame?window.requestAnimationFrame(e):window.setTimeout(e,1)}function i(e){window.cancelAnimationFrame?window.cancelAnimationFrame(e):window.clearTimeout(e)}Object.defineProperty(t,"__esModule",{value:!0});var o=n(2),l=r(o),s=n(10),u=r(s),c=n(1),f=r(c),d=n(6),h=r(d),p=n(4),v=r(p),m=n(3),g=r(m),y=n(0),_=r(y),b=n(33),x=r(b),w=n(8),C=r(w),P=n(956),k=r(P),S=function(e){function t(){(0,f.default)(this,t);var e=(0,v.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments));return e.state={textareaStyles:null},e.resizeTextarea=function(){var t=e.props.autosize;if(t&&e.textAreaRef){var n=t?t.minRows:null,r=t?t.maxRows:null,a=(0,k.default)(e.textAreaRef,!1,n,r);e.setState({textareaStyles:a})}},e.handleTextareaChange=function(t){"value"in e.props||e.resizeTextarea();var n=e.props.onChange;n&&n(t)},e.handleKeyDown=function(t){var n=e.props,r=n.onPressEnter,a=n.onKeyDown;13===t.keyCode&&r&&r(t),a&&a(t)},e.saveTextAreaRef=function(t){e.textAreaRef=t},e}return(0,g.default)(t,e),(0,h.default)(t,[{key:"componentDidMount",value:function(){this.resizeTextarea()}},{key:"componentWillReceiveProps",value:function(e){this.props.value!==e.value&&(this.nextFrameActionId&&i(this.nextFrameActionId),this.nextFrameActionId=a(this.resizeTextarea))}},{key:"focus",value:function(){this.textAreaRef.focus()}},{key:"blur",value:function(){this.textAreaRef.blur()}},{key:"getTextAreaClassName",value:function(){var e=this.props,t=e.prefixCls,n=e.className,r=e.disabled;return(0,C.default)(t,n,(0,u.default)({},t+"-disabled",r))}},{key:"render",value:function(){var e=this.props,t=(0,x.default)(e,["prefixCls","onPressEnter","autosize"]),n=(0,l.default)({},e.style,this.state.textareaStyles);return"value"in t&&(t.value=t.value||""),_.default.createElement("textarea",(0,l.default)({},t,{className:this.getTextAreaClassName(),style:n,onKeyDown:this.handleKeyDown,onChange:this.handleTextareaChange,ref:this.saveTextAreaRef}))}}]),t}(_.default.Component);t.default=S,S.defaultProps={prefixCls:"ant-input"},e.exports=t.default},435:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={placeholder:"请选择时间"};t.default=r,e.exports=t.default},437:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(944);Object.defineProperty(t,"Button",{enumerable:!0,get:function(){return r(a).default}});var i=n(945);Object.defineProperty(t,"Col",{enumerable:!0,get:function(){return r(i).default}});var o=n(949);Object.defineProperty(t,"DatePicker",{enumerable:!0,get:function(){return r(o).default}});var l=n(957);Object.defineProperty(t,"Input",{enumerable:!0,get:function(){return r(l).default}});var s=n(959);Object.defineProperty(t,"Row",{enumerable:!0,get:function(){return r(s).default}})},438:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={HOME_PAGE:{cn:"主页",en:"Home Page"},TAXI_DISTRIBUTION:{cn:"分布",en:"Taxi Distribution"},TRACE_DISPLAY:{cn:"轨迹回放",en:"Trace Display"},SEARCH:{cn:"查询",en:"Search"}};t.default=r},439:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.info=void 0;var r=n(1642),a=function(e){return e&&e.__esModule?e:{default:e}}(r),i={traceTime:5e3,traceLevel:1,info:a.default};t.info=a.default,t.default=i},440:function(e,t,n){"use strict";function r(e){return i+"-"+e}function a(e){return e.filter(function(e){return!!e}).map(function(e){return r(e)}).join(" ").trim()}Object.defineProperty(t,"__esModule",{value:!0}),t.setNameSpace=r,t.getClassSet=a;var i="wind-taxi"},743:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),i=r(a),o=n(16),l=r(o),s=n(5),u=r(s),c=n(97),f=r(c),d=n(748),h=r(d),p=n(1755),v=r(p),m=n(747),g=r(m),y=(0,l.default)({displayName:"MonthCalendar",propTypes:{monthCellRender:u.default.func,dateCellRender:u.default.func},mixins:[g.default,v.default],onKeyDown:function(e){var t=e.keyCode,n=e.ctrlKey||e.metaKey,r=this.state.value,a=this.props.disabledDate,i=r;switch(t){case f.default.DOWN:i=r.clone(),i.add(3,"months");break;case f.default.UP:i=r.clone(),i.add(-3,"months");break;case f.default.LEFT:i=r.clone(),n?i.add(-1,"years"):i.add(-1,"months");break;case f.default.RIGHT:i=r.clone(),n?i.add(1,"years"):i.add(1,"months");break;case f.default.ENTER:return a&&a(r)||this.onSelect(r),e.preventDefault(),1;default:return}if(i!==r)return this.setValue(i),e.preventDefault(),1},render:function(){var e=this.props,t=i.default.createElement(h.default,{locale:e.locale,disabledDate:e.disabledDate,style:{position:"relative"},value:this.state.value,cellRender:e.monthCellRender,contentRender:e.monthCellContentRender,rootPrefixCls:e.prefixCls,onChange:this.setValue,onSelect:this.onSelect});return this.renderRoot({children:t})}});t.default=y,e.exports=t.default},744:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(){}function i(e,t){this[e]=t}Object.defineProperty(t,"__esModule",{value:!0});var o=n(0),l=r(o),s=n(12),u=r(s),c=n(16),f=r(c),d=n(5),h=r(d),p=n(781),v=r(p),m=n(97),g=r(m),y=n(1757),_=r(y),b=n(83),x=r(b),w=(0,f.default)({displayName:"Picker",propTypes:{animation:h.default.oneOfType([h.default.func,h.default.string]),disabled:h.default.bool,transitionName:h.default.string,onChange:h.default.func,onOpenChange:h.default.func,children:h.default.func,getCalendarContainer:h.default.func,calendar:h.default.element,style:h.default.object,open:h.default.bool,defaultOpen:h.default.bool,prefixCls:h.default.string,placement:h.default.any,value:h.default.oneOfType([h.default.object,h.default.array]),defaultValue:h.default.oneOfType([h.default.object,h.default.array]),align:h.default.object},getDefaultProps:function(){return{prefixCls:"rc-calendar-picker",style:{},align:{},placement:"bottomLeft",defaultOpen:!1,onChange:a,onOpenChange:a}},getInitialState:function(){var e=this.props,t=void 0;t="open"in e?e.open:e.defaultOpen;var n=e.value||e.defaultValue;return this.saveCalendarRef=i.bind(this,"calendarInstance"),{open:t,value:n}},componentWillReceiveProps:function(e){var t=e.value,n=e.open;"value"in e&&this.setState({value:t}),void 0!==n&&this.setState({open:n})},componentDidUpdate:function(e,t){!t.open&&this.state.open&&(this.focusTimeout=setTimeout(this.focusCalendar,0,this))},componentWillUnmount:function(){clearTimeout(this.focusTimeout)},onCalendarKeyDown:function(e){e.keyCode===g.default.ESC&&(e.stopPropagation(),this.close(this.focus))},onCalendarSelect:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=this.props;"value"in n||this.setState({value:e}),("keyboard"===t.source||!n.calendar.props.timePicker&&"dateInput"!==t.source||"todayButton"===t.source)&&this.close(this.focus),n.onChange(e)},onKeyDown:function(e){e.keyCode!==g.default.DOWN||this.state.open||(this.open(),e.preventDefault())},onCalendarOk:function(){this.close(this.focus)},onCalendarClear:function(){this.close(this.focus)},onVisibleChange:function(e){this.setOpen(e)},getCalendarElement:function(){var e=this.props,t=this.state,n=e.calendar.props,r=t.value,a=r,i={ref:this.saveCalendarRef,defaultValue:a||n.defaultValue,selectedValue:r,onKeyDown:this.onCalendarKeyDown,onOk:(0,v.default)(n.onOk,this.onCalendarOk),onSelect:(0,v.default)(n.onSelect,this.onCalendarSelect),onClear:(0,v.default)(n.onClear,this.onCalendarClear)};return l.default.cloneElement(e.calendar,i)},setOpen:function(e,t){var n=this.props.onOpenChange;this.state.open!==e&&("open"in this.props||this.setState({open:e},t),n(e))},open:function(e){this.setOpen(!0,e)},close:function(e){this.setOpen(!1,e)},focus:function(){this.state.open||u.default.findDOMNode(this).focus()},focusCalendar:function(){this.state.open&&null!==this.calendarInstance&&this.calendarInstance.focus()},render:function(){var e=this.props,t=e.prefixCls,n=e.placement,r=e.style,a=e.getCalendarContainer,i=e.align,o=e.animation,s=e.disabled,u=e.transitionName,c=e.children,f=this.state;return l.default.createElement(x.default,{popup:this.getCalendarElement(),popupAlign:i,builtinPlacements:_.default,popupPlacement:n,action:s&&!f.open?[]:["click"],destroyPopupOnHide:!0,getPopupContainer:a,popupStyle:r,popupAnimation:o,popupTransitionName:u,popupVisible:f.open,onPopupVisibleChange:this.onVisibleChange,prefixCls:t},l.default.cloneElement(c(f,e),{onKeyDown:this.onKeyDown}))}});t.default=w,e.exports=t.default},745:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={DATE_ROW_COUNT:6,DATE_COL_COUNT:7},e.exports=t.default},746:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={today:"今天",now:"此刻",backToToday:"返回今天",ok:"确定",timeSelect:"选择时间",dateSelect:"选择日期",clear:"清除",month:"月",year:"年",previousMonth:"上个月 (翻页上键)",nextMonth:"下个月 (翻页下键)",monthSelect:"选择月份",yearSelect:"选择年份",decadeSelect:"选择年代",yearFormat:"YYYY年",dayFormat:"D日",dateFormat:"YYYY年M月D日",dateTimeFormat:"YYYY年M月D日 HH时mm分ss秒",previousYear:"上一年 (Control键加左方向键)",nextYear:"下一年 (Control键加右方向键)",previousDecade:"上一年代",nextDecade:"下一年代",previousCentury:"上一世纪",nextCentury:"下一世纪"},e.exports=t.default},747:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(){}Object.defineProperty(t,"__esModule",{value:!0});var i=n(5),o=r(i),l=n(1754),s=r(l);t.default={propTypes:{className:o.default.string,locale:o.default.object,style:o.default.object,visible:o.default.bool,onSelect:o.default.func,prefixCls:o.default.string,onChange:o.default.func,onOk:o.default.func},getDefaultProps:function(){return{locale:s.default,style:{},visible:!0,prefixCls:"rc-calendar",className:"",onSelect:a,onChange:a,onClear:a,renderFooter:function(){return null},renderSidebar:function(){return null}}},shouldComponentUpdate:function(e){return this.props.visible||e.visible},getFormat:function(){var e=this.props.format,t=this.props,n=t.locale,r=t.timePicker;return e||(e=r?n.dateTimeFormat:n.dateFormat),e},focus:function(){this.rootInstance&&this.rootInstance.focus()},saveRoot:function(e){this.rootInstance=e}},e.exports=t.default},748:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=this.state.value.clone();t.add(e,"year"),this.setAndChangeValue(t)}function i(){}Object.defineProperty(t,"__esModule",{value:!0});var o=n(0),l=r(o),s=n(16),u=r(s),c=n(5),f=r(c),d=n(749),h=r(d),p=n(1756),v=r(p),m=(0,u.default)({displayName:"MonthPanel",propTypes:{onChange:f.default.func,disabledDate:f.default.func,onSelect:f.default.func},getDefaultProps:function(){return{onChange:i,onSelect:i}},getInitialState:function(){var e=this.props;return this.nextYear=a.bind(this,1),this.previousYear=a.bind(this,-1),this.prefixCls=e.rootPrefixCls+"-month-panel",{value:e.value||e.defaultValue}},componentWillReceiveProps:function(e){"value"in e&&this.setState({value:e.value})},onYearPanelSelect:function(e){this.setState({showYearPanel:0}),this.setAndChangeValue(e)},setAndChangeValue:function(e){this.setValue(e),this.props.onChange(e)},setAndSelectValue:function(e){this.setValue(e),this.props.onSelect(e)},setValue:function(e){"value"in this.props||this.setState({value:e})},showYearPanel:function(){this.setState({showYearPanel:1})},render:function(){var e=this.props,t=this.state.value,n=e.cellRender,r=e.contentRender,a=e.locale,i=t.year(),o=this.prefixCls,s=void 0;return this.state.showYearPanel&&(s=l.default.createElement(h.default,{locale:a,value:t,rootPrefixCls:e.rootPrefixCls,onSelect:this.onYearPanelSelect})),l.default.createElement("div",{className:o,style:e.style},l.default.createElement("div",null,l.default.createElement("div",{className:o+"-header"},l.default.createElement("a",{className:o+"-prev-year-btn",role:"button",onClick:this.previousYear,title:a.previousYear}),l.default.createElement("a",{className:o+"-year-select",role:"button",onClick:this.showYearPanel,title:a.yearSelect},l.default.createElement("span",{className:o+"-year-select-content"},i),l.default.createElement("span",{className:o+"-year-select-arrow"},"x")),l.default.createElement("a",{className:o+"-next-year-btn",role:"button",onClick:this.nextYear,title:a.nextYear})),l.default.createElement("div",{className:o+"-body"},l.default.createElement(v.default,{disabledDate:e.disabledDate,onSelect:this.setAndSelectValue,locale:a,value:t,cellRender:n,contentRender:r,prefixCls:o}))),s)}});t.default=m,e.exports=t.default},749:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=this.state.value.clone();t.add(e,"year"),this.setState({value:t})}function i(e){var t=this.state.value.clone();t.year(e),t.month(this.state.value.month()),this.props.onSelect(t)}Object.defineProperty(t,"__esModule",{value:!0});var o=n(10),l=r(o),s=n(1),u=r(s),c=n(6),f=r(c),d=n(4),h=r(d),p=n(3),v=r(p),m=n(0),g=r(m),y=n(5),_=r(y),b=n(8),x=r(b),w=n(1753),C=r(w),P=function(e){function t(e){(0,u.default)(this,t);var n=(0,h.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.prefixCls=e.rootPrefixCls+"-year-panel",n.state={value:e.value||e.defaultValue},n.nextDecade=a.bind(n,10),n.previousDecade=a.bind(n,-10),["showDecadePanel","onDecadePanelSelect"].forEach(function(e){n[e]=n[e].bind(n)}),n}return(0,v.default)(t,e),(0,f.default)(t,[{key:"onDecadePanelSelect",value:function(e){this.setState({value:e,showDecadePanel:0})}},{key:"years",value:function(){for(var e=this.state.value,t=e.year(),n=10*parseInt(t/10,10),r=n-1,a=[],i=0,o=0;o<4;o++){a[o]=[];for(var l=0;l<3;l++){var s=r+i,u=String(s);a[o][l]={content:u,year:s,title:u},i++}}return a}},{key:"showDecadePanel",value:function(){this.setState({showDecadePanel:1})}},{key:"render",value:function(){var e=this,t=this.props,n=this.state.value,r=t.locale,a=this.years(),o=n.year(),s=10*parseInt(o/10,10),u=s+9,c=this.prefixCls,f=a.map(function(t,n){var r=t.map(function(t){var n,r=(n={},(0,l.default)(n,c+"-cell",1),(0,l.default)(n,c+"-selected-cell",t.year===o),(0,l.default)(n,c+"-last-decade-cell",t.year<s),(0,l.default)(n,c+"-next-decade-cell",t.year>u),n),a=void 0;return a=t.year<s?e.previousDecade:t.year>u?e.nextDecade:i.bind(e,t.year),g.default.createElement("td",{role:"gridcell",title:t.title,key:t.content,onClick:a,className:(0,x.default)(r)},g.default.createElement("a",{className:c+"-year"},t.content))});return g.default.createElement("tr",{key:n,role:"row"},r)}),d=void 0;return this.state.showDecadePanel&&(d=g.default.createElement(C.default,{locale:r,value:n,rootPrefixCls:t.rootPrefixCls,onSelect:this.onDecadePanelSelect})),g.default.createElement("div",{className:this.prefixCls},g.default.createElement("div",null,g.default.createElement("div",{className:c+"-header"},g.default.createElement("a",{className:c+"-prev-decade-btn",role:"button",onClick:this.previousDecade,title:r.previousDecade}),g.default.createElement("a",{className:c+"-decade-select",role:"button",onClick:this.showDecadePanel,title:r.decadeSelect},g.default.createElement("span",{className:c+"-decade-select-content"},s,"-",u),g.default.createElement("span",{className:c+"-decade-select-arrow"},"x")),g.default.createElement("a",{className:c+"-next-decade-btn",role:"button",onClick:this.nextDecade,title:r.nextDecade})),g.default.createElement("div",{className:c+"-body"},g.default.createElement("table",{className:c+"-table",cellSpacing:"0",role:"grid"},g.default.createElement("tbody",{className:c+"-tbody"},f)))),d)}}]),t}(g.default.Component);t.default=P,P.propTypes={rootPrefixCls:_.default.string,value:_.default.object,defaultValue:_.default.object},P.defaultProps={onSelect:function(){}},e.exports=t.default},770:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(){}function i(e,t,n){for(var r=[],a=0;a<e;a++)(!t||t.indexOf(a)<0||!n)&&r.push(a);return r}Object.defineProperty(t,"__esModule",{value:!0});var o=n(10),l=r(o),s=n(1),u=r(s),c=n(6),f=r(c),d=n(4),h=r(d),p=n(3),v=r(p),m=n(0),g=r(m),y=n(5),_=r(y),b=n(1859),x=r(b),w=n(1858),C=r(w),P=n(7),k=r(P),S=n(8),O=r(S),T=function(e){function t(e){(0,u.default)(this,t);var n=(0,h.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.onChange=function(e){n.setState({value:e}),n.props.onChange(e)},n.onCurrentSelectPanelChange=function(e){n.setState({currentSelectPanel:e})},n.state={value:e.value,selectionRange:[]},n}return(0,v.default)(t,e),(0,f.default)(t,[{key:"componentWillReceiveProps",value:function(e){var t=e.value;t&&this.setState({value:t})}},{key:"close",value:function(){this.props.onEsc()}},{key:"render",value:function(){var e,t=this.props,n=t.prefixCls,r=t.className,a=t.placeholder,o=t.disabledHours,s=t.disabledMinutes,u=t.disabledSeconds,c=t.hideDisabledOptions,f=t.allowEmpty,d=t.showHour,h=t.showMinute,p=t.showSecond,v=t.format,m=t.defaultOpenValue,y=t.clearText,_=t.onEsc,b=t.addon,w=t.use12Hours,P=t.onClear,k=this.state,S=k.value,T=k.currentSelectPanel,M=o(),E=s(S?S.hour():null),D=u(S?S.hour():null,S?S.minute():null),j=i(24,M,c),N=i(60,E,c),A=i(60,D,c);return g.default.createElement("div",{className:(0,O.default)((e={},(0,l.default)(e,n+"-inner",!0),(0,l.default)(e,r,!!r),e))},g.default.createElement(x.default,{clearText:y,prefixCls:n,defaultOpenValue:m,value:S,currentSelectPanel:T,onEsc:_,format:v,placeholder:a,hourOptions:j,minuteOptions:N,secondOptions:A,disabledHours:o,disabledMinutes:s,disabledSeconds:u,onChange:this.onChange,onClear:P,allowEmpty:f}),g.default.createElement(C.default,{prefixCls:n,value:S,defaultOpenValue:m,format:v,onChange:this.onChange,showHour:d,showMinute:h,showSecond:p,hourOptions:j,minuteOptions:N,secondOptions:A,disabledHours:o,disabledMinutes:s,disabledSeconds:u,onCurrentSelectPanelChange:this.onCurrentSelectPanelChange,use12Hours:w}),b(this))}}]),t}(m.Component);T.propTypes={clearText:_.default.string,prefixCls:_.default.string,className:_.default.string,defaultOpenValue:_.default.object,value:_.default.object,placeholder:_.default.string,format:_.default.string,disabledHours:_.default.func,disabledMinutes:_.default.func,disabledSeconds:_.default.func,hideDisabledOptions:_.default.bool,onChange:_.default.func,onEsc:_.default.func,allowEmpty:_.default.bool,showHour:_.default.bool,showMinute:_.default.bool,showSecond:_.default.bool,onClear:_.default.func,use12Hours:_.default.bool,addon:_.default.func},T.defaultProps={prefixCls:"rc-time-picker-panel",onChange:a,onClear:a,disabledHours:a,disabledMinutes:a,disabledSeconds:a,defaultOpenValue:(0,k.default)(),use12Hours:!1,addon:a},t.default=T,e.exports=t.default},829:function(e,t,n){var r;void 0!==(r=function(e){"use strict";var t=n(835),r=n(251),a=n(2037),i=n(2035),o=n(38),l=function(e){a.call(this,e),r.call(this,e),i.call(this,e),this.id=e.id||t()};return l.prototype={type:"element",name:"",__zr:null,ignore:!1,clipPath:null,drift:function(e,t){switch(this.draggable){case"horizontal":t=0;break;case"vertical":e=0}var n=this.transform;n||(n=this.transform=[1,0,0,1,0,0]),n[4]+=e,n[5]+=t,this.decomposeTransform(),this.dirty(!1)},beforeUpdate:function(){},afterUpdate:function(){},update:function(){this.updateTransform()},traverse:function(e,t){},attrKV:function(e,t){if("position"===e||"scale"===e||"origin"===e){if(t){var n=this[e];n||(n=this[e]=[]),n[0]=t[0],n[1]=t[1]}}else this[e]=t},hide:function(){this.ignore=!0,this.__zr&&this.__zr.refresh()},show:function(){this.ignore=!1,this.__zr&&this.__zr.refresh()},attr:function(e,t){if("string"==typeof e)this.attrKV(e,t);else if(o.isObject(e))for(var n in e)e.hasOwnProperty(n)&&this.attrKV(n,e[n]);return this.dirty(!1),this},setClipPath:function(e){var t=this.__zr;t&&e.addSelfToZr(t),this.clipPath&&this.clipPath!==e&&this.removeClipPath(),this.clipPath=e,e.__zr=t,e.__clipTarget=this,this.dirty(!1)},removeClipPath:function(){var e=this.clipPath;e&&(e.__zr&&e.removeSelfFromZr(e.__zr),e.__zr=null,e.__clipTarget=null,this.clipPath=null,this.dirty(!1))},addSelfToZr:function(e){this.__zr=e;var t=this.animators;if(t)for(var n=0;n<t.length;n++)e.animation.addAnimator(t[n]);this.clipPath&&this.clipPath.addSelfToZr(e)},removeSelfFromZr:function(e){this.__zr=null;var t=this.animators;if(t)for(var n=0;n<t.length;n++)e.animation.removeAnimator(t[n]);this.clipPath&&this.clipPath.removeSelfFromZr(e)}},o.mixin(l,i),o.mixin(l,a),o.mixin(l,r),l}.call(t,n,t,e))&&(e.exports=r)},830:function(e,t,n){var r;void 0!==(r=function(e){function t(e,t){return e[t]}function r(e,t,n){e[t]=n}function a(e,t,n){return(t-e)*n+e}function i(e,t,n){return n>.5?t:e}function o(e,t,n,r,i){var o=e.length;if(1==i)for(var l=0;l<o;l++)r[l]=a(e[l],t[l],n);else for(var s=o&&e[0].length,l=0;l<o;l++)for(var u=0;u<s;u++)r[l][u]=a(e[l][u],t[l][u],n)}function l(e,t,n){var r=e.length,a=t.length;if(r!==a){if(r>a)e.length=a;else for(var i=r;i<a;i++)e.push(1===n?t[i]:_.call(t[i]))}for(var o=e[0]&&e[0].length,i=0;i<e.length;i++)if(1===n)isNaN(e[i])&&(e[i]=t[i]);else for(var l=0;l<o;l++)isNaN(e[i][l])&&(e[i][l]=t[i][l])}function s(e,t,n){if(e===t)return!0;var r=e.length;if(r!==t.length)return!1;if(1===n){for(var a=0;a<r;a++)if(e[a]!==t[a])return!1}else for(var i=e[0].length,a=0;a<r;a++)for(var o=0;o<i;o++)if(e[a][o]!==t[a][o])return!1;return!0}function u(e,t,n,r,a,i,o,l,s){var u=e.length;if(1==s)for(var f=0;f<u;f++)l[f]=c(e[f],t[f],n[f],r[f],a,i,o);else for(var d=e[0].length,f=0;f<u;f++)for(var h=0;h<d;h++)l[f][h]=c(e[f][h],t[f][h],n[f][h],r[f][h],a,i,o)}function c(e,t,n,r,a,i,o){var l=.5*(n-e),s=.5*(r-t);return(2*(t-n)+l+s)*o+(-3*(t-n)-2*l-s)*i+l*a+t}function f(e){if(y(e)){var t=e.length;if(y(e[0])){for(var n=[],r=0;r<t;r++)n.push(_.call(e[r]));return n}return _.call(e)}return e}function d(e){return e[0]=Math.floor(e[0]),e[1]=Math.floor(e[1]),e[2]=Math.floor(e[2]),"rgba("+e.join(",")+")"}function h(e){var t=e[e.length-1].value;return y(t&&t[0])?2:1}function p(e,t,n,r,f,p){var g=e._getter,_=e._setter,b="spline"===t,x=r.length;if(x){var w,C=r[0].value,P=y(C),k=!1,S=!1,O=P?h(r):0;r.sort(function(e,t){return e.time-t.time}),w=r[x-1].time;for(var T=[],M=[],E=r[0].value,D=!0,j=0;j<x;j++){T.push(r[j].time/w);var N=r[j].value;if(P&&s(N,E,O)||!P&&N===E||(D=!1),E=N,"string"==typeof N){var A=m.parse(N);A?(N=A,k=!0):S=!0}M.push(N)}if(p||!D){for(var V=M[x-1],j=0;j<x-1;j++)P?l(M[j],V,O):!isNaN(M[j])||isNaN(V)||S||k||(M[j]=V);P&&l(g(e._target,f),V,O);var L,R,I,H,z,B,F=0,Y=0;if(k)var W=[0,0,0,0];var q=function(e,t){var n;if(t<0)n=0;else if(t<Y){for(L=Math.min(F+1,x-1),n=L;n>=0&&!(T[n]<=t);n--);n=Math.min(n,x-2)}else{for(n=F;n<x&&!(T[n]>t);n++);n=Math.min(n-1,x-2)}F=n,Y=t;var r=T[n+1]-T[n];if(0!==r)if(R=(t-T[n])/r,b)if(H=M[n],I=M[0===n?n:n-1],z=M[n>x-2?x-1:n+1],B=M[n>x-3?x-1:n+2],P)u(I,H,z,B,R,R*R,R*R*R,g(e,f),O);else{var l;if(k)l=u(I,H,z,B,R,R*R,R*R*R,W,1),l=d(W);else{if(S)return i(H,z,R);l=c(I,H,z,B,R,R*R,R*R*R)}_(e,f,l)}else if(P)o(M[n],M[n+1],R,g(e,f),O);else{var l;if(k)o(M[n],M[n+1],R,W,1),l=d(W);else{if(S)return i(M[n],M[n+1],R);l=a(M[n],M[n+1],R)}_(e,f,l)}},X=new v({target:e._target,life:w,loop:e._loop,delay:e._delay,onframe:q,ondestroy:n});return t&&"spline"!==t&&(X.easing=t),X}}}var v=n(2019),m=n(2038),g=n(38),y=g.isArrayLike,_=Array.prototype.slice,b=function(e,n,a,i){this._tracks={},this._target=e,this._loop=n||!1,this._getter=a||t,this._setter=i||r,this._clipCount=0,this._delay=0,this._doneList=[],this._onframeList=[],this._clipList=[]};return b.prototype={when:function(e,t){var n=this._tracks;for(var r in t)if(t.hasOwnProperty(r)){if(!n[r]){n[r]=[];var a=this._getter(this._target,r);if(null==a)continue;0!==e&&n[r].push({time:0,value:f(a)})}n[r].push({time:e,value:t[r]})}return this},during:function(e){return this._onframeList.push(e),this},pause:function(){for(var e=0;e<this._clipList.length;e++)this._clipList[e].pause();this._paused=!0},resume:function(){for(var e=0;e<this._clipList.length;e++)this._clipList[e].resume();this._paused=!1},isPaused:function(){return!!this._paused},_doneCallback:function(){this._tracks={},this._clipList.length=0;for(var e=this._doneList,t=e.length,n=0;n<t;n++)e[n].call(this)},start:function(e,t){var n,r=this,a=0,i=function(){--a||r._doneCallback()};for(var o in this._tracks)if(this._tracks.hasOwnProperty(o)){var l=p(this,e,i,this._tracks[o],o,t);l&&(this._clipList.push(l),a++,this.animation&&this.animation.addClip(l),n=l)}if(n){var s=n.onframe;n.onframe=function(e,t){s(e,t);for(var n=0;n<r._onframeList.length;n++)r._onframeList[n](e,t)}}return a||this._doneCallback(),this},stop:function(e){for(var t=this._clipList,n=this.animation,r=0;r<t.length;r++){var a=t[r];e&&a.onframe(this._target,1),n&&n.removeClip(a)}t.length=0},delay:function(e){return this._delay=e,this},done:function(e){return e&&this._doneList.push(e),this},getClips:function(){return this._clipList}},b}.call(t,n,t,e))&&(e.exports=r)},831:function(e,t,n){var r;void 0!==(r=function(e){return"undefined"!=typeof window&&(window.requestAnimationFrame&&window.requestAnimationFrame.bind(window)||window.msRequestAnimationFrame&&window.msRequestAnimationFrame.bind(window)||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame)||function(e){setTimeout(e,16)}}.call(t,n,t,e))&&(e.exports=r)},832:function(e,t,n){var r;void 0!==(r=function(e){var t=2*Math.PI;return{normalizeRadian:function(e){return e%=t,e<0&&(e+=t),e}}}.call(t,n,t,e))&&(e.exports=r)},833:function(e,t,n){var r;void 0!==(r=function(e){var t=n(38),r=n(829),a=n(146),i=function(e){e=e||{},r.call(this,e);for(var t in e)e.hasOwnProperty(t)&&(this[t]=e[t]);this._children=[],this.__storage=null,this.__dirty=!0};return i.prototype={constructor:i,isGroup:!0,type:"group",silent:!1,children:function(){return this._children.slice()},childAt:function(e){return this._children[e]},childOfName:function(e){for(var t=this._children,n=0;n<t.length;n++)if(t[n].name===e)return t[n]},childCount:function(){return this._children.length},add:function(e){return e&&e!==this&&e.parent!==this&&(this._children.push(e),this._doAdd(e)),this},addBefore:function(e,t){if(e&&e!==this&&e.parent!==this&&t&&t.parent===this){var n=this._children,r=n.indexOf(t);r>=0&&(n.splice(r,0,e),this._doAdd(e))}return this},_doAdd:function(e){e.parent&&e.parent.remove(e),e.parent=this;var t=this.__storage,n=this.__zr;t&&t!==e.__storage&&(t.addToStorage(e),e instanceof i&&e.addChildrenToStorage(t)),n&&n.refresh()},remove:function(e){var n=this.__zr,r=this.__storage,a=this._children,o=t.indexOf(a,e);return o<0?this:(a.splice(o,1),e.parent=null,r&&(r.delFromStorage(e),e instanceof i&&e.delChildrenFromStorage(r)),n&&n.refresh(),this)},removeAll:function(){var e,t,n=this._children,r=this.__storage;for(t=0;t<n.length;t++)e=n[t],r&&(r.delFromStorage(e),e instanceof i&&e.delChildrenFromStorage(r)),e.parent=null;return n.length=0,this},eachChild:function(e,t){for(var n=this._children,r=0;r<n.length;r++){var a=n[r];e.call(t,a,r)}return this},traverse:function(e,t){for(var n=0;n<this._children.length;n++){var r=this._children[n];e.call(t,r),"group"===r.type&&r.traverse(e,t)}return this},addChildrenToStorage:function(e){for(var t=0;t<this._children.length;t++){var n=this._children[t];e.addToStorage(n),n instanceof i&&n.addChildrenToStorage(e)}},delChildrenFromStorage:function(e){for(var t=0;t<this._children.length;t++){var n=this._children[t];e.delFromStorage(n),n instanceof i&&n.delChildrenFromStorage(e)}},dirty:function(){return this.__dirty=!0,this.__zr&&this.__zr.refresh(),this},getBoundingRect:function(e){for(var t=null,n=new a(0,0,0,0),r=e||this._children,i=[],o=0;o<r.length;o++){var l=r[o];if(!l.ignore&&!l.invisible){var s=l.getBoundingRect(),u=l.getLocalTransform(i);u?(n.copy(s),n.applyTransform(u),t=t||n.clone(),t.union(n)):(t=t||s.clone(),t.union(s))}}return t||n}},t.inherits(i,r),i}.call(t,n,t,e))&&(e.exports=r)},834:function(e,t,n){var r;void 0!==(r=function(e){var t=function(){this.head=null,this.tail=null,this._len=0},n=t.prototype;n.insert=function(e){var t=new r(e);return this.insertEntry(t),t},n.insertEntry=function(e){this.head?(this.tail.next=e,e.prev=this.tail,e.next=null,this.tail=e):this.head=this.tail=e,this._len++},n.remove=function(e){var t=e.prev,n=e.next;t?t.next=n:this.head=n,n?n.prev=t:this.tail=t,e.next=e.prev=null,this._len--},n.len=function(){return this._len},n.clear=function(){this.head=this.tail=null,this._len=0};var r=function(e){this.value=e,this.next,this.prev},a=function(e){this._list=new t,this._map={},this._maxSize=e||10,this._lastRemovedEntry=null},i=a.prototype;return i.put=function(e,t){var n=this._list,a=this._map,i=null;if(null==a[e]){var o=n.len(),l=this._lastRemovedEntry;if(o>=this._maxSize&&o>0){var s=n.head;n.remove(s),delete a[s.key],i=s.value,this._lastRemovedEntry=s}l?l.value=t:l=new r(t),l.key=e,n.insertEntry(l),a[e]=l}return i},i.get=function(e){var t=this._map[e],n=this._list;if(null!=t)return t!==n.tail&&(n.remove(t),n.insertEntry(t)),t.value},i.clear=function(){this._list.clear(),this._map={}},a}.call(t,n,t,e))&&(e.exports=r)},835:function(e,t,n){var r;void 0!==(r=function(){var e=2311;return function(){return e++}}.call(t,n,t,e))&&(e.exports=r)},836:function(e,t,n){var r;void 0!==(r=function(e){var t=n(248);return function(){if(0!==t.debugMode)if(1==t.debugMode)for(var e in arguments)throw new Error(arguments[e]);else if(t.debugMode>1)for(var e in arguments)console.log(arguments[e])}}.call(t,n,t,e))&&(e.exports=r)},837:function(e,t,n){var r;void 0!==(r=function(){var e="undefined"==typeof Float32Array?Array:Float32Array,t={create:function(){var n=new e(6);return t.identity(n),n},identity:function(e){return e[0]=1,e[1]=0,e[2]=0,e[3]=1,e[4]=0,e[5]=0,e},copy:function(e,t){return e[0]=t[0],e[1]=t[1],e[2]=t[2],e[3]=t[3],e[4]=t[4],e[5]=t[5],e},mul:function(e,t,n){var r=t[0]*n[0]+t[2]*n[1],a=t[1]*n[0]+t[3]*n[1],i=t[0]*n[2]+t[2]*n[3],o=t[1]*n[2]+t[3]*n[3],l=t[0]*n[4]+t[2]*n[5]+t[4],s=t[1]*n[4]+t[3]*n[5]+t[5];return e[0]=r,e[1]=a,e[2]=i,e[3]=o,e[4]=l,e[5]=s,e},translate:function(e,t,n){return e[0]=t[0],e[1]=t[1],e[2]=t[2],e[3]=t[3],e[4]=t[4]+n[0],e[5]=t[5]+n[1],e},rotate:function(e,t,n){var r=t[0],a=t[2],i=t[4],o=t[1],l=t[3],s=t[5],u=Math.sin(n),c=Math.cos(n);return e[0]=r*c+o*u,e[1]=-r*u+o*c,e[2]=a*c+l*u,e[3]=-a*u+c*l,e[4]=c*i+u*s,e[5]=c*s-u*i,e},scale:function(e,t,n){var r=n[0],a=n[1];return e[0]=t[0]*r,e[1]=t[1]*a,e[2]=t[2]*r,e[3]=t[3]*a,e[4]=t[4]*r,e[5]=t[5]*a,e},invert:function(e,t){var n=t[0],r=t[2],a=t[4],i=t[1],o=t[3],l=t[5],s=n*o-i*r;return s?(s=1/s,e[0]=o*s,e[1]=-i*s,e[2]=-r*s,e[3]=n*s,e[4]=(r*l-o*a)*s,e[5]=(i*a-n*l)*s,e):null}};return t}.call(t,n,t,e))&&(e.exports=r)},838:function(e,t,n){var r;void 0!==(r=function(){function e(e){for(var t=0;e>=s;)t|=1&e,e>>=1;return e+t}function t(e,t,r,a){var i=t+1;if(i===r)return 1;if(a(e[i++],e[t])<0){for(;i<r&&a(e[i],e[i-1])<0;)i++;n(e,t,i)}else for(;i<r&&a(e[i],e[i-1])>=0;)i++;return i-t}function n(e,t,n){for(n--;t<n;){var r=e[t];e[t++]=e[n],e[n--]=r}}function r(e,t,n,r,a){for(r===t&&r++;r<n;r++){for(var i,o=e[r],l=t,s=r;l<s;)i=l+s>>>1,a(o,e[i])<0?s=i:l=i+1;var u=r-l;switch(u){case 3:e[l+3]=e[l+2];case 2:e[l+2]=e[l+1];case 1:e[l+1]=e[l];break;default:for(;u>0;)e[l+u]=e[l+u-1],u--}e[l]=o}}function a(e,t,n,r,a,i){var o=0,l=0,s=1;if(i(e,t[n+a])>0){for(l=r-a;s<l&&i(e,t[n+a+s])>0;)o=s,(s=1+(s<<1))<=0&&(s=l);s>l&&(s=l),o+=a,s+=a}else{for(l=a+1;s<l&&i(e,t[n+a-s])<=0;)o=s,(s=1+(s<<1))<=0&&(s=l);s>l&&(s=l);var u=o;o=a-s,s=a-u}for(o++;o<s;){var c=o+(s-o>>>1);i(e,t[n+c])>0?o=c+1:s=c}return s}function i(e,t,n,r,a,i){var o=0,l=0,s=1;if(i(e,t[n+a])<0){for(l=a+1;s<l&&i(e,t[n+a-s])<0;)o=s,(s=1+(s<<1))<=0&&(s=l);s>l&&(s=l);var u=o;o=a-s,s=a-u}else{for(l=r-a;s<l&&i(e,t[n+a+s])>=0;)o=s,(s=1+(s<<1))<=0&&(s=l);s>l&&(s=l),o+=a,s+=a}for(o++;o<s;){var c=o+(s-o>>>1);i(e,t[n+c])<0?s=c:o=c+1}return s}function o(e,t){function n(e,t){f[v]=e,d[v]=t,v+=1}function r(){for(;v>1;){var e=v-2;if(e>=1&&d[e-1]<=d[e]+d[e+1]||e>=2&&d[e-2]<=d[e]+d[e-1])d[e-1]<d[e+1]&&e--;else if(d[e]>d[e+1])break;l(e)}}function o(){for(;v>1;){var e=v-2;e>0&&d[e-1]<d[e+1]&&e--,l(e)}}function l(n){var r=f[n],o=d[n],l=f[n+1],u=d[n+1];d[n]=o+u,n===v-3&&(f[n+1]=f[n+2],d[n+1]=d[n+2]),v--;var h=i(e[l],e,r,o,0,t);r+=h,0!==(o-=h)&&0!==(u=a(e[r+o-1],e,l,u,u-1,t))&&(o<=u?s(r,o,l,u):c(r,o,l,u))}function s(n,r,o,l){var s=0;for(s=0;s<r;s++)m[s]=e[n+s];var c=0,f=o,d=n;if(e[d++]=e[f++],0!=--l){if(1===r){for(s=0;s<l;s++)e[d+s]=e[f+s];return void(e[d+l]=m[c])}for(var p,v,g,y=h;;){p=0,v=0,g=!1;do{if(t(e[f],m[c])<0){if(e[d++]=e[f++],v++,p=0,0==--l){g=!0;break}}else if(e[d++]=m[c++],p++,v=0,1==--r){g=!0;break}}while((p|v)<y);if(g)break;do{if(0!==(p=i(e[f],m,c,r,0,t))){for(s=0;s<p;s++)e[d+s]=m[c+s];if(d+=p,c+=p,(r-=p)<=1){g=!0;break}}if(e[d++]=e[f++],0==--l){g=!0;break}if(0!==(v=a(m[c],e,f,l,0,t))){for(s=0;s<v;s++)e[d+s]=e[f+s];if(d+=v,f+=v,0===(l-=v)){g=!0;break}}if(e[d++]=m[c++],1==--r){g=!0;break}y--}while(p>=u||v>=u);if(g)break;y<0&&(y=0),y+=2}if(h=y,h<1&&(h=1),1===r){for(s=0;s<l;s++)e[d+s]=e[f+s];e[d+l]=m[c]}else{if(0===r)throw new Error;for(s=0;s<r;s++)e[d+s]=m[c+s]}}else for(s=0;s<r;s++)e[d+s]=m[c+s]}function c(n,r,o,l){var s=0;for(s=0;s<l;s++)m[s]=e[o+s];var c=n+r-1,f=l-1,d=o+l-1,p=0,v=0;if(e[d--]=e[c--],0!=--r){if(1===l){for(d-=r,c-=r,v=d+1,p=c+1,s=r-1;s>=0;s--)e[v+s]=e[p+s];return void(e[d]=m[f])}for(var g=h;;){var y=0,_=0,b=!1;do{if(t(m[f],e[c])<0){if(e[d--]=e[c--],y++,_=0,0==--r){b=!0;break}}else if(e[d--]=m[f--],_++,y=0,1==--l){b=!0;break}}while((y|_)<g);if(b)break;do{if(0!==(y=r-i(m[f],e,n,r,r-1,t))){for(d-=y,c-=y,r-=y,v=d+1,p=c+1,s=y-1;s>=0;s--)e[v+s]=e[p+s];if(0===r){b=!0;break}}if(e[d--]=m[f--],1==--l){b=!0;break}if(0!==(_=l-a(e[c],m,0,l,l-1,t))){for(d-=_,f-=_,l-=_,v=d+1,p=f+1,s=0;s<_;s++)e[v+s]=m[p+s];if(l<=1){b=!0;break}}if(e[d--]=e[c--],0==--r){b=!0;break}g--}while(y>=u||_>=u);if(b)break;g<0&&(g=0),g+=2}if(h=g,h<1&&(h=1),1===l){for(d-=r,c-=r,v=d+1,p=c+1,s=r-1;s>=0;s--)e[v+s]=e[p+s];e[d]=m[f]}else{if(0===l)throw new Error;for(p=d-(l-1),s=0;s<l;s++)e[p+s]=m[s]}}else for(p=d-(l-1),s=0;s<l;s++)e[p+s]=m[s]}var f,d,h=u,p=0,v=0;p=e.length;var m=[];f=[],d=[],this.mergeRuns=r,this.forceMergeRuns=o,this.pushRun=n}function l(n,a,i,l){i||(i=0),l||(l=n.length);var u=l-i;if(!(u<2)){var c=0;if(u<s)return c=t(n,i,l,a),void r(n,i,l,i+c,a);var f=new o(n,a),d=e(u);do{if((c=t(n,i,l,a))<d){var h=u;h>d&&(h=d),r(n,i,i+h,i+c,a),c=h}f.pushRun(i,c),f.mergeRuns(),u-=c,i+=c}while(0!==u);f.forceMergeRuns()}}var s=32,u=7;return l}.call(t,n,t,e))&&(e.exports=r)},839:function(e,t,n){var r;void 0!==(r=function(e){function t(e){e=e||{},i.call(this,e);for(var t in e)e.hasOwnProperty(t)&&"style"!==t&&(this[t]=e[t]);this.style=new a(e.style,this),this._rect=null,this.__clipPaths=[]}var r=n(38),a=n(842),i=n(829),o=n(2033);return t.prototype={constructor:t,type:"displayable",__dirty:!0,invisible:!1,z:0,z2:0,zlevel:0,draggable:!1,dragging:!1,silent:!1,culling:!1,cursor:"pointer",rectHover:!1,progressive:-1,beforeBrush:function(e){},afterBrush:function(e){},brush:function(e,t){},getBoundingRect:function(){},contain:function(e,t){return this.rectContain(e,t)},traverse:function(e,t){e.call(t,this)},rectContain:function(e,t){var n=this.transformCoordToLocal(e,t);return this.getBoundingRect().contain(n[0],n[1])},dirty:function(){this.__dirty=!0,this._rect=null,this.__zr&&this.__zr.refresh()},animateStyle:function(e){return this.animate("style",e)},attrKV:function(e,t){"style"!==e?i.prototype.attrKV.call(this,e,t):this.style.set(t)},setStyle:function(e,t){return this.style.set(e,t),this.dirty(!1),this},useStyle:function(e){return this.style=new a(e,this),this.dirty(!1),this}},r.inherits(t,i),r.mixin(t,o),t}.call(t,n,t,e))&&(e.exports=r)},840:function(e,t,n){var r;void 0!==(r=function(e){function t(e){r.call(this,e),this.path=null}var r=n(839),a=n(38),i=n(249),o=n(2024),l=n(841),s=l.prototype.getCanvasPattern,u=Math.abs,c=new i(!0);return t.prototype={constructor:t,type:"path",__dirtyPath:!0,strokeContainThreshold:5,brush:function(e,t){var n=this.style,r=this.path||c,a=n.hasStroke(),i=n.hasFill(),o=n.fill,l=n.stroke,u=i&&!!o.colorStops,f=a&&!!l.colorStops,d=i&&!!o.image,h=a&&!!l.image;if(n.bind(e,this,t),this.setTransform(e),this.__dirty){var p;u&&(p=p||this.getBoundingRect(),this._fillGradient=n.getGradient(e,o,p)),f&&(p=p||this.getBoundingRect(),this._strokeGradient=n.getGradient(e,l,p))}u?e.fillStyle=this._fillGradient:d&&(e.fillStyle=s.call(o,e)),f?e.strokeStyle=this._strokeGradient:h&&(e.strokeStyle=s.call(l,e));var v=n.lineDash,m=n.lineDashOffset,g=!!e.setLineDash,y=this.getGlobalScale();r.setScale(y[0],y[1]),this.__dirtyPath||v&&!g&&a?(r.beginPath(e),v&&!g&&(r.setLineDash(v),r.setLineDashOffset(m)),this.buildPath(r,this.shape,!1),this.path&&(this.__dirtyPath=!1)):(e.beginPath(),this.path.rebuildPath(e)),i&&r.fill(e),v&&g&&(e.setLineDash(v),e.lineDashOffset=m),a&&r.stroke(e),v&&g&&e.setLineDash([]),this.restoreTransform(e),null!=n.text&&this.drawRectText(e,this.getBoundingRect())},buildPath:function(e,t,n){},createPathProxy:function(){this.path=new i},getBoundingRect:function(){var e=this._rect,t=this.style,n=!e;if(n){var r=this.path;r||(r=this.path=new i),this.__dirtyPath&&(r.beginPath(),this.buildPath(r,this.shape,!1)),e=r.getBoundingRect()}if(this._rect=e,t.hasStroke()){var a=this._rectWithStroke||(this._rectWithStroke=e.clone());if(this.__dirty||n){a.copy(e);var o=t.lineWidth,l=t.strokeNoScale?this.getLineScale():1;t.hasFill()||(o=Math.max(o,this.strokeContainThreshold||4)),l>1e-10&&(a.width+=o/l,a.height+=o/l,a.x-=o/l/2,a.y-=o/l/2)}return a}return e},contain:function(e,t){var n=this.transformCoordToLocal(e,t),r=this.getBoundingRect(),a=this.style;if(e=n[0],t=n[1],r.contain(e,t)){var i=this.path.data;if(a.hasStroke()){var l=a.lineWidth,s=a.strokeNoScale?this.getLineScale():1;if(s>1e-10&&(a.hasFill()||(l=Math.max(l,this.strokeContainThreshold)),o.containStroke(i,l/s,e,t)))return!0}if(a.hasFill())return o.contain(i,e,t)}return!1},dirty:function(e){null==e&&(e=!0),e&&(this.__dirtyPath=e,this._rect=null),this.__dirty=!0,this.__zr&&this.__zr.refresh(),this.__clipTarget&&this.__clipTarget.dirty()},animateShape:function(e){return this.animate("shape",e)},attrKV:function(e,t){"shape"===e?(this.setShape(t),this.__dirtyPath=!0,this._rect=null):r.prototype.attrKV.call(this,e,t)},setShape:function(e,t){var n=this.shape;if(n){if(a.isObject(e))for(var r in e)e.hasOwnProperty(r)&&(n[r]=e[r]);else n[e]=t;this.dirty(!0)}return this},getLineScale:function(){var e=this.transform;return e&&u(e[0]-1)>1e-10&&u(e[3]-1)>1e-10?Math.sqrt(u(e[0]*e[3]-e[2]*e[1])):1}},t.extend=function(e){var n=function(n){t.call(this,n),e.style&&this.style.extendFrom(e.style,!1);var r=e.shape;if(r){this.shape=this.shape||{};var a=this.shape;for(var i in r)!a.hasOwnProperty(i)&&r.hasOwnProperty(i)&&(a[i]=r[i])}e.init&&e.init.call(this,n)};a.inherits(n,t);for(var r in e)"style"!==r&&"shape"!==r&&(n.prototype[r]=e[r]);return n},a.inherits(t,r),t}.call(t,n,t,e))&&(e.exports=r)},841:function(e,t,n){var r;void 0!==(r=function(e){var t=function(e,t){this.image=e,this.repeat=t,this.type="pattern"};return t.prototype.getCanvasPattern=function(e){return e.createPattern(this.image,this.repeat||"repeat")},t}.call(t,n,t,e))&&(e.exports=r)},842:function(e,t,n){var r;void 0!==(r=function(e){function t(e,t,n){var r=null==t.x?0:t.x,a=null==t.x2?1:t.x2,i=null==t.y?0:t.y,o=null==t.y2?0:t.y2;return t.global||(r=r*n.width+n.x,a=a*n.width+n.x,i=i*n.height+n.y,o=o*n.height+n.y),e.createLinearGradient(r,i,a,o)}function r(e,t,n){var r=n.width,a=n.height,i=Math.min(r,a),o=null==t.x?.5:t.x,l=null==t.y?.5:t.y,s=null==t.r?.5:t.r;return t.global||(o=o*r+n.x,l=l*a+n.y,s*=i),e.createRadialGradient(o,l,0,o,l,s)}var a=(n(843),[["shadowBlur",0],["shadowOffsetX",0],["shadowOffsetY",0],["shadowColor","#000"],["lineCap","butt"],["lineJoin","miter"],["miterLimit",10]]),i=function(e,t){this.extendFrom(e,!1),this.host=t};i.prototype={constructor:i,host:null,fill:"#000",stroke:null,opacity:1,lineDash:null,lineDashOffset:0,shadowBlur:0,shadowOffsetX:0,shadowOffsetY:0,lineWidth:1,strokeNoScale:!1,text:null,font:null,textFont:null,fontStyle:null,fontWeight:null,fontSize:null,fontFamily:null,textTag:null,textFill:"#000",textStroke:null,textWidth:null,textHeight:null,textLineWidth:0,textLineHeight:null,textPosition:"inside",textRect:null,textOffset:null,textAlign:null,textVerticalAlign:null,textDistance:5,textShadowColor:"transparent",textShadowBlur:0,textShadowOffsetX:0,textShadowOffsetY:0,textBoxShadowColor:"transparent",textBoxShadowBlur:0,textBoxShadowOffsetX:0,textBoxShadowOffsetY:0,transformText:!1,textRotation:0,textOrigin:null,textBackgroundColor:null,textBorderColor:null,textBorderWidth:0,textBorderRadius:0,textPadding:null,rich:null,truncate:null,blend:null,bind:function(e,t,n){for(var r=this,i=n&&n.style,o=!i,l=0;l<a.length;l++){var s=a[l],u=s[0];(o||r[u]!==i[u])&&(e[u]=r[u]||s[1])}if((o||r.fill!==i.fill)&&(e.fillStyle=r.fill),(o||r.stroke!==i.stroke)&&(e.strokeStyle=r.stroke),(o||r.opacity!==i.opacity)&&(e.globalAlpha=null==r.opacity?1:r.opacity),(o||r.blend!==i.blend)&&(e.globalCompositeOperation=r.blend||"source-over"),this.hasStroke()){var c=r.lineWidth;e.lineWidth=c/(this.strokeNoScale&&t&&t.getLineScale?t.getLineScale():1)}},hasFill:function(){var e=this.fill;return null!=e&&"none"!==e},hasStroke:function(){var e=this.stroke;return null!=e&&"none"!==e&&this.lineWidth>0},extendFrom:function(e,t){if(e)for(var n in e)!e.hasOwnProperty(n)||!0!==t&&(!1===t?this.hasOwnProperty(n):null==e[n])||(this[n]=e[n])},set:function(e,t){"string"==typeof e?this[e]=t:this.extendFrom(e,!0)},clone:function(){var e=new this.constructor;return e.extendFrom(this,!0),e},getGradient:function(e,n,a){for(var i="radial"===n.type?r:t,o=i(e,n,a),l=n.colorStops,s=0;s<l.length;s++)o.addColorStop(l[s].offset,l[s].color);return o}};for(var o=i.prototype,l=0;l<a.length;l++){var s=a[l];s[0]in o||(o[s[0]]=s[1])}return i.getGradient=o.getGradient,i}.call(t,n,t,e))&&(e.exports=r)},843:function(e,t,n){var r;void 0!==(r=function(e){function t(e){if(e){e.font=v.makeFont(e);var t=e.textAlign;"middle"===t&&(t="center"),e.textAlign=null==t||x[t]?t:"left";var n=e.textVerticalAlign||e.textBaseline;"center"===n&&(n="middle"),e.textVerticalAlign=null==n||w[n]?n:"top";e.textPadding&&(e.textPadding=m.normalizeCssArray(e.textPadding))}}function r(e,t,n,r,a){var i=d(t,"font",r.font||v.DEFAULT_FONT),l=r.textPadding,c=e.__textCotentBlock;c&&!e.__dirty||(c=e.__textCotentBlock=v.parsePlainText(n,i,l,r.truncate));var h=c.outerHeight,m=c.lines,g=c.lineHeight,y=f(h,r,a),_=y.baseX,b=y.baseY,x=y.textAlign,w=y.textVerticalAlign;o(t,r,a,_,b);var C=v.adjustTextY(b,h,w),S=_,O=C,T=s(r);if(T||l){var M=v.getWidth(n,i),E=M;l&&(E+=l[1]+l[3]);var D=v.adjustTextX(_,E,x);T&&u(e,t,r,D,C,E,h),l&&(S=p(_,x,l),O+=l[0])}d(t,"textAlign",x||"left"),d(t,"textBaseline","middle"),d(t,"shadowBlur",r.textShadowBlur||0),d(t,"shadowColor",r.textShadowColor||"transparent"),d(t,"shadowOffsetX",r.textShadowOffsetX||0),d(t,"shadowOffsetY",r.textShadowOffsetY||0),O+=g/2;var j=r.textLineWidth,N=P(r.textStroke,j),A=k(r.textFill);N&&(d(t,"lineWidth",j),d(t,"strokeStyle",N)),A&&d(t,"fillStyle",A);for(var V=0;V<m.length;V++)N&&t.strokeText(m[V],S,O),A&&t.fillText(m[V],S,O),O+=g}function a(e,t,n,r,a){var o=e.__textCotentBlock;o&&!e.__dirty||(o=e.__textCotentBlock=v.parseRichText(n,r)),i(e,t,o,r,a)}function i(e,t,n,r,a){var i=n.width,c=n.outerWidth,d=n.outerHeight,h=r.textPadding,p=f(d,r,a),m=p.baseX,g=p.baseY,y=p.textAlign,_=p.textVerticalAlign;o(t,r,a,m,g);var b=v.adjustTextX(m,c,y),x=v.adjustTextY(g,d,_),w=b,C=x;h&&(w+=h[3],C+=h[0]);var P=w+i;s(r)&&u(e,t,r,b,x,c,d);for(var k=0;k<n.lines.length;k++){for(var S,O=n.lines[k],T=O.tokens,M=T.length,E=O.lineHeight,D=O.width,j=0,N=w,A=P,V=M-1;j<M&&(S=T[j],!S.textAlign||"left"===S.textAlign);)l(e,t,S,r,E,C,N,"left"),D-=S.width,N+=S.width,j++;for(;V>=0&&(S=T[V],"right"===S.textAlign);)l(e,t,S,r,E,C,A,"right"),D-=S.width,A-=S.width,V--;for(N+=(i-(N-w)-(P-A)-D)/2;j<=V;)S=T[j],l(e,t,S,r,E,C,N+S.width/2,"center"),N+=S.width,j++;C+=E}}function o(e,t,n,r,a){if(n&&t.textRotation){var i=t.textOrigin;"center"===i?(r=n.width/2+n.x,a=n.height/2+n.y):i&&(r=i[0]+n.x,a=i[1]+n.y),e.translate(r,a),e.rotate(-t.textRotation),e.translate(-r,-a)}}function l(e,t,n,r,a,i,o,l){var c=r.rich[n.styleName]||{},f=n.textVerticalAlign,h=i+a/2;"top"===f?h=i+n.height/2:"bottom"===f&&(h=i+a-n.height/2),!n.isLineHolder&&s(c)&&u(e,t,c,"right"===l?o-n.width:"center"===l?o-n.width/2:o,h-n.height/2,n.width,n.height);var m=n.textPadding;m&&(o=p(o,l,m),h-=n.height/2-m[2]-n.textHeight/2),d(t,"shadowBlur",_(c.textShadowBlur,r.textShadowBlur,0)),d(t,"shadowColor",c.textShadowColor||r.textShadowColor||"transparent"),d(t,"shadowOffsetX",_(c.textShadowOffsetX,r.textShadowOffsetX,0)),d(t,"shadowOffsetY",_(c.textShadowOffsetY,r.textShadowOffsetY,0)),d(t,"textAlign",l),d(t,"textBaseline","middle"),d(t,"font",n.font||v.DEFAULT_FONT);var g=P(c.textStroke||r.textStroke,x),y=k(c.textFill||r.textFill),x=b(c.textLineWidth,r.textLineWidth);g&&(d(t,"lineWidth",x),d(t,"strokeStyle",g),t.strokeText(n.text,o,h)),y&&(d(t,"fillStyle",y),t.fillText(n.text,o,h))}function s(e){return e.textBackgroundColor||e.textBorderWidth&&e.textBorderColor}function u(e,t,n,r,a,i,o){var l=n.textBackgroundColor,s=n.textBorderWidth,u=n.textBorderColor,f=m.isString(l);if(d(t,"shadowBlur",n.textBoxShadowBlur||0),d(t,"shadowColor",n.textBoxShadowColor||"transparent"),d(t,"shadowOffsetX",n.textBoxShadowOffsetX||0),d(t,"shadowOffsetY",n.textBoxShadowOffsetY||0),f||s&&u){t.beginPath();var h=n.textBorderRadius;h?g.buildPath(t,{x:r,y:a,width:i,height:o,r:h}):t.rect(r,a,i,o),t.closePath()}if(f)d(t,"fillStyle",l),t.fill();else if(m.isObject(l)){var p=l.image;p=y.createOrUpdateImage(p,null,e,c,l),p&&y.isImageReady(p)&&t.drawImage(p,r,a,i,o)}s&&u&&(d(t,"lineWidth",s),d(t,"strokeStyle",u),t.stroke())}function c(e,t){t.image=e}function f(e,t,n){var r=t.x||0,a=t.y||0,i=t.textAlign,o=t.textVerticalAlign;if(n){var l=t.textPosition;if(l instanceof Array)r=n.x+h(l[0],n.width),a=n.y+h(l[1],n.height);else{var s=v.adjustTextPositionOnRect(l,n,t.textDistance);r=s.x,a=s.y,i=i||s.textAlign,o=o||s.textVerticalAlign}var u=t.textOffset;u&&(r+=u[0],a+=u[1])}return{baseX:r,baseY:a,textAlign:i,textVerticalAlign:o}}function d(e,t,n){return e[t]=e.__currentValues[t]=n,e[t]}function h(e,t){return"string"==typeof e?e.lastIndexOf("%")>=0?parseFloat(e)/100*t:parseFloat(e):e}function p(e,t,n){return"right"===t?e-n[1]:"center"===t?e+n[3]/2-n[1]/2:e+n[3]}var v=n(2026),m=n(38),g=n(2032),y=n(403),_=m.retrieve3,b=m.retrieve2,x={left:1,right:1,center:1},w={top:1,bottom:1,middle:1},C={};C.normalizeTextStyle=function(e){return t(e),m.each(e.rich,t),e},C.renderText=function(e,t,n,i,o){i.rich?a(e,t,n,i,o):r(e,t,n,i,o)};var P=C.getStroke=function(e,t){return null==e||t<=0||"transparent"===e||"none"===e?null:e.image||e.colorStops?"#000":e},k=C.getFill=function(e){return null==e||"none"===e?null:e.image||e.colorStops?"#000":e};return C.needDrawText=function(e,t){return null!=e&&(e||t.textBackgroundColor||t.textBorderWidth&&t.textBorderColor||t.textPadding)},C}.call(t,n,t,e))&&(e.exports=r)},845:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(984),u=r(s),c=n(988),f=r(c),d=n(0),h=r(d),p=n(406),v=n(1982),m=n(184),g=n(122),y=(0,v.createLogger)({collapsed:!0}),_=(0,m.createStore)(f.default,(0,p.composeWithDevTools)(),(0,m.applyMiddleware)(y)),b=function(e){function t(e){return a(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))}return o(t,e),l(t,[{key:"render",value:function(){return h.default.createElement(g.Provider,{store:_},h.default.createElement(u.default,null))}}]),t}(d.Component);t.default=b},942:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(10),l=r(o),s=n(0),u=r(s),c=n(8),f=r(c),d=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var a=0,r=Object.getOwnPropertySymbols(e);a<r.length;a++)t.indexOf(r[a])<0&&(n[r[a]]=e[r[a]]);return n},h=function(e){var t=e.prefixCls,n=void 0===t?"ant-btn-group":t,r=e.size,a=void 0===r?"":r,o=e.className,s=d(e,["prefixCls","size","className"]),c="";switch(a){case"large":c="lg";break;case"small":c="sm"}var h=(0,f.default)(n,(0,l.default)({},n+"-"+c,c),o);return u.default.createElement("div",(0,i.default)({},s,{className:h}))};t.default=h,e.exports=t.default},943:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){return"string"==typeof e}function i(e,t){if(null!=e){var n=t?" ":"";return"string"!=typeof e&&"number"!=typeof e&&a(e.type)&&E(e.props.children)?_.default.cloneElement(e,{},e.props.children.split("").join(n)):"string"==typeof e?(E(e)&&(e=e.split("").join(n)),_.default.createElement("span",null,e)):e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(2),l=r(o),s=n(10),u=r(s),c=n(1),f=r(c),d=n(6),h=r(d),p=n(4),v=r(p),m=n(3),g=r(m),y=n(0),_=r(y),b=n(5),x=r(b),w=n(8),C=r(w),P=n(33),k=r(P),S=n(189),O=r(S),T=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var a=0,r=Object.getOwnPropertySymbols(e);a<r.length;a++)t.indexOf(r[a])<0&&(n[r[a]]=e[r[a]]);return n},M=/^[\u4e00-\u9fa5]{2}$/,E=M.test.bind(M),D=function(e){function t(e){(0,f.default)(this,t);var n=(0,v.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.handleClick=function(e){n.setState({clicked:!0}),clearTimeout(n.timeout),n.timeout=setTimeout(function(){return n.setState({clicked:!1})},500);var t=n.props.onClick;t&&t(e)},n.state={loading:e.loading},n}return(0,g.default)(t,e),(0,h.default)(t,[{key:"componentWillReceiveProps",value:function(e){var t=this,n=this.props.loading,r=e.loading;n&&clearTimeout(this.delayTimeout),"boolean"!=typeof r&&r&&r.delay?this.delayTimeout=setTimeout(function(){return t.setState({loading:r})},r.delay):this.setState({loading:r})}},{key:"componentWillUnmount",value:function(){this.timeout&&clearTimeout(this.timeout),this.delayTimeout&&clearTimeout(this.delayTimeout)}},{key:"render",value:function(){var e,t=this.props,n=t.type,r=t.shape,a=t.size,o=void 0===a?"":a,s=t.className,c=t.htmlType,f=t.children,d=t.icon,h=t.prefixCls,p=t.ghost,v=T(t,["type","shape","size","className","htmlType","children","icon","prefixCls","ghost"]),m=this.state,g=m.loading,y=m.clicked,b="";switch(o){case"large":b="lg";break;case"small":b="sm"}var x=(0,C.default)(h,s,(e={},(0,u.default)(e,h+"-"+n,n),(0,u.default)(e,h+"-"+r,r),(0,u.default)(e,h+"-"+b,b),(0,u.default)(e,h+"-icon-only",!f&&d&&!g),(0,u.default)(e,h+"-loading",g),(0,u.default)(e,h+"-clicked",y),(0,u.default)(e,h+"-background-ghost",p),e)),w=g?"loading":d,P=w?_.default.createElement(O.default,{type:w}):null,S=1===_.default.Children.count(f)&&(!w||"loading"===w),M=_.default.Children.map(f,function(e){return i(e,S)});return _.default.createElement("button",(0,l.default)({},(0,k.default)(v,["loading","clicked"]),{type:c||"button",className:x,onClick:this.handleClick}),P,M)}}]),t}(_.default.Component);t.default=D,D.__ANT_BUTTON=!0,D.defaultProps={prefixCls:"ant-btn",loading:!1,clicked:!1,ghost:!1},D.propTypes={type:x.default.string,shape:x.default.oneOf(["circle","circle-outline"]),size:x.default.oneOf(["large","default","small"]),htmlType:x.default.oneOf(["submit","button","reset"]),onClick:x.default.func,loading:x.default.oneOfType([x.default.bool,x.default.object]),className:x.default.string,icon:x.default.string},e.exports=t.default},944:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(943),i=r(a),o=n(942),l=r(o);i.default.Group=l.default,t.default=i.default,e.exports=t.default},945:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(432);t.default=r.Col,e.exports=t.default},946:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(1),i=r(a),o=n(6),l=r(o),s=n(4),u=r(s),c=n(3),f=r(c),d=n(0),h=r(d),p=n(746),v=r(p),m=n(237),g=r(m),y=n(54),_=r(y),b=function(e){function t(){return(0,i.default)(this,t),(0,u.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return(0,f.default)(t,e),(0,l.default)(t,[{key:"render",value:function(){return(0,_.default)(!1,"DatePicker.Calendar is deprecated, use Calendar instead."),h.default.createElement(g.default,this.props)}}]),t}(h.default.Component);t.default=b,b.defaultProps={locale:v.default,prefixCls:"ant-calendar"},e.exports=t.default},947:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=(0,x.default)(e,2),n=t[0],r=t[1];if(n||r){return[n,r&&r.isSame(n,"month")?r.clone().add(1,"month"):r]}}function i(e,t){return e&&e.format(t)||""}function o(e){if(e)return Array.isArray(e)?e:[e,e.clone().add(1,"month")]}function l(e){return!!Array.isArray(e)&&(0===e.length||e.every(function(e){return!e}))}Object.defineProperty(t,"__esModule",{value:!0});var s=n(2),u=r(s),c=n(10),f=r(c),d=n(1),h=r(d),p=n(6),v=r(p),m=n(4),g=r(m),y=n(3),_=r(y),b=n(190),x=r(b),w=n(0),C=r(w),P=n(7),k=r(P),S=n(5),O=r(S),T=n(1744),M=r(T),E=n(744),D=r(E),j=n(8),N=r(j),A=n(189),V=r(A),L=n(256),R=n(257),I=r(R),H=function(e){function t(e){(0,h.default)(this,t);var n=(0,g.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));n.clearSelection=function(e){e.preventDefault(),e.stopPropagation(),n.setState({value:[]}),n.handleChange([])},n.clearHoverValue=function(){return n.setState({hoverValue:[]})},n.handleChange=function(e){var t=n.props;"value"in t||n.setState(function(t){var n=t.showDate;return{value:e,showDate:a(e)||n}}),t.onChange(e,[i(e[0],t.format),i(e[1],t.format)])},n.handleOpenChange=function(e){n.setState({open:e});var t=n.props.onOpenChange;t&&t(e)},n.handleShowDateChange=function(e){return n.setState({showDate:e})},n.handleHoverChange=function(e){return n.setState({hoverValue:e})},n.renderFooter=function(){var e=n.props,t=e.prefixCls,r=e.ranges,a=e.renderExtraFooter;if(!r&&!a)return null;var i=a?C.default.createElement("div",{className:t+"-footer-extra",key:"extra"},a.apply(void 0,arguments)):null,o=Object.keys(r||{}).map(function(e){var t=r[e];return C.default.createElement("a",{key:e,onClick:function(){return n.setValue(t)},onMouseEnter:function(){return n.setState({hoverValue:t})},onMouseLeave:n.clearHoverValue},e)});return[C.default.createElement("div",{className:t+"-footer-extra "+t+"-range-quick-selector",key:"range"},o),i]};var r=e.value||e.defaultValue||[];if(r[0]&&!k.default.isMoment(r[0])||r[1]&&!k.default.isMoment(r[1]))throw new Error("The value/defaultValue of RangePicker must be a moment object array after `antd@2.0`, see: https://u.ant.design/date-picker-value");var s=!r||l(r)?e.defaultPickerValue:r;return n.state={value:r,showDate:o(s||(0,k.default)()),open:e.open,hoverValue:[]},n}return(0,_.default)(t,e),(0,v.default)(t,[{key:"componentWillReceiveProps",value:function(e){if("value"in e){var t=this.state,n=e.value||[];this.setState({value:n,showDate:a(n)||t.showDate})}"open"in e&&this.setState({open:e.open})}},{key:"setValue",value:function(e){this.handleChange(e),this.props.showTime||this.setState({open:!1})}},{key:"render",value:function(){var e,t=this,n=this.state,r=this.props,a=this.context,i=n.value,o=n.showDate,l=n.hoverValue,s=n.open,c=(0,L.getLocaleCode)(a);i&&c&&(i[0]&&i[0].locale(c),i[1]&&i[1].locale(c));var d=r.prefixCls,h=r.popupStyle,p=r.style,v=r.disabledDate,m=r.disabledTime,g=r.showTime,y=r.showToday,_=r.ranges,b=r.onOk,x=r.locale,w=r.format;(0,I.default)(!("onOK"in r),"It should be `RangePicker[onOk]`, instead of `onOK`!");var P=(0,N.default)((e={},(0,f.default)(e,d+"-time",g),(0,f.default)(e,d+"-range-with-ranges",_),e)),k={onChange:this.handleChange},S={onOk:this.handleChange};r.timePicker?k.onChange=function(e){return t.handleChange(e)}:S={};var O="placeholder"in r?r.placeholder[0]:x.lang.rangePlaceholder[0],T="placeholder"in r?r.placeholder[1]:x.lang.rangePlaceholder[1],E=C.default.createElement(M.default,(0,u.default)({},S,{format:w,prefixCls:d,className:P,renderFooter:this.renderFooter,timePicker:r.timePicker,disabledDate:v,disabledTime:m,dateInputPlaceholder:[O,T],locale:x.lang,onOk:b,value:o,onValueChange:this.handleShowDateChange,hoverValue:l,onHoverChange:this.handleHoverChange,showToday:y})),j={};r.showTime&&(j.width=p&&p.width||300);var A=!r.disabled&&r.allowClear&&i&&(i[0]||i[1])?C.default.createElement(V.default,{type:"cross-circle",className:d+"-picker-clear",onClick:this.clearSelection}):null,R=function(e){var t=e.value,n=t[0],a=t[1];return C.default.createElement("span",{className:r.pickerInputClass},C.default.createElement("input",{disabled:r.disabled,readOnly:!0,value:n&&n.format(r.format)||"",placeholder:O,className:d+"-range-picker-input"}),C.default.createElement("span",{className:d+"-range-picker-separator"}," ~ "),C.default.createElement("input",{disabled:r.disabled,readOnly:!0,value:a&&a.format(r.format)||"",placeholder:T,className:d+"-range-picker-input"}),A,C.default.createElement("span",{className:d+"-picker-icon"}))};return C.default.createElement("span",{className:(0,N.default)(r.className,r.pickerClass),style:(0,u.default)({},p,j)},C.default.createElement(D.default,(0,u.default)({},r,k,{calendar:E,value:i,open:s,onOpenChange:this.handleOpenChange,prefixCls:d+"-picker-container",style:h}),R))}}]),t}(C.default.Component);t.default=H,H.contextTypes={antLocale:O.default.object},H.defaultProps={prefixCls:"ant-calendar",allowClear:!0,showToday:!1},e.exports=t.default},948:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){return t=function(t){function n(e){(0,c.default)(this,n);var t=(0,p.default)(this,(n.__proto__||Object.getPrototypeOf(n)).call(this,e));t.renderFooter=function(){var e=t.props,n=e.prefixCls,r=e.renderExtraFooter;return r?y.default.createElement("div",{className:n+"-footer-extra"},r.apply(void 0,arguments)):null},t.clearSelection=function(e){e.preventDefault(),e.stopPropagation(),t.handleChange(null)},t.handleChange=function(e){var n=t.props;"value"in n||t.setState({value:e}),n.onChange(e,e&&e.format(n.format)||"")};var r=e.value||e.defaultValue;if(r&&!w.default.isMoment(r))throw new Error("The value/defaultValue of DatePicker or MonthPicker must be a moment object after `antd@2.0`, see: https://u.ant.design/date-picker-value");return t.state={value:r},t}return(0,m.default)(n,t),(0,d.default)(n,[{key:"componentWillReceiveProps",value:function(e){"value"in e&&this.setState({value:e.value})}},{key:"render",value:function(){var t,n=this.state.value,r=(0,E.default)(this.props,["onChange"]),a=r.prefixCls,i=r.locale,l="placeholder"in r?r.placeholder:i.lang.placeholder,u=r.showTime?r.disabledTime:null,c=(0,T.default)((t={},(0,s.default)(t,a+"-time",r.showTime),(0,s.default)(t,a+"-month",P.default===e),t)),f={},d={};r.showTime?d={onSelect:this.handleChange}:f={onChange:this.handleChange},(0,V.default)(!("onOK"in r),"It should be `DatePicker[onOk]` or `MonthPicker[onOk]`, instead of `onOK`!");var h=y.default.createElement(e,(0,o.default)({},d,{disabledDate:r.disabledDate,disabledTime:u,locale:i.lang,timePicker:r.timePicker,defaultValue:r.defaultPickerValue||(0,w.default)(),dateInputPlaceholder:l,prefixCls:a,className:c,onOk:r.onOk,format:r.format,showToday:r.showToday,monthCellContentRender:r.monthCellContentRender,renderFooter:this.renderFooter})),p={};r.showTime&&(p.width=r.style&&r.style.width||154);var v=!r.disabled&&r.allowClear&&n?y.default.createElement(j.default,{type:"cross-circle",className:a+"-picker-clear",onClick:this.clearSelection}):null,m=function(e){var t=e.value;return y.default.createElement("div",null,y.default.createElement("input",{disabled:r.disabled,readOnly:!0,value:t&&t.format(r.format)||"",placeholder:l,className:r.pickerInputClass}),v,y.default.createElement("span",{className:a+"-picker-icon"}))},g=n,_=(0,N.getLocaleCode)(this.context);g&&_&&g.locale(_);var b=(0,o.default)({},r.style,p);return y.default.createElement("span",{className:(0,T.default)(r.className,r.pickerClass),style:b},y.default.createElement(S.default,(0,o.default)({},r,f,{calendar:h,value:g,prefixCls:a+"-picker-container",style:r.popupStyle}),m))}}]),n}(y.default.Component),t.contextTypes={antLocale:b.default.object},t.defaultProps={prefixCls:"ant-calendar",allowClear:!0,showToday:!0},t;var t}Object.defineProperty(t,"__esModule",{value:!0});var i=n(2),o=r(i),l=n(10),s=r(l),u=n(1),c=r(u),f=n(6),d=r(f),h=n(4),p=r(h),v=n(3),m=r(v);t.default=a;var g=n(0),y=r(g),_=n(5),b=r(_),x=n(7),w=r(x),C=n(743),P=r(C),k=n(744),S=r(k),O=n(8),T=r(O),M=n(33),E=r(M),D=n(189),j=r(D),N=n(256),A=n(257),V=r(A);e.exports=t.default},949:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(237),l=r(o),s=n(743),u=r(s),c=n(948),f=r(c),d=n(951),h=r(d),p=n(947),v=r(p),m=n(946),g=r(m),y=(0,h.default)((0,f.default)(l.default)),_=(0,h.default)((0,f.default)(u.default),"YYYY-MM");(0,i.default)(y,{RangePicker:(0,h.default)(v.default),Calendar:g.default,MonthPicker:_}),t.default=y,e.exports=t.default},950:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(746),l=r(o),s=n(435),u=r(s),c=n(7),f=r(c);n(236),f.default.locale("zh-cn");var d={lang:(0,i.default)({placeholder:"请选择日期",rangePlaceholder:["开始日期","结束日期"]},l.default),timePickerLocale:(0,i.default)({},u.default)};d.lang.ok="确 定",t.default=d,e.exports=t.default},951:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=e.showHour,n=e.showMinute,r=e.showSecond,a=e.use12Hours,i=0;return t&&(i+=1),n&&(i+=1),r&&(i+=1),a&&(i+=1),i}function i(e,t){return r=function(t){function r(){(0,f.default)(this,r);var e=(0,v.default)(this,(r.__proto__||Object.getPrototypeOf(r)).apply(this,arguments));return e.handleOpenChange=function(t){var n=e.props,r=n.onOpenChange,a=n.toggleOpen;r(t),a&&((0,T.default)(!1,"`toggleOpen` is deprecated and will be removed in the future, please use `onOpenChange` instead, see: https://u.ant.design/date-picker-on-open-change"),a({open:t}))},e}return(0,g.default)(r,t),(0,h.default)(r,[{key:"render",value:function(){var t,r=this.props,i=r.prefixCls,o=r.inputPrefixCls,s=(0,k.default)((0,u.default)({},i+"-picker",!0)),c=(0,k.default)(i+"-picker-input",o,(t={},(0,u.default)(t,o+"-lg","large"===r.size),(0,u.default)(t,o+"-sm","small"===r.size),(0,u.default)(t,o+"-disabled",r.disabled),t)),f=(0,M.getComponentLocale)(r,this.context,"DatePicker",function(){return n(950)}),d=r.showTime&&r.showTime.format||"HH:mm:ss",h=(0,l.default)({},(0,S.generateShowHourMinuteSecond)(d),{format:d,use12Hours:r.showTime&&r.showTime.use12Hours}),p=a(h),v=i+"-time-picker-column-"+p,m=r.showTime?_.default.createElement(C.default,(0,l.default)({},h,r.showTime,{prefixCls:i+"-time-picker",className:v,placeholder:f.timePickerLocale.placeholder,transitionName:"slide-up"})):null;return _.default.createElement(e,(0,l.default)({},r,{pickerClass:s,pickerInputClass:c,locale:f,timePicker:m,onOpenChange:this.handleOpenChange}))}}]),r}(_.default.Component),r.contextTypes={antLocale:x.default.object},r.defaultProps={format:t||"YYYY-MM-DD",transitionName:"slide-up",popupStyle:{},onChange:function(){},onOk:function(){},onOpenChange:function(){},locale:{},prefixCls:"ant-calendar",inputPrefixCls:"ant-input"},r;var r}Object.defineProperty(t,"__esModule",{value:!0});var o=n(2),l=r(o),s=n(10),u=r(s),c=n(1),f=r(c),d=n(6),h=r(d),p=n(4),v=r(p),m=n(3),g=r(m);t.default=i;var y=n(0),_=r(y),b=n(5),x=r(b),w=n(770),C=r(w),P=n(8),k=r(P),S=n(960),O=n(257),T=r(O),M=n(256);e.exports=t.default},952:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(10),i=r(a),o=n(2),l=r(o),s=n(31),u=r(s),c=n(1),f=r(c),d=n(6),h=r(d),p=n(4),v=r(p),m=n(3),g=r(m),y=n(0),_=r(y),b=n(5),x=r(b),w=n(8),C=r(w),P=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var a=0,r=Object.getOwnPropertySymbols(e);a<r.length;a++)t.indexOf(r[a])<0&&(n[r[a]]=e[r[a]]);return n},k=x.default.oneOfType([x.default.string,x.default.number]),S=x.default.oneOfType([x.default.object,x.default.number]),O=function(e){function t(){return(0,f.default)(this,t),(0,v.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return(0,g.default)(t,e),(0,h.default)(t,[{key:"render",value:function(){var e,t=this.props,n=t.span,r=t.order,a=t.offset,o=t.push,s=t.pull,c=t.className,f=t.children,d=t.prefixCls,h=void 0===d?"ant-col":d,p=P(t,["span","order","offset","push","pull","className","children","prefixCls"]),v={};["xs","sm","md","lg","xl"].forEach(function(e){var n,r={};"number"==typeof t[e]?r.span=t[e]:"object"===(0,u.default)(t[e])&&(r=t[e]||{}),delete p[e],v=(0,l.default)({},v,(n={},(0,i.default)(n,h+"-"+e+"-"+r.span,void 0!==r.span),(0,i.default)(n,h+"-"+e+"-order-"+r.order,r.order||0===r.order),(0,i.default)(n,h+"-"+e+"-offset-"+r.offset,r.offset||0===r.offset),(0,i.default)(n,h+"-"+e+"-push-"+r.push,r.push||0===r.push),(0,i.default)(n,h+"-"+e+"-pull-"+r.pull,r.pull||0===r.pull),n))});var m=(0,C.default)((e={},(0,i.default)(e,h+"-"+n,void 0!==n),(0,i.default)(e,h+"-order-"+r,r),(0,i.default)(e,h+"-offset-"+a,a),(0,i.default)(e,h+"-push-"+o,o),(0,i.default)(e,h+"-pull-"+s,s),e),c,v);return _.default.createElement("div",(0,l.default)({},p,{className:m}),f)}}]),t}(_.default.Component);t.default=O,O.propTypes={span:k,order:k,offset:k,push:k,pull:k,className:x.default.string,children:x.default.node,xs:S,sm:S,md:S,lg:S,xl:S},e.exports=t.default},953:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(10),l=r(o),s=n(1),u=r(s),c=n(6),f=r(c),d=n(4),h=r(d),p=n(3),v=r(p),m=n(0),g=r(m),y=n(8),_=r(y),b=n(5),x=r(b),w=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var a=0,r=Object.getOwnPropertySymbols(e);a<r.length;a++)t.indexOf(r[a])<0&&(n[r[a]]=e[r[a]]);return n},C=function(e){function t(){return(0,u.default)(this,t),(0,h.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return(0,v.default)(t,e),(0,f.default)(t,[{key:"render",value:function(){var e,t=this.props,n=t.type,r=t.justify,a=t.align,o=t.className,s=t.gutter,u=t.style,c=t.children,f=t.prefixCls,d=void 0===f?"ant-row":f,h=w(t,["type","justify","align","className","gutter","style","children","prefixCls"]),p=(0,_.default)((e={},(0,l.default)(e,d,!n),(0,l.default)(e,d+"-"+n,n),(0,l.default)(e,d+"-"+n+"-"+r,n&&r),(0,l.default)(e,d+"-"+n+"-"+a,n&&a),e),o),v=s>0?(0,i.default)({marginLeft:s/-2,marginRight:s/-2},u):u,y=m.Children.map(c,function(e){return e?e.props&&s>0?(0,m.cloneElement)(e,{style:(0,i.default)({paddingLeft:s/2,paddingRight:s/2},e.props.style)}):e:null});return g.default.createElement("div",(0,i.default)({},h,{className:p,style:v}),y)}}]),t}(g.default.Component);t.default=C,C.defaultProps={gutter:0},C.propTypes={type:x.default.string,align:x.default.string,justify:x.default.string,className:x.default.string,children:x.default.node,gutter:x.default.number,prefixCls:x.default.string},e.exports=t.default},954:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(10),i=r(a),o=n(0),l=r(o),s=n(8),u=r(s),c=function(e){var t,n=e.prefixCls,r=void 0===n?"ant-input-group":n,a=e.className,o=void 0===a?"":a,s=(0,u.default)(r,(t={},(0,i.default)(t,r+"-lg","large"===e.size),(0,i.default)(t,r+"-sm","small"===e.size),(0,i.default)(t,r+"-compact",e.compact),t),o);return l.default.createElement("span",{className:s,style:e.style},e.children)};t.default=c,e.exports=t.default},955:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(1),l=r(o),s=n(6),u=r(s),c=n(4),f=r(c),d=n(3),h=r(d),p=n(0),v=r(p),m=n(8),g=r(m),y=n(433),_=r(y),b=n(189),x=r(b),w=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var a=0,r=Object.getOwnPropertySymbols(e);a<r.length;a++)t.indexOf(r[a])<0&&(n[r[a]]=e[r[a]]);return n},C=function(e){function t(){(0,l.default)(this,t);var e=(0,f.default)(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments));return e.onSearch=function(){var t=e.props.onSearch;t&&t(e.input.refs.input.value),e.input.focus()},e}return(0,h.default)(t,e),(0,u.default)(t,[{key:"render",value:function(){var e=this,t=this.props,n=t.className,r=t.prefixCls,a=w(t,["className","prefixCls"]);delete a.onSearch;var o=v.default.createElement(x.default,{className:r+"-icon",onClick:this.onSearch,type:"search"});return v.default.createElement(_.default,(0,i.default)({onPressEnter:this.onSearch},a,{className:(0,g.default)(r,n),suffix:o,ref:function(t){return e.input=t}}))}}]),t}(v.default.Component);t.default=C,C.defaultProps={prefixCls:"ant-input-search"},e.exports=t.default},956:function(e,t,n){"use strict";function r(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=e.getAttribute("id")||e.getAttribute("data-reactid")||e.getAttribute("name");if(t&&l[n])return l[n];var r=window.getComputedStyle(e),a=r.getPropertyValue("box-sizing")||r.getPropertyValue("-moz-box-sizing")||r.getPropertyValue("-webkit-box-sizing"),i=parseFloat(r.getPropertyValue("padding-bottom"))+parseFloat(r.getPropertyValue("padding-top")),s=parseFloat(r.getPropertyValue("border-bottom-width"))+parseFloat(r.getPropertyValue("border-top-width")),u=o.map(function(e){return e+":"+r.getPropertyValue(e)}).join(";"),c={sizingStyle:u,paddingSize:i,borderSize:s,boxSizing:a};return t&&n&&(l[n]=c),c}function a(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null,a=arguments.length>3&&void 0!==arguments[3]?arguments[3]:null;s||(s=document.createElement("textarea"),document.body.appendChild(s)),e.getAttribute("wrap")?s.setAttribute("wrap",e.getAttribute("wrap")):s.removeAttribute("wrap");var o=r(e,t),l=o.paddingSize,u=o.borderSize,c=o.boxSizing,f=o.sizingStyle;s.setAttribute("style",f+";"+i),s.value=e.value||e.placeholder||"";var d=-1/0,h=1/0,p=s.scrollHeight,v=void 0;if("border-box"===c?p+=u:"content-box"===c&&(p-=l),null!==n||null!==a){s.value="";var m=s.scrollHeight-l;null!==n&&(d=m*n,"border-box"===c&&(d=d+l+u),p=Math.max(d,p)),null!==a&&(h=m*a,"border-box"===c&&(h=h+l+u),v=p>h?"":"hidden",p=Math.min(h,p))}return a||(v="hidden"),{height:p,minHeight:d,maxHeight:h,overflowY:v}}Object.defineProperty(t,"__esModule",{value:!0}),t.default=a;var i="\n  min-height:0 !important;\n  max-height:none !important;\n  height:0 !important;\n  visibility:hidden !important;\n  overflow:hidden !important;\n  position:absolute !important;\n  z-index:-1000 !important;\n  top:0 !important;\n  right:0 !important\n",o=["letter-spacing","line-height","padding-top","padding-bottom","font-family","font-weight","font-size","text-rendering","text-transform","width","text-indent","padding-left","padding-right","border-width","box-sizing"],l={},s=void 0;e.exports=t.default},957:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(433),i=r(a),o=n(954),l=r(o),s=n(955),u=r(s),c=n(434),f=r(c);i.default.Group=l.default,i.default.Search=u.default,i.default.TextArea=f.default,t.default=i.default,e.exports=t.default},958:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=r(a),o=n(1),l=r(o),s=n(6),u=r(s),c=n(4),f=r(c),d=n(3),h=r(d),p=n(5),v=r(p);t.default=function(e,t){return function(n){var r=n;return a=function(n){function r(){return(0,l.default)(this,r),(0,f.default)(this,(r.__proto__||Object.getPrototypeOf(r)).apply(this,arguments))}return(0,h.default)(r,n),(0,u.default)(r,[{key:"getLocale",value:function(){var n=this.context.antLocale,r=n&&n[e],a=this.props.locale||{};return(0,i.default)({},t,r||{},a)}}]),r}(n),a.propTypes=r.propTypes,a.defaultProps=r.defaultProps,a.contextTypes=(0,i.default)({},r.context||{},{antLocale:v.default.object}),a;var a}},e.exports=t.default},959:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(432);t.default=r.Row,e.exports=t.default},960:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e){return{showHour:e.indexOf("H")>-1||e.indexOf("h")>-1||e.indexOf("k")>-1,showMinute:e.indexOf("m")>-1,showSecond:e.indexOf("s")>-1}}Object.defineProperty(t,"__esModule",{value:!0});var i=n(10),o=r(i),l=n(2),s=r(l),u=n(1),c=r(u),f=n(6),d=r(f),h=n(4),p=r(h),v=n(3),m=r(v);t.generateShowHourMinuteSecond=a;var g=n(0),y=r(g),_=n(7),b=r(_),x=n(1861),w=r(x),C=n(8),P=r(C),k=n(958),S=r(k),O=n(435),T=r(O),M=function(e){function t(e){(0,c.default)(this,t);var n=(0,p.default)(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));n.handleChange=function(e){"value"in n.props||n.setState({value:e});var t=n.props,r=t.onChange,a=t.format,i=void 0===a?"HH:mm:ss":a;r&&r(e,e&&e.format(i)||"")},n.handleOpenClose=function(e){var t=e.open,r=n.props.onOpenChange;r&&r(t)},n.saveTimePicker=function(e){n.timePickerRef=e};var r=e.value||e.defaultValue;if(r&&!b.default.isMoment(r))throw new Error("The value/defaultValue of TimePicker must be a moment object after `antd@2.0`, see: https://u.ant.design/time-picker-value");return n.state={value:r},n}return(0,m.default)(t,e),(0,d.default)(t,[{key:"componentWillReceiveProps",value:function(e){"value"in e&&this.setState({value:e.value})}},{key:"focus",value:function(){this.timePickerRef.focus()}},{key:"getDefaultFormat",value:function(){var e=this.props,t=e.format,n=e.use12Hours;return t||(n?"h:mm:ss a":"HH:mm:ss")}},{key:"render",value:function(){var e=(0,s.default)({},this.props);delete e.defaultValue;var t=this.getDefaultFormat(),n=(0,P.default)(e.className,(0,o.default)({},e.prefixCls+"-"+e.size,!!e.size)),r=function(t){return e.addon?y.default.createElement("div",{className:e.prefixCls+"-panel-addon"},e.addon(t)):null};return y.default.createElement(w.default,(0,s.default)({},a(t),e,{ref:this.saveTimePicker,format:t,className:n,value:this.state.value,placeholder:void 0===e.placeholder?this.getLocale().placeholder:e.placeholder,onChange:this.handleChange,onOpen:this.handleOpenClose,onClose:this.handleOpenClose,addon:r}))}}]),t}(y.default.Component);M.defaultProps={prefixCls:"ant-time-picker",align:{offset:[0,-2]},disabled:!1,disabledHours:void 0,disabledMinutes:void 0,disabledSeconds:void 0,hideDisabledOptions:!1,placement:"bottomLeft",transitionName:"slide-up"};var E=(0,S.default)("TimePicker",T.default);t.default=E(M)},984:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(259),u=function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}(s),c=n(260),f=r(c),d=n(985),h=r(d),p=n(987),v=r(p),m=n(986),g=r(m),y=n(0),_=r(y),b=n(122);n(1620);var x=function(e){function t(e){a(this,t);var n=i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.Page=null,n._pressToSwitchPage=n._pressToSwitchPage.bind(n),n}return o(t,e),l(t,[{key:"componentDidMount",value:function(){document.addEventListener("keydown",this._pressToSwitchPage)}},{key:"componentWillUnmount",value:function(){document.removeEventListener("keydown",this._pressToSwitchPage)}},{key:"render",value:function(){var e=this._switchPage(this.props.pageName);return _.default.createElement(e,null)}},{key:"_switchPage",value:function(e){switch(e){case f.default.homepage:this.Page=h.default;break;case f.default.traceDisplay:this.Page=v.default;break;case f.default.taxiDistribution:this.Page=g.default}return this.Page}},{key:"_pressToSwitchPage",value:function(e){this.props.keyToSwitchPage(e.key)}}]),t}(y.Component),w=function(e,t){return{pageName:e.pageName}},C=function(e,t){return{keyToSwitchPage:function(t){e({type:u.SWITCH_PAGE,pageName:parseInt(t)})}}};t.default=(0,b.connect)(w,C)(x)},985:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(259),u=function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}(s),c=n(440),f=n(437),d=n(260),h=r(d),p=n(438),v=r(p),m=n(0),g=r(m),y=n(122);n(1618);var _=function(e){function t(e){return a(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))}return o(t,e),l(t,[{key:"render",value:function(){var e=(0,c.getClassSet)(["homePage"]),t=this.props,n=t.clickToOpenHomePage,r=t.clickToOpenDistributionPage,a=t.clickToOpenTracePage;return g.default.createElement("div",{className:e},g.default.createElement(f.Button,{onclick:n},v.default.HOME_PAGE),g.default.createElement(f.Button,{onclick:a},v.default.TRACE_DISPLAY),g.default.createElement(f.Button,{onclick:r},v.default.TAXI_DISTRIBUTION))}}]),t}(m.Component),b=function(e,t){return{}},x=function(e,t){return{clickToOpenHomePage:function(t){e({type:u.SWITCH_PAGE,pageName:h.default.homepage})},clickToOpenTracePage:function(t){e({type:u.SWITCH_PAGE,pageName:h.default.traceDisplay})},clickToOpenDistributionPage:function(t){e({type:u.SWITCH_PAGE,pageName:h.default.taxiDistribution})}}};t.default=(0,y.connect)(b,x)(_)},986:function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),l=n(0),s=function(e){return e&&e.__esModule?e:{default:e}}(l),u=n(122),c=function(e){function t(e){return r(this,t),a(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e))}return i(t,e),o(t,[{key:"render",value:function(){return s.default.createElement("div",null," I am distribution page.")}}]),t}(l.Component),f=function(e,t){return{}};t.default=(0,u.connect)(f)(c)},987:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(990),u=n(440),c=n(439),f=n(437),d=n(438),h=r(d),p=n(991),v=r(p),m=n(992),g=r(m),y=n(0),_=r(y),b=n(122);n(1619);var x=function(e){function t(e){a(this,t);var n=i(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.canvas=null,n.success=n.success.bind(n),n.drawTrace=n.drawTrace.bind(n),n.error=n.error.bind(n),n}return o(t,e),l(t,[{key:"componentDidMount",value:function(){(0,s.fire)({url:"/data/beijing.json",method:"get"},this.success,this.error)}},{key:"render",value:function(){var e=this,t=(0,u.getClassSet)(["trace-display"]);return _.default.createElement("div",{className:t},_.default.createElement(f.Row,{className:(0,u.getClassSet)(["row"])},_.default.createElement(f.Col,{className:(0,u.getClassSet)(["col"]),span:6},_.default.createElement(f.Row,null,_.default.createElement(f.Col,{span:24},_.default.createElement(f.Input,null)),_.default.createElement(f.Col,{span:24},_.default.createElement(f.DatePicker,null)),_.default.createElement(f.Col,{span:24},_.default.createElement(f.Button,null,g.default.getI18n(h.default.SEARCH))))),_.default.createElement(f.Col,{className:(0,u.getClassSet)(["col"]),span:18},_.default.createElement("div",{className:(0,u.getClassSet)(["canvas"]),ref:function(t){e.canvas=t}}))))}},{key:"success",value:function(e){var t=new v.default({dom:this.canvas,geojson:e});t.createMap(),t.drawTrace([{id:100,trace:[{x:100,y:200},{x:300,y:400},{x:500,y:120},{x:300,y:200}]}]),(0,s.fire)({url:c.info.sv_trace_getTraceRoute,method:"post"},this.drawTrace,this.error)}},{key:"drawTrace",value:function(e){console.log(e)}},{key:"error",value:function(e){console.error(e)}}]),t}(y.Component),w=function(e,t){return{}};t.default=(0,b.connect)(w)(x)},988:function(e,t,n){"use strict";function r(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:u,t=arguments[1];switch(t.type){case o.FETCH:case o.LOADING:case o.END:return a({},e);case o.SWITCH_PAGE:return Object.assign({},e,{pageName:t.pageName});default:return a({},e)}}Object.defineProperty(t,"__esModule",{value:!0});var a=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},i=n(259),o=function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}(i),l=n(260),s=function(e){return e&&e.__esModule?e:{default:e}}(l),u={pageName:s.default.traceDisplay};t.default=r},989:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={language:"cn"};t.default=r},990:function(e,t,n){"use strict";function r(e,t,n){i.default.ajax({url:e.url,data:e.data,type:e.method||"post",success:function(e){t&&t(e)},error:function(e){n&&n(e)}})}Object.defineProperty(t,"__esModule",{value:!0}),t.fire=void 0;var a=n(405),i=function(e){return e&&e.__esModule?e:{default:e}}(a);t.fire=r},991:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),o=n(404),l=function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t.default=e,t}(o),s=n(439),u=r(s),c=n(2041),f=r(c),d=n(2034),h=r(d),p=n(833),v=r(p),m=n(2039),g=r(m),y=function(){function e(t){if(a(this,e),this.projection=null,this.dom=t.dom,this.geojson=t.geojson,!this.dom)throw new Error("not dom element.");if(!this.geojson)throw new Error("not geojson");this.zr=f.default.init(this.dom,{width:getComputedStyle(this.dom).width.replace("px",""),height:getComputedStyle(this.dom).height.replace("px","")})}return i(e,[{key:"createMap",value:function(){if(!this.zr)throw new Error("zrender init error");var e=new v.default;this.zr.add(e),this.projection=l.geoMercator().center([116.5,40.5]).scale(2e4);for(var t=l.geoPath().projection(this.projection),n=this.geojson.features,r=0;r<n.length;r++){var a=g.default.createFromString(t(n[r]),{style:{lineWidth:1,stroke:"rgba(120, 120, 120, 0.8)"}});e.add(a)}return this}},{key:"drawTrace",value:function(e,t){if(!this.zr)throw new Error("zrender init error");var n=new v.default;this.zr.add(n),this.zr.configLayer(u.default.traceLevel,{motionBlur:!0,lastFrameAlpha:.97});for(var r=0;r<e.length;r++){var a=e[r],i=(a.id,a.trace),o=new h.default({shape:{cx:i[0].x,cy:i[0].y,r:1.5},style:{fill:"yellow"},zlevel:u.default.traceLevel,silent:!0}),l=null;if(i[1]&&(l=o.animateShape(!0).when(u.default.traceTime,{cx:i[1].x,cy:i[1].y})),i[2])for(var s=2;s<i.length;s++)l.when(u.default.traceTime*s,{cx:i[s].x,cy:i[s].y});l&&l.start(),this.zr.add(o)}}}]),e}();t.default=y},992:function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var a=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),i=n(989),o=function(e){return e&&e.__esModule?e:{default:e}}(i),l=function(){function e(){r(this,e)}return a(e,null,[{key:"getI18n",value:function(e){return e?e[o.default.language]?e[o.default.language]:e:""}}]),e}();t.default=l},993:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}var a=n(845),i=r(a),o=n(12),l=r(o),s=n(0),u=r(s);l.default.render(u.default.createElement(i.default,null),document.getElementById("app"))}},[993]);
+webpackJsonp([0],{
+
+/***/ 142:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.getTodayTime = getTodayTime;
+exports.getTitleString = getTitleString;
+exports.getTodayTimeStr = getTodayTimeStr;
+exports.getMonthName = getMonthName;
+exports.syncTime = syncTime;
+exports.getTimeConfig = getTimeConfig;
+exports.isTimeValidByConfig = isTimeValidByConfig;
+exports.isTimeValid = isTimeValid;
+exports.isAllowedDate = isAllowedDate;
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var defaultDisabledTime = {
+  disabledHours: function disabledHours() {
+    return [];
+  },
+  disabledMinutes: function disabledMinutes() {
+    return [];
+  },
+  disabledSeconds: function disabledSeconds() {
+    return [];
+  }
+};
+
+function getTodayTime(value) {
+  var today = (0, _moment2['default'])();
+  today.locale(value.locale()).utcOffset(value.utcOffset());
+  return today;
+}
+
+function getTitleString(value) {
+  return value.format('L');
+}
+
+function getTodayTimeStr(value) {
+  var today = getTodayTime(value);
+  return getTitleString(today);
+}
+
+function getMonthName(month) {
+  var locale = month.locale();
+  var localeData = month.localeData();
+  return localeData[locale === 'zh-cn' ? 'months' : 'monthsShort'](month);
+}
+
+function syncTime(from, to) {
+  if (!_moment2['default'].isMoment(from) || !_moment2['default'].isMoment(to)) return;
+  to.hour(from.hour());
+  to.minute(from.minute());
+  to.second(from.second());
+}
+
+function getTimeConfig(value, disabledTime) {
+  var disabledTimeConfig = disabledTime ? disabledTime(value) : {};
+  disabledTimeConfig = (0, _extends3['default'])({}, defaultDisabledTime, disabledTimeConfig);
+  return disabledTimeConfig;
+}
+
+function isTimeValidByConfig(value, disabledTimeConfig) {
+  var invalidTime = false;
+  if (value) {
+    var hour = value.hour();
+    var minutes = value.minute();
+    var seconds = value.second();
+    var disabledHours = disabledTimeConfig.disabledHours();
+    if (disabledHours.indexOf(hour) === -1) {
+      var disabledMinutes = disabledTimeConfig.disabledMinutes(hour);
+      if (disabledMinutes.indexOf(minutes) === -1) {
+        var disabledSeconds = disabledTimeConfig.disabledSeconds(hour, minutes);
+        invalidTime = disabledSeconds.indexOf(seconds) !== -1;
+      } else {
+        invalidTime = true;
+      }
+    } else {
+      invalidTime = true;
+    }
+  }
+  return !invalidTime;
+}
+
+function isTimeValid(value, disabledTime) {
+  var disabledTimeConfig = getTimeConfig(value, disabledTime);
+  return isTimeValidByConfig(value, disabledTimeConfig);
+}
+
+function isAllowedDate(value, disabledDate, disabledTime) {
+  if (disabledDate) {
+    if (disabledDate(value)) {
+      return false;
+    }
+  }
+  if (disabledTime) {
+    if (!isTimeValid(value, disabledTime)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/***/ }),
+
+/***/ 149:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module echarts/core/BoundingRect
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+    'use strict';
+
+    var vec2 = __webpack_require__(150);
+    var matrix = __webpack_require__(842);
+
+    var v2ApplyTransform = vec2.applyTransform;
+    var mathMin = Math.min;
+    var mathMax = Math.max;
+    /**
+     * @alias module:echarts/core/BoundingRect
+     */
+    function BoundingRect(x, y, width, height) {
+
+        if (width < 0) {
+            x = x + width;
+            width = -width;
+        }
+        if (height < 0) {
+            y = y + height;
+            height = -height;
+        }
+
+        /**
+         * @type {number}
+         */
+        this.x = x;
+        /**
+         * @type {number}
+         */
+        this.y = y;
+        /**
+         * @type {number}
+         */
+        this.width = width;
+        /**
+         * @type {number}
+         */
+        this.height = height;
+    }
+
+    BoundingRect.prototype = {
+
+        constructor: BoundingRect,
+
+        /**
+         * @param {module:echarts/core/BoundingRect} other
+         */
+        union: function (other) {
+            var x = mathMin(other.x, this.x);
+            var y = mathMin(other.y, this.y);
+
+            this.width = mathMax(
+                    other.x + other.width,
+                    this.x + this.width
+                ) - x;
+            this.height = mathMax(
+                    other.y + other.height,
+                    this.y + this.height
+                ) - y;
+            this.x = x;
+            this.y = y;
+        },
+
+        /**
+         * @param {Array.<number>} m
+         * @methods
+         */
+        applyTransform: (function () {
+            var lt = [];
+            var rb = [];
+            var lb = [];
+            var rt = [];
+            return function (m) {
+                // In case usage like this
+                // el.getBoundingRect().applyTransform(el.transform)
+                // And element has no transform
+                if (!m) {
+                    return;
+                }
+                lt[0] = lb[0] = this.x;
+                lt[1] = rt[1] = this.y;
+                rb[0] = rt[0] = this.x + this.width;
+                rb[1] = lb[1] = this.y + this.height;
+
+                v2ApplyTransform(lt, lt, m);
+                v2ApplyTransform(rb, rb, m);
+                v2ApplyTransform(lb, lb, m);
+                v2ApplyTransform(rt, rt, m);
+
+                this.x = mathMin(lt[0], rb[0], lb[0], rt[0]);
+                this.y = mathMin(lt[1], rb[1], lb[1], rt[1]);
+                var maxX = mathMax(lt[0], rb[0], lb[0], rt[0]);
+                var maxY = mathMax(lt[1], rb[1], lb[1], rt[1]);
+                this.width = maxX - this.x;
+                this.height = maxY - this.y;
+            };
+        })(),
+
+        /**
+         * Calculate matrix of transforming from self to target rect
+         * @param  {module:zrender/core/BoundingRect} b
+         * @return {Array.<number>}
+         */
+        calculateTransform: function (b) {
+            var a = this;
+            var sx = b.width / a.width;
+            var sy = b.height / a.height;
+
+            var m = matrix.create();
+
+            // 矩阵右乘
+            matrix.translate(m, m, [-a.x, -a.y]);
+            matrix.scale(m, m, [sx, sy]);
+            matrix.translate(m, m, [b.x, b.y]);
+
+            return m;
+        },
+
+        /**
+         * @param {(module:echarts/core/BoundingRect|Object)} b
+         * @return {boolean}
+         */
+        intersect: function (b) {
+            if (!b) {
+                return false;
+            }
+
+            if (!(b instanceof BoundingRect)) {
+                // Normalize negative width/height.
+                b = BoundingRect.create(b);
+            }
+
+            var a = this;
+            var ax0 = a.x;
+            var ax1 = a.x + a.width;
+            var ay0 = a.y;
+            var ay1 = a.y + a.height;
+
+            var bx0 = b.x;
+            var bx1 = b.x + b.width;
+            var by0 = b.y;
+            var by1 = b.y + b.height;
+
+            return ! (ax1 < bx0 || bx1 < ax0 || ay1 < by0 || by1 < ay0);
+        },
+
+        contain: function (x, y) {
+            var rect = this;
+            return x >= rect.x
+                && x <= (rect.x + rect.width)
+                && y >= rect.y
+                && y <= (rect.y + rect.height);
+        },
+
+        /**
+         * @return {module:echarts/core/BoundingRect}
+         */
+        clone: function () {
+            return new BoundingRect(this.x, this.y, this.width, this.height);
+        },
+
+        /**
+         * Copy from another rect
+         */
+        copy: function (other) {
+            this.x = other.x;
+            this.y = other.y;
+            this.width = other.width;
+            this.height = other.height;
+        },
+
+        plain: function () {
+            return {
+                x: this.x,
+                y: this.y,
+                width: this.width,
+                height: this.height
+            };
+        }
+    };
+
+    /**
+     * @param {Object|module:zrender/core/BoundingRect} rect
+     * @param {number} rect.x
+     * @param {number} rect.y
+     * @param {number} rect.width
+     * @param {number} rect.height
+     * @return {module:zrender/core/BoundingRect}
+     */
+    BoundingRect.create = function (rect) {
+        return new BoundingRect(rect.x, rect.y, rect.width, rect.height);
+    };
+
+    return BoundingRect;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 150:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    var ArrayCtor = typeof Float32Array === 'undefined'
+        ? Array
+        : Float32Array;
+
+    /**
+     * @typedef {Float32Array|Array.<number>} Vector2
+     */
+    /**
+     * 二维向量类
+     * @exports zrender/tool/vector
+     */
+    var vector = {
+        /**
+         * 创建一个向量
+         * @param {number} [x=0]
+         * @param {number} [y=0]
+         * @return {Vector2}
+         */
+        create: function (x, y) {
+            var out = new ArrayCtor(2);
+            if (x == null) {
+                x = 0;
+            }
+            if (y == null) {
+                y = 0;
+            }
+            out[0] = x;
+            out[1] = y;
+            return out;
+        },
+
+        /**
+         * 复制向量数据
+         * @param {Vector2} out
+         * @param {Vector2} v
+         * @return {Vector2}
+         */
+        copy: function (out, v) {
+            out[0] = v[0];
+            out[1] = v[1];
+            return out;
+        },
+
+        /**
+         * 克隆一个向量
+         * @param {Vector2} v
+         * @return {Vector2}
+         */
+        clone: function (v) {
+            var out = new ArrayCtor(2);
+            out[0] = v[0];
+            out[1] = v[1];
+            return out;
+        },
+
+        /**
+         * 设置向量的两个项
+         * @param {Vector2} out
+         * @param {number} a
+         * @param {number} b
+         * @return {Vector2} 结果
+         */
+        set: function (out, a, b) {
+            out[0] = a;
+            out[1] = b;
+            return out;
+        },
+
+        /**
+         * 向量相加
+         * @param {Vector2} out
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         */
+        add: function (out, v1, v2) {
+            out[0] = v1[0] + v2[0];
+            out[1] = v1[1] + v2[1];
+            return out;
+        },
+
+        /**
+         * 向量缩放后相加
+         * @param {Vector2} out
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         * @param {number} a
+         */
+        scaleAndAdd: function (out, v1, v2, a) {
+            out[0] = v1[0] + v2[0] * a;
+            out[1] = v1[1] + v2[1] * a;
+            return out;
+        },
+
+        /**
+         * 向量相减
+         * @param {Vector2} out
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         */
+        sub: function (out, v1, v2) {
+            out[0] = v1[0] - v2[0];
+            out[1] = v1[1] - v2[1];
+            return out;
+        },
+
+        /**
+         * 向量长度
+         * @param {Vector2} v
+         * @return {number}
+         */
+        len: function (v) {
+            return Math.sqrt(this.lenSquare(v));
+        },
+
+        /**
+         * 向量长度平方
+         * @param {Vector2} v
+         * @return {number}
+         */
+        lenSquare: function (v) {
+            return v[0] * v[0] + v[1] * v[1];
+        },
+
+        /**
+         * 向量乘法
+         * @param {Vector2} out
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         */
+        mul: function (out, v1, v2) {
+            out[0] = v1[0] * v2[0];
+            out[1] = v1[1] * v2[1];
+            return out;
+        },
+
+        /**
+         * 向量除法
+         * @param {Vector2} out
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         */
+        div: function (out, v1, v2) {
+            out[0] = v1[0] / v2[0];
+            out[1] = v1[1] / v2[1];
+            return out;
+        },
+
+        /**
+         * 向量点乘
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         * @return {number}
+         */
+        dot: function (v1, v2) {
+            return v1[0] * v2[0] + v1[1] * v2[1];
+        },
+
+        /**
+         * 向量缩放
+         * @param {Vector2} out
+         * @param {Vector2} v
+         * @param {number} s
+         */
+        scale: function (out, v, s) {
+            out[0] = v[0] * s;
+            out[1] = v[1] * s;
+            return out;
+        },
+
+        /**
+         * 向量归一化
+         * @param {Vector2} out
+         * @param {Vector2} v
+         */
+        normalize: function (out, v) {
+            var d = vector.len(v);
+            if (d === 0) {
+                out[0] = 0;
+                out[1] = 0;
+            }
+            else {
+                out[0] = v[0] / d;
+                out[1] = v[1] / d;
+            }
+            return out;
+        },
+
+        /**
+         * 计算向量间距离
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         * @return {number}
+         */
+        distance: function (v1, v2) {
+            return Math.sqrt(
+                (v1[0] - v2[0]) * (v1[0] - v2[0])
+                + (v1[1] - v2[1]) * (v1[1] - v2[1])
+            );
+        },
+
+        /**
+         * 向量距离平方
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         * @return {number}
+         */
+        distanceSquare: function (v1, v2) {
+            return (v1[0] - v2[0]) * (v1[0] - v2[0])
+                + (v1[1] - v2[1]) * (v1[1] - v2[1]);
+        },
+
+        /**
+         * 求负向量
+         * @param {Vector2} out
+         * @param {Vector2} v
+         */
+        negate: function (out, v) {
+            out[0] = -v[0];
+            out[1] = -v[1];
+            return out;
+        },
+
+        /**
+         * 插值两个点
+         * @param {Vector2} out
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         * @param {number} t
+         */
+        lerp: function (out, v1, v2, t) {
+            out[0] = v1[0] + t * (v2[0] - v1[0]);
+            out[1] = v1[1] + t * (v2[1] - v1[1]);
+            return out;
+        },
+
+        /**
+         * 矩阵左乘向量
+         * @param {Vector2} out
+         * @param {Vector2} v
+         * @param {Vector2} m
+         */
+        applyTransform: function (out, v, m) {
+            var x = v[0];
+            var y = v[1];
+            out[0] = m[0] * x + m[2] * y + m[4];
+            out[1] = m[1] * x + m[3] * y + m[5];
+            return out;
+        },
+        /**
+         * 求两个向量最小值
+         * @param  {Vector2} out
+         * @param  {Vector2} v1
+         * @param  {Vector2} v2
+         */
+        min: function (out, v1, v2) {
+            out[0] = Math.min(v1[0], v2[0]);
+            out[1] = Math.min(v1[1], v2[1]);
+            return out;
+        },
+        /**
+         * 求两个向量最大值
+         * @param  {Vector2} out
+         * @param  {Vector2} v1
+         * @param  {Vector2} v2
+         */
+        max: function (out, v1, v2) {
+            out[0] = Math.max(v1[0], v2[0]);
+            out[1] = Math.max(v1[1], v2[1]);
+            return out;
+        }
+    };
+
+    vector.length = vector.len;
+    vector.lengthSquare = vector.lenSquare;
+    vector.dist = vector.distance;
+    vector.distSquare = vector.distanceSquare;
+
+    return vector;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 1623:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 1624:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 1625:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 1649:
+/***/ (function(module, exports) {
+
+module.exports = {"sv_trace_getTraceRoute":"/sv_trace_getTraceRoute"}
+
+/***/ }),
+
+/***/ 1750:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _toConsumableArray2 = __webpack_require__(47);
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _slicedToArray2 = __webpack_require__(192);
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _classnames2 = __webpack_require__(8);
+
+var _classnames3 = _interopRequireDefault(_classnames2);
+
+var _CalendarPart = __webpack_require__(1764);
+
+var _CalendarPart2 = _interopRequireDefault(_CalendarPart);
+
+var _TodayButton = __webpack_require__(1754);
+
+var _TodayButton2 = _interopRequireDefault(_TodayButton);
+
+var _OkButton = __webpack_require__(1752);
+
+var _OkButton2 = _interopRequireDefault(_OkButton);
+
+var _TimePickerButton = __webpack_require__(1753);
+
+var _TimePickerButton2 = _interopRequireDefault(_TimePickerButton);
+
+var _CommonMixin = __webpack_require__(751);
+
+var _CommonMixin2 = _interopRequireDefault(_CommonMixin);
+
+var _util = __webpack_require__(142);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function noop() {}
+
+function isEmptyArray(arr) {
+  return Array.isArray(arr) && (arr.length === 0 || arr.every(function (i) {
+    return !i;
+  }));
+}
+
+function getValueFromSelectedValue(selectedValue) {
+  var _selectedValue = (0, _slicedToArray3['default'])(selectedValue, 2),
+      start = _selectedValue[0],
+      end = _selectedValue[1];
+
+  var newEnd = end && end.isSame(start, 'month') ? end.clone().add(1, 'month') : end;
+  return [start, newEnd];
+}
+
+function normalizeAnchor(props, init) {
+  var selectedValue = props.selectedValue || init && props.defaultSelectedValue;
+  var value = props.value || init && props.defaultValue;
+  var normalizedValue = value ? getValueFromSelectedValue(value) : getValueFromSelectedValue(selectedValue);
+  return !isEmptyArray(normalizedValue) ? normalizedValue : init && [(0, _moment2['default'])(), (0, _moment2['default'])().add(1, 'months')];
+}
+
+function generateOptions(length) {
+  var arr = [];
+  for (var value = 0; value < length; value++) {
+    arr.push(value);
+  }
+  return arr;
+}
+
+function onInputSelect(direction, value) {
+  if (!value) {
+    return;
+  }
+  var originalValue = this.state.selectedValue;
+  var selectedValue = originalValue.concat();
+  var index = direction === 'left' ? 0 : 1;
+  selectedValue[index] = value;
+  if (selectedValue[0] && this.compare(selectedValue[0], selectedValue[1]) > 0) {
+    selectedValue[1 - index] = this.state.showTimePicker ? selectedValue[index] : undefined;
+  }
+  this.fireSelectValueChange(selectedValue);
+}
+
+var RangeCalendar = (0, _createReactClass2['default'])({
+  displayName: 'RangeCalendar',
+
+  propTypes: {
+    prefixCls: _propTypes2['default'].string,
+    dateInputPlaceholder: _propTypes2['default'].any,
+    defaultValue: _propTypes2['default'].any,
+    value: _propTypes2['default'].any,
+    hoverValue: _propTypes2['default'].any,
+    timePicker: _propTypes2['default'].any,
+    showOk: _propTypes2['default'].bool,
+    showToday: _propTypes2['default'].bool,
+    defaultSelectedValue: _propTypes2['default'].array,
+    selectedValue: _propTypes2['default'].array,
+    onOk: _propTypes2['default'].func,
+    showClear: _propTypes2['default'].bool,
+    locale: _propTypes2['default'].object,
+    onChange: _propTypes2['default'].func,
+    onSelect: _propTypes2['default'].func,
+    onValueChange: _propTypes2['default'].func,
+    onHoverChange: _propTypes2['default'].func,
+    format: _propTypes2['default'].oneOfType([_propTypes2['default'].object, _propTypes2['default'].string]),
+    onClear: _propTypes2['default'].func,
+    type: _propTypes2['default'].any,
+    disabledDate: _propTypes2['default'].func,
+    disabledTime: _propTypes2['default'].func
+  },
+
+  mixins: [_CommonMixin2['default']],
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      type: 'both',
+      defaultSelectedValue: [],
+      onValueChange: noop,
+      onHoverChange: noop,
+      disabledTime: noop,
+      showToday: true
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    var selectedValue = props.selectedValue || props.defaultSelectedValue;
+    var value = normalizeAnchor(props, 1);
+    return {
+      selectedValue: selectedValue,
+      prevSelectedValue: selectedValue,
+      firstSelectedValue: null,
+      hoverValue: props.hoverValue || [],
+      value: value,
+      showTimePicker: false,
+      isStartMonthYearPanelShow: false,
+      isEndMonthYearPanelShow: false
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    var newState = {};
+    if ('value' in nextProps) {
+      newState.value = normalizeAnchor(nextProps, 0);
+      this.setState(newState);
+    }
+    if ('hoverValue' in nextProps) {
+      this.setState({ hoverValue: nextProps.hoverValue });
+    }
+    if ('selectedValue' in nextProps) {
+      newState.selectedValue = nextProps.selectedValue;
+      newState.prevSelectedValue = nextProps.selectedValue;
+      this.setState(newState);
+    }
+  },
+  onDatePanelEnter: function onDatePanelEnter() {
+    if (this.hasSelectedValue()) {
+      this.fireHoverValueChange(this.state.selectedValue.concat());
+    }
+  },
+  onDatePanelLeave: function onDatePanelLeave() {
+    if (this.hasSelectedValue()) {
+      this.fireHoverValueChange([]);
+    }
+  },
+  onSelect: function onSelect(value) {
+    var type = this.props.type;
+    var _state = this.state,
+        selectedValue = _state.selectedValue,
+        prevSelectedValue = _state.prevSelectedValue,
+        firstSelectedValue = _state.firstSelectedValue;
+
+    var nextSelectedValue = void 0;
+    if (type === 'both') {
+      if (!firstSelectedValue) {
+        (0, _util.syncTime)(prevSelectedValue[0], value);
+        nextSelectedValue = [value];
+      } else if (this.compare(firstSelectedValue, value) < 0) {
+        (0, _util.syncTime)(prevSelectedValue[1], value);
+        nextSelectedValue = [firstSelectedValue, value];
+      } else {
+        (0, _util.syncTime)(prevSelectedValue[0], value);
+        (0, _util.syncTime)(prevSelectedValue[1], firstSelectedValue);
+        nextSelectedValue = [value, firstSelectedValue];
+      }
+    } else if (type === 'start') {
+      (0, _util.syncTime)(prevSelectedValue[0], value);
+      var endValue = selectedValue[1];
+      nextSelectedValue = endValue && this.compare(endValue, value) > 0 ? [value, endValue] : [value];
+    } else {
+      // type === 'end'
+      var startValue = selectedValue[0];
+      if (startValue && this.compare(startValue, value) <= 0) {
+        (0, _util.syncTime)(prevSelectedValue[1], value);
+        nextSelectedValue = [startValue, value];
+      } else {
+        (0, _util.syncTime)(prevSelectedValue[0], value);
+        nextSelectedValue = [value];
+      }
+    }
+
+    this.fireSelectValueChange(nextSelectedValue);
+  },
+  onDayHover: function onDayHover(value) {
+    var hoverValue = [];
+    var _state2 = this.state,
+        selectedValue = _state2.selectedValue,
+        firstSelectedValue = _state2.firstSelectedValue;
+    var type = this.props.type;
+
+    if (type === 'start' && selectedValue[1]) {
+      hoverValue = this.compare(value, selectedValue[1]) < 0 ? [value, selectedValue[1]] : [value];
+    } else if (type === 'end' && selectedValue[0]) {
+      hoverValue = this.compare(value, selectedValue[0]) > 0 ? [selectedValue[0], value] : [];
+    } else {
+      if (!firstSelectedValue) {
+        return;
+      }
+      hoverValue = this.compare(value, firstSelectedValue) < 0 ? [value, firstSelectedValue] : [firstSelectedValue, value];
+    }
+    this.fireHoverValueChange(hoverValue);
+  },
+  onToday: function onToday() {
+    var startValue = (0, _util.getTodayTime)(this.state.value[0]);
+    var endValue = startValue.clone().add(1, 'months');
+    this.setState({ value: [startValue, endValue] });
+  },
+  onOpenTimePicker: function onOpenTimePicker() {
+    this.setState({
+      showTimePicker: true
+    });
+  },
+  onCloseTimePicker: function onCloseTimePicker() {
+    this.setState({
+      showTimePicker: false
+    });
+  },
+  onOk: function onOk() {
+    var selectedValue = this.state.selectedValue;
+
+    if (this.isAllowedDateAndTime(selectedValue)) {
+      this.props.onOk(this.state.selectedValue);
+    }
+  },
+  onStartInputSelect: function onStartInputSelect() {
+    for (var _len = arguments.length, oargs = Array(_len), _key = 0; _key < _len; _key++) {
+      oargs[_key] = arguments[_key];
+    }
+
+    var args = ['left'].concat(oargs);
+    return onInputSelect.apply(this, args);
+  },
+  onEndInputSelect: function onEndInputSelect() {
+    for (var _len2 = arguments.length, oargs = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      oargs[_key2] = arguments[_key2];
+    }
+
+    var args = ['right'].concat(oargs);
+    return onInputSelect.apply(this, args);
+  },
+  onStartValueChange: function onStartValueChange(leftValue) {
+    var value = [].concat((0, _toConsumableArray3['default'])(this.state.value));
+    value[0] = leftValue;
+    return this.fireValueChange(value);
+  },
+  onEndValueChange: function onEndValueChange(rightValue) {
+    var value = [].concat((0, _toConsumableArray3['default'])(this.state.value));
+    value[1] = rightValue;
+    return this.fireValueChange(value);
+  },
+  onStartPanelChange: function onStartPanelChange(_ref) {
+    var showMonthPanel = _ref.showMonthPanel,
+        showYearPanel = _ref.showYearPanel;
+
+    this.setState({ isStartMonthYearPanelShow: showMonthPanel || showYearPanel });
+  },
+  onEndPanelChange: function onEndPanelChange(_ref2) {
+    var showMonthPanel = _ref2.showMonthPanel,
+        showYearPanel = _ref2.showYearPanel;
+
+    this.setState({ isEndMonthYearPanelShow: showMonthPanel || showYearPanel });
+  },
+  getStartValue: function getStartValue() {
+    var value = this.state.value[0];
+    var selectedValue = this.state.selectedValue;
+    // keep selectedTime when select date
+    if (selectedValue[0] && this.props.timePicker) {
+      value = value.clone();
+      (0, _util.syncTime)(selectedValue[0], value);
+    }
+    if (this.state.showTimePicker && selectedValue[0]) {
+      return selectedValue[0];
+    }
+    return value;
+  },
+  getEndValue: function getEndValue() {
+    var _state3 = this.state,
+        value = _state3.value,
+        selectedValue = _state3.selectedValue,
+        showTimePicker = _state3.showTimePicker;
+
+    var endValue = value[1] ? value[1].clone() : value[0].clone().add(1, 'month');
+    // keep selectedTime when select date
+    if (selectedValue[1] && this.props.timePicker) {
+      (0, _util.syncTime)(selectedValue[1], endValue);
+    }
+    if (showTimePicker) {
+      return selectedValue[1] ? selectedValue[1] : this.getStartValue();
+    }
+    return endValue;
+  },
+
+  // get disabled hours for second picker
+  getEndDisableTime: function getEndDisableTime() {
+    var _state4 = this.state,
+        selectedValue = _state4.selectedValue,
+        value = _state4.value;
+
+    var startValue = selectedValue && selectedValue[0] || value[0].clone();
+    // if startTime and endTime is same day..
+    // the second time picker will not able to pick time before first time picker
+    if (!selectedValue[1] || startValue.isSame(selectedValue[1], 'day')) {
+      var hours = startValue.hour();
+      var minutes = startValue.minute();
+      var second = startValue.second();
+      var _disabledHours = generateOptions(hours);
+      var _disabledMinutes = generateOptions(minutes);
+      var _disabledSeconds = generateOptions(second);
+      return {
+        disabledHours: function disabledHours() {
+          return _disabledHours;
+        },
+        disabledMinutes: function disabledMinutes(hour) {
+          if (hour === hours) {
+            return _disabledMinutes;
+          }
+          return [];
+        },
+        disabledSeconds: function disabledSeconds(hour, minute) {
+          if (hour === hours && minute === minutes) {
+            return _disabledSeconds;
+          }
+          return [];
+        }
+      };
+    }
+    return null;
+  },
+  isAllowedDateAndTime: function isAllowedDateAndTime(selectedValue) {
+    return (0, _util.isAllowedDate)(selectedValue[0], this.props.disabledDate, this.disabledStartTime) && (0, _util.isAllowedDate)(selectedValue[1], this.props.disabledDate, this.disabledEndTime);
+  },
+  hasSelectedValue: function hasSelectedValue() {
+    var selectedValue = this.state.selectedValue;
+
+    return !!selectedValue[1] && !!selectedValue[0];
+  },
+  compare: function compare(v1, v2) {
+    if (this.props.timePicker) {
+      return v1.diff(v2);
+    }
+    return v1.diff(v2, 'days');
+  },
+  fireSelectValueChange: function fireSelectValueChange(selectedValue, direct) {
+    var timePicker = this.props.timePicker;
+    var prevSelectedValue = this.state.prevSelectedValue;
+
+    if (timePicker && timePicker.props.defaultValue) {
+      var timePickerDefaultValue = timePicker.props.defaultValue;
+      if (!prevSelectedValue[0] && selectedValue[0]) {
+        (0, _util.syncTime)(timePickerDefaultValue[0], selectedValue[0]);
+      }
+      if (!prevSelectedValue[1] && selectedValue[1]) {
+        (0, _util.syncTime)(timePickerDefaultValue[1], selectedValue[1]);
+      }
+    }
+
+    if (!('selectedValue' in this.props)) {
+      this.setState({
+        selectedValue: selectedValue
+      });
+    }
+
+    // 尚未选择过时间，直接输入的话
+    if (!this.state.selectedValue[0] || !this.state.selectedValue[1]) {
+      var startValue = selectedValue[0] || (0, _moment2['default'])();
+      var endValue = selectedValue[1] || startValue.clone().add(1, 'months');
+      this.setState({
+        selectedValue: selectedValue,
+        value: getValueFromSelectedValue([startValue, endValue])
+      });
+    }
+
+    if (selectedValue[0] && !selectedValue[1]) {
+      this.setState({ firstSelectedValue: selectedValue[0] });
+      this.fireHoverValueChange(selectedValue.concat());
+    }
+    this.props.onChange(selectedValue);
+    if (direct || selectedValue[0] && selectedValue[1]) {
+      this.setState({
+        prevSelectedValue: selectedValue,
+        firstSelectedValue: null
+      });
+      this.fireHoverValueChange([]);
+      this.props.onSelect(selectedValue);
+    }
+  },
+  fireValueChange: function fireValueChange(value) {
+    var props = this.props;
+    if (!('value' in props)) {
+      this.setState({
+        value: value
+      });
+    }
+    props.onValueChange(value);
+  },
+  fireHoverValueChange: function fireHoverValueChange(hoverValue) {
+    var props = this.props;
+    if (!('hoverValue' in props)) {
+      this.setState({ hoverValue: hoverValue });
+    }
+    props.onHoverChange(hoverValue);
+  },
+  clear: function clear() {
+    this.fireSelectValueChange([], true);
+    this.props.onClear();
+  },
+  disabledStartTime: function disabledStartTime(time) {
+    return this.props.disabledTime(time, 'start');
+  },
+  disabledEndTime: function disabledEndTime(time) {
+    return this.props.disabledTime(time, 'end');
+  },
+  disabledStartMonth: function disabledStartMonth(month) {
+    var value = this.state.value;
+
+    return month.isSameOrAfter(value[1], 'month');
+  },
+  disabledEndMonth: function disabledEndMonth(month) {
+    var value = this.state.value;
+
+    return month.isSameOrBefore(value[0], 'month');
+  },
+  render: function render() {
+    var _className, _classnames;
+
+    var props = this.props;
+    var state = this.state;
+    var showTimePicker = state.showTimePicker,
+        isStartMonthYearPanelShow = state.isStartMonthYearPanelShow,
+        isEndMonthYearPanelShow = state.isEndMonthYearPanelShow;
+    var prefixCls = props.prefixCls,
+        dateInputPlaceholder = props.dateInputPlaceholder,
+        timePicker = props.timePicker,
+        showOk = props.showOk,
+        locale = props.locale,
+        showClear = props.showClear,
+        showToday = props.showToday,
+        type = props.type;
+    var hoverValue = state.hoverValue,
+        selectedValue = state.selectedValue;
+
+    var className = (_className = {}, (0, _defineProperty3['default'])(_className, props.className, !!props.className), (0, _defineProperty3['default'])(_className, prefixCls, 1), (0, _defineProperty3['default'])(_className, prefixCls + '-hidden', !props.visible), (0, _defineProperty3['default'])(_className, prefixCls + '-range', 1), (0, _defineProperty3['default'])(_className, prefixCls + '-show-time-picker', showTimePicker), (0, _defineProperty3['default'])(_className, prefixCls + '-week-number', props.showWeekNumber), _className);
+    var classes = (0, _classnames3['default'])(className);
+    var newProps = {
+      selectedValue: state.selectedValue,
+      onSelect: this.onSelect,
+      onDayHover: type === 'start' && selectedValue[1] || type === 'end' && selectedValue[0] || !!hoverValue.length ? this.onDayHover : undefined
+    };
+
+    var placeholder1 = void 0;
+    var placeholder2 = void 0;
+
+    if (dateInputPlaceholder) {
+      if (Array.isArray(dateInputPlaceholder)) {
+        var _dateInputPlaceholder = (0, _slicedToArray3['default'])(dateInputPlaceholder, 2);
+
+        placeholder1 = _dateInputPlaceholder[0];
+        placeholder2 = _dateInputPlaceholder[1];
+      } else {
+        placeholder1 = placeholder2 = dateInputPlaceholder;
+      }
+    }
+    var showOkButton = showOk === true || showOk !== false && !!timePicker;
+    var cls = (0, _classnames3['default'])((_classnames = {}, (0, _defineProperty3['default'])(_classnames, prefixCls + '-footer', true), (0, _defineProperty3['default'])(_classnames, prefixCls + '-range-bottom', true), (0, _defineProperty3['default'])(_classnames, prefixCls + '-footer-show-ok', showOkButton), _classnames));
+
+    var startValue = this.getStartValue();
+    var endValue = this.getEndValue();
+    var todayTime = (0, _util.getTodayTime)(startValue);
+    var thisMonth = todayTime.month();
+    var thisYear = todayTime.year();
+    var isTodayInView = startValue.year() === thisYear && startValue.month() === thisMonth || endValue.year() === thisYear && endValue.month() === thisMonth;
+    var nextMonthOfStart = startValue.clone().add(1, 'months');
+    var isClosestMonths = nextMonthOfStart.year() === endValue.year() && nextMonthOfStart.month() === endValue.month();
+    return _react2['default'].createElement(
+      'div',
+      {
+        ref: this.saveRoot,
+        className: classes,
+        style: props.style,
+        tabIndex: '0'
+      },
+      props.renderSidebar(),
+      _react2['default'].createElement(
+        'div',
+        { className: prefixCls + '-panel' },
+        showClear && selectedValue[0] && selectedValue[1] ? _react2['default'].createElement('a', {
+          className: prefixCls + '-clear-btn',
+          role: 'button',
+          title: locale.clear,
+          onClick: this.clear
+        }) : null,
+        _react2['default'].createElement(
+          'div',
+          {
+            className: prefixCls + '-date-panel',
+            onMouseLeave: type !== 'both' ? this.onDatePanelLeave : undefined,
+            onMouseEnter: type !== 'both' ? this.onDatePanelEnter : undefined
+          },
+          _react2['default'].createElement(_CalendarPart2['default'], (0, _extends3['default'])({}, props, newProps, {
+            hoverValue: hoverValue,
+            direction: 'left',
+            disabledTime: this.disabledStartTime,
+            disabledMonth: this.disabledStartMonth,
+            format: this.getFormat(),
+            value: startValue,
+            placeholder: placeholder1,
+            onInputSelect: this.onStartInputSelect,
+            onValueChange: this.onStartValueChange,
+            onPanelChange: this.onStartPanelChange,
+            timePicker: timePicker,
+            showTimePicker: showTimePicker,
+            enablePrev: true,
+            enableNext: !isClosestMonths || isEndMonthYearPanelShow
+          })),
+          _react2['default'].createElement(
+            'span',
+            { className: prefixCls + '-range-middle' },
+            '~'
+          ),
+          _react2['default'].createElement(_CalendarPart2['default'], (0, _extends3['default'])({}, props, newProps, {
+            hoverValue: hoverValue,
+            direction: 'right',
+            format: this.getFormat(),
+            timePickerDisabledTime: this.getEndDisableTime(),
+            placeholder: placeholder2,
+            value: endValue,
+            onInputSelect: this.onEndInputSelect,
+            onValueChange: this.onEndValueChange,
+            onPanelChange: this.onEndPanelChange,
+            timePicker: timePicker,
+            showTimePicker: showTimePicker,
+            disabledTime: this.disabledEndTime,
+            disabledMonth: this.disabledEndMonth,
+            enablePrev: !isClosestMonths || isStartMonthYearPanelShow,
+            enableNext: true
+          }))
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: cls },
+          props.renderFooter(),
+          showToday || props.timePicker || showOkButton ? _react2['default'].createElement(
+            'div',
+            { className: prefixCls + '-footer-btn' },
+            showToday ? _react2['default'].createElement(_TodayButton2['default'], (0, _extends3['default'])({}, props, {
+              disabled: isTodayInView,
+              value: state.value[0],
+              onToday: this.onToday,
+              text: locale.backToToday
+            })) : null,
+            props.timePicker ? _react2['default'].createElement(_TimePickerButton2['default'], (0, _extends3['default'])({}, props, {
+              showTimePicker: showTimePicker,
+              onOpenTimePicker: this.onOpenTimePicker,
+              onCloseTimePicker: this.onCloseTimePicker,
+              timePickerDisabled: !this.hasSelectedValue() || hoverValue.length
+            })) : null,
+            showOkButton ? _react2['default'].createElement(_OkButton2['default'], (0, _extends3['default'])({}, props, {
+              onOk: this.onOk,
+              okDisabled: !this.isAllowedDateAndTime(selectedValue) || !this.hasSelectedValue() || hoverValue.length
+            })) : null
+          ) : null
+        )
+      )
+    );
+  }
+});
+
+exports['default'] = RangeCalendar;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1751:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _MonthPanel = __webpack_require__(752);
+
+var _MonthPanel2 = _interopRequireDefault(_MonthPanel);
+
+var _YearPanel = __webpack_require__(753);
+
+var _YearPanel2 = _interopRequireDefault(_YearPanel);
+
+var _mapSelf = __webpack_require__(1888);
+
+var _mapSelf2 = _interopRequireDefault(_mapSelf);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function goMonth(direction) {
+  var next = this.props.value.clone();
+  next.add(direction, 'months');
+  this.props.onValueChange(next);
+}
+
+function goYear(direction) {
+  var next = this.props.value.clone();
+  next.add(direction, 'years');
+  this.props.onValueChange(next);
+}
+
+function showIf(condition, el) {
+  return condition ? el : null;
+}
+
+var CalendarHeader = (0, _createReactClass2['default'])({
+  displayName: 'CalendarHeader',
+
+  propTypes: {
+    prefixCls: _propTypes2['default'].string,
+    value: _propTypes2['default'].object,
+    onValueChange: _propTypes2['default'].func,
+    showTimePicker: _propTypes2['default'].bool,
+    showMonthPanel: _propTypes2['default'].bool,
+    showYearPanel: _propTypes2['default'].bool,
+    onPanelChange: _propTypes2['default'].func,
+    locale: _propTypes2['default'].object,
+    enablePrev: _propTypes2['default'].any,
+    enableNext: _propTypes2['default'].any,
+    disabledMonth: _propTypes2['default'].func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      enableNext: 1,
+      enablePrev: 1,
+      onPanelChange: function onPanelChange() {},
+      onValueChange: function onValueChange() {}
+    };
+  },
+  getInitialState: function getInitialState() {
+    this.nextMonth = goMonth.bind(this, 1);
+    this.previousMonth = goMonth.bind(this, -1);
+    this.nextYear = goYear.bind(this, 1);
+    this.previousYear = goYear.bind(this, -1);
+    var _props = this.props,
+        showMonthPanel = _props.showMonthPanel,
+        showYearPanel = _props.showYearPanel;
+
+    return { showMonthPanel: showMonthPanel, showYearPanel: showYearPanel };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps() {
+    var props = this.props;
+    if ('showMonthpanel' in props) {
+      this.setState({ showMonthPanel: props.showMonthPanel });
+    }
+    if ('showYearpanel' in props) {
+      this.setState({ showYearPanel: props.showYearPanel });
+    }
+  },
+  onSelect: function onSelect(value) {
+    this.triggerPanelChange({
+      showMonthPanel: 0,
+      showYearPanel: 0
+    });
+    this.props.onValueChange(value);
+  },
+  triggerPanelChange: function triggerPanelChange(panelStatus) {
+    if (!('showMonthPanel' in this.props)) {
+      this.setState({ showMonthPanel: panelStatus.showMonthPanel });
+    }
+    if (!('showYearPanel' in this.props)) {
+      this.setState({ showYearPanel: panelStatus.showYearPanel });
+    }
+    this.props.onPanelChange(panelStatus);
+  },
+  monthYearElement: function monthYearElement(showTimePicker) {
+    var props = this.props;
+    var prefixCls = props.prefixCls;
+    var locale = props.locale;
+    var value = props.value;
+    var localeData = value.localeData();
+    var monthBeforeYear = locale.monthBeforeYear;
+    var selectClassName = prefixCls + '-' + (monthBeforeYear ? 'my-select' : 'ym-select');
+    var year = _react2['default'].createElement(
+      'a',
+      {
+        className: prefixCls + '-year-select',
+        role: 'button',
+        onClick: showTimePicker ? null : this.showYearPanel,
+        title: locale.yearSelect
+      },
+      value.format(locale.yearFormat)
+    );
+    var month = _react2['default'].createElement(
+      'a',
+      {
+        className: prefixCls + '-month-select',
+        role: 'button',
+        onClick: showTimePicker ? null : this.showMonthPanel,
+        title: locale.monthSelect
+      },
+      localeData.monthsShort(value)
+    );
+    var day = void 0;
+    if (showTimePicker) {
+      day = _react2['default'].createElement(
+        'a',
+        {
+          className: prefixCls + '-day-select',
+          role: 'button'
+        },
+        value.format(locale.dayFormat)
+      );
+    }
+    var my = [];
+    if (monthBeforeYear) {
+      my = [month, day, year];
+    } else {
+      my = [year, month, day];
+    }
+    return _react2['default'].createElement(
+      'span',
+      { className: selectClassName },
+      (0, _mapSelf2['default'])(my)
+    );
+  },
+  showMonthPanel: function showMonthPanel() {
+    this.triggerPanelChange({
+      showMonthPanel: 1,
+      showYearPanel: 0
+    });
+  },
+  showYearPanel: function showYearPanel() {
+    this.triggerPanelChange({
+      showMonthPanel: 0,
+      showYearPanel: 1
+    });
+  },
+  render: function render() {
+    var props = this.props,
+        state = this.state;
+    var prefixCls = props.prefixCls,
+        locale = props.locale,
+        value = props.value,
+        showTimePicker = props.showTimePicker,
+        enableNext = props.enableNext,
+        enablePrev = props.enablePrev,
+        disabledMonth = props.disabledMonth;
+
+
+    var panel = null;
+    if (state.showMonthPanel) {
+      panel = _react2['default'].createElement(_MonthPanel2['default'], {
+        locale: locale,
+        defaultValue: value,
+        rootPrefixCls: prefixCls,
+        onSelect: this.onSelect,
+        disabledDate: disabledMonth
+      });
+    } else if (state.showYearPanel) {
+      panel = _react2['default'].createElement(_YearPanel2['default'], {
+        locale: locale,
+        defaultValue: value,
+        rootPrefixCls: prefixCls,
+        onSelect: this.onSelect
+      });
+    }
+
+    return _react2['default'].createElement(
+      'div',
+      { className: prefixCls + '-header' },
+      _react2['default'].createElement(
+        'div',
+        { style: { position: 'relative' } },
+        showIf(enablePrev && !showTimePicker, _react2['default'].createElement('a', {
+          className: prefixCls + '-prev-year-btn',
+          role: 'button',
+          onClick: this.previousYear,
+          title: locale.previousYear
+        })),
+        showIf(enablePrev && !showTimePicker, _react2['default'].createElement('a', {
+          className: prefixCls + '-prev-month-btn',
+          role: 'button',
+          onClick: this.previousMonth,
+          title: locale.previousMonth
+        })),
+        this.monthYearElement(showTimePicker),
+        showIf(enableNext && !showTimePicker, _react2['default'].createElement('a', {
+          className: prefixCls + '-next-month-btn',
+          onClick: this.nextMonth,
+          title: locale.nextMonth
+        })),
+        showIf(enableNext && !showTimePicker, _react2['default'].createElement('a', {
+          className: prefixCls + '-next-year-btn',
+          onClick: this.nextYear,
+          title: locale.nextYear
+        }))
+      ),
+      panel
+    );
+  }
+});
+
+exports['default'] = CalendarHeader;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1752:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = OkButton;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function OkButton(_ref) {
+  var prefixCls = _ref.prefixCls,
+      locale = _ref.locale,
+      okDisabled = _ref.okDisabled,
+      onOk = _ref.onOk;
+
+  var className = prefixCls + "-ok-btn";
+  if (okDisabled) {
+    className += " " + prefixCls + "-ok-btn-disabled";
+  }
+  return _react2["default"].createElement(
+    "a",
+    {
+      className: className,
+      role: "button",
+      onClick: okDisabled ? null : onOk
+    },
+    locale.ok
+  );
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1753:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+exports['default'] = TimePickerButton;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames2 = __webpack_require__(8);
+
+var _classnames3 = _interopRequireDefault(_classnames2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function TimePickerButton(_ref) {
+  var _classnames;
+
+  var prefixCls = _ref.prefixCls,
+      locale = _ref.locale,
+      showTimePicker = _ref.showTimePicker,
+      onOpenTimePicker = _ref.onOpenTimePicker,
+      onCloseTimePicker = _ref.onCloseTimePicker,
+      timePickerDisabled = _ref.timePickerDisabled;
+
+  var className = (0, _classnames3['default'])((_classnames = {}, (0, _defineProperty3['default'])(_classnames, prefixCls + '-time-picker-btn', true), (0, _defineProperty3['default'])(_classnames, prefixCls + '-time-picker-btn-disabled', timePickerDisabled), _classnames));
+  var onClick = null;
+  if (!timePickerDisabled) {
+    onClick = showTimePicker ? onCloseTimePicker : onOpenTimePicker;
+  }
+  return _react2['default'].createElement(
+    'a',
+    {
+      className: className,
+      role: 'button',
+      onClick: onClick
+    },
+    showTimePicker ? locale.dateSelect : locale.timeSelect
+  );
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1754:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports['default'] = TodayButton;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _util = __webpack_require__(142);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function TodayButton(_ref) {
+  var prefixCls = _ref.prefixCls,
+      locale = _ref.locale,
+      value = _ref.value,
+      timePicker = _ref.timePicker,
+      disabled = _ref.disabled,
+      disabledDate = _ref.disabledDate,
+      onToday = _ref.onToday,
+      text = _ref.text;
+
+  var localeNow = (!text && timePicker ? locale.now : text) || locale.today;
+  var disabledToday = disabledDate && !(0, _util.isAllowedDate)((0, _util.getTodayTime)(value), disabledDate);
+  var isDisabled = disabledToday || disabled;
+  var disabledTodayClass = isDisabled ? prefixCls + '-today-btn-disabled' : '';
+  return _react2['default'].createElement(
+    'a',
+    {
+      className: prefixCls + '-today-btn ' + disabledTodayClass,
+      role: 'button',
+      onClick: isDisabled ? null : onToday,
+      title: (0, _util.getTodayTimeStr)(value)
+    },
+    localeNow
+  );
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1755:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var DateInput = (0, _createReactClass2['default'])({
+  displayName: 'DateInput',
+
+  propTypes: {
+    prefixCls: _propTypes2['default'].string,
+    timePicker: _propTypes2['default'].object,
+    value: _propTypes2['default'].object,
+    disabledTime: _propTypes2['default'].any,
+    format: _propTypes2['default'].string,
+    locale: _propTypes2['default'].object,
+    disabledDate: _propTypes2['default'].func,
+    onChange: _propTypes2['default'].func,
+    onClear: _propTypes2['default'].func,
+    placeholder: _propTypes2['default'].string,
+    onSelect: _propTypes2['default'].func,
+    selectedValue: _propTypes2['default'].object
+  },
+
+  getInitialState: function getInitialState() {
+    var selectedValue = this.props.selectedValue;
+    return {
+      str: selectedValue && selectedValue.format(this.props.format) || '',
+      invalid: false
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    // when popup show, click body will call this, bug!
+    var selectedValue = nextProps.selectedValue;
+    this.setState({
+      str: selectedValue && selectedValue.format(nextProps.format) || '',
+      invalid: false
+    });
+  },
+  onInputChange: function onInputChange(event) {
+    var str = event.target.value;
+    this.setState({
+      str: str
+    });
+    var value = void 0;
+    var _props = this.props,
+        disabledDate = _props.disabledDate,
+        format = _props.format,
+        onChange = _props.onChange;
+
+    if (str) {
+      var parsed = (0, _moment2['default'])(str, format, true);
+      if (!parsed.isValid()) {
+        this.setState({
+          invalid: true
+        });
+        return;
+      }
+      value = this.props.value.clone();
+      value.year(parsed.year()).month(parsed.month()).date(parsed.date()).hour(parsed.hour()).minute(parsed.minute()).second(parsed.second());
+
+      if (value && (!disabledDate || !disabledDate(value))) {
+        var originalValue = this.props.selectedValue;
+        if (originalValue && value) {
+          if (!originalValue.isSame(value)) {
+            onChange(value);
+          }
+        } else if (originalValue !== value) {
+          onChange(value);
+        }
+      } else {
+        this.setState({
+          invalid: true
+        });
+        return;
+      }
+    } else {
+      onChange(null);
+    }
+    this.setState({
+      invalid: false
+    });
+  },
+  onClear: function onClear() {
+    this.setState({
+      str: ''
+    });
+    this.props.onClear(null);
+  },
+  getRootDOMNode: function getRootDOMNode() {
+    return _reactDom2['default'].findDOMNode(this);
+  },
+  focus: function focus() {
+    if (this.dateInputInstance) {
+      this.dateInputInstance.focus();
+    }
+  },
+  saveDateInput: function saveDateInput(dateInput) {
+    this.dateInputInstance = dateInput;
+  },
+  render: function render() {
+    var props = this.props;
+    var _state = this.state,
+        invalid = _state.invalid,
+        str = _state.str;
+    var locale = props.locale,
+        prefixCls = props.prefixCls,
+        placeholder = props.placeholder;
+
+    var invalidClass = invalid ? prefixCls + '-input-invalid' : '';
+    return _react2['default'].createElement(
+      'div',
+      { className: prefixCls + '-input-wrap' },
+      _react2['default'].createElement(
+        'div',
+        { className: prefixCls + '-date-input-wrap' },
+        _react2['default'].createElement('input', {
+          ref: this.saveDateInput,
+          className: prefixCls + '-input ' + invalidClass,
+          value: str,
+          disabled: props.disabled,
+          placeholder: placeholder,
+          onChange: this.onInputChange
+        })
+      ),
+      props.showClear ? _react2['default'].createElement('a', {
+        className: prefixCls + '-clear-btn',
+        role: 'button',
+        title: locale.clear,
+        onClick: this.onClear
+      }) : null
+    );
+  }
+});
+
+exports['default'] = DateInput;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1756:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _DateConstants = __webpack_require__(749);
+
+var _DateConstants2 = _interopRequireDefault(_DateConstants);
+
+var _util = __webpack_require__(142);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function isSameDay(one, two) {
+  return one && two && one.isSame(two, 'day');
+}
+
+function beforeCurrentMonthYear(current, today) {
+  if (current.year() < today.year()) {
+    return 1;
+  }
+  return current.year() === today.year() && current.month() < today.month();
+}
+
+function afterCurrentMonthYear(current, today) {
+  if (current.year() > today.year()) {
+    return 1;
+  }
+  return current.year() === today.year() && current.month() > today.month();
+}
+
+function getIdFromDate(date) {
+  return 'rc-calendar-' + date.year() + '-' + date.month() + '-' + date.date();
+}
+
+var DateTBody = (0, _createReactClass2['default'])({
+  displayName: 'DateTBody',
+
+  propTypes: {
+    contentRender: _propTypes2['default'].func,
+    dateRender: _propTypes2['default'].func,
+    disabledDate: _propTypes2['default'].func,
+    prefixCls: _propTypes2['default'].string,
+    selectedValue: _propTypes2['default'].oneOfType([_propTypes2['default'].object, _propTypes2['default'].arrayOf(_propTypes2['default'].object)]),
+    value: _propTypes2['default'].object,
+    hoverValue: _propTypes2['default'].any,
+    showWeekNumber: _propTypes2['default'].bool
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      hoverValue: []
+    };
+  },
+  render: function render() {
+    var props = this.props;
+    var contentRender = props.contentRender,
+        prefixCls = props.prefixCls,
+        selectedValue = props.selectedValue,
+        value = props.value,
+        showWeekNumber = props.showWeekNumber,
+        dateRender = props.dateRender,
+        disabledDate = props.disabledDate,
+        hoverValue = props.hoverValue;
+
+    var iIndex = void 0;
+    var jIndex = void 0;
+    var current = void 0;
+    var dateTable = [];
+    var today = (0, _util.getTodayTime)(value);
+    var cellClass = prefixCls + '-cell';
+    var weekNumberCellClass = prefixCls + '-week-number-cell';
+    var dateClass = prefixCls + '-date';
+    var todayClass = prefixCls + '-today';
+    var selectedClass = prefixCls + '-selected-day';
+    var selectedDateClass = prefixCls + '-selected-date'; // do not move with mouse operation
+    var inRangeClass = prefixCls + '-in-range-cell';
+    var lastMonthDayClass = prefixCls + '-last-month-cell';
+    var nextMonthDayClass = prefixCls + '-next-month-btn-day';
+    var disabledClass = prefixCls + '-disabled-cell';
+    var firstDisableClass = prefixCls + '-disabled-cell-first-of-row';
+    var lastDisableClass = prefixCls + '-disabled-cell-last-of-row';
+    var month1 = value.clone();
+    month1.date(1);
+    var day = month1.day();
+    var lastMonthDiffDay = (day + 7 - value.localeData().firstDayOfWeek()) % 7;
+    // calculate last month
+    var lastMonth1 = month1.clone();
+    lastMonth1.add(0 - lastMonthDiffDay, 'days');
+    var passed = 0;
+    for (iIndex = 0; iIndex < _DateConstants2['default'].DATE_ROW_COUNT; iIndex++) {
+      for (jIndex = 0; jIndex < _DateConstants2['default'].DATE_COL_COUNT; jIndex++) {
+        current = lastMonth1;
+        if (passed) {
+          current = current.clone();
+          current.add(passed, 'days');
+        }
+        dateTable.push(current);
+        passed++;
+      }
+    }
+    var tableHtml = [];
+    passed = 0;
+
+    for (iIndex = 0; iIndex < _DateConstants2['default'].DATE_ROW_COUNT; iIndex++) {
+      var _cx;
+
+      var isCurrentWeek = void 0;
+      var weekNumberCell = void 0;
+      var isActiveWeek = false;
+      var dateCells = [];
+      if (showWeekNumber) {
+        weekNumberCell = _react2['default'].createElement(
+          'td',
+          {
+            key: dateTable[passed].week(),
+            role: 'gridcell',
+            className: weekNumberCellClass
+          },
+          dateTable[passed].week()
+        );
+      }
+      for (jIndex = 0; jIndex < _DateConstants2['default'].DATE_COL_COUNT; jIndex++) {
+        var next = null;
+        var last = null;
+        current = dateTable[passed];
+        if (jIndex < _DateConstants2['default'].DATE_COL_COUNT - 1) {
+          next = dateTable[passed + 1];
+        }
+        if (jIndex > 0) {
+          last = dateTable[passed - 1];
+        }
+        var cls = cellClass;
+        var disabled = false;
+        var selected = false;
+
+        if (isSameDay(current, today)) {
+          cls += ' ' + todayClass;
+          isCurrentWeek = true;
+        }
+
+        var isBeforeCurrentMonthYear = beforeCurrentMonthYear(current, value);
+        var isAfterCurrentMonthYear = afterCurrentMonthYear(current, value);
+
+        if (selectedValue && Array.isArray(selectedValue)) {
+          var rangeValue = hoverValue.length ? hoverValue : selectedValue;
+          if (!isBeforeCurrentMonthYear && !isAfterCurrentMonthYear) {
+            var startValue = rangeValue[0];
+            var endValue = rangeValue[1];
+            if (startValue) {
+              if (isSameDay(current, startValue)) {
+                selected = true;
+                isActiveWeek = true;
+              }
+            }
+            if (startValue && endValue) {
+              if (isSameDay(current, endValue)) {
+                selected = true;
+                isActiveWeek = true;
+              } else if (current.isAfter(startValue, 'day') && current.isBefore(endValue, 'day')) {
+                cls += ' ' + inRangeClass;
+              }
+            }
+          }
+        } else if (isSameDay(current, value)) {
+          // keyboard change value, highlight works
+          selected = true;
+          isActiveWeek = true;
+        }
+
+        if (isSameDay(current, selectedValue)) {
+          cls += ' ' + selectedDateClass;
+        }
+
+        if (isBeforeCurrentMonthYear) {
+          cls += ' ' + lastMonthDayClass;
+        }
+        if (isAfterCurrentMonthYear) {
+          cls += ' ' + nextMonthDayClass;
+        }
+
+        if (disabledDate) {
+          if (disabledDate(current, value)) {
+            disabled = true;
+
+            if (!last || !disabledDate(last, value)) {
+              cls += ' ' + firstDisableClass;
+            }
+
+            if (!next || !disabledDate(next, value)) {
+              cls += ' ' + lastDisableClass;
+            }
+          }
+        }
+
+        if (selected) {
+          cls += ' ' + selectedClass;
+        }
+
+        if (disabled) {
+          cls += ' ' + disabledClass;
+        }
+
+        var dateHtml = void 0;
+        if (dateRender) {
+          dateHtml = dateRender(current, value);
+        } else {
+          var content = contentRender ? contentRender(current, value) : current.date();
+          dateHtml = _react2['default'].createElement(
+            'div',
+            {
+              key: getIdFromDate(current),
+              className: dateClass,
+              'aria-selected': selected,
+              'aria-disabled': disabled
+            },
+            content
+          );
+        }
+
+        dateCells.push(_react2['default'].createElement(
+          'td',
+          {
+            key: passed,
+            onClick: disabled ? undefined : props.onSelect.bind(null, current),
+            onMouseEnter: disabled ? undefined : props.onDayHover && props.onDayHover.bind(null, current) || undefined,
+            role: 'gridcell',
+            title: (0, _util.getTitleString)(current), className: cls
+          },
+          dateHtml
+        ));
+
+        passed++;
+      }
+
+      tableHtml.push(_react2['default'].createElement(
+        'tr',
+        {
+          key: iIndex,
+          role: 'row',
+          className: (0, _classnames2['default'])((_cx = {}, (0, _defineProperty3['default'])(_cx, prefixCls + '-current-week', isCurrentWeek), (0, _defineProperty3['default'])(_cx, prefixCls + '-active-week', isActiveWeek), _cx))
+        },
+        weekNumberCell,
+        dateCells
+      ));
+    }
+    return _react2['default'].createElement(
+      'tbody',
+      { className: prefixCls + '-tbody' },
+      tableHtml
+    );
+  }
+});
+
+exports['default'] = DateTBody;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1757:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DateConstants = __webpack_require__(749);
+
+var _DateConstants2 = _interopRequireDefault(_DateConstants);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var DateTHead = function (_React$Component) {
+  (0, _inherits3['default'])(DateTHead, _React$Component);
+
+  function DateTHead() {
+    (0, _classCallCheck3['default'])(this, DateTHead);
+    return (0, _possibleConstructorReturn3['default'])(this, (DateTHead.__proto__ || Object.getPrototypeOf(DateTHead)).apply(this, arguments));
+  }
+
+  (0, _createClass3['default'])(DateTHead, [{
+    key: 'render',
+    value: function render() {
+      var props = this.props;
+      var value = props.value;
+      var localeData = value.localeData();
+      var prefixCls = props.prefixCls;
+      var veryShortWeekdays = [];
+      var weekDays = [];
+      var firstDayOfWeek = localeData.firstDayOfWeek();
+      var showWeekNumberEl = void 0;
+      var now = (0, _moment2['default'])();
+      for (var dateColIndex = 0; dateColIndex < _DateConstants2['default'].DATE_COL_COUNT; dateColIndex++) {
+        var index = (firstDayOfWeek + dateColIndex) % _DateConstants2['default'].DATE_COL_COUNT;
+        now.day(index);
+        veryShortWeekdays[dateColIndex] = localeData.weekdaysMin(now);
+        weekDays[dateColIndex] = localeData.weekdaysShort(now);
+      }
+
+      if (props.showWeekNumber) {
+        showWeekNumberEl = _react2['default'].createElement(
+          'th',
+          {
+            role: 'columnheader',
+            className: prefixCls + '-column-header ' + prefixCls + '-week-number-header'
+          },
+          _react2['default'].createElement(
+            'span',
+            { className: prefixCls + '-column-header-inner' },
+            'x'
+          )
+        );
+      }
+      var weekDaysEls = weekDays.map(function (day, xindex) {
+        return _react2['default'].createElement(
+          'th',
+          {
+            key: xindex,
+            role: 'columnheader',
+            title: day,
+            className: prefixCls + '-column-header'
+          },
+          _react2['default'].createElement(
+            'span',
+            { className: prefixCls + '-column-header-inner' },
+            veryShortWeekdays[xindex]
+          )
+        );
+      });
+      return _react2['default'].createElement(
+        'thead',
+        null,
+        _react2['default'].createElement(
+          'tr',
+          { role: 'row' },
+          showWeekNumberEl,
+          weekDaysEls
+        )
+      );
+    }
+  }]);
+  return DateTHead;
+}(_react2['default'].Component);
+
+exports['default'] = DateTHead;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1758:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DateTHead = __webpack_require__(1757);
+
+var _DateTHead2 = _interopRequireDefault(_DateTHead);
+
+var _DateTBody = __webpack_require__(1756);
+
+var _DateTBody2 = _interopRequireDefault(_DateTBody);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var DateTable = function (_React$Component) {
+  (0, _inherits3['default'])(DateTable, _React$Component);
+
+  function DateTable() {
+    (0, _classCallCheck3['default'])(this, DateTable);
+    return (0, _possibleConstructorReturn3['default'])(this, (DateTable.__proto__ || Object.getPrototypeOf(DateTable)).apply(this, arguments));
+  }
+
+  (0, _createClass3['default'])(DateTable, [{
+    key: 'render',
+    value: function render() {
+      var props = this.props;
+      var prefixCls = props.prefixCls;
+      return _react2['default'].createElement(
+        'table',
+        { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+        _react2['default'].createElement(_DateTHead2['default'], props),
+        _react2['default'].createElement(_DateTBody2['default'], props)
+      );
+    }
+  }]);
+  return DateTable;
+}(_react2['default'].Component);
+
+exports['default'] = DateTable;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1759:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var ROW = 4;
+var COL = 3;
+
+
+function goYear(direction) {
+  var next = this.state.value.clone();
+  next.add(direction, 'years');
+  this.setState({
+    value: next
+  });
+}
+
+function chooseDecade(year, event) {
+  var next = this.state.value.clone();
+  next.year(year);
+  next.month(this.state.value.month());
+  this.props.onSelect(next);
+  event.preventDefault();
+}
+
+var DecadePanel = function (_React$Component) {
+  (0, _inherits3['default'])(DecadePanel, _React$Component);
+
+  function DecadePanel(props) {
+    (0, _classCallCheck3['default'])(this, DecadePanel);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, (DecadePanel.__proto__ || Object.getPrototypeOf(DecadePanel)).call(this, props));
+
+    _this.state = {
+      value: props.value || props.defaultValue
+    };
+
+    // bind methods
+    _this.prefixCls = props.rootPrefixCls + '-decade-panel';
+    _this.nextCentury = goYear.bind(_this, 100);
+    _this.previousCentury = goYear.bind(_this, -100);
+    return _this;
+  }
+
+  (0, _createClass3['default'])(DecadePanel, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var value = this.state.value;
+      var locale = this.props.locale;
+      var currentYear = value.year();
+      var startYear = parseInt(currentYear / 100, 10) * 100;
+      var preYear = startYear - 10;
+      var endYear = startYear + 99;
+      var decades = [];
+      var index = 0;
+      var prefixCls = this.prefixCls;
+
+      for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
+        decades[rowIndex] = [];
+        for (var colIndex = 0; colIndex < COL; colIndex++) {
+          var startDecade = preYear + index * 10;
+          var endDecade = preYear + index * 10 + 9;
+          decades[rowIndex][colIndex] = {
+            startDecade: startDecade,
+            endDecade: endDecade
+          };
+          index++;
+        }
+      }
+
+      var decadesEls = decades.map(function (row, decadeIndex) {
+        var tds = row.map(function (decadeData) {
+          var _classNameMap;
+
+          var dStartDecade = decadeData.startDecade;
+          var dEndDecade = decadeData.endDecade;
+          var isLast = dStartDecade < startYear;
+          var isNext = dEndDecade > endYear;
+          var classNameMap = (_classNameMap = {}, (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-cell', 1), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-selected-cell', dStartDecade <= currentYear && currentYear <= dEndDecade), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-last-century-cell', isLast), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-next-century-cell', isNext), _classNameMap);
+          var content = dStartDecade + '-' + dEndDecade;
+          var clickHandler = void 0;
+          if (isLast) {
+            clickHandler = _this2.previousCentury;
+          } else if (isNext) {
+            clickHandler = _this2.nextCentury;
+          } else {
+            clickHandler = chooseDecade.bind(_this2, dStartDecade);
+          }
+          return _react2['default'].createElement(
+            'td',
+            {
+              key: dStartDecade,
+              onClick: clickHandler,
+              role: 'gridcell',
+              className: (0, _classnames2['default'])(classNameMap)
+            },
+            _react2['default'].createElement(
+              'a',
+              {
+                className: prefixCls + '-decade'
+              },
+              content
+            )
+          );
+        });
+        return _react2['default'].createElement(
+          'tr',
+          { key: decadeIndex, role: 'row' },
+          tds
+        );
+      });
+
+      return _react2['default'].createElement(
+        'div',
+        { className: this.prefixCls },
+        _react2['default'].createElement(
+          'div',
+          { className: prefixCls + '-header' },
+          _react2['default'].createElement('a', {
+            className: prefixCls + '-prev-century-btn',
+            role: 'button',
+            onClick: this.previousCentury,
+            title: locale.previousCentury
+          }),
+          _react2['default'].createElement(
+            'div',
+            { className: prefixCls + '-century' },
+            startYear,
+            '-',
+            endYear
+          ),
+          _react2['default'].createElement('a', {
+            className: prefixCls + '-next-century-btn',
+            role: 'button',
+            onClick: this.nextCentury,
+            title: locale.nextCentury
+          })
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: prefixCls + '-body' },
+          _react2['default'].createElement(
+            'table',
+            { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+            _react2['default'].createElement(
+              'tbody',
+              { className: prefixCls + '-tbody' },
+              decadesEls
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return DecadePanel;
+}(_react2['default'].Component);
+
+exports['default'] = DecadePanel;
+
+
+DecadePanel.propTypes = {
+  locale: _propTypes2['default'].object,
+  value: _propTypes2['default'].object,
+  defaultValue: _propTypes2['default'].object,
+  rootPrefixCls: _propTypes2['default'].string
+};
+
+DecadePanel.defaultProps = {
+  onSelect: function onSelect() {}
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1760:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports['default'] = {
+  today: 'Today',
+  now: 'Now',
+  backToToday: 'Back to today',
+  ok: 'Ok',
+  clear: 'Clear',
+  month: 'Month',
+  year: 'Year',
+  timeSelect: 'Select time',
+  dateSelect: 'Select date',
+  monthSelect: 'Choose a month',
+  yearSelect: 'Choose a year',
+  decadeSelect: 'Choose a decade',
+  yearFormat: 'YYYY',
+  dateFormat: 'M/D/YYYY',
+  dayFormat: 'D',
+  dateTimeFormat: 'M/D/YYYY HH:mm:ss',
+  monthBeforeYear: true,
+  previousMonth: 'Previous month (PageUp)',
+  nextMonth: 'Next month (PageDown)',
+  previousYear: 'Last year (Control + left)',
+  nextYear: 'Next year (Control + right)',
+  previousDecade: 'Last decade',
+  nextDecade: 'Next decade',
+  previousCentury: 'Last century',
+  nextCentury: 'Next century'
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1761:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _index = __webpack_require__(142);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function noop() {}
+
+function getNow() {
+  return (0, _moment2['default'])();
+}
+
+function getNowByCurrentStateValue(value) {
+  var ret = void 0;
+  if (value) {
+    ret = (0, _index.getTodayTime)(value);
+  } else {
+    ret = getNow();
+  }
+  return ret;
+}
+
+var CalendarMixin = {
+  propTypes: {
+    value: _propTypes2['default'].object,
+    defaultValue: _propTypes2['default'].object,
+    onKeyDown: _propTypes2['default'].func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      onKeyDown: noop
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    var value = props.value || props.defaultValue || getNow();
+    return {
+      value: value,
+      selectedValue: props.selectedValue || props.defaultSelectedValue
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    var value = nextProps.value;
+    var selectedValue = nextProps.selectedValue;
+
+    if ('value' in nextProps) {
+      value = value || nextProps.defaultValue || getNowByCurrentStateValue(this.state.value);
+      this.setState({
+        value: value
+      });
+    }
+    if ('selectedValue' in nextProps) {
+      this.setState({
+        selectedValue: selectedValue
+      });
+    }
+  },
+  onSelect: function onSelect(value, cause) {
+    if (value) {
+      this.setValue(value);
+    }
+    this.setSelectedValue(value, cause);
+  },
+  renderRoot: function renderRoot(newProps) {
+    var _className;
+
+    var props = this.props;
+    var prefixCls = props.prefixCls;
+
+    var className = (_className = {}, (0, _defineProperty3['default'])(_className, prefixCls, 1), (0, _defineProperty3['default'])(_className, prefixCls + '-hidden', !props.visible), (0, _defineProperty3['default'])(_className, props.className, !!props.className), (0, _defineProperty3['default'])(_className, newProps.className, !!newProps.className), _className);
+
+    return _react2['default'].createElement(
+      'div',
+      {
+        ref: this.saveRoot,
+        className: '' + (0, _classnames2['default'])(className),
+        style: this.props.style,
+        tabIndex: '0',
+        onKeyDown: this.onKeyDown
+      },
+      newProps.children
+    );
+  },
+  setSelectedValue: function setSelectedValue(selectedValue, cause) {
+    // if (this.isAllowedDate(selectedValue)) {
+    if (!('selectedValue' in this.props)) {
+      this.setState({
+        selectedValue: selectedValue
+      });
+    }
+    this.props.onSelect(selectedValue, cause);
+    // }
+  },
+  setValue: function setValue(value) {
+    var originalValue = this.state.value;
+    if (!('value' in this.props)) {
+      this.setState({
+        value: value
+      });
+    }
+    if (originalValue && value && !originalValue.isSame(value) || !originalValue && value || originalValue && !value) {
+      this.props.onChange(value);
+    }
+  },
+  isAllowedDate: function isAllowedDate(value) {
+    var disabledDate = this.props.disabledDate;
+    var disabledTime = this.props.disabledTime;
+    return (0, _index.isAllowedDate)(value, disabledDate, disabledTime);
+  }
+};
+
+exports['default'] = CalendarMixin;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1762:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _index = __webpack_require__(142);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var ROW = 4;
+var COL = 3;
+
+function chooseMonth(month) {
+  var next = this.state.value.clone();
+  next.month(month);
+  this.setAndSelectValue(next);
+}
+
+function noop() {}
+
+var MonthTable = function (_Component) {
+  (0, _inherits3['default'])(MonthTable, _Component);
+
+  function MonthTable(props) {
+    (0, _classCallCheck3['default'])(this, MonthTable);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, (MonthTable.__proto__ || Object.getPrototypeOf(MonthTable)).call(this, props));
+
+    _this.state = {
+      value: props.value
+    };
+    return _this;
+  }
+
+  (0, _createClass3['default'])(MonthTable, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if ('value' in nextProps) {
+        this.setState({
+          value: nextProps.value
+        });
+      }
+    }
+  }, {
+    key: 'setAndSelectValue',
+    value: function setAndSelectValue(value) {
+      this.setState({
+        value: value
+      });
+      this.props.onSelect(value);
+    }
+  }, {
+    key: 'months',
+    value: function months() {
+      var value = this.state.value;
+      var current = value.clone();
+      var months = [];
+      var index = 0;
+      for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
+        months[rowIndex] = [];
+        for (var colIndex = 0; colIndex < COL; colIndex++) {
+          current.month(index);
+          var content = (0, _index.getMonthName)(current);
+          months[rowIndex][colIndex] = {
+            value: index,
+            content: content,
+            title: content
+          };
+          index++;
+        }
+      }
+      return months;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var props = this.props;
+      var value = this.state.value;
+      var today = (0, _index.getTodayTime)(value);
+      var months = this.months();
+      var currentMonth = value.month();
+      var prefixCls = props.prefixCls,
+          locale = props.locale,
+          contentRender = props.contentRender,
+          cellRender = props.cellRender;
+
+      var monthsEls = months.map(function (month, index) {
+        var tds = month.map(function (monthData) {
+          var _classNameMap;
+
+          var disabled = false;
+          if (props.disabledDate) {
+            var testValue = value.clone();
+            testValue.month(monthData.value);
+            disabled = props.disabledDate(testValue);
+          }
+          var classNameMap = (_classNameMap = {}, (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-cell', 1), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-cell-disabled', disabled), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-selected-cell', monthData.value === currentMonth), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-current-cell', today.year() === value.year() && monthData.value === today.month()), _classNameMap);
+          var cellEl = void 0;
+          if (cellRender) {
+            var currentValue = value.clone();
+            currentValue.month(monthData.value);
+            cellEl = cellRender(currentValue, locale);
+          } else {
+            var content = void 0;
+            if (contentRender) {
+              var _currentValue = value.clone();
+              _currentValue.month(monthData.value);
+              content = contentRender(_currentValue, locale);
+            } else {
+              content = monthData.content;
+            }
+            cellEl = _react2['default'].createElement(
+              'a',
+              { className: prefixCls + '-month' },
+              content
+            );
+          }
+          return _react2['default'].createElement(
+            'td',
+            {
+              role: 'gridcell',
+              key: monthData.value,
+              onClick: disabled ? null : chooseMonth.bind(_this2, monthData.value),
+              title: monthData.title,
+              className: (0, _classnames2['default'])(classNameMap)
+            },
+            cellEl
+          );
+        });
+        return _react2['default'].createElement(
+          'tr',
+          { key: index, role: 'row' },
+          tds
+        );
+      });
+
+      return _react2['default'].createElement(
+        'table',
+        { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+        _react2['default'].createElement(
+          'tbody',
+          { className: prefixCls + '-tbody' },
+          monthsEls
+        )
+      );
+    }
+  }]);
+  return MonthTable;
+}(_react.Component);
+
+MonthTable.defaultProps = {
+  onSelect: noop
+};
+MonthTable.propTypes = {
+  onSelect: _propTypes2['default'].func,
+  cellRender: _propTypes2['default'].func,
+  prefixCls: _propTypes2['default'].string,
+  value: _propTypes2['default'].object
+};
+exports['default'] = MonthTable;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1763:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var autoAdjustOverflow = {
+  adjustX: 1,
+  adjustY: 1
+};
+
+var targetOffset = [0, 0];
+
+var placements = {
+  bottomLeft: {
+    points: ['tl', 'tl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -3],
+    targetOffset: targetOffset
+  },
+  bottomRight: {
+    points: ['tr', 'tr'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -3],
+    targetOffset: targetOffset
+  },
+  topRight: {
+    points: ['br', 'br'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 3],
+    targetOffset: targetOffset
+  },
+  topLeft: {
+    points: ['bl', 'bl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 3],
+    targetOffset: targetOffset
+  }
+};
+
+exports['default'] = placements;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1764:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _CalendarHeader = __webpack_require__(1751);
+
+var _CalendarHeader2 = _interopRequireDefault(_CalendarHeader);
+
+var _DateTable = __webpack_require__(1758);
+
+var _DateTable2 = _interopRequireDefault(_DateTable);
+
+var _DateInput = __webpack_require__(1755);
+
+var _DateInput2 = _interopRequireDefault(_DateInput);
+
+var _index = __webpack_require__(142);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var CalendarPart = (0, _createReactClass2['default'])({
+  displayName: 'CalendarPart',
+
+  propTypes: {
+    prefixCls: _propTypes2['default'].string,
+    value: _propTypes2['default'].any,
+    hoverValue: _propTypes2['default'].any,
+    selectedValue: _propTypes2['default'].any,
+    direction: _propTypes2['default'].any,
+    locale: _propTypes2['default'].any,
+    showTimePicker: _propTypes2['default'].bool,
+    format: _propTypes2['default'].any,
+    placeholder: _propTypes2['default'].any,
+    disabledDate: _propTypes2['default'].any,
+    timePicker: _propTypes2['default'].any,
+    disabledTime: _propTypes2['default'].any,
+    onInputSelect: _propTypes2['default'].func,
+    timePickerDisabledTime: _propTypes2['default'].object,
+    enableNext: _propTypes2['default'].any,
+    enablePrev: _propTypes2['default'].any
+  },
+  render: function render() {
+    var props = this.props;
+    var prefixCls = props.prefixCls,
+        value = props.value,
+        hoverValue = props.hoverValue,
+        selectedValue = props.selectedValue,
+        direction = props.direction,
+        locale = props.locale,
+        format = props.format,
+        placeholder = props.placeholder,
+        disabledDate = props.disabledDate,
+        timePicker = props.timePicker,
+        disabledTime = props.disabledTime,
+        timePickerDisabledTime = props.timePickerDisabledTime,
+        showTimePicker = props.showTimePicker,
+        onInputSelect = props.onInputSelect,
+        enablePrev = props.enablePrev,
+        enableNext = props.enableNext;
+
+    var shouldShowTimePicker = showTimePicker && timePicker;
+    var disabledTimeConfig = shouldShowTimePicker && disabledTime ? (0, _index.getTimeConfig)(selectedValue, disabledTime) : null;
+    var rangeClassName = prefixCls + '-range';
+    var newProps = {
+      locale: locale,
+      value: value,
+      prefixCls: prefixCls,
+      showTimePicker: showTimePicker
+    };
+    var index = direction === 'left' ? 0 : 1;
+    var timePickerEle = shouldShowTimePicker && _react2['default'].cloneElement(timePicker, (0, _extends3['default'])({
+      showHour: true,
+      showMinute: true,
+      showSecond: true
+    }, timePicker.props, disabledTimeConfig, timePickerDisabledTime, {
+      onChange: onInputSelect,
+      defaultOpenValue: value,
+      value: selectedValue[index]
+    }));
+    return _react2['default'].createElement(
+      'div',
+      { className: rangeClassName + '-part ' + rangeClassName + '-' + direction },
+      _react2['default'].createElement(_DateInput2['default'], {
+        format: format,
+        locale: locale,
+        prefixCls: prefixCls,
+        timePicker: timePicker,
+        disabledDate: disabledDate,
+        placeholder: placeholder,
+        disabledTime: disabledTime,
+        value: value,
+        showClear: false,
+        selectedValue: selectedValue[index],
+        onChange: onInputSelect
+      }),
+      _react2['default'].createElement(
+        'div',
+        { style: { outline: 'none' } },
+        _react2['default'].createElement(_CalendarHeader2['default'], (0, _extends3['default'])({}, newProps, {
+          enableNext: enableNext,
+          enablePrev: enablePrev,
+          onValueChange: props.onValueChange,
+          onPanelChange: props.onPanelChange,
+          disabledMonth: props.disabledMonth
+        })),
+        showTimePicker ? _react2['default'].createElement(
+          'div',
+          { className: prefixCls + '-time-picker' },
+          _react2['default'].createElement(
+            'div',
+            { className: prefixCls + '-time-picker-panel' },
+            timePickerEle
+          )
+        ) : null,
+        _react2['default'].createElement(
+          'div',
+          { className: prefixCls + '-body' },
+          _react2['default'].createElement(_DateTable2['default'], (0, _extends3['default'])({}, newProps, {
+            hoverValue: hoverValue,
+            selectedValue: selectedValue,
+            dateRender: props.dateRender,
+            onSelect: props.onSelect,
+            onDayHover: props.onDayHover,
+            disabledDate: disabledDate,
+            showWeekNumber: props.showWeekNumber
+          }))
+        )
+      )
+    );
+  }
+});
+
+exports['default'] = CalendarPart;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 185:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 曲线辅助模块
+ * @module zrender/core/curve
+ * @author pissang(https://www.github.com/pissang)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    'use strict';
+
+    var vec2 = __webpack_require__(150);
+    var v2Create = vec2.create;
+    var v2DistSquare = vec2.distSquare;
+    var mathPow = Math.pow;
+    var mathSqrt = Math.sqrt;
+
+    var EPSILON = 1e-8;
+    var EPSILON_NUMERIC = 1e-4;
+
+    var THREE_SQRT = mathSqrt(3);
+    var ONE_THIRD = 1 / 3;
+
+    // 临时变量
+    var _v0 = v2Create();
+    var _v1 = v2Create();
+    var _v2 = v2Create();
+    // var _v3 = vec2.create();
+
+    function isAroundZero(val) {
+        return val > -EPSILON && val < EPSILON;
+    }
+    function isNotAroundZero(val) {
+        return val > EPSILON || val < -EPSILON;
+    }
+    /**
+     * 计算三次贝塞尔值
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {number} t
+     * @return {number}
+     */
+    function cubicAt(p0, p1, p2, p3, t) {
+        var onet = 1 - t;
+        return onet * onet * (onet * p0 + 3 * t * p1)
+             + t * t * (t * p3 + 3 * onet * p2);
+    }
+
+    /**
+     * 计算三次贝塞尔导数值
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {number} t
+     * @return {number}
+     */
+    function cubicDerivativeAt(p0, p1, p2, p3, t) {
+        var onet = 1 - t;
+        return 3 * (
+            ((p1 - p0) * onet + 2 * (p2 - p1) * t) * onet
+            + (p3 - p2) * t * t
+        );
+    }
+
+    /**
+     * 计算三次贝塞尔方程根，使用盛金公式
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {number} val
+     * @param  {Array.<number>} roots
+     * @return {number} 有效根数目
+     */
+    function cubicRootAt(p0, p1, p2, p3, val, roots) {
+        // Evaluate roots of cubic functions
+        var a = p3 + 3 * (p1 - p2) - p0;
+        var b = 3 * (p2 - p1 * 2 + p0);
+        var c = 3 * (p1  - p0);
+        var d = p0 - val;
+
+        var A = b * b - 3 * a * c;
+        var B = b * c - 9 * a * d;
+        var C = c * c - 3 * b * d;
+
+        var n = 0;
+
+        if (isAroundZero(A) && isAroundZero(B)) {
+            if (isAroundZero(b)) {
+                roots[0] = 0;
+            }
+            else {
+                var t1 = -c / b;  //t1, t2, t3, b is not zero
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+            }
+        }
+        else {
+            var disc = B * B - 4 * A * C;
+
+            if (isAroundZero(disc)) {
+                var K = B / A;
+                var t1 = -b / a + K;  // t1, a is not zero
+                var t2 = -K / 2;  // t2, t3
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+                if (t2 >= 0 && t2 <= 1) {
+                    roots[n++] = t2;
+                }
+            }
+            else if (disc > 0) {
+                var discSqrt = mathSqrt(disc);
+                var Y1 = A * b + 1.5 * a * (-B + discSqrt);
+                var Y2 = A * b + 1.5 * a * (-B - discSqrt);
+                if (Y1 < 0) {
+                    Y1 = -mathPow(-Y1, ONE_THIRD);
+                }
+                else {
+                    Y1 = mathPow(Y1, ONE_THIRD);
+                }
+                if (Y2 < 0) {
+                    Y2 = -mathPow(-Y2, ONE_THIRD);
+                }
+                else {
+                    Y2 = mathPow(Y2, ONE_THIRD);
+                }
+                var t1 = (-b - (Y1 + Y2)) / (3 * a);
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+            }
+            else {
+                var T = (2 * A * b - 3 * a * B) / (2 * mathSqrt(A * A * A));
+                var theta = Math.acos(T) / 3;
+                var ASqrt = mathSqrt(A);
+                var tmp = Math.cos(theta);
+
+                var t1 = (-b - 2 * ASqrt * tmp) / (3 * a);
+                var t2 = (-b + ASqrt * (tmp + THREE_SQRT * Math.sin(theta))) / (3 * a);
+                var t3 = (-b + ASqrt * (tmp - THREE_SQRT * Math.sin(theta))) / (3 * a);
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+                if (t2 >= 0 && t2 <= 1) {
+                    roots[n++] = t2;
+                }
+                if (t3 >= 0 && t3 <= 1) {
+                    roots[n++] = t3;
+                }
+            }
+        }
+        return n;
+    }
+
+    /**
+     * 计算三次贝塞尔方程极限值的位置
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {Array.<number>} extrema
+     * @return {number} 有效数目
+     */
+    function cubicExtrema(p0, p1, p2, p3, extrema) {
+        var b = 6 * p2 - 12 * p1 + 6 * p0;
+        var a = 9 * p1 + 3 * p3 - 3 * p0 - 9 * p2;
+        var c = 3 * p1 - 3 * p0;
+
+        var n = 0;
+        if (isAroundZero(a)) {
+            if (isNotAroundZero(b)) {
+                var t1 = -c / b;
+                if (t1 >= 0 && t1 <=1) {
+                    extrema[n++] = t1;
+                }
+            }
+        }
+        else {
+            var disc = b * b - 4 * a * c;
+            if (isAroundZero(disc)) {
+                extrema[0] = -b / (2 * a);
+            }
+            else if (disc > 0) {
+                var discSqrt = mathSqrt(disc);
+                var t1 = (-b + discSqrt) / (2 * a);
+                var t2 = (-b - discSqrt) / (2 * a);
+                if (t1 >= 0 && t1 <= 1) {
+                    extrema[n++] = t1;
+                }
+                if (t2 >= 0 && t2 <= 1) {
+                    extrema[n++] = t2;
+                }
+            }
+        }
+        return n;
+    }
+
+    /**
+     * 细分三次贝塞尔曲线
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {number} t
+     * @param  {Array.<number>} out
+     */
+    function cubicSubdivide(p0, p1, p2, p3, t, out) {
+        var p01 = (p1 - p0) * t + p0;
+        var p12 = (p2 - p1) * t + p1;
+        var p23 = (p3 - p2) * t + p2;
+
+        var p012 = (p12 - p01) * t + p01;
+        var p123 = (p23 - p12) * t + p12;
+
+        var p0123 = (p123 - p012) * t + p012;
+        // Seg0
+        out[0] = p0;
+        out[1] = p01;
+        out[2] = p012;
+        out[3] = p0123;
+        // Seg1
+        out[4] = p0123;
+        out[5] = p123;
+        out[6] = p23;
+        out[7] = p3;
+    }
+
+    /**
+     * 投射点到三次贝塞尔曲线上，返回投射距离。
+     * 投射点有可能会有一个或者多个，这里只返回其中距离最短的一个。
+     * @param {number} x0
+     * @param {number} y0
+     * @param {number} x1
+     * @param {number} y1
+     * @param {number} x2
+     * @param {number} y2
+     * @param {number} x3
+     * @param {number} y3
+     * @param {number} x
+     * @param {number} y
+     * @param {Array.<number>} [out] 投射点
+     * @return {number}
+     */
+    function cubicProjectPoint(
+        x0, y0, x1, y1, x2, y2, x3, y3,
+        x, y, out
+    ) {
+        // http://pomax.github.io/bezierinfo/#projections
+        var t;
+        var interval = 0.005;
+        var d = Infinity;
+        var prev;
+        var next;
+        var d1;
+        var d2;
+
+        _v0[0] = x;
+        _v0[1] = y;
+
+        // 先粗略估计一下可能的最小距离的 t 值
+        // PENDING
+        for (var _t = 0; _t < 1; _t += 0.05) {
+            _v1[0] = cubicAt(x0, x1, x2, x3, _t);
+            _v1[1] = cubicAt(y0, y1, y2, y3, _t);
+            d1 = v2DistSquare(_v0, _v1);
+            if (d1 < d) {
+                t = _t;
+                d = d1;
+            }
+        }
+        d = Infinity;
+
+        // At most 32 iteration
+        for (var i = 0; i < 32; i++) {
+            if (interval < EPSILON_NUMERIC) {
+                break;
+            }
+            prev = t - interval;
+            next = t + interval;
+            // t - interval
+            _v1[0] = cubicAt(x0, x1, x2, x3, prev);
+            _v1[1] = cubicAt(y0, y1, y2, y3, prev);
+
+            d1 = v2DistSquare(_v1, _v0);
+
+            if (prev >= 0 && d1 < d) {
+                t = prev;
+                d = d1;
+            }
+            else {
+                // t + interval
+                _v2[0] = cubicAt(x0, x1, x2, x3, next);
+                _v2[1] = cubicAt(y0, y1, y2, y3, next);
+                d2 = v2DistSquare(_v2, _v0);
+
+                if (next <= 1 && d2 < d) {
+                    t = next;
+                    d = d2;
+                }
+                else {
+                    interval *= 0.5;
+                }
+            }
+        }
+        // t
+        if (out) {
+            out[0] = cubicAt(x0, x1, x2, x3, t);
+            out[1] = cubicAt(y0, y1, y2, y3, t);
+        }
+        // console.log(interval, i);
+        return mathSqrt(d);
+    }
+
+    /**
+     * 计算二次方贝塞尔值
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} t
+     * @return {number}
+     */
+    function quadraticAt(p0, p1, p2, t) {
+        var onet = 1 - t;
+        return onet * (onet * p0 + 2 * t * p1) + t * t * p2;
+    }
+
+    /**
+     * 计算二次方贝塞尔导数值
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} t
+     * @return {number}
+     */
+    function quadraticDerivativeAt(p0, p1, p2, t) {
+        return 2 * ((1 - t) * (p1 - p0) + t * (p2 - p1));
+    }
+
+    /**
+     * 计算二次方贝塞尔方程根
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} t
+     * @param  {Array.<number>} roots
+     * @return {number} 有效根数目
+     */
+    function quadraticRootAt(p0, p1, p2, val, roots) {
+        var a = p0 - 2 * p1 + p2;
+        var b = 2 * (p1 - p0);
+        var c = p0 - val;
+
+        var n = 0;
+        if (isAroundZero(a)) {
+            if (isNotAroundZero(b)) {
+                var t1 = -c / b;
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+            }
+        }
+        else {
+            var disc = b * b - 4 * a * c;
+            if (isAroundZero(disc)) {
+                var t1 = -b / (2 * a);
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+            }
+            else if (disc > 0) {
+                var discSqrt = mathSqrt(disc);
+                var t1 = (-b + discSqrt) / (2 * a);
+                var t2 = (-b - discSqrt) / (2 * a);
+                if (t1 >= 0 && t1 <= 1) {
+                    roots[n++] = t1;
+                }
+                if (t2 >= 0 && t2 <= 1) {
+                    roots[n++] = t2;
+                }
+            }
+        }
+        return n;
+    }
+
+    /**
+     * 计算二次贝塞尔方程极限值
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @return {number}
+     */
+    function quadraticExtremum(p0, p1, p2) {
+        var divider = p0 + p2 - 2 * p1;
+        if (divider === 0) {
+            // p1 is center of p0 and p2
+            return 0.5;
+        }
+        else {
+            return (p0 - p1) / divider;
+        }
+    }
+
+    /**
+     * 细分二次贝塞尔曲线
+     * @memberOf module:zrender/core/curve
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} t
+     * @param  {Array.<number>} out
+     */
+    function quadraticSubdivide(p0, p1, p2, t, out) {
+        var p01 = (p1 - p0) * t + p0;
+        var p12 = (p2 - p1) * t + p1;
+        var p012 = (p12 - p01) * t + p01;
+
+        // Seg0
+        out[0] = p0;
+        out[1] = p01;
+        out[2] = p012;
+
+        // Seg1
+        out[3] = p012;
+        out[4] = p12;
+        out[5] = p2;
+    }
+
+    /**
+     * 投射点到二次贝塞尔曲线上，返回投射距离。
+     * 投射点有可能会有一个或者多个，这里只返回其中距离最短的一个。
+     * @param {number} x0
+     * @param {number} y0
+     * @param {number} x1
+     * @param {number} y1
+     * @param {number} x2
+     * @param {number} y2
+     * @param {number} x
+     * @param {number} y
+     * @param {Array.<number>} out 投射点
+     * @return {number}
+     */
+    function quadraticProjectPoint(
+        x0, y0, x1, y1, x2, y2,
+        x, y, out
+    ) {
+        // http://pomax.github.io/bezierinfo/#projections
+        var t;
+        var interval = 0.005;
+        var d = Infinity;
+
+        _v0[0] = x;
+        _v0[1] = y;
+
+        // 先粗略估计一下可能的最小距离的 t 值
+        // PENDING
+        for (var _t = 0; _t < 1; _t += 0.05) {
+            _v1[0] = quadraticAt(x0, x1, x2, _t);
+            _v1[1] = quadraticAt(y0, y1, y2, _t);
+            var d1 = v2DistSquare(_v0, _v1);
+            if (d1 < d) {
+                t = _t;
+                d = d1;
+            }
+        }
+        d = Infinity;
+
+        // At most 32 iteration
+        for (var i = 0; i < 32; i++) {
+            if (interval < EPSILON_NUMERIC) {
+                break;
+            }
+            var prev = t - interval;
+            var next = t + interval;
+            // t - interval
+            _v1[0] = quadraticAt(x0, x1, x2, prev);
+            _v1[1] = quadraticAt(y0, y1, y2, prev);
+
+            var d1 = v2DistSquare(_v1, _v0);
+
+            if (prev >= 0 && d1 < d) {
+                t = prev;
+                d = d1;
+            }
+            else {
+                // t + interval
+                _v2[0] = quadraticAt(x0, x1, x2, next);
+                _v2[1] = quadraticAt(y0, y1, y2, next);
+                var d2 = v2DistSquare(_v2, _v0);
+                if (next <= 1 && d2 < d) {
+                    t = next;
+                    d = d2;
+                }
+                else {
+                    interval *= 0.5;
+                }
+            }
+        }
+        // t
+        if (out) {
+            out[0] = quadraticAt(x0, x1, x2, t);
+            out[1] = quadraticAt(y0, y1, y2, t);
+        }
+        // console.log(interval, i);
+        return mathSqrt(d);
+    }
+
+    return {
+
+        cubicAt: cubicAt,
+
+        cubicDerivativeAt: cubicDerivativeAt,
+
+        cubicRootAt: cubicRootAt,
+
+        cubicExtrema: cubicExtrema,
+
+        cubicSubdivide: cubicSubdivide,
+
+        cubicProjectPoint: cubicProjectPoint,
+
+        quadraticAt: quadraticAt,
+
+        quadraticDerivativeAt: quadraticDerivativeAt,
+
+        quadraticRootAt: quadraticRootAt,
+
+        quadraticExtremum: quadraticExtremum,
+
+        quadraticSubdivide: quadraticSubdivide,
+
+        quadraticProjectPoint: quadraticProjectPoint
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 1864:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Select = __webpack_require__(1866);
+
+var _Select2 = _interopRequireDefault(_Select);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var formatOption = function formatOption(option, disabledOptions) {
+  var value = '' + option;
+  if (option < 10) {
+    value = '0' + option;
+  }
+
+  var disabled = false;
+  if (disabledOptions && disabledOptions.indexOf(option) >= 0) {
+    disabled = true;
+  }
+
+  return {
+    value: value,
+    disabled: disabled
+  };
+};
+
+var Combobox = function (_Component) {
+  (0, _inherits3['default'])(Combobox, _Component);
+
+  function Combobox() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3['default'])(this, Combobox);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3['default'])(this, (_ref = Combobox.__proto__ || Object.getPrototypeOf(Combobox)).call.apply(_ref, [this].concat(args))), _this), _this.onItemChange = function (type, itemValue) {
+      var _this$props = _this.props,
+          onChange = _this$props.onChange,
+          defaultOpenValue = _this$props.defaultOpenValue,
+          use12Hours = _this$props.use12Hours;
+
+      var value = (_this.props.value || defaultOpenValue).clone();
+
+      if (type === 'hour') {
+        if (use12Hours) {
+          if (_this.isAM()) {
+            value.hour(+itemValue % 12);
+          } else {
+            value.hour(+itemValue % 12 + 12);
+          }
+        } else {
+          value.hour(+itemValue);
+        }
+      } else if (type === 'minute') {
+        value.minute(+itemValue);
+      } else if (type === 'ampm') {
+        var ampm = itemValue.toUpperCase();
+        if (use12Hours) {
+          if (ampm === 'PM' && value.hour() < 12) {
+            value.hour(value.hour() % 12 + 12);
+          }
+
+          if (ampm === 'AM') {
+            if (value.hour() >= 12) {
+              value.hour(value.hour() - 12);
+            }
+          }
+        }
+      } else {
+        value.second(+itemValue);
+      }
+      onChange(value);
+    }, _this.onEnterSelectPanel = function (range) {
+      _this.props.onCurrentSelectPanelChange(range);
+    }, _temp), (0, _possibleConstructorReturn3['default'])(_this, _ret);
+  }
+
+  (0, _createClass3['default'])(Combobox, [{
+    key: 'getHourSelect',
+    value: function getHourSelect(hour) {
+      var _props = this.props,
+          prefixCls = _props.prefixCls,
+          hourOptions = _props.hourOptions,
+          disabledHours = _props.disabledHours,
+          showHour = _props.showHour,
+          use12Hours = _props.use12Hours;
+
+      if (!showHour) {
+        return null;
+      }
+      var disabledOptions = disabledHours();
+      var hourOptionsAdj = void 0;
+      var hourAdj = void 0;
+      if (use12Hours) {
+        hourOptionsAdj = [12].concat(hourOptions.filter(function (h) {
+          return h < 12 && h > 0;
+        }));
+        hourAdj = hour % 12 || 12;
+      } else {
+        hourOptionsAdj = hourOptions;
+        hourAdj = hour;
+      }
+
+      return _react2['default'].createElement(_Select2['default'], {
+        prefixCls: prefixCls,
+        options: hourOptionsAdj.map(function (option) {
+          return formatOption(option, disabledOptions);
+        }),
+        selectedIndex: hourOptionsAdj.indexOf(hourAdj),
+        type: 'hour',
+        onSelect: this.onItemChange,
+        onMouseEnter: this.onEnterSelectPanel.bind(this, 'hour')
+      });
+    }
+  }, {
+    key: 'getMinuteSelect',
+    value: function getMinuteSelect(minute) {
+      var _props2 = this.props,
+          prefixCls = _props2.prefixCls,
+          minuteOptions = _props2.minuteOptions,
+          disabledMinutes = _props2.disabledMinutes,
+          defaultOpenValue = _props2.defaultOpenValue,
+          showMinute = _props2.showMinute;
+
+      if (!showMinute) {
+        return null;
+      }
+      var value = this.props.value || defaultOpenValue;
+      var disabledOptions = disabledMinutes(value.hour());
+
+      return _react2['default'].createElement(_Select2['default'], {
+        prefixCls: prefixCls,
+        options: minuteOptions.map(function (option) {
+          return formatOption(option, disabledOptions);
+        }),
+        selectedIndex: minuteOptions.indexOf(minute),
+        type: 'minute',
+        onSelect: this.onItemChange,
+        onMouseEnter: this.onEnterSelectPanel.bind(this, 'minute')
+      });
+    }
+  }, {
+    key: 'getSecondSelect',
+    value: function getSecondSelect(second) {
+      var _props3 = this.props,
+          prefixCls = _props3.prefixCls,
+          secondOptions = _props3.secondOptions,
+          disabledSeconds = _props3.disabledSeconds,
+          showSecond = _props3.showSecond,
+          defaultOpenValue = _props3.defaultOpenValue;
+
+      if (!showSecond) {
+        return null;
+      }
+      var value = this.props.value || defaultOpenValue;
+      var disabledOptions = disabledSeconds(value.hour(), value.minute());
+
+      return _react2['default'].createElement(_Select2['default'], {
+        prefixCls: prefixCls,
+        options: secondOptions.map(function (option) {
+          return formatOption(option, disabledOptions);
+        }),
+        selectedIndex: secondOptions.indexOf(second),
+        type: 'second',
+        onSelect: this.onItemChange,
+        onMouseEnter: this.onEnterSelectPanel.bind(this, 'second')
+      });
+    }
+  }, {
+    key: 'getAMPMSelect',
+    value: function getAMPMSelect() {
+      var _props4 = this.props,
+          prefixCls = _props4.prefixCls,
+          use12Hours = _props4.use12Hours,
+          format = _props4.format;
+
+      if (!use12Hours) {
+        return null;
+      }
+
+      var AMPMOptions = ['am', 'pm'] // If format has A char, then we should uppercase AM/PM
+      .map(function (c) {
+        return format.match(/\sA/) ? c.toUpperCase() : c;
+      }).map(function (c) {
+        return { value: c };
+      });
+
+      var selected = this.isAM() ? 0 : 1;
+
+      return _react2['default'].createElement(_Select2['default'], {
+        prefixCls: prefixCls,
+        options: AMPMOptions,
+        selectedIndex: selected,
+        type: 'ampm',
+        onSelect: this.onItemChange,
+        onMouseEnter: this.onEnterSelectPanel.bind(this, 'ampm')
+      });
+    }
+  }, {
+    key: 'isAM',
+    value: function isAM() {
+      var value = this.props.value || this.props.defaultOpenValue;
+      return value.hour() >= 0 && value.hour() < 12;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props5 = this.props,
+          prefixCls = _props5.prefixCls,
+          defaultOpenValue = _props5.defaultOpenValue;
+
+      var value = this.props.value || defaultOpenValue;
+      return _react2['default'].createElement(
+        'div',
+        { className: prefixCls + '-combobox' },
+        this.getHourSelect(value.hour()),
+        this.getMinuteSelect(value.minute()),
+        this.getSecondSelect(value.second()),
+        this.getAMPMSelect(value.hour())
+      );
+    }
+  }]);
+  return Combobox;
+}(_react.Component);
+
+Combobox.propTypes = {
+  format: _propTypes2['default'].string,
+  defaultOpenValue: _propTypes2['default'].object,
+  prefixCls: _propTypes2['default'].string,
+  value: _propTypes2['default'].object,
+  onChange: _propTypes2['default'].func,
+  showHour: _propTypes2['default'].bool,
+  showMinute: _propTypes2['default'].bool,
+  showSecond: _propTypes2['default'].bool,
+  hourOptions: _propTypes2['default'].array,
+  minuteOptions: _propTypes2['default'].array,
+  secondOptions: _propTypes2['default'].array,
+  disabledHours: _propTypes2['default'].func,
+  disabledMinutes: _propTypes2['default'].func,
+  disabledSeconds: _propTypes2['default'].func,
+  onCurrentSelectPanelChange: _propTypes2['default'].func,
+  use12Hours: _propTypes2['default'].bool
+};
+exports['default'] = Combobox;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1865:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Header = function (_Component) {
+  (0, _inherits3['default'])(Header, _Component);
+
+  function Header(props) {
+    (0, _classCallCheck3['default'])(this, Header);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+    _initialiseProps.call(_this);
+
+    var value = props.value,
+        format = props.format;
+
+    _this.state = {
+      str: value && value.format(format) || '',
+      invalid: false
+    };
+    return _this;
+  }
+
+  (0, _createClass3['default'])(Header, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var value = nextProps.value,
+          format = nextProps.format;
+
+      this.setState({
+        str: value && value.format(format) || '',
+        invalid: false
+      });
+    }
+  }, {
+    key: 'getClearButton',
+    value: function getClearButton() {
+      var _props = this.props,
+          prefixCls = _props.prefixCls,
+          allowEmpty = _props.allowEmpty;
+
+      if (!allowEmpty) {
+        return null;
+      }
+      return _react2['default'].createElement('a', {
+        className: prefixCls + '-clear-btn',
+        role: 'button',
+        title: this.props.clearText,
+        onMouseDown: this.onClear
+      });
+    }
+  }, {
+    key: 'getProtoValue',
+    value: function getProtoValue() {
+      return this.props.value || this.props.defaultOpenValue;
+    }
+  }, {
+    key: 'getInput',
+    value: function getInput() {
+      var _props2 = this.props,
+          prefixCls = _props2.prefixCls,
+          placeholder = _props2.placeholder;
+      var _state = this.state,
+          invalid = _state.invalid,
+          str = _state.str;
+
+      var invalidClass = invalid ? prefixCls + '-input-invalid' : '';
+      return _react2['default'].createElement('input', {
+        className: prefixCls + '-input  ' + invalidClass,
+        ref: 'input',
+        onKeyDown: this.onKeyDown,
+        value: str,
+        placeholder: placeholder,
+        onChange: this.onInputChange
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var prefixCls = this.props.prefixCls;
+
+      return _react2['default'].createElement(
+        'div',
+        { className: prefixCls + '-input-wrap' },
+        this.getInput(),
+        this.getClearButton()
+      );
+    }
+  }]);
+  return Header;
+}(_react.Component);
+
+Header.propTypes = {
+  format: _propTypes2['default'].string,
+  prefixCls: _propTypes2['default'].string,
+  disabledDate: _propTypes2['default'].func,
+  placeholder: _propTypes2['default'].string,
+  clearText: _propTypes2['default'].string,
+  value: _propTypes2['default'].object,
+  hourOptions: _propTypes2['default'].array,
+  minuteOptions: _propTypes2['default'].array,
+  secondOptions: _propTypes2['default'].array,
+  disabledHours: _propTypes2['default'].func,
+  disabledMinutes: _propTypes2['default'].func,
+  disabledSeconds: _propTypes2['default'].func,
+  onChange: _propTypes2['default'].func,
+  onClear: _propTypes2['default'].func,
+  onEsc: _propTypes2['default'].func,
+  allowEmpty: _propTypes2['default'].bool,
+  defaultOpenValue: _propTypes2['default'].object,
+  currentSelectPanel: _propTypes2['default'].string
+};
+
+var _initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  this.onInputChange = function (event) {
+    var str = event.target.value;
+    _this2.setState({
+      str: str
+    });
+    var _props3 = _this2.props,
+        format = _props3.format,
+        hourOptions = _props3.hourOptions,
+        minuteOptions = _props3.minuteOptions,
+        secondOptions = _props3.secondOptions,
+        disabledHours = _props3.disabledHours,
+        disabledMinutes = _props3.disabledMinutes,
+        disabledSeconds = _props3.disabledSeconds,
+        onChange = _props3.onChange,
+        allowEmpty = _props3.allowEmpty;
+
+
+    if (str) {
+      var originalValue = _this2.props.value;
+      var value = _this2.getProtoValue().clone();
+      var parsed = (0, _moment2['default'])(str, format, true);
+      if (!parsed.isValid()) {
+        _this2.setState({
+          invalid: true
+        });
+        return;
+      }
+      value.hour(parsed.hour()).minute(parsed.minute()).second(parsed.second());
+
+      // if time value not allowed, response warning.
+      if (hourOptions.indexOf(value.hour()) < 0 || minuteOptions.indexOf(value.minute()) < 0 || secondOptions.indexOf(value.second()) < 0) {
+        _this2.setState({
+          invalid: true
+        });
+        return;
+      }
+
+      // if time value is disabled, response warning.
+      var disabledHourOptions = disabledHours();
+      var disabledMinuteOptions = disabledMinutes(value.hour());
+      var disabledSecondOptions = disabledSeconds(value.hour(), value.minute());
+      if (disabledHourOptions && disabledHourOptions.indexOf(value.hour()) >= 0 || disabledMinuteOptions && disabledMinuteOptions.indexOf(value.minute()) >= 0 || disabledSecondOptions && disabledSecondOptions.indexOf(value.second()) >= 0) {
+        _this2.setState({
+          invalid: true
+        });
+        return;
+      }
+
+      if (originalValue) {
+        if (originalValue.hour() !== value.hour() || originalValue.minute() !== value.minute() || originalValue.second() !== value.second()) {
+          // keep other fields for rc-calendar
+          var changedValue = originalValue.clone();
+          changedValue.hour(value.hour());
+          changedValue.minute(value.minute());
+          changedValue.second(value.second());
+          onChange(changedValue);
+        }
+      } else if (originalValue !== value) {
+        onChange(value);
+      }
+    } else if (allowEmpty) {
+      onChange(null);
+    } else {
+      _this2.setState({
+        invalid: true
+      });
+      return;
+    }
+
+    _this2.setState({
+      invalid: false
+    });
+  };
+
+  this.onKeyDown = function (e) {
+    if (e.keyCode === 27) {
+      _this2.props.onEsc();
+    }
+  };
+
+  this.onClear = function () {
+    _this2.setState({ str: '' });
+    _this2.props.onClear();
+  };
+};
+
+exports['default'] = Header;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1866:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _classnames3 = __webpack_require__(8);
+
+var _classnames4 = _interopRequireDefault(_classnames3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var scrollTo = function scrollTo(element, to, duration) {
+  var requestAnimationFrame = window.requestAnimationFrame || function requestAnimationFrameTimeout() {
+    return setTimeout(arguments[0], 10);
+  };
+  // jump to target if duration zero
+  if (duration <= 0) {
+    element.scrollTop = to;
+    return;
+  }
+  var difference = to - element.scrollTop;
+  var perTick = difference / duration * 10;
+
+  requestAnimationFrame(function () {
+    element.scrollTop = element.scrollTop + perTick;
+    if (element.scrollTop === to) return;
+    scrollTo(element, to, duration - 10);
+  });
+};
+
+var Select = function (_Component) {
+  (0, _inherits3['default'])(Select, _Component);
+
+  function Select() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3['default'])(this, Select);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3['default'])(this, (_ref = Select.__proto__ || Object.getPrototypeOf(Select)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      active: false
+    }, _this.onSelect = function (value) {
+      var _this$props = _this.props,
+          onSelect = _this$props.onSelect,
+          type = _this$props.type;
+
+      onSelect(type, value);
+    }, _this.handleMouseEnter = function (e) {
+      _this.setState({ active: true });
+      _this.props.onMouseEnter(e);
+    }, _this.handleMouseLeave = function () {
+      _this.setState({ active: false });
+    }, _temp), (0, _possibleConstructorReturn3['default'])(_this, _ret);
+  }
+
+  (0, _createClass3['default'])(Select, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // jump to selected option
+      this.scrollToSelected(0);
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      // smooth scroll to selected option
+      if (prevProps.selectedIndex !== this.props.selectedIndex) {
+        this.scrollToSelected(120);
+      }
+    }
+  }, {
+    key: 'getOptions',
+    value: function getOptions() {
+      var _this2 = this;
+
+      var _props = this.props,
+          options = _props.options,
+          selectedIndex = _props.selectedIndex,
+          prefixCls = _props.prefixCls;
+
+      return options.map(function (item, index) {
+        var _classnames;
+
+        var cls = (0, _classnames4['default'])((_classnames = {}, (0, _defineProperty3['default'])(_classnames, prefixCls + '-select-option-selected', selectedIndex === index), (0, _defineProperty3['default'])(_classnames, prefixCls + '-select-option-disabled', item.disabled), _classnames));
+        var onclick = null;
+        if (!item.disabled) {
+          onclick = _this2.onSelect.bind(_this2, item.value);
+        }
+        return _react2['default'].createElement(
+          'li',
+          {
+            className: cls,
+            key: index,
+            onClick: onclick,
+            disabled: item.disabled
+          },
+          item.value
+        );
+      });
+    }
+  }, {
+    key: 'scrollToSelected',
+    value: function scrollToSelected(duration) {
+      // move to selected item
+      var select = _reactDom2['default'].findDOMNode(this);
+      var list = _reactDom2['default'].findDOMNode(this.refs.list);
+      if (!list) {
+        return;
+      }
+      var index = this.props.selectedIndex;
+      if (index < 0) {
+        index = 0;
+      }
+      var topOption = list.children[index];
+      var to = topOption.offsetTop;
+      scrollTo(select, to, duration);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _classnames2;
+
+      if (this.props.options.length === 0) {
+        return null;
+      }
+
+      var prefixCls = this.props.prefixCls;
+
+      var cls = (0, _classnames4['default'])((_classnames2 = {}, (0, _defineProperty3['default'])(_classnames2, prefixCls + '-select', 1), (0, _defineProperty3['default'])(_classnames2, prefixCls + '-select-active', this.state.active), _classnames2));
+
+      return _react2['default'].createElement(
+        'div',
+        {
+          className: cls,
+          onMouseEnter: this.handleMouseEnter,
+          onMouseLeave: this.handleMouseLeave
+        },
+        _react2['default'].createElement(
+          'ul',
+          { ref: 'list' },
+          this.getOptions()
+        )
+      );
+    }
+  }]);
+  return Select;
+}(_react.Component);
+
+Select.propTypes = {
+  prefixCls: _propTypes2['default'].string,
+  options: _propTypes2['default'].array,
+  selectedIndex: _propTypes2['default'].number,
+  type: _propTypes2['default'].string,
+  onSelect: _propTypes2['default'].func,
+  onMouseEnter: _propTypes2['default'].func
+};
+exports['default'] = Select;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1867:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _rcTrigger = __webpack_require__(86);
+
+var _rcTrigger2 = _interopRequireDefault(_rcTrigger);
+
+var _Panel = __webpack_require__(774);
+
+var _Panel2 = _interopRequireDefault(_Panel);
+
+var _placements = __webpack_require__(1868);
+
+var _placements2 = _interopRequireDefault(_placements);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function noop() {}
+
+function refFn(field, component) {
+  this[field] = component;
+}
+
+var Picker = function (_Component) {
+  (0, _inherits3['default'])(Picker, _Component);
+
+  function Picker(props) {
+    (0, _classCallCheck3['default'])(this, Picker);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, (Picker.__proto__ || Object.getPrototypeOf(Picker)).call(this, props));
+
+    _initialiseProps.call(_this);
+
+    _this.saveInputRef = refFn.bind(_this, 'picker');
+    _this.savePanelRef = refFn.bind(_this, 'panelInstance');
+    var defaultOpen = props.defaultOpen,
+        defaultValue = props.defaultValue,
+        _props$open = props.open,
+        open = _props$open === undefined ? defaultOpen : _props$open,
+        _props$value = props.value,
+        value = _props$value === undefined ? defaultValue : _props$value;
+
+    _this.state = {
+      open: open,
+      value: value
+    };
+    return _this;
+  }
+
+  (0, _createClass3['default'])(Picker, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var value = nextProps.value,
+          open = nextProps.open;
+
+      if ('value' in nextProps) {
+        this.setState({
+          value: value
+        });
+      }
+      if (open !== undefined) {
+        this.setState({ open: open });
+      }
+    }
+  }, {
+    key: 'setValue',
+    value: function setValue(value) {
+      if (!('value' in this.props)) {
+        this.setState({
+          value: value
+        });
+      }
+      this.props.onChange(value);
+    }
+  }, {
+    key: 'getFormat',
+    value: function getFormat() {
+      var _props = this.props,
+          format = _props.format,
+          showHour = _props.showHour,
+          showMinute = _props.showMinute,
+          showSecond = _props.showSecond,
+          use12Hours = _props.use12Hours;
+
+      if (format) {
+        return format;
+      }
+
+      if (use12Hours) {
+        var fmtString = [showHour ? 'h' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : ''].filter(function (item) {
+          return !!item;
+        }).join(':');
+
+        return fmtString.concat(' a');
+      }
+
+      return [showHour ? 'HH' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : ''].filter(function (item) {
+        return !!item;
+      }).join(':');
+    }
+  }, {
+    key: 'getPanelElement',
+    value: function getPanelElement() {
+      var _props2 = this.props,
+          prefixCls = _props2.prefixCls,
+          placeholder = _props2.placeholder,
+          disabledHours = _props2.disabledHours,
+          disabledMinutes = _props2.disabledMinutes,
+          disabledSeconds = _props2.disabledSeconds,
+          hideDisabledOptions = _props2.hideDisabledOptions,
+          allowEmpty = _props2.allowEmpty,
+          showHour = _props2.showHour,
+          showMinute = _props2.showMinute,
+          showSecond = _props2.showSecond,
+          defaultOpenValue = _props2.defaultOpenValue,
+          clearText = _props2.clearText,
+          addon = _props2.addon,
+          use12Hours = _props2.use12Hours;
+
+      return _react2['default'].createElement(_Panel2['default'], {
+        clearText: clearText,
+        prefixCls: prefixCls + '-panel',
+        ref: this.savePanelRef,
+        value: this.state.value,
+        onChange: this.onPanelChange,
+        onClear: this.onPanelClear,
+        defaultOpenValue: defaultOpenValue,
+        showHour: showHour,
+        showMinute: showMinute,
+        showSecond: showSecond,
+        onEsc: this.onEsc,
+        allowEmpty: allowEmpty,
+        format: this.getFormat(),
+        placeholder: placeholder,
+        disabledHours: disabledHours,
+        disabledMinutes: disabledMinutes,
+        disabledSeconds: disabledSeconds,
+        hideDisabledOptions: hideDisabledOptions,
+        use12Hours: use12Hours,
+        addon: addon
+      });
+    }
+  }, {
+    key: 'getPopupClassName',
+    value: function getPopupClassName() {
+      var _props3 = this.props,
+          showHour = _props3.showHour,
+          showMinute = _props3.showMinute,
+          showSecond = _props3.showSecond,
+          use12Hours = _props3.use12Hours,
+          prefixCls = _props3.prefixCls;
+
+      var popupClassName = this.props.popupClassName;
+      // Keep it for old compatibility
+      if ((!showHour || !showMinute || !showSecond) && !use12Hours) {
+        popupClassName += ' ' + prefixCls + '-panel-narrow';
+      }
+      var selectColumnCount = 0;
+      if (showHour) {
+        selectColumnCount += 1;
+      }
+      if (showMinute) {
+        selectColumnCount += 1;
+      }
+      if (showSecond) {
+        selectColumnCount += 1;
+      }
+      if (use12Hours) {
+        selectColumnCount += 1;
+      }
+      popupClassName += ' ' + prefixCls + '-panel-column-' + selectColumnCount;
+      return popupClassName;
+    }
+  }, {
+    key: 'setOpen',
+    value: function setOpen(open) {
+      var _props4 = this.props,
+          onOpen = _props4.onOpen,
+          onClose = _props4.onClose;
+
+      if (this.state.open !== open) {
+        if (!('open' in this.props)) {
+          this.setState({ open: open });
+        }
+        if (open) {
+          onOpen({ open: open });
+        } else {
+          onClose({ open: open });
+        }
+      }
+    }
+  }, {
+    key: 'focus',
+    value: function focus() {
+      this.picker.focus();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props5 = this.props,
+          prefixCls = _props5.prefixCls,
+          placeholder = _props5.placeholder,
+          placement = _props5.placement,
+          align = _props5.align,
+          disabled = _props5.disabled,
+          transitionName = _props5.transitionName,
+          style = _props5.style,
+          className = _props5.className,
+          getPopupContainer = _props5.getPopupContainer,
+          name = _props5.name,
+          autoComplete = _props5.autoComplete;
+      var _state = this.state,
+          open = _state.open,
+          value = _state.value;
+
+      var popupClassName = this.getPopupClassName();
+      return _react2['default'].createElement(
+        _rcTrigger2['default'],
+        {
+          prefixCls: prefixCls + '-panel',
+          popupClassName: popupClassName,
+          popup: this.getPanelElement(),
+          popupAlign: align,
+          builtinPlacements: _placements2['default'],
+          popupPlacement: placement,
+          action: disabled ? [] : ['click'],
+          destroyPopupOnHide: true,
+          getPopupContainer: getPopupContainer,
+          popupTransitionName: transitionName,
+          popupVisible: open,
+          onPopupVisibleChange: this.onVisibleChange
+        },
+        _react2['default'].createElement(
+          'span',
+          { className: prefixCls + ' ' + className, style: style },
+          _react2['default'].createElement('input', {
+            className: prefixCls + '-input',
+            ref: this.saveInputRef,
+            type: 'text',
+            placeholder: placeholder,
+            name: name,
+            readOnly: true,
+            onKeyDown: this.onKeyDown,
+            disabled: disabled, value: value && value.format(this.getFormat()) || '',
+            autoComplete: autoComplete
+          }),
+          _react2['default'].createElement('span', { className: prefixCls + '-icon' })
+        )
+      );
+    }
+  }]);
+  return Picker;
+}(_react.Component);
+
+Picker.propTypes = {
+  prefixCls: _propTypes2['default'].string,
+  clearText: _propTypes2['default'].string,
+  value: _propTypes2['default'].object,
+  defaultOpenValue: _propTypes2['default'].object,
+  disabled: _propTypes2['default'].bool,
+  allowEmpty: _propTypes2['default'].bool,
+  defaultValue: _propTypes2['default'].object,
+  open: _propTypes2['default'].bool,
+  defaultOpen: _propTypes2['default'].bool,
+  align: _propTypes2['default'].object,
+  placement: _propTypes2['default'].any,
+  transitionName: _propTypes2['default'].string,
+  getPopupContainer: _propTypes2['default'].func,
+  placeholder: _propTypes2['default'].string,
+  format: _propTypes2['default'].string,
+  showHour: _propTypes2['default'].bool,
+  showMinute: _propTypes2['default'].bool,
+  showSecond: _propTypes2['default'].bool,
+  style: _propTypes2['default'].object,
+  className: _propTypes2['default'].string,
+  popupClassName: _propTypes2['default'].string,
+  disabledHours: _propTypes2['default'].func,
+  disabledMinutes: _propTypes2['default'].func,
+  disabledSeconds: _propTypes2['default'].func,
+  hideDisabledOptions: _propTypes2['default'].bool,
+  onChange: _propTypes2['default'].func,
+  onOpen: _propTypes2['default'].func,
+  onClose: _propTypes2['default'].func,
+  addon: _propTypes2['default'].func,
+  name: _propTypes2['default'].string,
+  autoComplete: _propTypes2['default'].string,
+  use12Hours: _propTypes2['default'].bool
+};
+Picker.defaultProps = {
+  clearText: 'clear',
+  prefixCls: 'rc-time-picker',
+  defaultOpen: false,
+  style: {},
+  className: '',
+  popupClassName: '',
+  align: {},
+  defaultOpenValue: (0, _moment2['default'])(),
+  allowEmpty: true,
+  showHour: true,
+  showMinute: true,
+  showSecond: true,
+  disabledHours: noop,
+  disabledMinutes: noop,
+  disabledSeconds: noop,
+  hideDisabledOptions: false,
+  placement: 'bottomLeft',
+  onChange: noop,
+  onOpen: noop,
+  onClose: noop,
+  addon: noop,
+  use12Hours: false
+};
+
+var _initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  this.onPanelChange = function (value) {
+    _this2.setValue(value);
+  };
+
+  this.onPanelClear = function () {
+    _this2.setValue(null);
+    _this2.setOpen(false);
+  };
+
+  this.onVisibleChange = function (open) {
+    _this2.setOpen(open);
+  };
+
+  this.onEsc = function () {
+    _this2.setOpen(false);
+    _this2.focus();
+  };
+
+  this.onKeyDown = function (e) {
+    if (e.keyCode === 40) {
+      _this2.setOpen(true);
+    }
+  };
+};
+
+exports['default'] = Picker;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1868:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var autoAdjustOverflow = {
+  adjustX: 1,
+  adjustY: 1
+};
+
+var targetOffset = [0, 0];
+
+var placements = {
+  bottomLeft: {
+    points: ['tl', 'tl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -3],
+    targetOffset: targetOffset
+  },
+  bottomRight: {
+    points: ['tr', 'tr'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -3],
+    targetOffset: targetOffset
+  },
+  topRight: {
+    points: ['br', 'br'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 3],
+    targetOffset: targetOffset
+  },
+  topLeft: {
+    points: ['bl', 'bl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 3],
+    targetOffset: targetOffset
+  }
+};
+
+exports['default'] = placements;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1888:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports['default'] = mapSelf;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function mirror(o) {
+  return o;
+}
+
+function mapSelf(children) {
+  // return ReactFragment
+  return _react2['default'].Children.map(children, mirror);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 191:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _omit = __webpack_require__(34);
+
+var _omit2 = _interopRequireDefault(_omit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Icon = function Icon(props) {
+    var type = props.type,
+        _props$className = props.className,
+        className = _props$className === undefined ? '' : _props$className,
+        spin = props.spin;
+
+    var classString = (0, _classnames2['default'])((0, _defineProperty3['default'])({
+        anticon: true,
+        'anticon-spin': !!spin || type === 'loading'
+    }, 'anticon-' + type, true), className);
+    return _react2['default'].createElement('i', (0, _extends3['default'])({}, (0, _omit2['default'])(props, ['type', 'spin']), { className: classString }));
+};
+exports['default'] = Icon;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 1996:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {!function(e,t){ true?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t(e.reduxLogger=e.reduxLogger||{})}(this,function(e){"use strict";function t(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}function r(e,t){Object.defineProperty(this,"kind",{value:e,enumerable:!0}),t&&t.length&&Object.defineProperty(this,"path",{value:t,enumerable:!0})}function n(e,t,r){n.super_.call(this,"E",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0}),Object.defineProperty(this,"rhs",{value:r,enumerable:!0})}function o(e,t){o.super_.call(this,"N",e),Object.defineProperty(this,"rhs",{value:t,enumerable:!0})}function i(e,t){i.super_.call(this,"D",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0})}function a(e,t,r){a.super_.call(this,"A",e),Object.defineProperty(this,"index",{value:t,enumerable:!0}),Object.defineProperty(this,"item",{value:r,enumerable:!0})}function f(e,t,r){var n=e.slice((r||t)+1||e.length);return e.length=t<0?e.length+t:t,e.push.apply(e,n),e}function u(e){var t="undefined"==typeof e?"undefined":N(e);return"object"!==t?t:e===Math?"math":null===e?"null":Array.isArray(e)?"array":"[object Date]"===Object.prototype.toString.call(e)?"date":"function"==typeof e.toString&&/^\/.*\//.test(e.toString())?"regexp":"object"}function l(e,t,r,c,s,d,p){s=s||[],p=p||[];var g=s.slice(0);if("undefined"!=typeof d){if(c){if("function"==typeof c&&c(g,d))return;if("object"===("undefined"==typeof c?"undefined":N(c))){if(c.prefilter&&c.prefilter(g,d))return;if(c.normalize){var h=c.normalize(g,d,e,t);h&&(e=h[0],t=h[1])}}}g.push(d)}"regexp"===u(e)&&"regexp"===u(t)&&(e=e.toString(),t=t.toString());var y="undefined"==typeof e?"undefined":N(e),v="undefined"==typeof t?"undefined":N(t),b="undefined"!==y||p&&p[p.length-1].lhs&&p[p.length-1].lhs.hasOwnProperty(d),m="undefined"!==v||p&&p[p.length-1].rhs&&p[p.length-1].rhs.hasOwnProperty(d);if(!b&&m)r(new o(g,t));else if(!m&&b)r(new i(g,e));else if(u(e)!==u(t))r(new n(g,e,t));else if("date"===u(e)&&e-t!==0)r(new n(g,e,t));else if("object"===y&&null!==e&&null!==t)if(p.filter(function(t){return t.lhs===e}).length)e!==t&&r(new n(g,e,t));else{if(p.push({lhs:e,rhs:t}),Array.isArray(e)){var w;e.length;for(w=0;w<e.length;w++)w>=t.length?r(new a(g,w,new i(void 0,e[w]))):l(e[w],t[w],r,c,g,w,p);for(;w<t.length;)r(new a(g,w,new o(void 0,t[w++])))}else{var x=Object.keys(e),S=Object.keys(t);x.forEach(function(n,o){var i=S.indexOf(n);i>=0?(l(e[n],t[n],r,c,g,n,p),S=f(S,i)):l(e[n],void 0,r,c,g,n,p)}),S.forEach(function(e){l(void 0,t[e],r,c,g,e,p)})}p.length=p.length-1}else e!==t&&("number"===y&&isNaN(e)&&isNaN(t)||r(new n(g,e,t)))}function c(e,t,r,n){return n=n||[],l(e,t,function(e){e&&n.push(e)},r),n.length?n:void 0}function s(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":s(o[r.path[n]],r.index,r.item);break;case"D":delete o[r.path[n]];break;case"E":case"N":o[r.path[n]]=r.rhs}}else switch(r.kind){case"A":s(e[t],r.index,r.item);break;case"D":e=f(e,t);break;case"E":case"N":e[t]=r.rhs}return e}function d(e,t,r){if(e&&t&&r&&r.kind){for(var n=e,o=-1,i=r.path?r.path.length-1:0;++o<i;)"undefined"==typeof n[r.path[o]]&&(n[r.path[o]]="number"==typeof r.path[o]?[]:{}),n=n[r.path[o]];switch(r.kind){case"A":s(r.path?n[r.path[o]]:n,r.index,r.item);break;case"D":delete n[r.path[o]];break;case"E":case"N":n[r.path[o]]=r.rhs}}}function p(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":p(o[r.path[n]],r.index,r.item);break;case"D":o[r.path[n]]=r.lhs;break;case"E":o[r.path[n]]=r.lhs;break;case"N":delete o[r.path[n]]}}else switch(r.kind){case"A":p(e[t],r.index,r.item);break;case"D":e[t]=r.lhs;break;case"E":e[t]=r.lhs;break;case"N":e=f(e,t)}return e}function g(e,t,r){if(e&&t&&r&&r.kind){var n,o,i=e;for(o=r.path.length-1,n=0;n<o;n++)"undefined"==typeof i[r.path[n]]&&(i[r.path[n]]={}),i=i[r.path[n]];switch(r.kind){case"A":p(i[r.path[n]],r.index,r.item);break;case"D":i[r.path[n]]=r.lhs;break;case"E":i[r.path[n]]=r.lhs;break;case"N":delete i[r.path[n]]}}}function h(e,t,r){if(e&&t){var n=function(n){r&&!r(e,t,n)||d(e,t,n)};l(e,t,n)}}function y(e){return"color: "+F[e].color+"; font-weight: bold"}function v(e){var t=e.kind,r=e.path,n=e.lhs,o=e.rhs,i=e.index,a=e.item;switch(t){case"E":return[r.join("."),n,"→",o];case"N":return[r.join("."),o];case"D":return[r.join(".")];case"A":return[r.join(".")+"["+i+"]",a];default:return[]}}function b(e,t,r,n){var o=c(e,t);try{n?r.groupCollapsed("diff"):r.group("diff")}catch(e){r.log("diff")}o?o.forEach(function(e){var t=e.kind,n=v(e);r.log.apply(r,["%c "+F[t].text,y(t)].concat(P(n)))}):r.log("—— no diff ——");try{r.groupEnd()}catch(e){r.log("—— diff end —— ")}}function m(e,t,r,n){switch("undefined"==typeof e?"undefined":N(e)){case"object":return"function"==typeof e[n]?e[n].apply(e,P(r)):e[n];case"function":return e(t);default:return e}}function w(e){var t=e.timestamp,r=e.duration;return function(e,n,o){var i=["action"];return i.push("%c"+String(e.type)),t&&i.push("%c@ "+n),r&&i.push("%c(in "+o.toFixed(2)+" ms)"),i.join(" ")}}function x(e,t){var r=t.logger,n=t.actionTransformer,o=t.titleFormatter,i=void 0===o?w(t):o,a=t.collapsed,f=t.colors,u=t.level,l=t.diff,c="undefined"==typeof t.titleFormatter;e.forEach(function(o,s){var d=o.started,p=o.startedTime,g=o.action,h=o.prevState,y=o.error,v=o.took,w=o.nextState,x=e[s+1];x&&(w=x.prevState,v=x.started-d);var S=n(g),k="function"==typeof a?a(function(){return w},g,o):a,j=D(p),E=f.title?"color: "+f.title(S)+";":"",A=["color: gray; font-weight: lighter;"];A.push(E),t.timestamp&&A.push("color: gray; font-weight: lighter;"),t.duration&&A.push("color: gray; font-weight: lighter;");var O=i(S,j,v);try{k?f.title&&c?r.groupCollapsed.apply(r,["%c "+O].concat(A)):r.groupCollapsed(O):f.title&&c?r.group.apply(r,["%c "+O].concat(A)):r.group(O)}catch(e){r.log(O)}var N=m(u,S,[h],"prevState"),P=m(u,S,[S],"action"),C=m(u,S,[y,h],"error"),F=m(u,S,[w],"nextState");if(N)if(f.prevState){var L="color: "+f.prevState(h)+"; font-weight: bold";r[N]("%c prev state",L,h)}else r[N]("prev state",h);if(P)if(f.action){var T="color: "+f.action(S)+"; font-weight: bold";r[P]("%c action    ",T,S)}else r[P]("action    ",S);if(y&&C)if(f.error){var M="color: "+f.error(y,h)+"; font-weight: bold;";r[C]("%c error     ",M,y)}else r[C]("error     ",y);if(F)if(f.nextState){var _="color: "+f.nextState(w)+"; font-weight: bold";r[F]("%c next state",_,w)}else r[F]("next state",w);l&&b(h,w,r,k);try{r.groupEnd()}catch(e){r.log("—— log end ——")}})}function S(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=Object.assign({},L,e),r=t.logger,n=t.stateTransformer,o=t.errorTransformer,i=t.predicate,a=t.logErrors,f=t.diffPredicate;if("undefined"==typeof r)return function(){return function(e){return function(t){return e(t)}}};if(e.getState&&e.dispatch)return console.error("[redux-logger] redux-logger not installed. Make sure to pass logger instance as middleware:\n// Logger with default options\nimport { logger } from 'redux-logger'\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n// Or you can create your own logger with custom options http://bit.ly/redux-logger-options\nimport createLogger from 'redux-logger'\nconst logger = createLogger({\n  // ...options\n});\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n"),function(){return function(e){return function(t){return e(t)}}};var u=[];return function(e){var r=e.getState;return function(e){return function(l){if("function"==typeof i&&!i(r,l))return e(l);var c={};u.push(c),c.started=O.now(),c.startedTime=new Date,c.prevState=n(r()),c.action=l;var s=void 0;if(a)try{s=e(l)}catch(e){c.error=o(e)}else s=e(l);c.took=O.now()-c.started,c.nextState=n(r());var d=t.diff&&"function"==typeof f?f(r,l):t.diff;if(x(u,Object.assign({},t,{diff:d})),u.length=0,c.error)throw c.error;return s}}}}var k,j,E=function(e,t){return new Array(t+1).join(e)},A=function(e,t){return E("0",t-e.toString().length)+e},D=function(e){return A(e.getHours(),2)+":"+A(e.getMinutes(),2)+":"+A(e.getSeconds(),2)+"."+A(e.getMilliseconds(),3)},O="undefined"!=typeof performance&&null!==performance&&"function"==typeof performance.now?performance:Date,N="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},P=function(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)},C=[];k="object"===("undefined"==typeof global?"undefined":N(global))&&global?global:"undefined"!=typeof window?window:{},j=k.DeepDiff,j&&C.push(function(){"undefined"!=typeof j&&k.DeepDiff===c&&(k.DeepDiff=j,j=void 0)}),t(n,r),t(o,r),t(i,r),t(a,r),Object.defineProperties(c,{diff:{value:c,enumerable:!0},observableDiff:{value:l,enumerable:!0},applyDiff:{value:h,enumerable:!0},applyChange:{value:d,enumerable:!0},revertChange:{value:g,enumerable:!0},isConflict:{value:function(){return"undefined"!=typeof j},enumerable:!0},noConflict:{value:function(){return C&&(C.forEach(function(e){e()}),C=null),c},enumerable:!0}});var F={E:{color:"#2196F3",text:"CHANGED:"},N:{color:"#4CAF50",text:"ADDED:"},D:{color:"#F44336",text:"DELETED:"},A:{color:"#2196F3",text:"ARRAY:"}},L={level:"log",logger:console,logErrors:!0,collapsed:void 0,predicate:void 0,duration:!1,timestamp:!0,stateTransformer:function(e){return e},actionTransformer:function(e){return e},errorTransformer:function(e){return e},colors:{title:function(){return"inherit"},prevState:function(){return"#9E9E9E"},action:function(){return"#03A9F4"},nextState:function(){return"#4CAF50"},error:function(){return"#F20404"}},diff:!1,diffPredicate:void 0,transformer:void 0},T=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.dispatch,r=e.getState;return"function"==typeof t||"function"==typeof r?S()({dispatch:t,getState:r}):void console.error("\n[redux-logger v3] BREAKING CHANGE\n[redux-logger v3] Since 3.0.0 redux-logger exports by default logger with default settings.\n[redux-logger v3] Change\n[redux-logger v3] import createLogger from 'redux-logger'\n[redux-logger v3] to\n[redux-logger v3] import { createLogger } from 'redux-logger'\n")};e.defaults=L,e.createLogger=S,e.logger=T,e.default=T,Object.defineProperty(e,"__esModule",{value:!0})});
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)))
+
+/***/ }),
+
+/***/ 2028:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Handler
+ * @module zrender/Handler
+ * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+ *         errorrik (errorrik@gmail.com)
+ *         pissang (shenyi.914@gmail.com)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    'use strict';
+
+    var util = __webpack_require__(40);
+    var Draggable = __webpack_require__(2050);
+
+    var Eventful = __webpack_require__(255);
+
+    var SILENT = 'silent';
+
+    function makeEventPacket(eveType, targetInfo, event) {
+        return {
+            type: eveType,
+            event: event,
+            // target can only be an element that is not silent.
+            target: targetInfo.target,
+            // topTarget can be a silent element.
+            topTarget: targetInfo.topTarget,
+            cancelBubble: false,
+            offsetX: event.zrX,
+            offsetY: event.zrY,
+            gestureEvent: event.gestureEvent,
+            pinchX: event.pinchX,
+            pinchY: event.pinchY,
+            pinchScale: event.pinchScale,
+            wheelDelta: event.zrDelta,
+            zrByTouch: event.zrByTouch
+        };
+    }
+
+    function EmptyProxy () {}
+    EmptyProxy.prototype.dispose = function () {};
+
+    var handlerNames = [
+        'click', 'dblclick', 'mousewheel', 'mouseout',
+        'mouseup', 'mousedown', 'mousemove', 'contextmenu'
+    ];
+    /**
+     * @alias module:zrender/Handler
+     * @constructor
+     * @extends module:zrender/mixin/Eventful
+     * @param {module:zrender/Storage} storage Storage instance.
+     * @param {module:zrender/Painter} painter Painter instance.
+     * @param {module:zrender/dom/HandlerProxy} proxy HandlerProxy instance.
+     * @param {HTMLElement} painterRoot painter.root (not painter.getViewportRoot()).
+     */
+    var Handler = function(storage, painter, proxy, painterRoot) {
+        Eventful.call(this);
+
+        this.storage = storage;
+
+        this.painter = painter;
+
+        this.painterRoot = painterRoot;
+
+        proxy = proxy || new EmptyProxy();
+
+        /**
+         * Proxy of event. can be Dom, WebGLSurface, etc.
+         */
+        this.proxy = proxy;
+
+        // Attach handler
+        proxy.handler = this;
+
+        /**
+         * {target, topTarget, x, y}
+         * @private
+         * @type {Object}
+         */
+        this._hovered = {};
+
+        /**
+         * @private
+         * @type {Date}
+         */
+        this._lastTouchMoment;
+
+        /**
+         * @private
+         * @type {number}
+         */
+        this._lastX;
+
+        /**
+         * @private
+         * @type {number}
+         */
+        this._lastY;
+
+
+        Draggable.call(this);
+
+        util.each(handlerNames, function (name) {
+            proxy.on && proxy.on(name, this[name], this);
+        }, this);
+    };
+
+    Handler.prototype = {
+
+        constructor: Handler,
+
+        mousemove: function (event) {
+            var x = event.zrX;
+            var y = event.zrY;
+
+            var lastHovered = this._hovered;
+            var lastHoveredTarget = lastHovered.target;
+
+            // If lastHoveredTarget is removed from zr (detected by '__zr') by some API call
+            // (like 'setOption' or 'dispatchAction') in event handlers, we should find
+            // lastHovered again here. Otherwise 'mouseout' can not be triggered normally.
+            // See #6198.
+            if (lastHoveredTarget && !lastHoveredTarget.__zr) {
+                lastHovered = this.findHover(lastHovered.x, lastHovered.y);
+                lastHoveredTarget = lastHovered.target;
+            }
+
+            var hovered = this._hovered = this.findHover(x, y);
+            var hoveredTarget = hovered.target;
+
+            var proxy = this.proxy;
+            proxy.setCursor && proxy.setCursor(hoveredTarget ? hoveredTarget.cursor : 'default');
+
+            // Mouse out on previous hovered element
+            if (lastHoveredTarget && hoveredTarget !== lastHoveredTarget) {
+                this.dispatchToElement(lastHovered, 'mouseout', event);
+            }
+
+            // Mouse moving on one element
+            this.dispatchToElement(hovered, 'mousemove', event);
+
+            // Mouse over on a new element
+            if (hoveredTarget && hoveredTarget !== lastHoveredTarget) {
+                this.dispatchToElement(hovered, 'mouseover', event);
+            }
+        },
+
+        mouseout: function (event) {
+            this.dispatchToElement(this._hovered, 'mouseout', event);
+
+            // There might be some doms created by upper layer application
+            // at the same level of painter.getViewportRoot() (e.g., tooltip
+            // dom created by echarts), where 'globalout' event should not
+            // be triggered when mouse enters these doms. (But 'mouseout'
+            // should be triggered at the original hovered element as usual).
+            var element = event.toElement || event.relatedTarget;
+            var innerDom;
+            do {
+                element = element && element.parentNode;
+            }
+            while (element && element.nodeType != 9 && !(
+                innerDom = element === this.painterRoot
+            ));
+
+            !innerDom && this.trigger('globalout', {event: event});
+        },
+
+        /**
+         * Resize
+         */
+        resize: function (event) {
+            this._hovered = {};
+        },
+
+        /**
+         * Dispatch event
+         * @param {string} eventName
+         * @param {event=} eventArgs
+         */
+        dispatch: function (eventName, eventArgs) {
+            var handler = this[eventName];
+            handler && handler.call(this, eventArgs);
+        },
+
+        /**
+         * Dispose
+         */
+        dispose: function () {
+
+            this.proxy.dispose();
+
+            this.storage =
+            this.proxy =
+            this.painter = null;
+        },
+
+        /**
+         * 设置默认的cursor style
+         * @param {string} [cursorStyle='default'] 例如 crosshair
+         */
+        setCursorStyle: function (cursorStyle) {
+            var proxy = this.proxy;
+            proxy.setCursor && proxy.setCursor(cursorStyle);
+        },
+
+        /**
+         * 事件分发代理
+         *
+         * @private
+         * @param {Object} targetInfo {target, topTarget} 目标图形元素
+         * @param {string} eventName 事件名称
+         * @param {Object} event 事件对象
+         */
+        dispatchToElement: function (targetInfo, eventName, event) {
+            targetInfo = targetInfo || {};
+            var el = targetInfo.target;
+            if (el && el.silent) {
+                return;
+            }
+            var eventHandler = 'on' + eventName;
+            var eventPacket = makeEventPacket(eventName, targetInfo, event);
+
+            while (el) {
+                el[eventHandler]
+                    && (eventPacket.cancelBubble = el[eventHandler].call(el, eventPacket));
+
+                el.trigger(eventName, eventPacket);
+
+                el = el.parent;
+
+                if (eventPacket.cancelBubble) {
+                    break;
+                }
+            }
+
+            if (!eventPacket.cancelBubble) {
+                // 冒泡到顶级 zrender 对象
+                this.trigger(eventName, eventPacket);
+                // 分发事件到用户自定义层
+                // 用户有可能在全局 click 事件中 dispose，所以需要判断下 painter 是否存在
+                this.painter && this.painter.eachOtherLayer(function (layer) {
+                    if (typeof(layer[eventHandler]) == 'function') {
+                        layer[eventHandler].call(layer, eventPacket);
+                    }
+                    if (layer.trigger) {
+                        layer.trigger(eventName, eventPacket);
+                    }
+                });
+            }
+        },
+
+        /**
+         * @private
+         * @param {number} x
+         * @param {number} y
+         * @param {module:zrender/graphic/Displayable} exclude
+         * @return {model:zrender/Element}
+         * @method
+         */
+        findHover: function(x, y, exclude) {
+            var list = this.storage.getDisplayList();
+            var out = {x: x, y: y};
+
+            for (var i = list.length - 1; i >= 0 ; i--) {
+                var hoverCheckResult;
+                if (list[i] !== exclude
+                    // getDisplayList may include ignored item in VML mode
+                    && !list[i].ignore
+                    && (hoverCheckResult = isHover(list[i], x, y))
+                ) {
+                    !out.topTarget && (out.topTarget = list[i]);
+                    if (hoverCheckResult !== SILENT) {
+                        out.target = list[i];
+                        break;
+                    }
+                }
+            }
+
+            return out;
+        }
+    };
+
+    // Common handlers
+    util.each(['click', 'mousedown', 'mouseup', 'mousewheel', 'dblclick', 'contextmenu'], function (name) {
+        Handler.prototype[name] = function (event) {
+            // Find hover again to avoid click event is dispatched manually. Or click is triggered without mouseover
+            var hovered = this.findHover(event.zrX, event.zrY);
+            var hoveredTarget = hovered.target;
+
+            if (name === 'mousedown') {
+                this._downel = hoveredTarget;
+                // In case click triggered before mouseup
+                this._upel = hoveredTarget;
+            }
+            else if (name === 'mosueup') {
+                this._upel = hoveredTarget;
+            }
+            else if (name === 'click') {
+                if (this._downel !== this._upel) {
+                    return;
+                }
+            }
+
+            this.dispatchToElement(hovered, name, event);
+        };
+    });
+
+    function isHover(displayable, x, y) {
+        if (displayable[displayable.rectHover ? 'rectContain' : 'contain'](x, y)) {
+            var el = displayable;
+            var isSilent;
+            while (el) {
+                // If clipped by ancestor.
+                // FIXME: If clipPath has neither stroke nor fill,
+                // el.clipPath.contain(x, y) will always return false.
+                if (el.clipPath && !el.clipPath.contain(x, y))  {
+                    return false;
+                }
+                if (el.silent) {
+                    isSilent = true;
+                }
+                el = el.parent;
+            }
+            return isSilent ? SILENT : true;
+        }
+
+        return false;
+    }
+
+    util.mixin(Handler, Eventful);
+    util.mixin(Handler, Draggable);
+
+    return Handler;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2029:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module zrender/Layer
+ * @author pissang(https://www.github.com/pissang)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var util = __webpack_require__(40);
+    var config = __webpack_require__(252);
+    var Style = __webpack_require__(847);
+    var Pattern = __webpack_require__(846);
+
+    function returnFalse() {
+        return false;
+    }
+
+    /**
+     * 创建dom
+     *
+     * @inner
+     * @param {string} id dom id 待用
+     * @param {string} type dom type，such as canvas, div etc.
+     * @param {Painter} painter painter instance
+     * @param {number} number
+     */
+    function createDom(id, type, painter, dpr) {
+        var newDom = document.createElement(type);
+        var width = painter.getWidth();
+        var height = painter.getHeight();
+
+        var newDomStyle = newDom.style;
+        // 没append呢，请原谅我这样写，清晰~
+        newDomStyle.position = 'absolute';
+        newDomStyle.left = 0;
+        newDomStyle.top = 0;
+        newDomStyle.width = width + 'px';
+        newDomStyle.height = height + 'px';
+        newDom.width = width * dpr;
+        newDom.height = height * dpr;
+
+        // id不作为索引用，避免可能造成的重名，定义为私有属性
+        newDom.setAttribute('data-zr-dom-id', id);
+        return newDom;
+    }
+
+    /**
+     * @alias module:zrender/Layer
+     * @constructor
+     * @extends module:zrender/mixin/Transformable
+     * @param {string} id
+     * @param {module:zrender/Painter} painter
+     * @param {number} [dpr]
+     */
+    var Layer = function(id, painter, dpr) {
+        var dom;
+        dpr = dpr || config.devicePixelRatio;
+        if (typeof id === 'string') {
+            dom = createDom(id, 'canvas', painter, dpr);
+        }
+        // Not using isDom because in node it will return false
+        else if (util.isObject(id)) {
+            dom = id;
+            id = dom.id;
+        }
+        this.id = id;
+        this.dom = dom;
+
+        var domStyle = dom.style;
+        if (domStyle) { // Not in node
+            dom.onselectstart = returnFalse; // 避免页面选中的尴尬
+            domStyle['-webkit-user-select'] = 'none';
+            domStyle['user-select'] = 'none';
+            domStyle['-webkit-touch-callout'] = 'none';
+            domStyle['-webkit-tap-highlight-color'] = 'rgba(0,0,0,0)';
+            domStyle['padding'] = 0;
+            domStyle['margin'] = 0;
+            domStyle['border-width'] = 0;
+        }
+
+        this.domBack = null;
+        this.ctxBack = null;
+
+        this.painter = painter;
+
+        this.config = null;
+
+        // Configs
+        /**
+         * 每次清空画布的颜色
+         * @type {string}
+         * @default 0
+         */
+        this.clearColor = 0;
+        /**
+         * 是否开启动态模糊
+         * @type {boolean}
+         * @default false
+         */
+        this.motionBlur = false;
+        /**
+         * 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
+         * @type {number}
+         * @default 0.7
+         */
+        this.lastFrameAlpha = 0.7;
+
+        /**
+         * Layer dpr
+         * @type {number}
+         */
+        this.dpr = dpr;
+    };
+
+    Layer.prototype = {
+
+        constructor: Layer,
+
+        elCount: 0,
+
+        __dirty: true,
+
+        initContext: function () {
+            this.ctx = this.dom.getContext('2d');
+            this.ctx.__currentValues = {};
+            this.ctx.dpr = this.dpr;
+        },
+
+        createBackBuffer: function () {
+            var dpr = this.dpr;
+
+            this.domBack = createDom('back-' + this.id, 'canvas', this.painter, dpr);
+            this.ctxBack = this.domBack.getContext('2d');
+            this.ctxBack.__currentValues = {};
+
+            if (dpr != 1) {
+                this.ctxBack.scale(dpr, dpr);
+            }
+        },
+
+        /**
+         * @param  {number} width
+         * @param  {number} height
+         */
+        resize: function (width, height) {
+            var dpr = this.dpr;
+
+            var dom = this.dom;
+            var domStyle = dom.style;
+            var domBack = this.domBack;
+
+            domStyle.width = width + 'px';
+            domStyle.height = height + 'px';
+
+            dom.width = width * dpr;
+            dom.height = height * dpr;
+
+            if (domBack) {
+                domBack.width = width * dpr;
+                domBack.height = height * dpr;
+
+                if (dpr != 1) {
+                    this.ctxBack.scale(dpr, dpr);
+                }
+            }
+        },
+
+        /**
+         * 清空该层画布
+         * @param {boolean} clearAll Clear all with out motion blur
+         */
+        clear: function (clearAll) {
+            var dom = this.dom;
+            var ctx = this.ctx;
+            var width = dom.width;
+            var height = dom.height;
+
+            var clearColor = this.clearColor;
+            var haveMotionBLur = this.motionBlur && !clearAll;
+            var lastFrameAlpha = this.lastFrameAlpha;
+
+            var dpr = this.dpr;
+
+            if (haveMotionBLur) {
+                if (!this.domBack) {
+                    this.createBackBuffer();
+                }
+
+                this.ctxBack.globalCompositeOperation = 'copy';
+                this.ctxBack.drawImage(
+                    dom, 0, 0,
+                    width / dpr,
+                    height / dpr
+                );
+            }
+
+            ctx.clearRect(0, 0, width, height);
+            if (clearColor) {
+                var clearColorGradientOrPattern;
+                // Gradient
+                if (clearColor.colorStops) {
+                    // Cache canvas gradient
+                    clearColorGradientOrPattern = clearColor.__canvasGradient || Style.getGradient(ctx, clearColor, {
+                        x: 0,
+                        y: 0,
+                        width: width,
+                        height: height
+                    });
+
+                    clearColor.__canvasGradient = clearColorGradientOrPattern;
+                }
+                // Pattern
+                else if (clearColor.image) {
+                    clearColorGradientOrPattern = Pattern.prototype.getCanvasPattern.call(clearColor, ctx);
+                }
+                ctx.save();
+                ctx.fillStyle = clearColorGradientOrPattern || clearColor;
+                ctx.fillRect(0, 0, width, height);
+                ctx.restore();
+            }
+
+            if (haveMotionBLur) {
+                var domBack = this.domBack;
+                ctx.save();
+                ctx.globalAlpha = lastFrameAlpha;
+                ctx.drawImage(domBack, 0, 0, width, height);
+                ctx.restore();
+            }
+        }
+    };
+
+    return Layer;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2030:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Default canvas painter
+ * @module zrender/Painter
+ * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+ *         errorrik (errorrik@gmail.com)
+ *         pissang (https://www.github.com/pissang)
+ */
+ !(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+    'use strict';
+
+    var config = __webpack_require__(252);
+    var util = __webpack_require__(40);
+    var log = __webpack_require__(841);
+    var BoundingRect = __webpack_require__(149);
+    var timsort = __webpack_require__(843);
+
+    var Layer = __webpack_require__(2029);
+
+    var requestAnimationFrame = __webpack_require__(836);
+
+    // PENDIGN
+    // Layer exceeds MAX_PROGRESSIVE_LAYER_NUMBER may have some problem when flush directly second time.
+    //
+    // Maximum progressive layer. When exceeding this number. All elements will be drawed in the last layer.
+    var MAX_PROGRESSIVE_LAYER_NUMBER = 5;
+
+    function parseInt10(val) {
+        return parseInt(val, 10);
+    }
+
+    function isLayerValid(layer) {
+        if (!layer) {
+            return false;
+        }
+
+        if (layer.__builtin__) {
+            return true;
+        }
+
+        if (typeof(layer.resize) !== 'function'
+            || typeof(layer.refresh) !== 'function'
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function preProcessLayer(layer) {
+        layer.__unusedCount++;
+    }
+
+    function postProcessLayer(layer) {
+        if (layer.__unusedCount == 1) {
+            layer.clear();
+        }
+    }
+
+    var tmpRect = new BoundingRect(0, 0, 0, 0);
+    var viewRect = new BoundingRect(0, 0, 0, 0);
+    function isDisplayableCulled(el, width, height) {
+        tmpRect.copy(el.getBoundingRect());
+        if (el.transform) {
+            tmpRect.applyTransform(el.transform);
+        }
+        viewRect.width = width;
+        viewRect.height = height;
+        return !tmpRect.intersect(viewRect);
+    }
+
+    function isClipPathChanged(clipPaths, prevClipPaths) {
+        if (clipPaths == prevClipPaths) { // Can both be null or undefined
+            return false;
+        }
+
+        if (!clipPaths || !prevClipPaths || (clipPaths.length !== prevClipPaths.length)) {
+            return true;
+        }
+        for (var i = 0; i < clipPaths.length; i++) {
+            if (clipPaths[i] !== prevClipPaths[i]) {
+                return true;
+            }
+        }
+    }
+
+    function doClip(clipPaths, ctx) {
+        for (var i = 0; i < clipPaths.length; i++) {
+            var clipPath = clipPaths[i];
+
+            clipPath.setTransform(ctx);
+            ctx.beginPath();
+            clipPath.buildPath(ctx, clipPath.shape);
+            ctx.clip();
+            // Transform back
+            clipPath.restoreTransform(ctx);
+        }
+    }
+
+    function createRoot(width, height) {
+        var domRoot = document.createElement('div');
+
+        // domRoot.onselectstart = returnFalse; // 避免页面选中的尴尬
+        domRoot.style.cssText = [
+            'position:relative',
+            'overflow:hidden',
+            'width:' + width + 'px',
+            'height:' + height + 'px',
+            'padding:0',
+            'margin:0',
+            'border-width:0'
+        ].join(';') + ';';
+
+        return domRoot;
+    }
+
+    /**
+     * @alias module:zrender/Painter
+     * @constructor
+     * @param {HTMLElement} root 绘图容器
+     * @param {module:zrender/Storage} storage
+     * @param {Object} opts
+     */
+    var Painter = function (root, storage, opts) {
+        // In node environment using node-canvas
+        var singleCanvas = !root.nodeName // In node ?
+            || root.nodeName.toUpperCase() === 'CANVAS';
+
+        this._opts = opts = util.extend({}, opts || {});
+
+        /**
+         * @type {number}
+         */
+        this.dpr = opts.devicePixelRatio || config.devicePixelRatio;
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._singleCanvas = singleCanvas;
+        /**
+         * 绘图容器
+         * @type {HTMLElement}
+         */
+        this.root = root;
+
+        var rootStyle = root.style;
+
+        if (rootStyle) {
+            rootStyle['-webkit-tap-highlight-color'] = 'transparent';
+            rootStyle['-webkit-user-select'] =
+            rootStyle['user-select'] =
+            rootStyle['-webkit-touch-callout'] = 'none';
+
+            root.innerHTML = '';
+        }
+
+        /**
+         * @type {module:zrender/Storage}
+         */
+        this.storage = storage;
+
+        /**
+         * @type {Array.<number>}
+         * @private
+         */
+        var zlevelList = this._zlevelList = [];
+
+        /**
+         * @type {Object.<string, module:zrender/Layer>}
+         * @private
+         */
+        var layers = this._layers = {};
+
+        /**
+         * @type {Object.<string, Object>}
+         * @type {private}
+         */
+        this._layerConfig = {};
+
+        if (!singleCanvas) {
+            this._width = this._getSize(0);
+            this._height = this._getSize(1);
+
+            var domRoot = this._domRoot = createRoot(
+                this._width, this._height
+            );
+            root.appendChild(domRoot);
+        }
+        else {
+            if (opts.width != null) {
+                root.width = opts.width;
+            }
+            if (opts.height != null) {
+                root.height = opts.height;
+            }
+            // Use canvas width and height directly
+            var width = root.width;
+            var height = root.height;
+            this._width = width;
+            this._height = height;
+
+            // Create layer if only one given canvas
+            // Device pixel ratio is fixed to 1 because given canvas has its specified width and height
+            var mainLayer = new Layer(root, this, 1);
+            mainLayer.initContext();
+            // FIXME Use canvas width and height
+            // mainLayer.resize(width, height);
+            layers[0] = mainLayer;
+            zlevelList.push(0);
+
+            this._domRoot = root;
+        }
+
+        // Layers for progressive rendering
+        this._progressiveLayers = [];
+
+        /**
+         * @type {module:zrender/Layer}
+         * @private
+         */
+        this._hoverlayer;
+
+        this._hoverElements = [];
+    };
+
+    Painter.prototype = {
+
+        constructor: Painter,
+
+        /**
+         * If painter use a single canvas
+         * @return {boolean}
+         */
+        isSingleCanvas: function () {
+            return this._singleCanvas;
+        },
+        /**
+         * @return {HTMLDivElement}
+         */
+        getViewportRoot: function () {
+            return this._domRoot;
+        },
+
+        getViewportRootOffset: function () {
+            var viewportRoot = this.getViewportRoot();
+            if (viewportRoot) {
+                return {
+                    offsetLeft: viewportRoot.offsetLeft || 0,
+                    offsetTop: viewportRoot.offsetTop || 0
+                };
+            }
+        },
+
+        /**
+         * 刷新
+         * @param {boolean} [paintAll=false] 强制绘制所有displayable
+         */
+        refresh: function (paintAll) {
+
+            var list = this.storage.getDisplayList(true);
+
+            var zlevelList = this._zlevelList;
+
+            this._paintList(list, paintAll);
+
+            // Paint custum layers
+            for (var i = 0; i < zlevelList.length; i++) {
+                var z = zlevelList[i];
+                var layer = this._layers[z];
+                if (!layer.__builtin__ && layer.refresh) {
+                    layer.refresh();
+                }
+            }
+
+            this.refreshHover();
+
+            if (this._progressiveLayers.length) {
+                this._startProgessive();
+            }
+
+            return this;
+        },
+
+        addHover: function (el, hoverStyle) {
+            if (el.__hoverMir) {
+                return;
+            }
+            var elMirror = new el.constructor({
+                style: el.style,
+                shape: el.shape
+            });
+            elMirror.__from = el;
+            el.__hoverMir = elMirror;
+            elMirror.setStyle(hoverStyle);
+            this._hoverElements.push(elMirror);
+        },
+
+        removeHover: function (el) {
+            var elMirror = el.__hoverMir;
+            var hoverElements = this._hoverElements;
+            var idx = util.indexOf(hoverElements, elMirror);
+            if (idx >= 0) {
+                hoverElements.splice(idx, 1);
+            }
+            el.__hoverMir = null;
+        },
+
+        clearHover: function (el) {
+            var hoverElements = this._hoverElements;
+            for (var i = 0; i < hoverElements.length; i++) {
+                var from = hoverElements[i].__from;
+                if (from) {
+                    from.__hoverMir = null;
+                }
+            }
+            hoverElements.length = 0;
+        },
+
+        refreshHover: function () {
+            var hoverElements = this._hoverElements;
+            var len = hoverElements.length;
+            var hoverLayer = this._hoverlayer;
+            hoverLayer && hoverLayer.clear();
+
+            if (!len) {
+                return;
+            }
+            timsort(hoverElements, this.storage.displayableSortFunc);
+
+            // Use a extream large zlevel
+            // FIXME?
+            if (!hoverLayer) {
+                hoverLayer = this._hoverlayer = this.getLayer(1e5);
+            }
+
+            var scope = {};
+            hoverLayer.ctx.save();
+            for (var i = 0; i < len;) {
+                var el = hoverElements[i];
+                var originalEl = el.__from;
+                // Original el is removed
+                // PENDING
+                if (!(originalEl && originalEl.__zr)) {
+                    hoverElements.splice(i, 1);
+                    originalEl.__hoverMir = null;
+                    len--;
+                    continue;
+                }
+                i++;
+
+                // Use transform
+                // FIXME style and shape ?
+                if (!originalEl.invisible) {
+                    el.transform = originalEl.transform;
+                    el.invTransform = originalEl.invTransform;
+                    el.__clipPaths = originalEl.__clipPaths;
+                    // el.
+                    this._doPaintEl(el, hoverLayer, true, scope);
+                }
+            }
+            hoverLayer.ctx.restore();
+        },
+
+        _startProgessive: function () {
+            var self = this;
+
+            if (!self._furtherProgressive) {
+                return;
+            }
+
+            // Use a token to stop progress steps triggered by
+            // previous zr.refresh calling.
+            var token = self._progressiveToken = +new Date();
+
+            self._progress++;
+            requestAnimationFrame(step);
+
+            function step() {
+                // In case refreshed or disposed
+                if (token === self._progressiveToken && self.storage) {
+
+                    self._doPaintList(self.storage.getDisplayList());
+
+                    if (self._furtherProgressive) {
+                        self._progress++;
+                        requestAnimationFrame(step);
+                    }
+                    else {
+                        self._progressiveToken = -1;
+                    }
+                }
+            }
+        },
+
+        _clearProgressive: function () {
+            this._progressiveToken = -1;
+            this._progress = 0;
+            util.each(this._progressiveLayers, function (layer) {
+                layer.__dirty && layer.clear();
+            });
+        },
+
+        _paintList: function (list, paintAll) {
+
+            if (paintAll == null) {
+                paintAll = false;
+            }
+
+            this._updateLayerStatus(list);
+
+            this._clearProgressive();
+
+            this.eachBuiltinLayer(preProcessLayer);
+
+            this._doPaintList(list, paintAll);
+
+            this.eachBuiltinLayer(postProcessLayer);
+        },
+
+        _doPaintList: function (list, paintAll) {
+            var currentLayer;
+            var currentZLevel;
+            var ctx;
+
+            // var invTransform = [];
+            var scope;
+
+            var progressiveLayerIdx = 0;
+            var currentProgressiveLayer;
+
+            var width = this._width;
+            var height = this._height;
+            var layerProgress;
+            var frame = this._progress;
+            function flushProgressiveLayer(layer) {
+                var dpr = ctx.dpr || 1;
+                ctx.save();
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+                // Avoid layer don't clear in next progressive frame
+                currentLayer.__dirty = true;
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.drawImage(layer.dom, 0, 0, width * dpr, height * dpr);
+                ctx.restore();
+            }
+
+            for (var i = 0, l = list.length; i < l; i++) {
+                var el = list[i];
+                var elZLevel = this._singleCanvas ? 0 : el.zlevel;
+
+                var elFrame = el.__frame;
+
+                // Flush at current context
+                // PENDING
+                if (elFrame < 0 && currentProgressiveLayer) {
+                    flushProgressiveLayer(currentProgressiveLayer);
+                    currentProgressiveLayer = null;
+                }
+
+                // Change draw layer
+                if (currentZLevel !== elZLevel) {
+                    if (ctx) {
+                        ctx.restore();
+                    }
+
+                    // Reset scope
+                    scope = {};
+
+                    // Only 0 zlevel if only has one canvas
+                    currentZLevel = elZLevel;
+                    currentLayer = this.getLayer(currentZLevel);
+
+                    if (!currentLayer.__builtin__) {
+                        log(
+                            'ZLevel ' + currentZLevel
+                            + ' has been used by unkown layer ' + currentLayer.id
+                        );
+                    }
+
+                    ctx = currentLayer.ctx;
+                    ctx.save();
+
+                    // Reset the count
+                    currentLayer.__unusedCount = 0;
+
+                    if (currentLayer.__dirty || paintAll) {
+                        currentLayer.clear();
+                    }
+                }
+
+                if (!(currentLayer.__dirty || paintAll)) {
+                    continue;
+                }
+
+                if (elFrame >= 0) {
+                    // Progressive layer changed
+                    if (!currentProgressiveLayer) {
+                        currentProgressiveLayer = this._progressiveLayers[
+                            Math.min(progressiveLayerIdx++, MAX_PROGRESSIVE_LAYER_NUMBER - 1)
+                        ];
+
+                        currentProgressiveLayer.ctx.save();
+                        currentProgressiveLayer.renderScope = {};
+
+                        if (currentProgressiveLayer
+                            && (currentProgressiveLayer.__progress > currentProgressiveLayer.__maxProgress)
+                        ) {
+                            // flushProgressiveLayer(currentProgressiveLayer);
+                            // Quick jump all progressive elements
+                            // All progressive element are not dirty, jump over and flush directly
+                            i = currentProgressiveLayer.__nextIdxNotProg - 1;
+                            // currentProgressiveLayer = null;
+                            continue;
+                        }
+
+                        layerProgress = currentProgressiveLayer.__progress;
+
+                        if (!currentProgressiveLayer.__dirty) {
+                            // Keep rendering
+                            frame = layerProgress;
+                        }
+
+                        currentProgressiveLayer.__progress = frame + 1;
+                    }
+
+                    if (elFrame === frame) {
+                        this._doPaintEl(el, currentProgressiveLayer, true, currentProgressiveLayer.renderScope);
+                    }
+                }
+                else {
+                    this._doPaintEl(el, currentLayer, paintAll, scope);
+                }
+
+                el.__dirty = false;
+            }
+
+            if (currentProgressiveLayer) {
+                flushProgressiveLayer(currentProgressiveLayer);
+            }
+
+            // Restore the lastLayer ctx
+            ctx && ctx.restore();
+            // If still has clipping state
+            // if (scope.prevElClipPaths) {
+            //     ctx.restore();
+            // }
+
+            this._furtherProgressive = false;
+            util.each(this._progressiveLayers, function (layer) {
+                if (layer.__maxProgress >= layer.__progress) {
+                    this._furtherProgressive = true;
+                }
+            }, this);
+        },
+
+        _doPaintEl: function (el, currentLayer, forcePaint, scope) {
+            var ctx = currentLayer.ctx;
+            var m = el.transform;
+            if (
+                (currentLayer.__dirty || forcePaint)
+                // Ignore invisible element
+                && !el.invisible
+                // Ignore transparent element
+                && el.style.opacity !== 0
+                // Ignore scale 0 element, in some environment like node-canvas
+                // Draw a scale 0 element can cause all following draw wrong
+                // And setTransform with scale 0 will cause set back transform failed.
+                && !(m && !m[0] && !m[3])
+                // Ignore culled element
+                && !(el.culling && isDisplayableCulled(el, this._width, this._height))
+            ) {
+
+                var clipPaths = el.__clipPaths;
+
+                // Optimize when clipping on group with several elements
+                if (scope.prevClipLayer !== currentLayer
+                    || isClipPathChanged(clipPaths, scope.prevElClipPaths)
+                ) {
+                    // If has previous clipping state, restore from it
+                    if (scope.prevElClipPaths) {
+                        scope.prevClipLayer.ctx.restore();
+                        scope.prevClipLayer = scope.prevElClipPaths = null;
+
+                        // Reset prevEl since context has been restored
+                        scope.prevEl = null;
+                    }
+                    // New clipping state
+                    if (clipPaths) {
+                        ctx.save();
+                        doClip(clipPaths, ctx);
+                        scope.prevClipLayer = currentLayer;
+                        scope.prevElClipPaths = clipPaths;
+                    }
+                }
+                el.beforeBrush && el.beforeBrush(ctx);
+
+                el.brush(ctx, scope.prevEl || null);
+                scope.prevEl = el;
+
+                el.afterBrush && el.afterBrush(ctx);
+            }
+        },
+
+        /**
+         * 获取 zlevel 所在层，如果不存在则会创建一个新的层
+         * @param {number} zlevel
+         * @return {module:zrender/Layer}
+         */
+        getLayer: function (zlevel) {
+            if (this._singleCanvas) {
+                return this._layers[0];
+            }
+
+            var layer = this._layers[zlevel];
+            if (!layer) {
+                // Create a new layer
+                layer = new Layer('zr_' + zlevel, this, this.dpr);
+                layer.__builtin__ = true;
+
+                if (this._layerConfig[zlevel]) {
+                    util.merge(layer, this._layerConfig[zlevel], true);
+                }
+
+                this.insertLayer(zlevel, layer);
+
+                // Context is created after dom inserted to document
+                // Or excanvas will get 0px clientWidth and clientHeight
+                layer.initContext();
+            }
+
+            return layer;
+        },
+
+        insertLayer: function (zlevel, layer) {
+
+            var layersMap = this._layers;
+            var zlevelList = this._zlevelList;
+            var len = zlevelList.length;
+            var prevLayer = null;
+            var i = -1;
+            var domRoot = this._domRoot;
+
+            if (layersMap[zlevel]) {
+                log('ZLevel ' + zlevel + ' has been used already');
+                return;
+            }
+            // Check if is a valid layer
+            if (!isLayerValid(layer)) {
+                log('Layer of zlevel ' + zlevel + ' is not valid');
+                return;
+            }
+
+            if (len > 0 && zlevel > zlevelList[0]) {
+                for (i = 0; i < len - 1; i++) {
+                    if (
+                        zlevelList[i] < zlevel
+                        && zlevelList[i + 1] > zlevel
+                    ) {
+                        break;
+                    }
+                }
+                prevLayer = layersMap[zlevelList[i]];
+            }
+            zlevelList.splice(i + 1, 0, zlevel);
+
+            layersMap[zlevel] = layer;
+
+            // Vitual layer will not directly show on the screen.
+            // (It can be a WebGL layer and assigned to a ZImage element)
+            // But it still under management of zrender.
+            if (!layer.virtual) {
+                if (prevLayer) {
+                    var prevDom = prevLayer.dom;
+                    if (prevDom.nextSibling) {
+                        domRoot.insertBefore(
+                            layer.dom,
+                            prevDom.nextSibling
+                        );
+                    }
+                    else {
+                        domRoot.appendChild(layer.dom);
+                    }
+                }
+                else {
+                    if (domRoot.firstChild) {
+                        domRoot.insertBefore(layer.dom, domRoot.firstChild);
+                    }
+                    else {
+                        domRoot.appendChild(layer.dom);
+                    }
+                }
+            }
+        },
+
+        // Iterate each layer
+        eachLayer: function (cb, context) {
+            var zlevelList = this._zlevelList;
+            var z;
+            var i;
+            for (i = 0; i < zlevelList.length; i++) {
+                z = zlevelList[i];
+                cb.call(context, this._layers[z], z);
+            }
+        },
+
+        // Iterate each buildin layer
+        eachBuiltinLayer: function (cb, context) {
+            var zlevelList = this._zlevelList;
+            var layer;
+            var z;
+            var i;
+            for (i = 0; i < zlevelList.length; i++) {
+                z = zlevelList[i];
+                layer = this._layers[z];
+                if (layer.__builtin__) {
+                    cb.call(context, layer, z);
+                }
+            }
+        },
+
+        // Iterate each other layer except buildin layer
+        eachOtherLayer: function (cb, context) {
+            var zlevelList = this._zlevelList;
+            var layer;
+            var z;
+            var i;
+            for (i = 0; i < zlevelList.length; i++) {
+                z = zlevelList[i];
+                layer = this._layers[z];
+                if (!layer.__builtin__) {
+                    cb.call(context, layer, z);
+                }
+            }
+        },
+
+        /**
+         * 获取所有已创建的层
+         * @param {Array.<module:zrender/Layer>} [prevLayer]
+         */
+        getLayers: function () {
+            return this._layers;
+        },
+
+        _updateLayerStatus: function (list) {
+
+            var layers = this._layers;
+            var progressiveLayers = this._progressiveLayers;
+
+            var elCountsLastFrame = {};
+            var progressiveElCountsLastFrame = {};
+
+            this.eachBuiltinLayer(function (layer, z) {
+                elCountsLastFrame[z] = layer.elCount;
+                layer.elCount = 0;
+                layer.__dirty = false;
+            });
+
+            util.each(progressiveLayers, function (layer, idx) {
+                progressiveElCountsLastFrame[idx] = layer.elCount;
+                layer.elCount = 0;
+                layer.__dirty = false;
+            });
+
+            var progressiveLayerCount = 0;
+            var currentProgressiveLayer;
+            var lastProgressiveKey;
+            var frameCount = 0;
+            for (var i = 0, l = list.length; i < l; i++) {
+                var el = list[i];
+                var zlevel = this._singleCanvas ? 0 : el.zlevel;
+                var layer = layers[zlevel];
+                var elProgress = el.progressive;
+                if (layer) {
+                    layer.elCount++;
+                    layer.__dirty = layer.__dirty || el.__dirty;
+                }
+
+                /////// Update progressive
+                if (elProgress >= 0) {
+                    // Fix wrong progressive sequence problem.
+                    if (lastProgressiveKey !== elProgress) {
+                        lastProgressiveKey = elProgress;
+                        frameCount++;
+                    }
+                    var elFrame = el.__frame = frameCount - 1;
+                    if (!currentProgressiveLayer) {
+                        var idx = Math.min(progressiveLayerCount, MAX_PROGRESSIVE_LAYER_NUMBER - 1);
+                        currentProgressiveLayer = progressiveLayers[idx];
+                        if (!currentProgressiveLayer) {
+                            currentProgressiveLayer = progressiveLayers[idx] = new Layer(
+                                'progressive', this, this.dpr
+                            );
+                            currentProgressiveLayer.initContext();
+                        }
+                        currentProgressiveLayer.__maxProgress = 0;
+                    }
+                    currentProgressiveLayer.__dirty = currentProgressiveLayer.__dirty || el.__dirty;
+                    currentProgressiveLayer.elCount++;
+
+                    currentProgressiveLayer.__maxProgress = Math.max(
+                        currentProgressiveLayer.__maxProgress, elFrame
+                    );
+
+                    if (currentProgressiveLayer.__maxProgress >= currentProgressiveLayer.__progress) {
+                        // Should keep rendering this  layer because progressive rendering is not finished yet
+                        layer.__dirty = true;
+                    }
+                }
+                else {
+                    el.__frame = -1;
+
+                    if (currentProgressiveLayer) {
+                        currentProgressiveLayer.__nextIdxNotProg = i;
+                        progressiveLayerCount++;
+                        currentProgressiveLayer = null;
+                    }
+                }
+            }
+
+            if (currentProgressiveLayer) {
+                progressiveLayerCount++;
+                currentProgressiveLayer.__nextIdxNotProg = i;
+            }
+
+            // 层中的元素数量有发生变化
+            this.eachBuiltinLayer(function (layer, z) {
+                if (elCountsLastFrame[z] !== layer.elCount) {
+                    layer.__dirty = true;
+                }
+            });
+
+            progressiveLayers.length = Math.min(progressiveLayerCount, MAX_PROGRESSIVE_LAYER_NUMBER);
+            util.each(progressiveLayers, function (layer, idx) {
+                if (progressiveElCountsLastFrame[idx] !== layer.elCount) {
+                    el.__dirty = true;
+                }
+                if (layer.__dirty) {
+                    layer.__progress = 0;
+                }
+            });
+        },
+
+        /**
+         * 清除hover层外所有内容
+         */
+        clear: function () {
+            this.eachBuiltinLayer(this._clearLayer);
+            return this;
+        },
+
+        _clearLayer: function (layer) {
+            layer.clear();
+        },
+
+        /**
+         * 修改指定zlevel的绘制参数
+         *
+         * @param {string} zlevel
+         * @param {Object} config 配置对象
+         * @param {string} [config.clearColor=0] 每次清空画布的颜色
+         * @param {string} [config.motionBlur=false] 是否开启动态模糊
+         * @param {number} [config.lastFrameAlpha=0.7]
+         *                 在开启动态模糊的时候使用，与上一帧混合的alpha值，值越大尾迹越明显
+         */
+        configLayer: function (zlevel, config) {
+            if (config) {
+                var layerConfig = this._layerConfig;
+                if (!layerConfig[zlevel]) {
+                    layerConfig[zlevel] = config;
+                }
+                else {
+                    util.merge(layerConfig[zlevel], config, true);
+                }
+
+                var layer = this._layers[zlevel];
+
+                if (layer) {
+                    util.merge(layer, layerConfig[zlevel], true);
+                }
+            }
+        },
+
+        /**
+         * 删除指定层
+         * @param {number} zlevel 层所在的zlevel
+         */
+        delLayer: function (zlevel) {
+            var layers = this._layers;
+            var zlevelList = this._zlevelList;
+            var layer = layers[zlevel];
+            if (!layer) {
+                return;
+            }
+            layer.dom.parentNode.removeChild(layer.dom);
+            delete layers[zlevel];
+
+            zlevelList.splice(util.indexOf(zlevelList, zlevel), 1);
+        },
+
+        /**
+         * 区域大小变化后重绘
+         */
+        resize: function (width, height) {
+            var domRoot = this._domRoot;
+            // FIXME Why ?
+            domRoot.style.display = 'none';
+
+            // Save input w/h
+            var opts = this._opts;
+            width != null && (opts.width = width);
+            height != null && (opts.height = height);
+
+            width = this._getSize(0);
+            height = this._getSize(1);
+
+            domRoot.style.display = '';
+
+            // 优化没有实际改变的resize
+            if (this._width != width || height != this._height) {
+                domRoot.style.width = width + 'px';
+                domRoot.style.height = height + 'px';
+
+                for (var id in this._layers) {
+                    if (this._layers.hasOwnProperty(id)) {
+                        this._layers[id].resize(width, height);
+                    }
+                }
+                util.each(this._progressiveLayers, function (layer) {
+                    layer.resize(width, height);
+                });
+
+                this.refresh(true);
+            }
+
+            this._width = width;
+            this._height = height;
+
+            return this;
+        },
+
+        /**
+         * 清除单独的一个层
+         * @param {number} zlevel
+         */
+        clearLayer: function (zlevel) {
+            var layer = this._layers[zlevel];
+            if (layer) {
+                layer.clear();
+            }
+        },
+
+        /**
+         * 释放
+         */
+        dispose: function () {
+            this.root.innerHTML = '';
+
+            this.root =
+            this.storage =
+
+            this._domRoot =
+            this._layers = null;
+        },
+
+        /**
+         * Get canvas which has all thing rendered
+         * @param {Object} opts
+         * @param {string} [opts.backgroundColor]
+         */
+        getRenderedCanvas: function (opts) {
+            opts = opts || {};
+            if (this._singleCanvas) {
+                return this._layers[0].dom;
+            }
+
+            var imageLayer = new Layer('image', this, opts.pixelRatio || this.dpr);
+            imageLayer.initContext();
+
+            imageLayer.clearColor = opts.backgroundColor;
+            imageLayer.clear();
+
+            var displayList = this.storage.getDisplayList(true);
+
+            var scope = {};
+            var zlevel;
+
+            var self = this;
+            function findAndDrawOtherLayer(smaller, larger) {
+                var zlevelList = self._zlevelList;
+                if (smaller == null) {
+                    smaller = -Infinity;
+                }
+                var intermediateLayer;
+                for (var i = 0; i < zlevelList.length; i++) {
+                    var z = zlevelList[i];
+                    var layer = self._layers[z];
+                    if (!layer.__builtin__ && z > smaller && z < larger) {
+                        intermediateLayer = layer;
+                        break;
+                    }
+                }
+                if (intermediateLayer && intermediateLayer.renderToCanvas) {
+                    imageLayer.ctx.save();
+                    intermediateLayer.renderToCanvas(imageLayer.ctx);
+                    imageLayer.ctx.restore();
+                }
+            }
+            for (var i = 0; i < displayList.length; i++) {
+                var el = displayList[i];
+
+                if (el.zlevel !== zlevel) {
+                    findAndDrawOtherLayer(zlevel, el.zlevel);
+                    zlevel = el.zlevel;
+                }
+                this._doPaintEl(el, imageLayer, true, scope);
+            }
+
+            findAndDrawOtherLayer(zlevel, Infinity);
+
+            return imageLayer.dom;
+        },
+        /**
+         * 获取绘图区域宽度
+         */
+        getWidth: function () {
+            return this._width;
+        },
+
+        /**
+         * 获取绘图区域高度
+         */
+        getHeight: function () {
+            return this._height;
+        },
+
+        _getSize: function (whIdx) {
+            var opts = this._opts;
+            var wh = ['width', 'height'][whIdx];
+            var cwh = ['clientWidth', 'clientHeight'][whIdx];
+            var plt = ['paddingLeft', 'paddingTop'][whIdx];
+            var prb = ['paddingRight', 'paddingBottom'][whIdx];
+
+            if (opts[wh] != null && opts[wh] !== 'auto') {
+                return parseFloat(opts[wh]);
+            }
+
+            var root = this.root;
+            // IE8 does not support getComputedStyle, but it use VML.
+            var stl = document.defaultView.getComputedStyle(root);
+
+            return (
+                (root[cwh] || parseInt10(stl[wh]) || parseInt10(root.style[wh]))
+                - (parseInt10(stl[plt]) || 0)
+                - (parseInt10(stl[prb]) || 0)
+            ) | 0;
+        },
+
+        pathToImage: function (path, dpr) {
+            dpr = dpr || this.dpr;
+
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var rect = path.getBoundingRect();
+            var style = path.style;
+            var shadowBlurSize = style.shadowBlur;
+            var shadowOffsetX = style.shadowOffsetX;
+            var shadowOffsetY = style.shadowOffsetY;
+            var lineWidth = style.hasStroke() ? style.lineWidth : 0;
+
+            var leftMargin = Math.max(lineWidth / 2, -shadowOffsetX + shadowBlurSize);
+            var rightMargin = Math.max(lineWidth / 2, shadowOffsetX + shadowBlurSize);
+            var topMargin = Math.max(lineWidth / 2, -shadowOffsetY + shadowBlurSize);
+            var bottomMargin = Math.max(lineWidth / 2, shadowOffsetY + shadowBlurSize);
+            var width = rect.width + leftMargin + rightMargin;
+            var height = rect.height + topMargin + bottomMargin;
+
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+
+            ctx.scale(dpr, dpr);
+            ctx.clearRect(0, 0, width, height);
+            ctx.dpr = dpr;
+
+            var pathTransform = {
+                position: path.position,
+                rotation: path.rotation,
+                scale: path.scale
+            };
+            path.position = [leftMargin - rect.x, topMargin - rect.y];
+            path.rotation = 0;
+            path.scale = [1, 1];
+            path.updateTransform();
+            if (path) {
+                path.brush(ctx);
+            }
+
+            var ImageShape = __webpack_require__(2045);
+            var imgShape = new ImageShape({
+                style: {
+                    x: 0,
+                    y: 0,
+                    image: canvas
+                }
+            });
+
+            if (pathTransform.position != null) {
+                imgShape.position = path.position = pathTransform.position;
+            }
+
+            if (pathTransform.rotation != null) {
+                imgShape.rotation = path.rotation = pathTransform.rotation;
+            }
+
+            if (pathTransform.scale != null) {
+                imgShape.scale = path.scale = pathTransform.scale;
+            }
+
+            return imgShape;
+        }
+    };
+
+    return Painter;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2031:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Storage内容仓库模块
+ * @module zrender/Storage
+ * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+ * @author errorrik (errorrik@gmail.com)
+ * @author pissang (https://github.com/pissang/)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    'use strict';
+
+    var util = __webpack_require__(40);
+    var env = __webpack_require__(254);
+
+    var Group = __webpack_require__(838);
+
+    // Use timsort because in most case elements are partially sorted
+    // https://jsfiddle.net/pissang/jr4x7mdm/8/
+    var timsort = __webpack_require__(843);
+
+    function shapeCompareFunc(a, b) {
+        if (a.zlevel === b.zlevel) {
+            if (a.z === b.z) {
+                // if (a.z2 === b.z2) {
+                //     // FIXME Slow has renderidx compare
+                //     // http://stackoverflow.com/questions/20883421/sorting-in-javascript-should-every-compare-function-have-a-return-0-statement
+                //     // https://github.com/v8/v8/blob/47cce544a31ed5577ffe2963f67acb4144ee0232/src/js/array.js#L1012
+                //     return a.__renderidx - b.__renderidx;
+                // }
+                return a.z2 - b.z2;
+            }
+            return a.z - b.z;
+        }
+        return a.zlevel - b.zlevel;
+    }
+    /**
+     * 内容仓库 (M)
+     * @alias module:zrender/Storage
+     * @constructor
+     */
+    var Storage = function () {
+        this._roots = [];
+
+        this._displayList = [];
+
+        this._displayListLen = 0;
+    };
+
+    Storage.prototype = {
+
+        constructor: Storage,
+
+        /**
+         * @param  {Function} cb
+         *
+         */
+        traverse: function (cb, context) {
+            for (var i = 0; i < this._roots.length; i++) {
+                this._roots[i].traverse(cb, context);
+            }
+        },
+
+        /**
+         * 返回所有图形的绘制队列
+         * @param {boolean} [update=false] 是否在返回前更新该数组
+         * @param {boolean} [includeIgnore=false] 是否包含 ignore 的数组, 在 update 为 true 的时候有效
+         *
+         * 详见{@link module:zrender/graphic/Displayable.prototype.updateDisplayList}
+         * @return {Array.<module:zrender/graphic/Displayable>}
+         */
+        getDisplayList: function (update, includeIgnore) {
+            includeIgnore = includeIgnore || false;
+            if (update) {
+                this.updateDisplayList(includeIgnore);
+            }
+            return this._displayList;
+        },
+
+        /**
+         * 更新图形的绘制队列。
+         * 每次绘制前都会调用，该方法会先深度优先遍历整个树，更新所有Group和Shape的变换并且把所有可见的Shape保存到数组中，
+         * 最后根据绘制的优先级（zlevel > z > 插入顺序）排序得到绘制队列
+         * @param {boolean} [includeIgnore=false] 是否包含 ignore 的数组
+         */
+        updateDisplayList: function (includeIgnore) {
+            this._displayListLen = 0;
+            var roots = this._roots;
+            var displayList = this._displayList;
+            for (var i = 0, len = roots.length; i < len; i++) {
+                this._updateAndAddDisplayable(roots[i], null, includeIgnore);
+            }
+            displayList.length = this._displayListLen;
+
+            // for (var i = 0, len = displayList.length; i < len; i++) {
+            //     displayList[i].__renderidx = i;
+            // }
+
+            // displayList.sort(shapeCompareFunc);
+            env.canvasSupported && timsort(displayList, shapeCompareFunc);
+        },
+
+        _updateAndAddDisplayable: function (el, clipPaths, includeIgnore) {
+
+            if (el.ignore && !includeIgnore) {
+                return;
+            }
+
+            el.beforeUpdate();
+
+            if (el.__dirty) {
+
+                el.update();
+
+            }
+
+            el.afterUpdate();
+
+            var userSetClipPath = el.clipPath;
+            if (userSetClipPath) {
+
+                // FIXME 效率影响
+                if (clipPaths) {
+                    clipPaths = clipPaths.slice();
+                }
+                else {
+                    clipPaths = [];
+                }
+
+                var currentClipPath = userSetClipPath;
+                var parentClipPath = el;
+                // Recursively add clip path
+                while (currentClipPath) {
+                    // clipPath 的变换是基于使用这个 clipPath 的元素
+                    currentClipPath.parent = parentClipPath;
+                    currentClipPath.updateTransform();
+
+                    clipPaths.push(currentClipPath);
+
+                    parentClipPath = currentClipPath;
+                    currentClipPath = currentClipPath.clipPath;
+                }
+            }
+
+            if (el.isGroup) {
+                var children = el._children;
+
+                for (var i = 0; i < children.length; i++) {
+                    var child = children[i];
+
+                    // Force to mark as dirty if group is dirty
+                    // FIXME __dirtyPath ?
+                    if (el.__dirty) {
+                        child.__dirty = true;
+                    }
+
+                    this._updateAndAddDisplayable(child, clipPaths, includeIgnore);
+                }
+
+                // Mark group clean here
+                el.__dirty = false;
+
+            }
+            else {
+                el.__clipPaths = clipPaths;
+
+                this._displayList[this._displayListLen++] = el;
+            }
+        },
+
+        /**
+         * 添加图形(Shape)或者组(Group)到根节点
+         * @param {module:zrender/Element} el
+         */
+        addRoot: function (el) {
+            if (el.__storage === this) {
+                return;
+            }
+
+            if (el instanceof Group) {
+                el.addChildrenToStorage(this);
+            }
+
+            this.addToStorage(el);
+            this._roots.push(el);
+        },
+
+        /**
+         * 删除指定的图形(Shape)或者组(Group)
+         * @param {string|Array.<string>} [el] 如果为空清空整个Storage
+         */
+        delRoot: function (el) {
+            if (el == null) {
+                // 不指定el清空
+                for (var i = 0; i < this._roots.length; i++) {
+                    var root = this._roots[i];
+                    if (root instanceof Group) {
+                        root.delChildrenFromStorage(this);
+                    }
+                }
+
+                this._roots = [];
+                this._displayList = [];
+                this._displayListLen = 0;
+
+                return;
+            }
+
+            if (el instanceof Array) {
+                for (var i = 0, l = el.length; i < l; i++) {
+                    this.delRoot(el[i]);
+                }
+                return;
+            }
+
+
+            var idx = util.indexOf(this._roots, el);
+            if (idx >= 0) {
+                this.delFromStorage(el);
+                this._roots.splice(idx, 1);
+                if (el instanceof Group) {
+                    el.delChildrenFromStorage(this);
+                }
+            }
+        },
+
+        addToStorage: function (el) {
+            el.__storage = this;
+            el.dirty(false);
+
+            return this;
+        },
+
+        delFromStorage: function (el) {
+            if (el) {
+                el.__storage = null;
+            }
+
+            return this;
+        },
+
+        /**
+         * 清空并且释放Storage
+         */
+        dispose: function () {
+            this._renderList =
+            this._roots = null;
+        },
+
+        displayableSortFunc: shapeCompareFunc
+    };
+
+    return Storage;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2032:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 动画主类, 调度和管理所有动画控制器
+ *
+ * @module zrender/animation/Animation
+ * @author pissang(https://github.com/pissang)
+ */
+// TODO Additive animation
+// http://iosoteric.com/additive-animations-animatewithduration-in-ios-8/
+// https://developer.apple.com/videos/wwdc2014/#236
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    'use strict';
+
+    var util = __webpack_require__(40);
+    var Dispatcher = __webpack_require__(406).Dispatcher;
+
+    var requestAnimationFrame = __webpack_require__(836);
+
+    var Animator = __webpack_require__(835);
+    /**
+     * @typedef {Object} IZRenderStage
+     * @property {Function} update
+     */
+
+    /**
+     * @alias module:zrender/animation/Animation
+     * @constructor
+     * @param {Object} [options]
+     * @param {Function} [options.onframe]
+     * @param {IZRenderStage} [options.stage]
+     * @example
+     *     var animation = new Animation();
+     *     var obj = {
+     *         x: 100,
+     *         y: 100
+     *     };
+     *     animation.animate(node.position)
+     *         .when(1000, {
+     *             x: 500,
+     *             y: 500
+     *         })
+     *         .when(2000, {
+     *             x: 100,
+     *             y: 100
+     *         })
+     *         .start('spline');
+     */
+    var Animation = function (options) {
+
+        options = options || {};
+
+        this.stage = options.stage || {};
+
+        this.onframe = options.onframe || function() {};
+
+        // private properties
+        this._clips = [];
+
+        this._running = false;
+
+        this._time;
+
+        this._pausedTime;
+
+        this._pauseStart;
+
+        this._paused = false;
+
+        Dispatcher.call(this);
+    };
+
+    Animation.prototype = {
+
+        constructor: Animation,
+        /**
+         * 添加 clip
+         * @param {module:zrender/animation/Clip} clip
+         */
+        addClip: function (clip) {
+            this._clips.push(clip);
+        },
+        /**
+         * 添加 animator
+         * @param {module:zrender/animation/Animator} animator
+         */
+        addAnimator: function (animator) {
+            animator.animation = this;
+            var clips = animator.getClips();
+            for (var i = 0; i < clips.length; i++) {
+                this.addClip(clips[i]);
+            }
+        },
+        /**
+         * 删除动画片段
+         * @param {module:zrender/animation/Clip} clip
+         */
+        removeClip: function(clip) {
+            var idx = util.indexOf(this._clips, clip);
+            if (idx >= 0) {
+                this._clips.splice(idx, 1);
+            }
+        },
+
+        /**
+         * 删除动画片段
+         * @param {module:zrender/animation/Animator} animator
+         */
+        removeAnimator: function (animator) {
+            var clips = animator.getClips();
+            for (var i = 0; i < clips.length; i++) {
+                this.removeClip(clips[i]);
+            }
+            animator.animation = null;
+        },
+
+        _update: function() {
+
+            var time = new Date().getTime() - this._pausedTime;
+            var delta = time - this._time;
+            var clips = this._clips;
+            var len = clips.length;
+
+            var deferredEvents = [];
+            var deferredClips = [];
+            for (var i = 0; i < len; i++) {
+                var clip = clips[i];
+                var e = clip.step(time, delta);
+                // Throw out the events need to be called after
+                // stage.update, like destroy
+                if (e) {
+                    deferredEvents.push(e);
+                    deferredClips.push(clip);
+                }
+            }
+
+            // Remove the finished clip
+            for (var i = 0; i < len;) {
+                if (clips[i]._needsRemove) {
+                    clips[i] = clips[len - 1];
+                    clips.pop();
+                    len--;
+                }
+                else {
+                    i++;
+                }
+            }
+
+            len = deferredEvents.length;
+            for (var i = 0; i < len; i++) {
+                deferredClips[i].fire(deferredEvents[i]);
+            }
+
+            this._time = time;
+
+            this.onframe(delta);
+
+            this.trigger('frame', delta);
+
+            if (this.stage.update) {
+                this.stage.update();
+            }
+        },
+
+        _startLoop: function () {
+            var self = this;
+
+            this._running = true;
+
+            function step() {
+                if (self._running) {
+
+                    requestAnimationFrame(step);
+
+                    !self._paused && self._update();
+                }
+            }
+
+            requestAnimationFrame(step);
+        },
+
+        /**
+         * 开始运行动画
+         */
+        start: function () {
+
+            this._time = new Date().getTime();
+            this._pausedTime = 0;
+
+            this._startLoop();
+        },
+        /**
+         * 停止运行动画
+         */
+        stop: function () {
+            this._running = false;
+        },
+
+        /**
+         * Pause
+         */
+        pause: function () {
+            if (!this._paused) {
+                this._pauseStart = new Date().getTime();
+                this._paused = true;
+            }
+        },
+
+        /**
+         * Resume
+         */
+        resume: function () {
+            if (this._paused) {
+                this._pausedTime += (new Date().getTime()) - this._pauseStart;
+                this._paused = false;
+            }
+        },
+
+        /**
+         * 清除所有动画片段
+         */
+        clear: function () {
+            this._clips = [];
+        },
+        /**
+         * 对一个目标创建一个animator对象，可以指定目标中的属性使用动画
+         * @param  {Object} target
+         * @param  {Object} options
+         * @param  {boolean} [options.loop=false] 是否循环播放动画
+         * @param  {Function} [options.getter=null]
+         *         如果指定getter函数，会通过getter函数取属性值
+         * @param  {Function} [options.setter=null]
+         *         如果指定setter函数，会通过setter函数设置属性值
+         * @return {module:zrender/animation/Animation~Animator}
+         */
+        // TODO Gap
+        animate: function (target, options) {
+            options = options || {};
+
+            var animator = new Animator(
+                target,
+                options.loop,
+                options.getter,
+                options.setter
+            );
+
+            this.addAnimator(animator);
+
+            return animator;
+        }
+    };
+
+    util.mixin(Animation, Dispatcher);
+
+    return Animation;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2033:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 动画主控制器
+ * @config target 动画对象，可以是数组，如果是数组的话会批量分发onframe等事件
+ * @config life(1000) 动画时长
+ * @config delay(0) 动画延迟时间
+ * @config loop(true)
+ * @config gap(0) 循环的间隔时间
+ * @config onframe
+ * @config easing(optional)
+ * @config ondestroy(optional)
+ * @config onrestart(optional)
+ *
+ * TODO pause
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    var easingFuncs = __webpack_require__(2034);
+
+    function Clip(options) {
+
+        this._target = options.target;
+
+        // 生命周期
+        this._life = options.life || 1000;
+        // 延时
+        this._delay = options.delay || 0;
+        // 开始时间
+        // this._startTime = new Date().getTime() + this._delay;// 单位毫秒
+        this._initialized = false;
+
+        // 是否循环
+        this.loop = options.loop == null ? false : options.loop;
+
+        this.gap = options.gap || 0;
+
+        this.easing = options.easing || 'Linear';
+
+        this.onframe = options.onframe;
+        this.ondestroy = options.ondestroy;
+        this.onrestart = options.onrestart;
+
+        this._pausedTime = 0;
+        this._paused = false;
+    }
+
+    Clip.prototype = {
+
+        constructor: Clip,
+
+        step: function (globalTime, deltaTime) {
+            // Set startTime on first step, or _startTime may has milleseconds different between clips
+            // PENDING
+            if (!this._initialized) {
+                this._startTime = globalTime + this._delay;
+                this._initialized = true;
+            }
+
+            if (this._paused) {
+                this._pausedTime += deltaTime;
+                return;
+            }
+
+            var percent = (globalTime - this._startTime - this._pausedTime) / this._life;
+
+            // 还没开始
+            if (percent < 0) {
+                return;
+            }
+
+            percent = Math.min(percent, 1);
+
+            var easing = this.easing;
+            var easingFunc = typeof easing == 'string' ? easingFuncs[easing] : easing;
+            var schedule = typeof easingFunc === 'function'
+                ? easingFunc(percent)
+                : percent;
+
+            this.fire('frame', schedule);
+
+            // 结束
+            if (percent == 1) {
+                if (this.loop) {
+                    this.restart (globalTime);
+                    // 重新开始周期
+                    // 抛出而不是直接调用事件直到 stage.update 后再统一调用这些事件
+                    return 'restart';
+                }
+
+                // 动画完成将这个控制器标识为待删除
+                // 在Animation.update中进行批量删除
+                this._needsRemove = true;
+                return 'destroy';
+            }
+
+            return null;
+        },
+
+        restart: function (globalTime) {
+            var remainder = (globalTime - this._startTime - this._pausedTime) % this._life;
+            this._startTime = globalTime - remainder + this.gap;
+            this._pausedTime = 0;
+
+            this._needsRemove = false;
+        },
+
+        fire: function (eventType, arg) {
+            eventType = 'on' + eventType;
+            if (this[eventType]) {
+                this[eventType](this._target, arg);
+            }
+        },
+
+        pause: function () {
+            this._paused = true;
+        },
+
+        resume: function () {
+            this._paused = false;
+        }
+    };
+
+    return Clip;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2034:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 缓动代码来自 https://github.com/sole/tween.js/blob/master/src/Tween.js
+ * @see http://sole.github.io/tween.js/examples/03_graphs.html
+ * @exports zrender/animation/easing
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    var easing = {
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        linear: function (k) {
+            return k;
+        },
+
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quadraticIn: function (k) {
+            return k * k;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quadraticOut: function (k) {
+            return k * (2 - k);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quadraticInOut: function (k) {
+            if ((k *= 2) < 1) {
+                return 0.5 * k * k;
+            }
+            return -0.5 * (--k * (k - 2) - 1);
+        },
+
+        // 三次方的缓动（t^3）
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        cubicIn: function (k) {
+            return k * k * k;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        cubicOut: function (k) {
+            return --k * k * k + 1;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        cubicInOut: function (k) {
+            if ((k *= 2) < 1) {
+                return 0.5 * k * k * k;
+            }
+            return 0.5 * ((k -= 2) * k * k + 2);
+        },
+
+        // 四次方的缓动（t^4）
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quarticIn: function (k) {
+            return k * k * k * k;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quarticOut: function (k) {
+            return 1 - (--k * k * k * k);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quarticInOut: function (k) {
+            if ((k *= 2) < 1) {
+                return 0.5 * k * k * k * k;
+            }
+            return -0.5 * ((k -= 2) * k * k * k - 2);
+        },
+
+        // 五次方的缓动（t^5）
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quinticIn: function (k) {
+            return k * k * k * k * k;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quinticOut: function (k) {
+            return --k * k * k * k * k + 1;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        quinticInOut: function (k) {
+            if ((k *= 2) < 1) {
+                return 0.5 * k * k * k * k * k;
+            }
+            return 0.5 * ((k -= 2) * k * k * k * k + 2);
+        },
+
+        // 正弦曲线的缓动（sin(t)）
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        sinusoidalIn: function (k) {
+            return 1 - Math.cos(k * Math.PI / 2);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        sinusoidalOut: function (k) {
+            return Math.sin(k * Math.PI / 2);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        sinusoidalInOut: function (k) {
+            return 0.5 * (1 - Math.cos(Math.PI * k));
+        },
+
+        // 指数曲线的缓动（2^t）
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        exponentialIn: function (k) {
+            return k === 0 ? 0 : Math.pow(1024, k - 1);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        exponentialOut: function (k) {
+            return k === 1 ? 1 : 1 - Math.pow(2, -10 * k);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        exponentialInOut: function (k) {
+            if (k === 0) {
+                return 0;
+            }
+            if (k === 1) {
+                return 1;
+            }
+            if ((k *= 2) < 1) {
+                return 0.5 * Math.pow(1024, k - 1);
+            }
+            return 0.5 * (-Math.pow(2, -10 * (k - 1)) + 2);
+        },
+
+        // 圆形曲线的缓动（sqrt(1-t^2)）
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        circularIn: function (k) {
+            return 1 - Math.sqrt(1 - k * k);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        circularOut: function (k) {
+            return Math.sqrt(1 - (--k * k));
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        circularInOut: function (k) {
+            if ((k *= 2) < 1) {
+                return -0.5 * (Math.sqrt(1 - k * k) - 1);
+            }
+            return 0.5 * (Math.sqrt(1 - (k -= 2) * k) + 1);
+        },
+
+        // 创建类似于弹簧在停止前来回振荡的动画
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        elasticIn: function (k) {
+            var s;
+            var a = 0.1;
+            var p = 0.4;
+            if (k === 0) {
+                return 0;
+            }
+            if (k === 1) {
+                return 1;
+            }
+            if (!a || a < 1) {
+                a = 1; s = p / 4;
+            }
+            else {
+                s = p * Math.asin(1 / a) / (2 * Math.PI);
+            }
+            return -(a * Math.pow(2, 10 * (k -= 1)) *
+                        Math.sin((k - s) * (2 * Math.PI) / p));
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        elasticOut: function (k) {
+            var s;
+            var a = 0.1;
+            var p = 0.4;
+            if (k === 0) {
+                return 0;
+            }
+            if (k === 1) {
+                return 1;
+            }
+            if (!a || a < 1) {
+                a = 1; s = p / 4;
+            }
+            else {
+                s = p * Math.asin(1 / a) / (2 * Math.PI);
+            }
+            return (a * Math.pow(2, -10 * k) *
+                    Math.sin((k - s) * (2 * Math.PI) / p) + 1);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        elasticInOut: function (k) {
+            var s;
+            var a = 0.1;
+            var p = 0.4;
+            if (k === 0) {
+                return 0;
+            }
+            if (k === 1) {
+                return 1;
+            }
+            if (!a || a < 1) {
+                a = 1; s = p / 4;
+            }
+            else {
+                s = p * Math.asin(1 / a) / (2 * Math.PI);
+            }
+            if ((k *= 2) < 1) {
+                return -0.5 * (a * Math.pow(2, 10 * (k -= 1))
+                    * Math.sin((k - s) * (2 * Math.PI) / p));
+            }
+            return a * Math.pow(2, -10 * (k -= 1))
+                    * Math.sin((k - s) * (2 * Math.PI) / p) * 0.5 + 1;
+
+        },
+
+        // 在某一动画开始沿指示的路径进行动画处理前稍稍收回该动画的移动
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        backIn: function (k) {
+            var s = 1.70158;
+            return k * k * ((s + 1) * k - s);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        backOut: function (k) {
+            var s = 1.70158;
+            return --k * k * ((s + 1) * k + s) + 1;
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        backInOut: function (k) {
+            var s = 1.70158 * 1.525;
+            if ((k *= 2) < 1) {
+                return 0.5 * (k * k * ((s + 1) * k - s));
+            }
+            return 0.5 * ((k -= 2) * k * ((s + 1) * k + s) + 2);
+        },
+
+        // 创建弹跳效果
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        bounceIn: function (k) {
+            return 1 - easing.bounceOut(1 - k);
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        bounceOut: function (k) {
+            if (k < (1 / 2.75)) {
+                return 7.5625 * k * k;
+            }
+            else if (k < (2 / 2.75)) {
+                return 7.5625 * (k -= (1.5 / 2.75)) * k + 0.75;
+            }
+            else if (k < (2.5 / 2.75)) {
+                return 7.5625 * (k -= (2.25 / 2.75)) * k + 0.9375;
+            }
+            else {
+                return 7.5625 * (k -= (2.625 / 2.75)) * k + 0.984375;
+            }
+        },
+        /**
+        * @param {number} k
+        * @return {number}
+        */
+        bounceInOut: function (k) {
+            if (k < 0.5) {
+                return easing.bounceIn(k * 2) * 0.5;
+            }
+            return easing.bounceOut(k * 2 - 1) * 0.5 + 0.5;
+        }
+    };
+
+    return easing;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+
+/***/ }),
+
+/***/ 2035:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var normalizeRadian = __webpack_require__(837).normalizeRadian;
+    var PI2 = Math.PI * 2;
+
+    return {
+        /**
+         * 圆弧描边包含判断
+         * @param  {number}  cx
+         * @param  {number}  cy
+         * @param  {number}  r
+         * @param  {number}  startAngle
+         * @param  {number}  endAngle
+         * @param  {boolean}  anticlockwise
+         * @param  {number} lineWidth
+         * @param  {number}  x
+         * @param  {number}  y
+         * @return {Boolean}
+         */
+        containStroke: function (
+            cx, cy, r, startAngle, endAngle, anticlockwise,
+            lineWidth, x, y
+        ) {
+
+            if (lineWidth === 0) {
+                return false;
+            }
+            var _l = lineWidth;
+
+            x -= cx;
+            y -= cy;
+            var d = Math.sqrt(x * x + y * y);
+
+            if ((d - _l > r) || (d + _l < r)) {
+                return false;
+            }
+            if (Math.abs(startAngle - endAngle) % PI2 < 1e-4) {
+                // Is a circle
+                return true;
+            }
+            if (anticlockwise) {
+                var tmp = startAngle;
+                startAngle = normalizeRadian(endAngle);
+                endAngle = normalizeRadian(tmp);
+            } else {
+                startAngle = normalizeRadian(startAngle);
+                endAngle = normalizeRadian(endAngle);
+            }
+            if (startAngle > endAngle) {
+                endAngle += PI2;
+            }
+
+            var angle = Math.atan2(y, x);
+            if (angle < 0) {
+                angle += PI2;
+            }
+            return (angle >= startAngle && angle <= endAngle)
+                || (angle + PI2 >= startAngle && angle + PI2 <= endAngle);
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2036:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var curve = __webpack_require__(185);
+
+    return {
+        /**
+         * 三次贝塞尔曲线描边包含判断
+         * @param  {number}  x0
+         * @param  {number}  y0
+         * @param  {number}  x1
+         * @param  {number}  y1
+         * @param  {number}  x2
+         * @param  {number}  y2
+         * @param  {number}  x3
+         * @param  {number}  y3
+         * @param  {number}  lineWidth
+         * @param  {number}  x
+         * @param  {number}  y
+         * @return {boolean}
+         */
+        containStroke: function(x0, y0, x1, y1, x2, y2, x3, y3, lineWidth, x, y) {
+            if (lineWidth === 0) {
+                return false;
+            }
+            var _l = lineWidth;
+            // Quick reject
+            if (
+                (y > y0 + _l && y > y1 + _l && y > y2 + _l && y > y3 + _l)
+                || (y < y0 - _l && y < y1 - _l && y < y2 - _l && y < y3 - _l)
+                || (x > x0 + _l && x > x1 + _l && x > x2 + _l && x > x3 + _l)
+                || (x < x0 - _l && x < x1 - _l && x < x2 - _l && x < x3 - _l)
+            ) {
+                return false;
+            }
+            var d = curve.cubicProjectPoint(
+                x0, y0, x1, y1, x2, y2, x3, y3,
+                x, y, null
+            );
+            return d <= _l / 2;
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2037:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    return {
+        /**
+         * 线段包含判断
+         * @param  {number}  x0
+         * @param  {number}  y0
+         * @param  {number}  x1
+         * @param  {number}  y1
+         * @param  {number}  lineWidth
+         * @param  {number}  x
+         * @param  {number}  y
+         * @return {boolean}
+         */
+        containStroke: function (x0, y0, x1, y1, lineWidth, x, y) {
+            if (lineWidth === 0) {
+                return false;
+            }
+            var _l = lineWidth;
+            var _a = 0;
+            var _b = x0;
+            // Quick reject
+            if (
+                (y > y0 + _l && y > y1 + _l)
+                || (y < y0 - _l && y < y1 - _l)
+                || (x > x0 + _l && x > x1 + _l)
+                || (x < x0 - _l && x < x1 - _l)
+            ) {
+                return false;
+            }
+
+            if (x0 !== x1) {
+                _a = (y0 - y1) / (x0 - x1);
+                _b = (x0 * y1 - x1 * y0) / (x0 - x1) ;
+            }
+            else {
+                return Math.abs(x - x0) <= _l / 2;
+            }
+            var tmp = _a * x - y + _b;
+            var _s = tmp * tmp / (_a * _a + 1);
+            return _s <= _l / 2 * _l / 2;
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2038:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    'use strict';
+
+    var CMD = __webpack_require__(253).CMD;
+    var line = __webpack_require__(2037);
+    var cubic = __webpack_require__(2036);
+    var quadratic = __webpack_require__(2039);
+    var arc = __webpack_require__(2035);
+    var normalizeRadian = __webpack_require__(837).normalizeRadian;
+    var curve = __webpack_require__(185);
+
+    var windingLine = __webpack_require__(2041);
+
+    var containStroke = line.containStroke;
+
+    var PI2 = Math.PI * 2;
+
+    var EPSILON = 1e-4;
+
+    function isAroundEqual(a, b) {
+        return Math.abs(a - b) < EPSILON;
+    }
+
+    // 临时数组
+    var roots = [-1, -1, -1];
+    var extrema = [-1, -1];
+
+    function swapExtrema() {
+        var tmp = extrema[0];
+        extrema[0] = extrema[1];
+        extrema[1] = tmp;
+    }
+
+    function windingCubic(x0, y0, x1, y1, x2, y2, x3, y3, x, y) {
+        // Quick reject
+        if (
+            (y > y0 && y > y1 && y > y2 && y > y3)
+            || (y < y0 && y < y1 && y < y2 && y < y3)
+        ) {
+            return 0;
+        }
+        var nRoots = curve.cubicRootAt(y0, y1, y2, y3, y, roots);
+        if (nRoots === 0) {
+            return 0;
+        }
+        else {
+            var w = 0;
+            var nExtrema = -1;
+            var y0_, y1_;
+            for (var i = 0; i < nRoots; i++) {
+                var t = roots[i];
+
+                // Avoid winding error when intersection point is the connect point of two line of polygon
+                var unit = (t === 0 || t === 1) ? 0.5 : 1;
+
+                var x_ = curve.cubicAt(x0, x1, x2, x3, t);
+                if (x_ < x) { // Quick reject
+                    continue;
+                }
+                if (nExtrema < 0) {
+                    nExtrema = curve.cubicExtrema(y0, y1, y2, y3, extrema);
+                    if (extrema[1] < extrema[0] && nExtrema > 1) {
+                        swapExtrema();
+                    }
+                    y0_ = curve.cubicAt(y0, y1, y2, y3, extrema[0]);
+                    if (nExtrema > 1) {
+                        y1_ = curve.cubicAt(y0, y1, y2, y3, extrema[1]);
+                    }
+                }
+                if (nExtrema == 2) {
+                    // 分成三段单调函数
+                    if (t < extrema[0]) {
+                        w += y0_ < y0 ? unit : -unit;
+                    }
+                    else if (t < extrema[1]) {
+                        w += y1_ < y0_ ? unit : -unit;
+                    }
+                    else {
+                        w += y3 < y1_ ? unit : -unit;
+                    }
+                }
+                else {
+                    // 分成两段单调函数
+                    if (t < extrema[0]) {
+                        w += y0_ < y0 ? unit : -unit;
+                    }
+                    else {
+                        w += y3 < y0_ ? unit : -unit;
+                    }
+                }
+            }
+            return w;
+        }
+    }
+
+    function windingQuadratic(x0, y0, x1, y1, x2, y2, x, y) {
+        // Quick reject
+        if (
+            (y > y0 && y > y1 && y > y2)
+            || (y < y0 && y < y1 && y < y2)
+        ) {
+            return 0;
+        }
+        var nRoots = curve.quadraticRootAt(y0, y1, y2, y, roots);
+        if (nRoots === 0) {
+            return 0;
+        }
+        else {
+            var t = curve.quadraticExtremum(y0, y1, y2);
+            if (t >= 0 && t <= 1) {
+                var w = 0;
+                var y_ = curve.quadraticAt(y0, y1, y2, t);
+                for (var i = 0; i < nRoots; i++) {
+                    // Remove one endpoint.
+                    var unit = (roots[i] === 0 || roots[i] === 1) ? 0.5 : 1;
+
+                    var x_ = curve.quadraticAt(x0, x1, x2, roots[i]);
+                    if (x_ < x) {   // Quick reject
+                        continue;
+                    }
+                    if (roots[i] < t) {
+                        w += y_ < y0 ? unit : -unit;
+                    }
+                    else {
+                        w += y2 < y_ ? unit : -unit;
+                    }
+                }
+                return w;
+            }
+            else {
+                // Remove one endpoint.
+                var unit = (roots[0] === 0 || roots[0] === 1) ? 0.5 : 1;
+
+                var x_ = curve.quadraticAt(x0, x1, x2, roots[0]);
+                if (x_ < x) {   // Quick reject
+                    return 0;
+                }
+                return y2 < y0 ? unit : -unit;
+            }
+        }
+    }
+
+    // TODO
+    // Arc 旋转
+    function windingArc(
+        cx, cy, r, startAngle, endAngle, anticlockwise, x, y
+    ) {
+        y -= cy;
+        if (y > r || y < -r) {
+            return 0;
+        }
+        var tmp = Math.sqrt(r * r - y * y);
+        roots[0] = -tmp;
+        roots[1] = tmp;
+
+        var diff = Math.abs(startAngle - endAngle);
+        if (diff < 1e-4) {
+            return 0;
+        }
+        if (diff % PI2 < 1e-4) {
+            // Is a circle
+            startAngle = 0;
+            endAngle = PI2;
+            var dir = anticlockwise ? 1 : -1;
+            if (x >= roots[0] + cx && x <= roots[1] + cx) {
+                return dir;
+            } else {
+                return 0;
+            }
+        }
+
+        if (anticlockwise) {
+            var tmp = startAngle;
+            startAngle = normalizeRadian(endAngle);
+            endAngle = normalizeRadian(tmp);
+        }
+        else {
+            startAngle = normalizeRadian(startAngle);
+            endAngle = normalizeRadian(endAngle);
+        }
+        if (startAngle > endAngle) {
+            endAngle += PI2;
+        }
+
+        var w = 0;
+        for (var i = 0; i < 2; i++) {
+            var x_ = roots[i];
+            if (x_ + cx > x) {
+                var angle = Math.atan2(y, x_);
+                var dir = anticlockwise ? 1 : -1;
+                if (angle < 0) {
+                    angle = PI2 + angle;
+                }
+                if (
+                    (angle >= startAngle && angle <= endAngle)
+                    || (angle + PI2 >= startAngle && angle + PI2 <= endAngle)
+                ) {
+                    if (angle > Math.PI / 2 && angle < Math.PI * 1.5) {
+                        dir = -dir;
+                    }
+                    w += dir;
+                }
+            }
+        }
+        return w;
+    }
+
+    function containPath(data, lineWidth, isStroke, x, y) {
+        var w = 0;
+        var xi = 0;
+        var yi = 0;
+        var x0 = 0;
+        var y0 = 0;
+
+        for (var i = 0; i < data.length;) {
+            var cmd = data[i++];
+            // Begin a new subpath
+            if (cmd === CMD.M && i > 1) {
+                // Close previous subpath
+                if (!isStroke) {
+                    w += windingLine(xi, yi, x0, y0, x, y);
+                }
+                // 如果被任何一个 subpath 包含
+                // if (w !== 0) {
+                //     return true;
+                // }
+            }
+
+            if (i == 1) {
+                // 如果第一个命令是 L, C, Q
+                // 则 previous point 同绘制命令的第一个 point
+                //
+                // 第一个命令为 Arc 的情况下会在后面特殊处理
+                xi = data[i];
+                yi = data[i + 1];
+
+                x0 = xi;
+                y0 = yi;
+            }
+
+            switch (cmd) {
+                case CMD.M:
+                    // moveTo 命令重新创建一个新的 subpath, 并且更新新的起点
+                    // 在 closePath 的时候使用
+                    x0 = data[i++];
+                    y0 = data[i++];
+                    xi = x0;
+                    yi = y0;
+                    break;
+                case CMD.L:
+                    if (isStroke) {
+                        if (containStroke(xi, yi, data[i], data[i + 1], lineWidth, x, y)) {
+                            return true;
+                        }
+                    }
+                    else {
+                        // NOTE 在第一个命令为 L, C, Q 的时候会计算出 NaN
+                        w += windingLine(xi, yi, data[i], data[i + 1], x, y) || 0;
+                    }
+                    xi = data[i++];
+                    yi = data[i++];
+                    break;
+                case CMD.C:
+                    if (isStroke) {
+                        if (cubic.containStroke(xi, yi,
+                            data[i++], data[i++], data[i++], data[i++], data[i], data[i + 1],
+                            lineWidth, x, y
+                        )) {
+                            return true;
+                        }
+                    }
+                    else {
+                        w += windingCubic(
+                            xi, yi,
+                            data[i++], data[i++], data[i++], data[i++], data[i], data[i + 1],
+                            x, y
+                        ) || 0;
+                    }
+                    xi = data[i++];
+                    yi = data[i++];
+                    break;
+                case CMD.Q:
+                    if (isStroke) {
+                        if (quadratic.containStroke(xi, yi,
+                            data[i++], data[i++], data[i], data[i + 1],
+                            lineWidth, x, y
+                        )) {
+                            return true;
+                        }
+                    }
+                    else {
+                        w += windingQuadratic(
+                            xi, yi,
+                            data[i++], data[i++], data[i], data[i + 1],
+                            x, y
+                        ) || 0;
+                    }
+                    xi = data[i++];
+                    yi = data[i++];
+                    break;
+                case CMD.A:
+                    // TODO Arc 判断的开销比较大
+                    var cx = data[i++];
+                    var cy = data[i++];
+                    var rx = data[i++];
+                    var ry = data[i++];
+                    var theta = data[i++];
+                    var dTheta = data[i++];
+                    // TODO Arc 旋转
+                    var psi = data[i++];
+                    var anticlockwise = 1 - data[i++];
+                    var x1 = Math.cos(theta) * rx + cx;
+                    var y1 = Math.sin(theta) * ry + cy;
+                    // 不是直接使用 arc 命令
+                    if (i > 1) {
+                        w += windingLine(xi, yi, x1, y1, x, y);
+                    }
+                    else {
+                        // 第一个命令起点还未定义
+                        x0 = x1;
+                        y0 = y1;
+                    }
+                    // zr 使用scale来模拟椭圆, 这里也对x做一定的缩放
+                    var _x = (x - cx) * ry / rx + cx;
+                    if (isStroke) {
+                        if (arc.containStroke(
+                            cx, cy, ry, theta, theta + dTheta, anticlockwise,
+                            lineWidth, _x, y
+                        )) {
+                            return true;
+                        }
+                    }
+                    else {
+                        w += windingArc(
+                            cx, cy, ry, theta, theta + dTheta, anticlockwise,
+                            _x, y
+                        );
+                    }
+                    xi = Math.cos(theta + dTheta) * rx + cx;
+                    yi = Math.sin(theta + dTheta) * ry + cy;
+                    break;
+                case CMD.R:
+                    x0 = xi = data[i++];
+                    y0 = yi = data[i++];
+                    var width = data[i++];
+                    var height = data[i++];
+                    var x1 = x0 + width;
+                    var y1 = y0 + height;
+                    if (isStroke) {
+                        if (containStroke(x0, y0, x1, y0, lineWidth, x, y)
+                          || containStroke(x1, y0, x1, y1, lineWidth, x, y)
+                          || containStroke(x1, y1, x0, y1, lineWidth, x, y)
+                          || containStroke(x0, y1, x0, y0, lineWidth, x, y)
+                        ) {
+                            return true;
+                        }
+                    }
+                    else {
+                        // FIXME Clockwise ?
+                        w += windingLine(x1, y0, x1, y1, x, y);
+                        w += windingLine(x0, y1, x0, y0, x, y);
+                    }
+                    break;
+                case CMD.Z:
+                    if (isStroke) {
+                        if (containStroke(
+                            xi, yi, x0, y0, lineWidth, x, y
+                        )) {
+                            return true;
+                        }
+                    }
+                    else {
+                        // Close a subpath
+                        w += windingLine(xi, yi, x0, y0, x, y);
+                        // 如果被任何一个 subpath 包含
+                        // FIXME subpaths may overlap
+                        // if (w !== 0) {
+                        //     return true;
+                        // }
+                    }
+                    xi = x0;
+                    yi = y0;
+                    break;
+            }
+        }
+        if (!isStroke && !isAroundEqual(yi, y0)) {
+            w += windingLine(xi, yi, x0, y0, x, y) || 0;
+        }
+        return w !== 0;
+    }
+
+    return {
+        contain: function (pathData, x, y) {
+            return containPath(pathData, 0, false, x, y);
+        },
+
+        containStroke: function (pathData, lineWidth, x, y) {
+            return containPath(pathData, lineWidth, true, x, y);
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2039:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var curve = __webpack_require__(185);
+
+    return {
+        /**
+         * 二次贝塞尔曲线描边包含判断
+         * @param  {number}  x0
+         * @param  {number}  y0
+         * @param  {number}  x1
+         * @param  {number}  y1
+         * @param  {number}  x2
+         * @param  {number}  y2
+         * @param  {number}  lineWidth
+         * @param  {number}  x
+         * @param  {number}  y
+         * @return {boolean}
+         */
+        containStroke: function (x0, y0, x1, y1, x2, y2, lineWidth, x, y) {
+            if (lineWidth === 0) {
+                return false;
+            }
+            var _l = lineWidth;
+            // Quick reject
+            if (
+                (y > y0 + _l && y > y1 + _l && y > y2 + _l)
+                || (y < y0 - _l && y < y1 - _l && y < y2 - _l)
+                || (x > x0 + _l && x > x1 + _l && x > x2 + _l)
+                || (x < x0 - _l && x < x1 - _l && x < x2 - _l)
+            ) {
+                return false;
+            }
+            var d = curve.quadraticProjectPoint(
+                x0, y0, x1, y1, x2, y2,
+                x, y, null
+            );
+            return d <= _l / 2;
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2040:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var util = __webpack_require__(40);
+    var BoundingRect = __webpack_require__(149);
+    var imageHelper = __webpack_require__(407);
+
+    var textWidthCache = {};
+    var textWidthCacheCounter = 0;
+
+    var TEXT_CACHE_MAX = 5000;
+    var STYLE_REG = /\{([a-zA-Z0-9_]+)\|([^}]*)\}/g;
+    var DEFAULT_FONT = '12px sans-serif';
+
+    var retrieve2 = util.retrieve2;
+    var retrieve3 = util.retrieve3;
+
+    /**
+     * @public
+     * @param {string} text
+     * @param {string} font
+     * @return {number} width
+     */
+    function getTextWidth(text, font) {
+        font = font || DEFAULT_FONT;
+        var key = text + ':' + font;
+        if (textWidthCache[key]) {
+            return textWidthCache[key];
+        }
+
+        var textLines = (text + '').split('\n');
+        var width = 0;
+
+        for (var i = 0, l = textLines.length; i < l; i++) {
+            // textContain.measureText may be overrided in SVG or VML
+            width = Math.max(textContain.measureText(textLines[i], font).width, width);
+        }
+
+        if (textWidthCacheCounter > TEXT_CACHE_MAX) {
+            textWidthCacheCounter = 0;
+            textWidthCache = {};
+        }
+        textWidthCacheCounter++;
+        textWidthCache[key] = width;
+
+        return width;
+    }
+
+    /**
+     * @public
+     * @param {string} text
+     * @param {string} font
+     * @param {string} [textAlign='left']
+     * @param {string} [textVerticalAlign='top']
+     * @param {Array.<number>} [textPadding]
+     * @param {Object} [rich]
+     * @param {Object} [truncate]
+     * @return {Object} {x, y, width, height, lineHeight}
+     */
+    function getTextRect(text, font, textAlign, textVerticalAlign, textPadding, rich, truncate) {
+        return rich
+            ? getRichTextRect(text, font, textAlign, textVerticalAlign, textPadding, rich, truncate)
+            : getPlainTextRect(text, font, textAlign, textVerticalAlign, textPadding, truncate);
+    }
+
+    function getPlainTextRect(text, font, textAlign, textVerticalAlign, textPadding, truncate) {
+        var contentBlock = parsePlainText(text, font, textPadding, truncate);
+        var outerWidth = getTextWidth(text, font);
+        if (textPadding) {
+            outerWidth += textPadding[1] + textPadding[3];
+        }
+        var outerHeight = contentBlock.outerHeight;
+
+        var x = adjustTextX(0, outerWidth, textAlign);
+        var y = adjustTextY(0, outerHeight, textVerticalAlign);
+
+        var rect = new BoundingRect(x, y, outerWidth, outerHeight);
+        rect.lineHeight = contentBlock.lineHeight;
+
+        return rect;
+    }
+
+    function getRichTextRect(text, font, textAlign, textVerticalAlign, textPadding, rich, truncate) {
+        var contentBlock = parseRichText(text, {
+            rich: rich,
+            truncate: truncate,
+            font: font,
+            textAlign: textAlign,
+            textPadding: textPadding
+        });
+        var outerWidth = contentBlock.outerWidth;
+        var outerHeight = contentBlock.outerHeight;
+
+        var x = adjustTextX(0, outerWidth, textAlign);
+        var y = adjustTextY(0, outerHeight, textVerticalAlign);
+
+        return new BoundingRect(x, y, outerWidth, outerHeight);
+    }
+
+    /**
+     * @public
+     * @param {number} x
+     * @param {number} width
+     * @param {string} [textAlign='left']
+     * @return {number} Adjusted x.
+     */
+    function adjustTextX(x, width, textAlign) {
+        // FIXME Right to left language
+        if (textAlign === 'right') {
+            x -= width;
+        }
+        else if (textAlign === 'center') {
+            x -= width / 2;
+        }
+        return x;
+    }
+
+    /**
+     * @public
+     * @param {number} y
+     * @param {number} height
+     * @param {string} [textVerticalAlign='top']
+     * @return {number} Adjusted y.
+     */
+    function adjustTextY(y, height, textVerticalAlign) {
+        if (textVerticalAlign === 'middle') {
+            y -= height / 2;
+        }
+        else if (textVerticalAlign === 'bottom') {
+            y -= height;
+        }
+        return y;
+    }
+
+    /**
+     * @public
+     * @param {stirng} textPosition
+     * @param {Object} rect {x, y, width, height}
+     * @param {number} distance
+     * @return {Object} {x, y, textAlign, textVerticalAlign}
+     */
+    function adjustTextPositionOnRect(textPosition, rect, distance) {
+
+        var x = rect.x;
+        var y = rect.y;
+
+        var height = rect.height;
+        var width = rect.width;
+        var halfHeight = height / 2;
+
+        var textAlign = 'left';
+        var textVerticalAlign = 'top';
+
+        switch (textPosition) {
+            case 'left':
+                x -= distance;
+                y += halfHeight;
+                textAlign = 'right';
+                textVerticalAlign = 'middle';
+                break;
+            case 'right':
+                x += distance + width;
+                y += halfHeight;
+                textVerticalAlign = 'middle';
+                break;
+            case 'top':
+                x += width / 2;
+                y -= distance;
+                textAlign = 'center';
+                textVerticalAlign = 'bottom';
+                break;
+            case 'bottom':
+                x += width / 2;
+                y += height + distance;
+                textAlign = 'center';
+                break;
+            case 'inside':
+                x += width / 2;
+                y += halfHeight;
+                textAlign = 'center';
+                textVerticalAlign = 'middle';
+                break;
+            case 'insideLeft':
+                x += distance;
+                y += halfHeight;
+                textVerticalAlign = 'middle';
+                break;
+            case 'insideRight':
+                x += width - distance;
+                y += halfHeight;
+                textAlign = 'right';
+                textVerticalAlign = 'middle';
+                break;
+            case 'insideTop':
+                x += width / 2;
+                y += distance;
+                textAlign = 'center';
+                break;
+            case 'insideBottom':
+                x += width / 2;
+                y += height - distance;
+                textAlign = 'center';
+                textVerticalAlign = 'bottom';
+                break;
+            case 'insideTopLeft':
+                x += distance;
+                y += distance;
+                break;
+            case 'insideTopRight':
+                x += width - distance;
+                y += distance;
+                textAlign = 'right';
+                break;
+            case 'insideBottomLeft':
+                x += distance;
+                y += height - distance;
+                textVerticalAlign = 'bottom';
+                break;
+            case 'insideBottomRight':
+                x += width - distance;
+                y += height - distance;
+                textAlign = 'right';
+                textVerticalAlign = 'bottom';
+                break;
+        }
+
+        return {
+            x: x,
+            y: y,
+            textAlign: textAlign,
+            textVerticalAlign: textVerticalAlign
+        };
+    }
+
+    /**
+     * Show ellipsis if overflow.
+     *
+     * @public
+     * @param  {string} text
+     * @param  {string} containerWidth
+     * @param  {string} font
+     * @param  {number} [ellipsis='...']
+     * @param  {Object} [options]
+     * @param  {number} [options.maxIterations=3]
+     * @param  {number} [options.minChar=0] If truncate result are less
+     *                  then minChar, ellipsis will not show, which is
+     *                  better for user hint in some cases.
+     * @param  {number} [options.placeholder=''] When all truncated, use the placeholder.
+     * @return {string}
+     */
+    function truncateText(text, containerWidth, font, ellipsis, options) {
+        if (!containerWidth) {
+            return '';
+        }
+
+        var textLines = (text + '').split('\n');
+        options = prepareTruncateOptions(containerWidth, font, ellipsis, options);
+
+        // FIXME
+        // It is not appropriate that every line has '...' when truncate multiple lines.
+        for (var i = 0, len = textLines.length; i < len; i++) {
+            textLines[i] = truncateSingleLine(textLines[i], options);
+        }
+
+        return textLines.join('\n');
+    }
+
+    function prepareTruncateOptions(containerWidth, font, ellipsis, options) {
+        options = util.extend({}, options);
+
+        options.font = font;
+        var ellipsis = retrieve2(ellipsis, '...');
+        options.maxIterations = retrieve2(options.maxIterations, 2);
+        var minChar = options.minChar = retrieve2(options.minChar, 0);
+        // FIXME
+        // Other languages?
+        options.cnCharWidth = getTextWidth('国', font);
+        // FIXME
+        // Consider proportional font?
+        var ascCharWidth = options.ascCharWidth = getTextWidth('a', font);
+        options.placeholder = retrieve2(options.placeholder, '');
+
+        // Example 1: minChar: 3, text: 'asdfzxcv', truncate result: 'asdf', but not: 'a...'.
+        // Example 2: minChar: 3, text: '维度', truncate result: '维', but not: '...'.
+        var contentWidth = containerWidth = Math.max(0, containerWidth - 1); // Reserve some gap.
+        for (var i = 0; i < minChar && contentWidth >= ascCharWidth; i++) {
+            contentWidth -= ascCharWidth;
+        }
+
+        var ellipsisWidth = getTextWidth(ellipsis);
+        if (ellipsisWidth > contentWidth) {
+            ellipsis = '';
+            ellipsisWidth = 0;
+        }
+
+        contentWidth = containerWidth - ellipsisWidth;
+
+        options.ellipsis = ellipsis;
+        options.ellipsisWidth = ellipsisWidth;
+        options.contentWidth = contentWidth;
+        options.containerWidth = containerWidth;
+
+        return options;
+    }
+
+    function truncateSingleLine(textLine, options) {
+        var containerWidth = options.containerWidth;
+        var font = options.font;
+        var contentWidth = options.contentWidth;
+
+        if (!containerWidth) {
+            return '';
+        }
+
+        var lineWidth = getTextWidth(textLine, font);
+
+        if (lineWidth <= containerWidth) {
+            return textLine;
+        }
+
+        for (var j = 0;; j++) {
+            if (lineWidth <= contentWidth || j >= options.maxIterations) {
+                textLine += options.ellipsis;
+                break;
+            }
+
+            var subLength = j === 0
+                ? estimateLength(textLine, contentWidth, options.ascCharWidth, options.cnCharWidth)
+                : lineWidth > 0
+                ? Math.floor(textLine.length * contentWidth / lineWidth)
+                : 0;
+
+            textLine = textLine.substr(0, subLength);
+            lineWidth = getTextWidth(textLine, font);
+        }
+
+        if (textLine === '') {
+            textLine = options.placeholder;
+        }
+
+        return textLine;
+    }
+
+    function estimateLength(text, contentWidth, ascCharWidth, cnCharWidth) {
+        var width = 0;
+        var i = 0;
+        for (var len = text.length; i < len && width < contentWidth; i++) {
+            var charCode = text.charCodeAt(i);
+            width += (0 <= charCode && charCode <= 127) ? ascCharWidth : cnCharWidth;
+        }
+        return i;
+    }
+
+    /**
+     * @public
+     * @param {string} font
+     * @return {number} line height
+     */
+    function getLineHeight(font) {
+        // FIXME A rough approach.
+        return getTextWidth('国', font);
+    }
+
+    /**
+     * @public
+     * @param {string} text
+     * @param {string} font
+     * @return {Object} width
+     */
+    function measureText(text, font) {
+        var ctx = util.getContext();
+        ctx.font = font || DEFAULT_FONT;
+        return ctx.measureText(text);
+    }
+
+    /**
+     * @public
+     * @param {string} text
+     * @param {string} font
+     * @param {Object} [truncate]
+     * @return {Object} block: {lineHeight, lines, height, outerHeight}
+     *  Notice: for performance, do not calculate outerWidth util needed.
+     */
+    function parsePlainText(text, font, padding, truncate) {
+        text != null && (text += '');
+
+        var lineHeight = getLineHeight(font);
+        var lines = text ? text.split('\n') : [];
+        var height = lines.length * lineHeight;
+        var outerHeight = height;
+
+        if (padding) {
+            outerHeight += padding[0] + padding[2];
+        }
+
+        if (text && truncate) {
+            var truncOuterHeight = truncate.outerHeight;
+            var truncOuterWidth = truncate.outerWidth;
+            if (truncOuterHeight != null && outerHeight > truncOuterHeight) {
+                text = '';
+                lines = [];
+            }
+            else if (truncOuterWidth != null) {
+                var options = prepareTruncateOptions(
+                    truncOuterWidth - (padding ? padding[1] + padding[3] : 0),
+                    font,
+                    truncate.ellipsis,
+                    {minChar: truncate.minChar, placeholder: truncate.placeholder}
+                );
+
+                // FIXME
+                // It is not appropriate that every line has '...' when truncate multiple lines.
+                for (var i = 0, len = lines.length; i < len; i++) {
+                    lines[i] = truncateSingleLine(lines[i], options);
+                }
+            }
+        }
+
+        return {
+            lines: lines,
+            height: height,
+            outerHeight: outerHeight,
+            lineHeight: lineHeight
+        };
+    }
+
+    /**
+     * For example: 'some text {a|some text}other text{b|some text}xxx{c|}xxx'
+     * Also consider 'bbbb{a|xxx\nzzz}xxxx\naaaa'.
+     *
+     * @public
+     * @param {string} text
+     * @param {Object} style
+     * @return {Object} block
+     * {
+     *      width,
+     *      height,
+     *      lines: [{
+     *          lineHeight,
+     *          width,
+     *          tokens: [[{
+     *              styleName,
+     *              text,
+     *              width,      // include textPadding
+     *              height,     // include textPadding
+     *              textWidth, // pure text width
+     *              textHeight, // pure text height
+     *              lineHeihgt,
+     *              font,
+     *              textAlign,
+     *              textVerticalAlign
+     *          }], [...], ...]
+     *      }, ...]
+     * }
+     * If styleName is undefined, it is plain text.
+     */
+    function parseRichText(text, style) {
+        var contentBlock = {lines: [], width: 0, height: 0};
+
+        text != null && (text += '');
+        if (!text) {
+            return contentBlock;
+        }
+
+        var lastIndex = STYLE_REG.lastIndex = 0;
+        var result;
+        while ((result = STYLE_REG.exec(text)) != null)  {
+            var matchedIndex = result.index;
+            if (matchedIndex > lastIndex) {
+                pushTokens(contentBlock, text.substring(lastIndex, matchedIndex));
+            }
+            pushTokens(contentBlock, result[2], result[1]);
+            lastIndex = STYLE_REG.lastIndex;
+        }
+
+        if (lastIndex < text.length) {
+            pushTokens(contentBlock, text.substring(lastIndex, text.length));
+        }
+
+        var lines = contentBlock.lines;
+        var contentHeight = 0;
+        var contentWidth = 0;
+        // For `textWidth: 100%`
+        var pendingList = [];
+
+        var stlPadding = style.textPadding;
+
+        var truncate = style.truncate;
+        var truncateWidth = truncate && truncate.outerWidth;
+        var truncateHeight = truncate && truncate.outerHeight;
+        if (stlPadding) {
+            truncateWidth != null && (truncateWidth -= stlPadding[1] + stlPadding[3]);
+            truncateHeight != null && (truncateHeight -= stlPadding[0] + stlPadding[2]);
+        }
+
+        // Calculate layout info of tokens.
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var lineHeight = 0;
+            var lineWidth = 0;
+
+            for (var j = 0; j < line.tokens.length; j++) {
+                var token = line.tokens[j];
+                var tokenStyle = token.styleName && style.rich[token.styleName] || {};
+                // textPadding should not inherit from style.
+                var textPadding = token.textPadding = tokenStyle.textPadding;
+
+                // textFont has been asigned to font by `normalizeStyle`.
+                var font = token.font = tokenStyle.font || style.font;
+
+                // textHeight can be used when textVerticalAlign is specified in token.
+                var tokenHeight = token.textHeight = retrieve2(
+                    // textHeight should not be inherited, consider it can be specified
+                    // as box height of the block.
+                    tokenStyle.textHeight, textContain.getLineHeight(font)
+                );
+                textPadding && (tokenHeight += textPadding[0] + textPadding[2]);
+                token.height = tokenHeight;
+                token.lineHeight = retrieve3(
+                    tokenStyle.textLineHeight, style.textLineHeight, tokenHeight
+                );
+
+                token.textAlign = tokenStyle && tokenStyle.textAlign || style.textAlign;
+                token.textVerticalAlign = tokenStyle && tokenStyle.textVerticalAlign || 'middle';
+
+                if (truncateHeight != null && contentHeight + token.lineHeight > truncateHeight) {
+                    return {lines: [], width: 0, height: 0};
+                }
+
+                token.textWidth = textContain.getWidth(token.text, font);
+                var tokenWidth = tokenStyle.textWidth;
+                var tokenWidthNotSpecified = tokenWidth == null || tokenWidth === 'auto';
+
+                // Percent width, can be `100%`, can be used in drawing separate
+                // line when box width is needed to be auto.
+                if (typeof tokenWidth === 'string' && tokenWidth.charAt(tokenWidth.length - 1) === '%') {
+                    token.percentWidth = tokenWidth;
+                    pendingList.push(token);
+                    tokenWidth = 0;
+                    // Do not truncate in this case, because there is no user case
+                    // and it is too complicated.
+                }
+                else {
+                    if (tokenWidthNotSpecified) {
+                        tokenWidth = token.textWidth;
+
+                        // FIXME: If image is not loaded and textWidth is not specified, calling
+                        // `getBoundingRect()` will not get correct result.
+                        var textBackgroundColor = tokenStyle.textBackgroundColor;
+                        var bgImg = textBackgroundColor && textBackgroundColor.image;
+
+                        // Use cases:
+                        // (1) If image is not loaded, it will be loaded at render phase and call
+                        // `dirty()` and `textBackgroundColor.image` will be replaced with the loaded
+                        // image, and then the right size will be calculated here at the next tick.
+                        // See `graphic/helper/text.js`.
+                        // (2) If image loaded, and `textBackgroundColor.image` is image src string,
+                        // use `imageHelper.findExistImage` to find cached image.
+                        // `imageHelper.findExistImage` will always be called here before
+                        // `imageHelper.createOrUpdateImage` in `graphic/helper/text.js#renderRichText`
+                        // which ensures that image will not be rendered before correct size calcualted.
+                        if (bgImg) {
+                            bgImg = imageHelper.findExistImage(bgImg);
+                            if (imageHelper.isImageReady(bgImg)) {
+                                tokenWidth = Math.max(tokenWidth, bgImg.width * tokenHeight / bgImg.height);
+                            }
+                        }
+                    }
+
+                    var paddingW = textPadding ? textPadding[1] + textPadding[3] : 0;
+                    tokenWidth += paddingW;
+
+                    var remianTruncWidth = truncateWidth != null ? truncateWidth - lineWidth : null;
+
+                    if (remianTruncWidth != null && remianTruncWidth < tokenWidth) {
+                        if (!tokenWidthNotSpecified || remianTruncWidth < paddingW) {
+                            token.text = '';
+                            token.textWidth = tokenWidth = 0;
+                        }
+                        else {
+                            token.text = truncateText(
+                                token.text, remianTruncWidth - paddingW, font, truncate.ellipsis,
+                                {minChar: truncate.minChar}
+                            );
+                            token.textWidth = textContain.getWidth(token.text, font);
+                            tokenWidth = token.textWidth + paddingW;
+                        }
+                    }
+                }
+
+                lineWidth += (token.width = tokenWidth);
+                tokenStyle && (lineHeight = Math.max(lineHeight, token.lineHeight));
+            }
+
+            line.width = lineWidth;
+            line.lineHeight = lineHeight;
+            contentHeight += lineHeight;
+            contentWidth = Math.max(contentWidth, lineWidth);
+        }
+
+        contentBlock.outerWidth = contentBlock.width = retrieve2(style.textWidth, contentWidth);
+        contentBlock.outerHeight = contentBlock.height = retrieve2(style.textHeight, contentHeight);
+
+        if (stlPadding) {
+            contentBlock.outerWidth += stlPadding[1] + stlPadding[3];
+            contentBlock.outerHeight += stlPadding[0] + stlPadding[2];
+        }
+
+        for (var i = 0; i < pendingList.length; i++) {
+            var token = pendingList[i];
+            var percentWidth = token.percentWidth;
+            // Should not base on outerWidth, because token can not be placed out of padding.
+            token.width = parseInt(percentWidth, 10) / 100 * contentWidth;
+        }
+
+        return contentBlock;
+    }
+
+    function pushTokens(block, str, styleName) {
+        var isEmptyStr = str === '';
+        var strs = str.split('\n');
+        var lines = block.lines;
+
+        for (var i = 0; i < strs.length; i++) {
+            var text = strs[i];
+            var token = {
+                styleName: styleName,
+                text: text,
+                isLineHolder: !text && !isEmptyStr
+            };
+
+            // The first token should be appended to the last line.
+            if (!i) {
+                var tokens = (lines[lines.length - 1] || (lines[0] = {tokens: []})).tokens;
+
+                // Consider cases:
+                // (1) ''.split('\n') => ['', '\n', ''], the '' at the first item
+                // (which is a placeholder) should be replaced by new token.
+                // (2) A image backage, where token likes {a|}.
+                // (3) A redundant '' will affect textAlign in line.
+                // (4) tokens with the same tplName should not be merged, because
+                // they should be displayed in different box (with border and padding).
+                var tokensLen = tokens.length;
+                (tokensLen === 1 && tokens[0].isLineHolder)
+                    ? (tokens[0] = token)
+                    // Consider text is '', only insert when it is the "lineHolder" or
+                    // "emptyStr". Otherwise a redundant '' will affect textAlign in line.
+                    : ((text || !tokensLen || isEmptyStr) && tokens.push(token));
+            }
+            // Other tokens always start a new line.
+            else {
+                // If there is '', insert it as a placeholder.
+                lines.push({tokens: [token]});
+            }
+        }
+    }
+
+    function makeFont(style) {
+        // FIXME in node-canvas fontWeight is before fontStyle
+        // Use `fontSize` `fontFamily` to check whether font properties are defined.
+        return (style.fontSize || style.fontFamily) && [
+            style.fontStyle,
+            style.fontWeight,
+            (style.fontSize || 12) + 'px',
+            // If font properties are defined, `fontFamily` should not be ignored.
+            style.fontFamily || 'sans-serif'
+        ].join(' ') || style.textFont || style.font;
+    }
+
+    var textContain = {
+
+        getWidth: getTextWidth,
+
+        getBoundingRect: getTextRect,
+
+        adjustTextPositionOnRect: adjustTextPositionOnRect,
+
+        truncateText: truncateText,
+
+        measureText: measureText,
+
+        getLineHeight: getLineHeight,
+
+        parsePlainText: parsePlainText,
+
+        parseRichText: parseRichText,
+
+        adjustTextX: adjustTextX,
+
+        adjustTextY: adjustTextY,
+
+        makeFont: makeFont,
+
+        DEFAULT_FONT: DEFAULT_FONT
+    };
+
+    return textContain;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2041:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    return function windingLine(x0, y0, x1, y1, x, y) {
+        if ((y > y0 && y > y1) || (y < y0 && y < y1)) {
+            return 0;
+        }
+        // Ignore horizontal line
+        if (y1 === y0) {
+            return 0;
+        }
+        var dir = y1 < y0 ? 1 : -1;
+        var t = (y - y0) / (y1 - y0);
+
+        // Avoid winding error when intersection point is the connect point of two line of polygon
+        if (t === 1 || t === 0) {
+            dir = y1 < y0 ? 0.5 : -0.5;
+        }
+
+        var x_ = t * (x1 - x0) + x0;
+
+        return x_ > x ? dir : 0;
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2042:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Only implements needed gestures for mobile.
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    'use strict';
+
+    var eventUtil = __webpack_require__(406);
+
+    var GestureMgr = function () {
+
+        /**
+         * @private
+         * @type {Array.<Object>}
+         */
+        this._track = [];
+    };
+
+    GestureMgr.prototype = {
+
+        constructor: GestureMgr,
+
+        recognize: function (event, target, root) {
+            this._doTrack(event, target, root);
+            return this._recognize(event);
+        },
+
+        clear: function () {
+            this._track.length = 0;
+            return this;
+        },
+
+        _doTrack: function (event, target, root) {
+            var touches = event.touches;
+
+            if (!touches) {
+                return;
+            }
+
+            var trackItem = {
+                points: [],
+                touches: [],
+                target: target,
+                event: event
+            };
+
+            for (var i = 0, len = touches.length; i < len; i++) {
+                var touch = touches[i];
+                var pos = eventUtil.clientToLocal(root, touch, {});
+                trackItem.points.push([pos.zrX, pos.zrY]);
+                trackItem.touches.push(touch);
+            }
+
+            this._track.push(trackItem);
+        },
+
+        _recognize: function (event) {
+            for (var eventName in recognizers) {
+                if (recognizers.hasOwnProperty(eventName)) {
+                    var gestureInfo = recognizers[eventName](this._track, event);
+                    if (gestureInfo) {
+                        return gestureInfo;
+                    }
+                }
+            }
+        }
+    };
+
+    function dist(pointPair) {
+        var dx = pointPair[1][0] - pointPair[0][0];
+        var dy = pointPair[1][1] - pointPair[0][1];
+
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function center(pointPair) {
+        return [
+            (pointPair[0][0] + pointPair[1][0]) / 2,
+            (pointPair[0][1] + pointPair[1][1]) / 2
+        ];
+    }
+
+    var recognizers = {
+
+        pinch: function (track, event) {
+            var trackLen = track.length;
+
+            if (!trackLen) {
+                return;
+            }
+
+            var pinchEnd = (track[trackLen - 1] || {}).points;
+            var pinchPre = (track[trackLen - 2] || {}).points || pinchEnd;
+
+            if (pinchPre
+                && pinchPre.length > 1
+                && pinchEnd
+                && pinchEnd.length > 1
+            ) {
+                var pinchScale = dist(pinchEnd) / dist(pinchPre);
+                !isFinite(pinchScale) && (pinchScale = 1);
+
+                event.pinchScale = pinchScale;
+
+                var pinchCenter = center(pinchEnd);
+                event.pinchX = pinchCenter[0];
+                event.pinchY = pinchCenter[1];
+
+                return {
+                    type: 'pinch',
+                    target: track[0].target,
+                    event: event
+                };
+            }
+        }
+
+        // Only pinch currently.
+    };
+
+    return GestureMgr;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2043:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @author Yi Shen(https://github.com/pissang)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var vec2 = __webpack_require__(150);
+    var curve = __webpack_require__(185);
+
+    var bbox = {};
+    var mathMin = Math.min;
+    var mathMax = Math.max;
+    var mathSin = Math.sin;
+    var mathCos = Math.cos;
+
+    var start = vec2.create();
+    var end = vec2.create();
+    var extremity = vec2.create();
+
+    var PI2 = Math.PI * 2;
+    /**
+     * 从顶点数组中计算出最小包围盒，写入`min`和`max`中
+     * @module zrender/core/bbox
+     * @param {Array<Object>} points 顶点数组
+     * @param {number} min
+     * @param {number} max
+     */
+    bbox.fromPoints = function(points, min, max) {
+        if (points.length === 0) {
+            return;
+        }
+        var p = points[0];
+        var left = p[0];
+        var right = p[0];
+        var top = p[1];
+        var bottom = p[1];
+        var i;
+
+        for (i = 1; i < points.length; i++) {
+            p = points[i];
+            left = mathMin(left, p[0]);
+            right = mathMax(right, p[0]);
+            top = mathMin(top, p[1]);
+            bottom = mathMax(bottom, p[1]);
+        }
+
+        min[0] = left;
+        min[1] = top;
+        max[0] = right;
+        max[1] = bottom;
+    };
+
+    /**
+     * @memberOf module:zrender/core/bbox
+     * @param {number} x0
+     * @param {number} y0
+     * @param {number} x1
+     * @param {number} y1
+     * @param {Array.<number>} min
+     * @param {Array.<number>} max
+     */
+    bbox.fromLine = function (x0, y0, x1, y1, min, max) {
+        min[0] = mathMin(x0, x1);
+        min[1] = mathMin(y0, y1);
+        max[0] = mathMax(x0, x1);
+        max[1] = mathMax(y0, y1);
+    };
+
+    var xDim = [];
+    var yDim = [];
+    /**
+     * 从三阶贝塞尔曲线(p0, p1, p2, p3)中计算出最小包围盒，写入`min`和`max`中
+     * @memberOf module:zrender/core/bbox
+     * @param {number} x0
+     * @param {number} y0
+     * @param {number} x1
+     * @param {number} y1
+     * @param {number} x2
+     * @param {number} y2
+     * @param {number} x3
+     * @param {number} y3
+     * @param {Array.<number>} min
+     * @param {Array.<number>} max
+     */
+    bbox.fromCubic = function(
+        x0, y0, x1, y1, x2, y2, x3, y3, min, max
+    ) {
+        var cubicExtrema = curve.cubicExtrema;
+        var cubicAt = curve.cubicAt;
+        var i;
+        var n = cubicExtrema(x0, x1, x2, x3, xDim);
+        min[0] = Infinity;
+        min[1] = Infinity;
+        max[0] = -Infinity;
+        max[1] = -Infinity;
+
+        for (i = 0; i < n; i++) {
+            var x = cubicAt(x0, x1, x2, x3, xDim[i]);
+            min[0] = mathMin(x, min[0]);
+            max[0] = mathMax(x, max[0]);
+        }
+        n = cubicExtrema(y0, y1, y2, y3, yDim);
+        for (i = 0; i < n; i++) {
+            var y = cubicAt(y0, y1, y2, y3, yDim[i]);
+            min[1] = mathMin(y, min[1]);
+            max[1] = mathMax(y, max[1]);
+        }
+
+        min[0] = mathMin(x0, min[0]);
+        max[0] = mathMax(x0, max[0]);
+        min[0] = mathMin(x3, min[0]);
+        max[0] = mathMax(x3, max[0]);
+
+        min[1] = mathMin(y0, min[1]);
+        max[1] = mathMax(y0, max[1]);
+        min[1] = mathMin(y3, min[1]);
+        max[1] = mathMax(y3, max[1]);
+    };
+
+    /**
+     * 从二阶贝塞尔曲线(p0, p1, p2)中计算出最小包围盒，写入`min`和`max`中
+     * @memberOf module:zrender/core/bbox
+     * @param {number} x0
+     * @param {number} y0
+     * @param {number} x1
+     * @param {number} y1
+     * @param {number} x2
+     * @param {number} y2
+     * @param {Array.<number>} min
+     * @param {Array.<number>} max
+     */
+    bbox.fromQuadratic = function(x0, y0, x1, y1, x2, y2, min, max) {
+        var quadraticExtremum = curve.quadraticExtremum;
+        var quadraticAt = curve.quadraticAt;
+        // Find extremities, where derivative in x dim or y dim is zero
+        var tx =
+            mathMax(
+                mathMin(quadraticExtremum(x0, x1, x2), 1), 0
+            );
+        var ty =
+            mathMax(
+                mathMin(quadraticExtremum(y0, y1, y2), 1), 0
+            );
+
+        var x = quadraticAt(x0, x1, x2, tx);
+        var y = quadraticAt(y0, y1, y2, ty);
+
+        min[0] = mathMin(x0, x2, x);
+        min[1] = mathMin(y0, y2, y);
+        max[0] = mathMax(x0, x2, x);
+        max[1] = mathMax(y0, y2, y);
+    };
+
+    /**
+     * 从圆弧中计算出最小包围盒，写入`min`和`max`中
+     * @method
+     * @memberOf module:zrender/core/bbox
+     * @param {number} x
+     * @param {number} y
+     * @param {number} rx
+     * @param {number} ry
+     * @param {number} startAngle
+     * @param {number} endAngle
+     * @param {number} anticlockwise
+     * @param {Array.<number>} min
+     * @param {Array.<number>} max
+     */
+    bbox.fromArc = function (
+        x, y, rx, ry, startAngle, endAngle, anticlockwise, min, max
+    ) {
+        var vec2Min = vec2.min;
+        var vec2Max = vec2.max;
+
+        var diff = Math.abs(startAngle - endAngle);
+
+
+        if (diff % PI2 < 1e-4 && diff > 1e-4) {
+            // Is a circle
+            min[0] = x - rx;
+            min[1] = y - ry;
+            max[0] = x + rx;
+            max[1] = y + ry;
+            return;
+        }
+
+        start[0] = mathCos(startAngle) * rx + x;
+        start[1] = mathSin(startAngle) * ry + y;
+
+        end[0] = mathCos(endAngle) * rx + x;
+        end[1] = mathSin(endAngle) * ry + y;
+
+        vec2Min(min, start, end);
+        vec2Max(max, start, end);
+
+        // Thresh to [0, Math.PI * 2]
+        startAngle = startAngle % (PI2);
+        if (startAngle < 0) {
+            startAngle = startAngle + PI2;
+        }
+        endAngle = endAngle % (PI2);
+        if (endAngle < 0) {
+            endAngle = endAngle + PI2;
+        }
+
+        if (startAngle > endAngle && !anticlockwise) {
+            endAngle += PI2;
+        }
+        else if (startAngle < endAngle && anticlockwise) {
+            startAngle += PI2;
+        }
+        if (anticlockwise) {
+            var tmp = endAngle;
+            endAngle = startAngle;
+            startAngle = tmp;
+        }
+
+        // var number = 0;
+        // var step = (anticlockwise ? -Math.PI : Math.PI) / 2;
+        for (var angle = 0; angle < endAngle; angle += Math.PI / 2) {
+            if (angle > startAngle) {
+                extremity[0] = mathCos(angle) * rx + x;
+                extremity[1] = mathSin(angle) * ry + y;
+
+                vec2Min(min, extremity, min);
+                vec2Max(max, extremity, max);
+            }
+        }
+    };
+
+    return bbox;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2044:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var eventTool = __webpack_require__(406);
+    var zrUtil = __webpack_require__(40);
+    var Eventful = __webpack_require__(255);
+    var env = __webpack_require__(254);
+    var GestureMgr = __webpack_require__(2042);
+
+    var addEventListener = eventTool.addEventListener;
+    var removeEventListener = eventTool.removeEventListener;
+    var normalizeEvent = eventTool.normalizeEvent;
+
+    var TOUCH_CLICK_DELAY = 300;
+
+    var mouseHandlerNames = [
+        'click', 'dblclick', 'mousewheel', 'mouseout',
+        'mouseup', 'mousedown', 'mousemove', 'contextmenu'
+    ];
+
+    var touchHandlerNames = [
+        'touchstart', 'touchend', 'touchmove'
+    ];
+
+    var pointerEventNames = {
+        pointerdown: 1, pointerup: 1, pointermove: 1, pointerout: 1
+    };
+
+    var pointerHandlerNames = zrUtil.map(mouseHandlerNames, function (name) {
+        var nm = name.replace('mouse', 'pointer');
+        return pointerEventNames[nm] ? nm : name;
+    });
+
+    function eventNameFix(name) {
+        return (name === 'mousewheel' && env.browser.firefox) ? 'DOMMouseScroll' : name;
+    }
+
+    function processGesture(proxy, event, stage) {
+        var gestureMgr = proxy._gestureMgr;
+
+        stage === 'start' && gestureMgr.clear();
+
+        var gestureInfo = gestureMgr.recognize(
+            event,
+            proxy.handler.findHover(event.zrX, event.zrY, null).target,
+            proxy.dom
+        );
+
+        stage === 'end' && gestureMgr.clear();
+
+        // Do not do any preventDefault here. Upper application do that if necessary.
+        if (gestureInfo) {
+            var type = gestureInfo.type;
+            event.gestureEvent = type;
+
+            proxy.handler.dispatchToElement({target: gestureInfo.target}, type, gestureInfo.event);
+        }
+    }
+
+    // function onMSGestureChange(proxy, event) {
+    //     if (event.translationX || event.translationY) {
+    //         // mousemove is carried by MSGesture to reduce the sensitivity.
+    //         proxy.handler.dispatchToElement(event.target, 'mousemove', event);
+    //     }
+    //     if (event.scale !== 1) {
+    //         event.pinchX = event.offsetX;
+    //         event.pinchY = event.offsetY;
+    //         event.pinchScale = event.scale;
+    //         proxy.handler.dispatchToElement(event.target, 'pinch', event);
+    //     }
+    // }
+
+    /**
+     * Prevent mouse event from being dispatched after Touch Events action
+     * @see <https://github.com/deltakosh/handjs/blob/master/src/hand.base.js>
+     * 1. Mobile browsers dispatch mouse events 300ms after touchend.
+     * 2. Chrome for Android dispatch mousedown for long-touch about 650ms
+     * Result: Blocking Mouse Events for 700ms.
+     */
+    function setTouchTimer(instance) {
+        instance._touching = true;
+        clearTimeout(instance._touchTimer);
+        instance._touchTimer = setTimeout(function () {
+            instance._touching = false;
+        }, 700);
+    }
+
+
+    var domHandlers = {
+        /**
+         * Mouse move handler
+         * @inner
+         * @param {Event} event
+         */
+        mousemove: function (event) {
+            event = normalizeEvent(this.dom, event);
+
+            this.trigger('mousemove', event);
+        },
+
+        /**
+         * Mouse out handler
+         * @inner
+         * @param {Event} event
+         */
+        mouseout: function (event) {
+            event = normalizeEvent(this.dom, event);
+
+            var element = event.toElement || event.relatedTarget;
+            if (element != this.dom) {
+                while (element && element.nodeType != 9) {
+                    // 忽略包含在root中的dom引起的mouseOut
+                    if (element === this.dom) {
+                        return;
+                    }
+
+                    element = element.parentNode;
+                }
+            }
+
+            this.trigger('mouseout', event);
+        },
+
+        /**
+         * Touch开始响应函数
+         * @inner
+         * @param {Event} event
+         */
+        touchstart: function (event) {
+            // Default mouse behaviour should not be disabled here.
+            // For example, page may needs to be slided.
+            event = normalizeEvent(this.dom, event);
+
+            // Mark touch, which is useful in distinguish touch and
+            // mouse event in upper applicatoin.
+            event.zrByTouch = true;
+
+            this._lastTouchMoment = new Date();
+
+            processGesture(this, event, 'start');
+
+            // In touch device, trigger `mousemove`(`mouseover`) should
+            // be triggered, and must before `mousedown` triggered.
+            domHandlers.mousemove.call(this, event);
+
+            domHandlers.mousedown.call(this, event);
+
+            setTouchTimer(this);
+        },
+
+        /**
+         * Touch移动响应函数
+         * @inner
+         * @param {Event} event
+         */
+        touchmove: function (event) {
+
+            event = normalizeEvent(this.dom, event);
+
+            // Mark touch, which is useful in distinguish touch and
+            // mouse event in upper applicatoin.
+            event.zrByTouch = true;
+
+            processGesture(this, event, 'change');
+
+            // Mouse move should always be triggered no matter whether
+            // there is gestrue event, because mouse move and pinch may
+            // be used at the same time.
+            domHandlers.mousemove.call(this, event);
+
+            setTouchTimer(this);
+        },
+
+        /**
+         * Touch结束响应函数
+         * @inner
+         * @param {Event} event
+         */
+        touchend: function (event) {
+
+            event = normalizeEvent(this.dom, event);
+
+            // Mark touch, which is useful in distinguish touch and
+            // mouse event in upper applicatoin.
+            event.zrByTouch = true;
+
+            processGesture(this, event, 'end');
+
+            domHandlers.mouseup.call(this, event);
+
+            // Do not trigger `mouseout` here, in spite of `mousemove`(`mouseover`) is
+            // triggered in `touchstart`. This seems to be illogical, but by this mechanism,
+            // we can conveniently implement "hover style" in both PC and touch device just
+            // by listening to `mouseover` to add "hover style" and listening to `mouseout`
+            // to remove "hover style" on an element, without any additional code for
+            // compatibility. (`mouseout` will not be triggered in `touchend`, so "hover
+            // style" will remain for user view)
+
+            // click event should always be triggered no matter whether
+            // there is gestrue event. System click can not be prevented.
+            if (+new Date() - this._lastTouchMoment < TOUCH_CLICK_DELAY) {
+                domHandlers.click.call(this, event);
+            }
+
+            setTouchTimer(this);
+        },
+
+        pointerdown: function (event) {
+            domHandlers.mousedown.call(this, event);
+
+            // if (useMSGuesture(this, event)) {
+            //     this._msGesture.addPointer(event.pointerId);
+            // }
+        },
+
+        pointermove: function (event) {
+            // FIXME
+            // pointermove is so sensitive that it always triggered when
+            // tap(click) on touch screen, which affect some judgement in
+            // upper application. So, we dont support mousemove on MS touch
+            // device yet.
+            if (!isPointerFromTouch(event)) {
+                domHandlers.mousemove.call(this, event);
+            }
+        },
+
+        pointerup: function (event) {
+            domHandlers.mouseup.call(this, event);
+        },
+
+        pointerout: function (event) {
+            // pointerout will be triggered when tap on touch screen
+            // (IE11+/Edge on MS Surface) after click event triggered,
+            // which is inconsistent with the mousout behavior we defined
+            // in touchend. So we unify them.
+            // (check domHandlers.touchend for detailed explanation)
+            if (!isPointerFromTouch(event)) {
+                domHandlers.mouseout.call(this, event);
+            }
+        }
+    };
+
+    function isPointerFromTouch(event) {
+        var pointerType = event.pointerType;
+        return pointerType === 'pen' || pointerType === 'touch';
+    }
+
+    // function useMSGuesture(handlerProxy, event) {
+    //     return isPointerFromTouch(event) && !!handlerProxy._msGesture;
+    // }
+
+    // Common handlers
+    zrUtil.each(['click', 'mousedown', 'mouseup', 'mousewheel', 'dblclick', 'contextmenu'], function (name) {
+        domHandlers[name] = function (event) {
+            event = normalizeEvent(this.dom, event);
+            this.trigger(name, event);
+        };
+    });
+
+    /**
+     * 为控制类实例初始化dom 事件处理函数
+     *
+     * @inner
+     * @param {module:zrender/Handler} instance 控制类实例
+     */
+    function initDomHandler(instance) {
+        zrUtil.each(touchHandlerNames, function (name) {
+            instance._handlers[name] = zrUtil.bind(domHandlers[name], instance);
+        });
+
+        zrUtil.each(pointerHandlerNames, function (name) {
+            instance._handlers[name] = zrUtil.bind(domHandlers[name], instance);
+        });
+
+        zrUtil.each(mouseHandlerNames, function (name) {
+            instance._handlers[name] = makeMouseHandler(domHandlers[name], instance);
+        });
+
+        function makeMouseHandler(fn, instance) {
+            return function () {
+                if (instance._touching) {
+                    return;
+                }
+                return fn.apply(instance, arguments);
+            };
+        }
+    }
+
+
+    function HandlerDomProxy(dom) {
+        Eventful.call(this);
+
+        this.dom = dom;
+
+        /**
+         * @private
+         * @type {boolean}
+         */
+        this._touching = false;
+
+        /**
+         * @private
+         * @type {number}
+         */
+        this._touchTimer;
+
+        /**
+         * @private
+         * @type {module:zrender/core/GestureMgr}
+         */
+        this._gestureMgr = new GestureMgr();
+
+        this._handlers = {};
+
+        initDomHandler(this);
+
+        if (env.pointerEventsSupported) { // Only IE11+/Edge
+            // 1. On devices that both enable touch and mouse (e.g., MS Surface and lenovo X240),
+            // IE11+/Edge do not trigger touch event, but trigger pointer event and mouse event
+            // at the same time.
+            // 2. On MS Surface, it probablely only trigger mousedown but no mouseup when tap on
+            // screen, which do not occurs in pointer event.
+            // So we use pointer event to both detect touch gesture and mouse behavior.
+            mountHandlers(pointerHandlerNames, this);
+
+            // FIXME
+            // Note: MS Gesture require CSS touch-action set. But touch-action is not reliable,
+            // which does not prevent defuault behavior occasionally (which may cause view port
+            // zoomed in but use can not zoom it back). And event.preventDefault() does not work.
+            // So we have to not to use MSGesture and not to support touchmove and pinch on MS
+            // touch screen. And we only support click behavior on MS touch screen now.
+
+            // MS Gesture Event is only supported on IE11+/Edge and on Windows 8+.
+            // We dont support touch on IE on win7.
+            // See <https://msdn.microsoft.com/en-us/library/dn433243(v=vs.85).aspx>
+            // if (typeof MSGesture === 'function') {
+            //     (this._msGesture = new MSGesture()).target = dom; // jshint ignore:line
+            //     dom.addEventListener('MSGestureChange', onMSGestureChange);
+            // }
+        }
+        else {
+            if (env.touchEventsSupported) {
+                mountHandlers(touchHandlerNames, this);
+                // Handler of 'mouseout' event is needed in touch mode, which will be mounted below.
+                // addEventListener(root, 'mouseout', this._mouseoutHandler);
+            }
+
+            // 1. Considering some devices that both enable touch and mouse event (like on MS Surface
+            // and lenovo X240, @see #2350), we make mouse event be always listened, otherwise
+            // mouse event can not be handle in those devices.
+            // 2. On MS Surface, Chrome will trigger both touch event and mouse event. How to prevent
+            // mouseevent after touch event triggered, see `setTouchTimer`.
+            mountHandlers(mouseHandlerNames, this);
+        }
+
+        function mountHandlers(handlerNames, instance) {
+            zrUtil.each(handlerNames, function (name) {
+                addEventListener(dom, eventNameFix(name), instance._handlers[name]);
+            }, instance);
+        }
+    }
+
+    var handlerDomProxyProto = HandlerDomProxy.prototype;
+    handlerDomProxyProto.dispose = function () {
+        var handlerNames = mouseHandlerNames.concat(touchHandlerNames);
+
+        for (var i = 0; i < handlerNames.length; i++) {
+            var name = handlerNames[i];
+            removeEventListener(this.dom, eventNameFix(name), this._handlers[name]);
+        }
+    };
+
+    handlerDomProxyProto.setCursor = function (cursorStyle) {
+        this.dom.style.cursor = cursorStyle || 'default';
+    };
+
+    zrUtil.mixin(HandlerDomProxy, Eventful);
+
+    return HandlerDomProxy;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2045:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Image element
+ * @module zrender/graphic/Image
+ */
+
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var Displayable = __webpack_require__(844);
+    var BoundingRect = __webpack_require__(149);
+    var zrUtil = __webpack_require__(40);
+    var imageHelper = __webpack_require__(407);
+
+    /**
+     * @alias zrender/graphic/Image
+     * @extends module:zrender/graphic/Displayable
+     * @constructor
+     * @param {Object} opts
+     */
+    function ZImage(opts) {
+        Displayable.call(this, opts);
+    }
+
+    ZImage.prototype = {
+
+        constructor: ZImage,
+
+        type: 'image',
+
+        brush: function (ctx, prevEl) {
+            var style = this.style;
+            var src = style.image;
+
+            // Must bind each time
+            style.bind(ctx, this, prevEl);
+
+            var image = this._image = imageHelper.createOrUpdateImage(src, this._image, this);
+
+            if (!image || !imageHelper.isImageReady(image)) {
+                return;
+            }
+
+            // 图片已经加载完成
+            // if (image.nodeName.toUpperCase() == 'IMG') {
+            //     if (!image.complete) {
+            //         return;
+            //     }
+            // }
+            // Else is canvas
+
+            var x = style.x || 0;
+            var y = style.y || 0;
+            var width = style.width;
+            var height = style.height;
+            var aspect = image.width / image.height;
+            if (width == null && height != null) {
+                // Keep image/height ratio
+                width = height * aspect;
+            }
+            else if (height == null && width != null) {
+                height = width / aspect;
+            }
+            else if (width == null && height == null) {
+                width = image.width;
+                height = image.height;
+            }
+
+            // 设置transform
+            this.setTransform(ctx);
+
+            if (style.sWidth && style.sHeight) {
+                var sx = style.sx || 0;
+                var sy = style.sy || 0;
+                ctx.drawImage(
+                    image,
+                    sx, sy, style.sWidth, style.sHeight,
+                    x, y, width, height
+                );
+            }
+            else if (style.sx && style.sy) {
+                var sx = style.sx;
+                var sy = style.sy;
+                var sWidth = width - sx;
+                var sHeight = height - sy;
+                ctx.drawImage(
+                    image,
+                    sx, sy, sWidth, sHeight,
+                    x, y, width, height
+                );
+            }
+            else {
+                ctx.drawImage(image, x, y, width, height);
+            }
+
+            this.restoreTransform(ctx);
+
+            // Draw rect text
+            if (style.text != null) {
+                this.drawRectText(ctx, this.getBoundingRect());
+            }
+        },
+
+        getBoundingRect: function () {
+            var style = this.style;
+            if (! this._rect) {
+                this._rect = new BoundingRect(
+                    style.x || 0, style.y || 0, style.width || 0, style.height || 0
+                );
+            }
+            return this._rect;
+        }
+    };
+
+    zrUtil.inherits(ZImage, Displayable);
+
+    return ZImage;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2046:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    return {
+        buildPath: function (ctx, shape) {
+            var x = shape.x;
+            var y = shape.y;
+            var width = shape.width;
+            var height = shape.height;
+            var r = shape.r;
+            var r1;
+            var r2;
+            var r3;
+            var r4;
+
+            // Convert width and height to positive for better borderRadius
+            if (width < 0) {
+                x = x + width;
+                width = -width;
+            }
+            if (height < 0) {
+                y = y + height;
+                height = -height;
+            }
+
+            if (typeof r === 'number') {
+                r1 = r2 = r3 = r4 = r;
+            }
+            else if (r instanceof Array) {
+                if (r.length === 1) {
+                    r1 = r2 = r3 = r4 = r[0];
+                }
+                else if (r.length === 2) {
+                    r1 = r3 = r[0];
+                    r2 = r4 = r[1];
+                }
+                else if (r.length === 3) {
+                    r1 = r[0];
+                    r2 = r4 = r[1];
+                    r3 = r[2];
+                }
+                else {
+                    r1 = r[0];
+                    r2 = r[1];
+                    r3 = r[2];
+                    r4 = r[3];
+                }
+            }
+            else {
+                r1 = r2 = r3 = r4 = 0;
+            }
+
+            var total;
+            if (r1 + r2 > width) {
+                total = r1 + r2;
+                r1 *= width / total;
+                r2 *= width / total;
+            }
+            if (r3 + r4 > width) {
+                total = r3 + r4;
+                r3 *= width / total;
+                r4 *= width / total;
+            }
+            if (r2 + r3 > height) {
+                total = r2 + r3;
+                r2 *= height / total;
+                r3 *= height / total;
+            }
+            if (r1 + r4 > height) {
+                total = r1 + r4;
+                r1 *= height / total;
+                r4 *= height / total;
+            }
+            ctx.moveTo(x + r1, y);
+            ctx.lineTo(x + width - r2, y);
+            r2 !== 0 && ctx.quadraticCurveTo(
+                x + width, y, x + width, y + r2
+            );
+            ctx.lineTo(x + width, y + height - r3);
+            r3 !== 0 && ctx.quadraticCurveTo(
+                x + width, y + height, x + width - r3, y + height
+            );
+            ctx.lineTo(x + r4, y + height);
+            r4 !== 0 && ctx.quadraticCurveTo(
+                x, y + height, x, y + height - r4
+            );
+            ctx.lineTo(x, y + r1);
+            r1 !== 0 && ctx.quadraticCurveTo(x, y, x + r1, y);
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2047:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Mixin for drawing text in a element bounding rect
+ * @module zrender/mixin/RectText
+ */
+
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var textHelper = __webpack_require__(848);
+    var BoundingRect = __webpack_require__(149);
+
+    var tmpRect = new BoundingRect();
+
+    var RectText = function () {};
+
+    RectText.prototype = {
+
+        constructor: RectText,
+
+        /**
+         * Draw text in a rect with specified position.
+         * @param  {CanvasRenderingContext2D} ctx
+         * @param  {Object} rect Displayable rect
+         */
+        drawRectText: function (ctx, rect) {
+            var style = this.style;
+
+            rect = style.textRect || rect;
+
+            // Optimize, avoid normalize every time.
+            this.__dirty && textHelper.normalizeTextStyle(style, true);
+
+            var text = style.text;
+
+            // Convert to string
+            text != null && (text += '');
+
+            if (!textHelper.needDrawText(text, style)) {
+                return;
+            }
+
+            // FIXME
+            ctx.save();
+
+            // Transform rect to view space
+            var transform = this.transform;
+            if (!style.transformText) {
+                if (transform) {
+                    tmpRect.copy(rect);
+                    tmpRect.applyTransform(transform);
+                    rect = tmpRect;
+                }
+            }
+            else {
+                this.setTransform(ctx);
+            }
+
+            // transformText and textRotation can not be used at the same time.
+            textHelper.renderText(this, ctx, text, style, rect);
+
+            ctx.restore();
+        }
+    };
+
+    return RectText;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2048:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 圆形
+ * @module zrender/shape/Circle
+ */
+
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+    'use strict';
+
+    return __webpack_require__(845).extend({
+
+        type: 'circle',
+
+        shape: {
+            cx: 0,
+            cy: 0,
+            r: 0
+        },
+
+
+        buildPath : function (ctx, shape, inBundle) {
+            // Better stroking in ShapeBundle
+            // Always do it may have performence issue ( fill may be 2x more cost)
+            if (inBundle) {
+                ctx.moveTo(shape.cx + shape.r, shape.cy);
+            }
+            // else {
+            //     if (ctx.allocate && !ctx.data.length) {
+            //         ctx.allocate(ctx.CMD_MEM_SIZE.A);
+            //     }
+            // }
+            // Better stroking in ShapeBundle
+            // ctx.moveTo(shape.cx + shape.r, shape.cy);
+            ctx.arc(shape.cx, shape.cy, shape.r, 0, Math.PI * 2, true);
+        }
+    });
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2049:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module zrender/mixin/Animatable
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    'use strict';
+
+    var Animator = __webpack_require__(835);
+    var util = __webpack_require__(40);
+    var isString = util.isString;
+    var isFunction = util.isFunction;
+    var isObject = util.isObject;
+    var log = __webpack_require__(841);
+
+    /**
+     * @alias modue:zrender/mixin/Animatable
+     * @constructor
+     */
+    var Animatable = function () {
+
+        /**
+         * @type {Array.<module:zrender/animation/Animator>}
+         * @readOnly
+         */
+        this.animators = [];
+    };
+
+    Animatable.prototype = {
+
+        constructor: Animatable,
+
+        /**
+         * 动画
+         *
+         * @param {string} path The path to fetch value from object, like 'a.b.c'.
+         * @param {boolean} [loop] Whether to loop animation.
+         * @return {module:zrender/animation/Animator}
+         * @example:
+         *     el.animate('style', false)
+         *         .when(1000, {x: 10} )
+         *         .done(function(){ // Animation done })
+         *         .start()
+         */
+        animate: function (path, loop) {
+            var target;
+            var animatingShape = false;
+            var el = this;
+            var zr = this.__zr;
+            if (path) {
+                var pathSplitted = path.split('.');
+                var prop = el;
+                // If animating shape
+                animatingShape = pathSplitted[0] === 'shape';
+                for (var i = 0, l = pathSplitted.length; i < l; i++) {
+                    if (!prop) {
+                        continue;
+                    }
+                    prop = prop[pathSplitted[i]];
+                }
+                if (prop) {
+                    target = prop;
+                }
+            }
+            else {
+                target = el;
+            }
+
+            if (!target) {
+                log(
+                    'Property "'
+                    + path
+                    + '" is not existed in element '
+                    + el.id
+                );
+                return;
+            }
+
+            var animators = el.animators;
+
+            var animator = new Animator(target, loop);
+
+            animator.during(function (target) {
+                el.dirty(animatingShape);
+            })
+            .done(function () {
+                // FIXME Animator will not be removed if use `Animator#stop` to stop animation
+                animators.splice(util.indexOf(animators, animator), 1);
+            });
+
+            animators.push(animator);
+
+            // If animate after added to the zrender
+            if (zr) {
+                zr.animation.addAnimator(animator);
+            }
+
+            return animator;
+        },
+
+        /**
+         * 停止动画
+         * @param {boolean} forwardToLast If move to last frame before stop
+         */
+        stopAnimation: function (forwardToLast) {
+            var animators = this.animators;
+            var len = animators.length;
+            for (var i = 0; i < len; i++) {
+                animators[i].stop(forwardToLast);
+            }
+            animators.length = 0;
+
+            return this;
+        },
+
+        /**
+         * Caution: this method will stop previous animation.
+         * So do not use this method to one element twice before
+         * animation starts, unless you know what you are doing.
+         * @param {Object} target
+         * @param {number} [time=500] Time in ms
+         * @param {string} [easing='linear']
+         * @param {number} [delay=0]
+         * @param {Function} [callback]
+         * @param {Function} [forceAnimate] Prevent stop animation and callback
+         *        immediently when target values are the same as current values.
+         *
+         * @example
+         *  // Animate position
+         *  el.animateTo({
+         *      position: [10, 10]
+         *  }, function () { // done })
+         *
+         *  // Animate shape, style and position in 100ms, delayed 100ms, with cubicOut easing
+         *  el.animateTo({
+         *      shape: {
+         *          width: 500
+         *      },
+         *      style: {
+         *          fill: 'red'
+         *      }
+         *      position: [10, 10]
+         *  }, 100, 100, 'cubicOut', function () { // done })
+         */
+         // TODO Return animation key
+        animateTo: function (target, time, delay, easing, callback, forceAnimate) {
+            // animateTo(target, time, easing, callback);
+            if (isString(delay)) {
+                callback = easing;
+                easing = delay;
+                delay = 0;
+            }
+            // animateTo(target, time, delay, callback);
+            else if (isFunction(easing)) {
+                callback = easing;
+                easing = 'linear';
+                delay = 0;
+            }
+            // animateTo(target, time, callback);
+            else if (isFunction(delay)) {
+                callback = delay;
+                delay = 0;
+            }
+            // animateTo(target, callback)
+            else if (isFunction(time)) {
+                callback = time;
+                time = 500;
+            }
+            // animateTo(target)
+            else if (!time) {
+                time = 500;
+            }
+            // Stop all previous animations
+            this.stopAnimation();
+            this._animateToShallow('', this, target, time, delay, easing, callback);
+
+            // Animators may be removed immediately after start
+            // if there is nothing to animate
+            var animators = this.animators.slice();
+            var count = animators.length;
+            function done() {
+                count--;
+                if (!count) {
+                    callback && callback();
+                }
+            }
+
+            // No animators. This should be checked before animators[i].start(),
+            // because 'done' may be executed immediately if no need to animate.
+            if (!count) {
+                callback && callback();
+            }
+            // Start after all animators created
+            // Incase any animator is done immediately when all animation properties are not changed
+            for (var i = 0; i < animators.length; i++) {
+                animators[i]
+                    .done(done)
+                    .start(easing, forceAnimate);
+            }
+        },
+
+        /**
+         * @private
+         * @param {string} path=''
+         * @param {Object} source=this
+         * @param {Object} target
+         * @param {number} [time=500]
+         * @param {number} [delay=0]
+         *
+         * @example
+         *  // Animate position
+         *  el._animateToShallow({
+         *      position: [10, 10]
+         *  })
+         *
+         *  // Animate shape, style and position in 100ms, delayed 100ms
+         *  el._animateToShallow({
+         *      shape: {
+         *          width: 500
+         *      },
+         *      style: {
+         *          fill: 'red'
+         *      }
+         *      position: [10, 10]
+         *  }, 100, 100)
+         */
+        _animateToShallow: function (path, source, target, time, delay) {
+            var objShallow = {};
+            var propertyCount = 0;
+            for (var name in target) {
+                if (!target.hasOwnProperty(name)) {
+                    continue;
+                }
+
+                if (source[name] != null) {
+                    if (isObject(target[name]) && !util.isArrayLike(target[name])) {
+                        this._animateToShallow(
+                            path ? path + '.' + name : name,
+                            source[name],
+                            target[name],
+                            time,
+                            delay
+                        );
+                    }
+                    else {
+                        objShallow[name] = target[name];
+                        propertyCount++;
+                    }
+                }
+                else if (target[name] != null) {
+                    // Attr directly if not has property
+                    // FIXME, if some property not needed for element ?
+                    if (!path) {
+                        this.attr(name, target[name]);
+                    }
+                    else {  // Shape or style
+                        var props = {};
+                        props[path] = {};
+                        props[path][name] = target[name];
+                        this.attr(props);
+                    }
+                }
+            }
+
+            if (propertyCount > 0) {
+                this.animate(path, false)
+                    .when(time == null ? 500 : time, objShallow)
+                    .delay(delay || 0);
+            }
+
+            return this;
+        }
+    };
+
+    return Animatable;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2050:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;// TODO Draggable for group
+// FIXME Draggable on element which has parent rotation or scale
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+    function Draggable() {
+
+        this.on('mousedown', this._dragStart, this);
+        this.on('mousemove', this._drag, this);
+        this.on('mouseup', this._dragEnd, this);
+        this.on('globalout', this._dragEnd, this);
+        // this._dropTarget = null;
+        // this._draggingTarget = null;
+
+        // this._x = 0;
+        // this._y = 0;
+    }
+
+    Draggable.prototype = {
+
+        constructor: Draggable,
+
+        _dragStart: function (e) {
+            var draggingTarget = e.target;
+            if (draggingTarget && draggingTarget.draggable) {
+                this._draggingTarget = draggingTarget;
+                draggingTarget.dragging = true;
+                this._x = e.offsetX;
+                this._y = e.offsetY;
+
+                this.dispatchToElement(param(draggingTarget, e), 'dragstart', e.event);
+            }
+        },
+
+        _drag: function (e) {
+            var draggingTarget = this._draggingTarget;
+            if (draggingTarget) {
+
+                var x = e.offsetX;
+                var y = e.offsetY;
+
+                var dx = x - this._x;
+                var dy = y - this._y;
+                this._x = x;
+                this._y = y;
+
+                draggingTarget.drift(dx, dy, e);
+                this.dispatchToElement(param(draggingTarget, e), 'drag', e.event);
+
+                var dropTarget = this.findHover(x, y, draggingTarget).target;
+                var lastDropTarget = this._dropTarget;
+                this._dropTarget = dropTarget;
+
+                if (draggingTarget !== dropTarget) {
+                    if (lastDropTarget && dropTarget !== lastDropTarget) {
+                        this.dispatchToElement(param(lastDropTarget, e), 'dragleave', e.event);
+                    }
+                    if (dropTarget && dropTarget !== lastDropTarget) {
+                        this.dispatchToElement(param(dropTarget, e), 'dragenter', e.event);
+                    }
+                }
+            }
+        },
+
+        _dragEnd: function (e) {
+            var draggingTarget = this._draggingTarget;
+
+            if (draggingTarget) {
+                draggingTarget.dragging = false;
+            }
+
+            this.dispatchToElement(param(draggingTarget, e), 'dragend', e.event);
+
+            if (this._dropTarget) {
+                this.dispatchToElement(param(this._dropTarget, e), 'drop', e.event);
+            }
+
+            this._draggingTarget = null;
+            this._dropTarget = null;
+        }
+
+    };
+
+    function param(target, e) {
+        return {target: target, topTarget: e && e.topTarget};
+    }
+
+    return Draggable;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2051:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 提供变换扩展
+ * @module zrender/mixin/Transformable
+ * @author pissang (https://www.github.com/pissang)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    'use strict';
+
+    var matrix = __webpack_require__(842);
+    var vector = __webpack_require__(150);
+    var mIdentity = matrix.identity;
+
+    var EPSILON = 5e-5;
+
+    function isNotAroundZero(val) {
+        return val > EPSILON || val < -EPSILON;
+    }
+
+    /**
+     * @alias module:zrender/mixin/Transformable
+     * @constructor
+     */
+    var Transformable = function (opts) {
+        opts = opts || {};
+        // If there are no given position, rotation, scale
+        if (!opts.position) {
+            /**
+             * 平移
+             * @type {Array.<number>}
+             * @default [0, 0]
+             */
+            this.position = [0, 0];
+        }
+        if (opts.rotation == null) {
+            /**
+             * 旋转
+             * @type {Array.<number>}
+             * @default 0
+             */
+            this.rotation = 0;
+        }
+        if (!opts.scale) {
+            /**
+             * 缩放
+             * @type {Array.<number>}
+             * @default [1, 1]
+             */
+            this.scale = [1, 1];
+        }
+        /**
+         * 旋转和缩放的原点
+         * @type {Array.<number>}
+         * @default null
+         */
+        this.origin = this.origin || null;
+    };
+
+    var transformableProto = Transformable.prototype;
+    transformableProto.transform = null;
+
+    /**
+     * 判断是否需要有坐标变换
+     * 如果有坐标变换, 则从position, rotation, scale以及父节点的transform计算出自身的transform矩阵
+     */
+    transformableProto.needLocalTransform = function () {
+        return isNotAroundZero(this.rotation)
+            || isNotAroundZero(this.position[0])
+            || isNotAroundZero(this.position[1])
+            || isNotAroundZero(this.scale[0] - 1)
+            || isNotAroundZero(this.scale[1] - 1);
+    };
+
+    transformableProto.updateTransform = function () {
+        var parent = this.parent;
+        var parentHasTransform = parent && parent.transform;
+        var needLocalTransform = this.needLocalTransform();
+
+        var m = this.transform;
+        if (!(needLocalTransform || parentHasTransform)) {
+            m && mIdentity(m);
+            return;
+        }
+
+        m = m || matrix.create();
+
+        if (needLocalTransform) {
+            this.getLocalTransform(m);
+        }
+        else {
+            mIdentity(m);
+        }
+
+        // 应用父节点变换
+        if (parentHasTransform) {
+            if (needLocalTransform) {
+                matrix.mul(m, parent.transform, m);
+            }
+            else {
+                matrix.copy(m, parent.transform);
+            }
+        }
+        // 保存这个变换矩阵
+        this.transform = m;
+
+        this.invTransform = this.invTransform || matrix.create();
+        matrix.invert(this.invTransform, m);
+    };
+
+    transformableProto.getLocalTransform = function (m) {
+        return Transformable.getLocalTransform(this, m);
+    };
+
+    /**
+     * 将自己的transform应用到context上
+     * @param {CanvasRenderingContext2D} ctx
+     */
+    transformableProto.setTransform = function (ctx) {        
+        var m = this.transform;
+        var dpr = ctx.dpr || 1;
+        if (m) {
+            ctx.setTransform(dpr * m[0], dpr * m[1], dpr * m[2], dpr * m[3], dpr * m[4], dpr * m[5]);
+        }
+        else {
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+    };
+
+    transformableProto.restoreTransform = function (ctx) {
+        var dpr = ctx.dpr || 1;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    var tmpTransform = [];
+
+    /**
+     * 分解`transform`矩阵到`position`, `rotation`, `scale`
+     */
+    transformableProto.decomposeTransform = function () {
+        if (!this.transform) {
+            return;
+        }
+        var parent = this.parent;
+        var m = this.transform;
+        if (parent && parent.transform) {
+            // Get local transform and decompose them to position, scale, rotation
+            matrix.mul(tmpTransform, parent.invTransform, m);
+            m = tmpTransform;
+        }
+        var sx = m[0] * m[0] + m[1] * m[1];
+        var sy = m[2] * m[2] + m[3] * m[3];
+        var position = this.position;
+        var scale = this.scale;
+        if (isNotAroundZero(sx - 1)) {
+            sx = Math.sqrt(sx);
+        }
+        if (isNotAroundZero(sy - 1)) {
+            sy = Math.sqrt(sy);
+        }
+        if (m[0] < 0) {
+            sx = -sx;
+        }
+        if (m[3] < 0) {
+            sy = -sy;
+        }
+        position[0] = m[4];
+        position[1] = m[5];
+        scale[0] = sx;
+        scale[1] = sy;
+        this.rotation = Math.atan2(-m[1] / sy, m[0] / sx);
+    };
+
+    /**
+     * Get global scale
+     * @return {Array.<number>}
+     */
+    transformableProto.getGlobalScale = function () {
+        var m = this.transform;
+        if (!m) {
+            return [1, 1];
+        }
+        var sx = Math.sqrt(m[0] * m[0] + m[1] * m[1]);
+        var sy = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
+        if (m[0] < 0) {
+            sx = -sx;
+        }
+        if (m[3] < 0) {
+            sy = -sy;
+        }
+        return [sx, sy];
+    };
+    /**
+     * 变换坐标位置到 shape 的局部坐标空间
+     * @method
+     * @param {number} x
+     * @param {number} y
+     * @return {Array.<number>}
+     */
+    transformableProto.transformCoordToLocal = function (x, y) {
+        var v2 = [x, y];
+        var invTransform = this.invTransform;
+        if (invTransform) {
+            vector.applyTransform(v2, v2, invTransform);
+        }
+        return v2;
+    };
+
+    /**
+     * 变换局部坐标位置到全局坐标空间
+     * @method
+     * @param {number} x
+     * @param {number} y
+     * @return {Array.<number>}
+     */
+    transformableProto.transformCoordToGlobal = function (x, y) {
+        var v2 = [x, y];
+        var transform = this.transform;
+        if (transform) {
+            vector.applyTransform(v2, v2, transform);
+        }
+        return v2;
+    };
+
+    /**
+     * @static
+     * @param {Object} target
+     * @param {Array.<number>} target.origin
+     * @param {number} target.rotation
+     * @param {Array.<number>} target.position
+     * @param {Array.<number>} [m]
+     */
+    Transformable.getLocalTransform = function (target, m) {
+        m = m || [];
+        mIdentity(m);
+
+        var origin = target.origin;
+        var scale = target.scale || [1, 1];
+        var rotation = target.rotation || 0;
+        var position = target.position || [0, 0];
+
+        if (origin) {
+            // Translate to origin
+            m[4] -= origin[0];
+            m[5] -= origin[1];
+        }
+        matrix.scale(m, m, scale);
+        if (rotation) {
+            matrix.rotate(m, m, rotation);
+        }
+        if (origin) {
+            // Translate back from origin
+            m[4] += origin[0];
+            m[5] += origin[1];
+        }
+
+        m[4] += position[0];
+        m[5] += position[1];
+
+        return m;
+    };
+
+    return Transformable;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 2052:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module zrender/tool/color
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    var LRU = __webpack_require__(839);
+
+    var kCSSColorTable = {
+        'transparent': [0,0,0,0], 'aliceblue': [240,248,255,1],
+        'antiquewhite': [250,235,215,1], 'aqua': [0,255,255,1],
+        'aquamarine': [127,255,212,1], 'azure': [240,255,255,1],
+        'beige': [245,245,220,1], 'bisque': [255,228,196,1],
+        'black': [0,0,0,1], 'blanchedalmond': [255,235,205,1],
+        'blue': [0,0,255,1], 'blueviolet': [138,43,226,1],
+        'brown': [165,42,42,1], 'burlywood': [222,184,135,1],
+        'cadetblue': [95,158,160,1], 'chartreuse': [127,255,0,1],
+        'chocolate': [210,105,30,1], 'coral': [255,127,80,1],
+        'cornflowerblue': [100,149,237,1], 'cornsilk': [255,248,220,1],
+        'crimson': [220,20,60,1], 'cyan': [0,255,255,1],
+        'darkblue': [0,0,139,1], 'darkcyan': [0,139,139,1],
+        'darkgoldenrod': [184,134,11,1], 'darkgray': [169,169,169,1],
+        'darkgreen': [0,100,0,1], 'darkgrey': [169,169,169,1],
+        'darkkhaki': [189,183,107,1], 'darkmagenta': [139,0,139,1],
+        'darkolivegreen': [85,107,47,1], 'darkorange': [255,140,0,1],
+        'darkorchid': [153,50,204,1], 'darkred': [139,0,0,1],
+        'darksalmon': [233,150,122,1], 'darkseagreen': [143,188,143,1],
+        'darkslateblue': [72,61,139,1], 'darkslategray': [47,79,79,1],
+        'darkslategrey': [47,79,79,1], 'darkturquoise': [0,206,209,1],
+        'darkviolet': [148,0,211,1], 'deeppink': [255,20,147,1],
+        'deepskyblue': [0,191,255,1], 'dimgray': [105,105,105,1],
+        'dimgrey': [105,105,105,1], 'dodgerblue': [30,144,255,1],
+        'firebrick': [178,34,34,1], 'floralwhite': [255,250,240,1],
+        'forestgreen': [34,139,34,1], 'fuchsia': [255,0,255,1],
+        'gainsboro': [220,220,220,1], 'ghostwhite': [248,248,255,1],
+        'gold': [255,215,0,1], 'goldenrod': [218,165,32,1],
+        'gray': [128,128,128,1], 'green': [0,128,0,1],
+        'greenyellow': [173,255,47,1], 'grey': [128,128,128,1],
+        'honeydew': [240,255,240,1], 'hotpink': [255,105,180,1],
+        'indianred': [205,92,92,1], 'indigo': [75,0,130,1],
+        'ivory': [255,255,240,1], 'khaki': [240,230,140,1],
+        'lavender': [230,230,250,1], 'lavenderblush': [255,240,245,1],
+        'lawngreen': [124,252,0,1], 'lemonchiffon': [255,250,205,1],
+        'lightblue': [173,216,230,1], 'lightcoral': [240,128,128,1],
+        'lightcyan': [224,255,255,1], 'lightgoldenrodyellow': [250,250,210,1],
+        'lightgray': [211,211,211,1], 'lightgreen': [144,238,144,1],
+        'lightgrey': [211,211,211,1], 'lightpink': [255,182,193,1],
+        'lightsalmon': [255,160,122,1], 'lightseagreen': [32,178,170,1],
+        'lightskyblue': [135,206,250,1], 'lightslategray': [119,136,153,1],
+        'lightslategrey': [119,136,153,1], 'lightsteelblue': [176,196,222,1],
+        'lightyellow': [255,255,224,1], 'lime': [0,255,0,1],
+        'limegreen': [50,205,50,1], 'linen': [250,240,230,1],
+        'magenta': [255,0,255,1], 'maroon': [128,0,0,1],
+        'mediumaquamarine': [102,205,170,1], 'mediumblue': [0,0,205,1],
+        'mediumorchid': [186,85,211,1], 'mediumpurple': [147,112,219,1],
+        'mediumseagreen': [60,179,113,1], 'mediumslateblue': [123,104,238,1],
+        'mediumspringgreen': [0,250,154,1], 'mediumturquoise': [72,209,204,1],
+        'mediumvioletred': [199,21,133,1], 'midnightblue': [25,25,112,1],
+        'mintcream': [245,255,250,1], 'mistyrose': [255,228,225,1],
+        'moccasin': [255,228,181,1], 'navajowhite': [255,222,173,1],
+        'navy': [0,0,128,1], 'oldlace': [253,245,230,1],
+        'olive': [128,128,0,1], 'olivedrab': [107,142,35,1],
+        'orange': [255,165,0,1], 'orangered': [255,69,0,1],
+        'orchid': [218,112,214,1], 'palegoldenrod': [238,232,170,1],
+        'palegreen': [152,251,152,1], 'paleturquoise': [175,238,238,1],
+        'palevioletred': [219,112,147,1], 'papayawhip': [255,239,213,1],
+        'peachpuff': [255,218,185,1], 'peru': [205,133,63,1],
+        'pink': [255,192,203,1], 'plum': [221,160,221,1],
+        'powderblue': [176,224,230,1], 'purple': [128,0,128,1],
+        'red': [255,0,0,1], 'rosybrown': [188,143,143,1],
+        'royalblue': [65,105,225,1], 'saddlebrown': [139,69,19,1],
+        'salmon': [250,128,114,1], 'sandybrown': [244,164,96,1],
+        'seagreen': [46,139,87,1], 'seashell': [255,245,238,1],
+        'sienna': [160,82,45,1], 'silver': [192,192,192,1],
+        'skyblue': [135,206,235,1], 'slateblue': [106,90,205,1],
+        'slategray': [112,128,144,1], 'slategrey': [112,128,144,1],
+        'snow': [255,250,250,1], 'springgreen': [0,255,127,1],
+        'steelblue': [70,130,180,1], 'tan': [210,180,140,1],
+        'teal': [0,128,128,1], 'thistle': [216,191,216,1],
+        'tomato': [255,99,71,1], 'turquoise': [64,224,208,1],
+        'violet': [238,130,238,1], 'wheat': [245,222,179,1],
+        'white': [255,255,255,1], 'whitesmoke': [245,245,245,1],
+        'yellow': [255,255,0,1], 'yellowgreen': [154,205,50,1]
+    };
+
+    function clampCssByte(i) {  // Clamp to integer 0 .. 255.
+        i = Math.round(i);  // Seems to be what Chrome does (vs truncation).
+        return i < 0 ? 0 : i > 255 ? 255 : i;
+    }
+
+    function clampCssAngle(i) {  // Clamp to integer 0 .. 360.
+        i = Math.round(i);  // Seems to be what Chrome does (vs truncation).
+        return i < 0 ? 0 : i > 360 ? 360 : i;
+    }
+
+    function clampCssFloat(f) {  // Clamp to float 0.0 .. 1.0.
+        return f < 0 ? 0 : f > 1 ? 1 : f;
+    }
+
+    function parseCssInt(str) {  // int or percentage.
+        if (str.length && str.charAt(str.length - 1) === '%') {
+            return clampCssByte(parseFloat(str) / 100 * 255);
+        }
+        return clampCssByte(parseInt(str, 10));
+    }
+
+    function parseCssFloat(str) {  // float or percentage.
+        if (str.length && str.charAt(str.length - 1) === '%') {
+            return clampCssFloat(parseFloat(str) / 100);
+        }
+        return clampCssFloat(parseFloat(str));
+    }
+
+    function cssHueToRgb(m1, m2, h) {
+        if (h < 0) {
+            h += 1;
+        }
+        else if (h > 1) {
+            h -= 1;
+        }
+
+        if (h * 6 < 1) {
+            return m1 + (m2 - m1) * h * 6;
+        }
+        if (h * 2 < 1) {
+            return m2;
+        }
+        if (h * 3 < 2) {
+            return m1 + (m2 - m1) * (2/3 - h) * 6;
+        }
+        return m1;
+    }
+
+    function lerp(a, b, p) {
+        return a + (b - a) * p;
+    }
+
+    function setRgba(out, r, g, b, a) {
+        out[0] = r; out[1] = g; out[2] = b; out[3] = a;
+        return out;
+    }
+    function copyRgba(out, a) {
+        out[0] = a[0]; out[1] = a[1]; out[2] = a[2]; out[3] = a[3];
+        return out;
+    }
+    var colorCache = new LRU(20);
+    var lastRemovedArr = null;
+    function putToCache(colorStr, rgbaArr) {
+        // Reuse removed array
+        if (lastRemovedArr) {
+            copyRgba(lastRemovedArr, rgbaArr);
+        }
+        lastRemovedArr = colorCache.put(colorStr, lastRemovedArr || (rgbaArr.slice()));
+    }
+    /**
+     * @param {string} colorStr
+     * @param {Array.<number>} out
+     * @return {Array.<number>}
+     * @memberOf module:zrender/util/color
+     */
+    function parse(colorStr, rgbaArr) {
+        if (!colorStr) {
+            return;
+        }
+        rgbaArr = rgbaArr || [];
+
+        var cached = colorCache.get(colorStr);
+        if (cached) {
+            return copyRgba(rgbaArr, cached);
+        }
+
+        // colorStr may be not string
+        colorStr = colorStr + '';
+        // Remove all whitespace, not compliant, but should just be more accepting.
+        var str = colorStr.replace(/ /g, '').toLowerCase();
+
+        // Color keywords (and transparent) lookup.
+        if (str in kCSSColorTable) {
+            copyRgba(rgbaArr, kCSSColorTable[str]);
+            putToCache(colorStr, rgbaArr);
+            return rgbaArr;
+        }
+
+        // #abc and #abc123 syntax.
+        if (str.charAt(0) === '#') {
+            if (str.length === 4) {
+                var iv = parseInt(str.substr(1), 16);  // TODO(deanm): Stricter parsing.
+                if (!(iv >= 0 && iv <= 0xfff)) {
+                    setRgba(rgbaArr, 0, 0, 0, 1);
+                    return;  // Covers NaN.
+                }
+                setRgba(rgbaArr,
+                    ((iv & 0xf00) >> 4) | ((iv & 0xf00) >> 8),
+                    (iv & 0xf0) | ((iv & 0xf0) >> 4),
+                    (iv & 0xf) | ((iv & 0xf) << 4),
+                    1
+                );
+                putToCache(colorStr, rgbaArr);
+                return rgbaArr;
+            }
+            else if (str.length === 7) {
+                var iv = parseInt(str.substr(1), 16);  // TODO(deanm): Stricter parsing.
+                if (!(iv >= 0 && iv <= 0xffffff)) {
+                    setRgba(rgbaArr, 0, 0, 0, 1);
+                    return;  // Covers NaN.
+                }
+                setRgba(rgbaArr,
+                    (iv & 0xff0000) >> 16,
+                    (iv & 0xff00) >> 8,
+                    iv & 0xff,
+                    1
+                );
+                putToCache(colorStr, rgbaArr);
+                return rgbaArr;
+            }
+
+            return;
+        }
+        var op = str.indexOf('('), ep = str.indexOf(')');
+        if (op !== -1 && ep + 1 === str.length) {
+            var fname = str.substr(0, op);
+            var params = str.substr(op + 1, ep - (op + 1)).split(',');
+            var alpha = 1;  // To allow case fallthrough.
+            switch (fname) {
+                case 'rgba':
+                    if (params.length !== 4) {
+                        setRgba(rgbaArr, 0, 0, 0, 1);
+                        return;
+                    }
+                    alpha = parseCssFloat(params.pop()); // jshint ignore:line
+                // Fall through.
+                case 'rgb':
+                    if (params.length !== 3) {
+                        setRgba(rgbaArr, 0, 0, 0, 1);
+                        return;
+                    }
+                    setRgba(rgbaArr,
+                        parseCssInt(params[0]),
+                        parseCssInt(params[1]),
+                        parseCssInt(params[2]),
+                        alpha
+                    );
+                    putToCache(colorStr, rgbaArr);
+                    return rgbaArr;
+                case 'hsla':
+                    if (params.length !== 4) {
+                        setRgba(rgbaArr, 0, 0, 0, 1);
+                        return;
+                    }
+                    params[3] = parseCssFloat(params[3]);
+                    hsla2rgba(params, rgbaArr);
+                    putToCache(colorStr, rgbaArr);
+                    return rgbaArr;
+                case 'hsl':
+                    if (params.length !== 3) {
+                        setRgba(rgbaArr, 0, 0, 0, 1);
+                        return;
+                    }
+                    hsla2rgba(params, rgbaArr);
+                    putToCache(colorStr, rgbaArr);
+                    return rgbaArr;
+                default:
+                    return;
+            }
+        }
+
+        setRgba(rgbaArr, 0, 0, 0, 1);
+        return;
+    }
+
+    /**
+     * @param {Array.<number>} hsla
+     * @param {Array.<number>} rgba
+     * @return {Array.<number>} rgba
+     */
+    function hsla2rgba(hsla, rgba) {
+        var h = (((parseFloat(hsla[0]) % 360) + 360) % 360) / 360;  // 0 .. 1
+        // NOTE(deanm): According to the CSS spec s/l should only be
+        // percentages, but we don't bother and let float or percentage.
+        var s = parseCssFloat(hsla[1]);
+        var l = parseCssFloat(hsla[2]);
+        var m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s;
+        var m1 = l * 2 - m2;
+
+        rgba = rgba || [];
+        setRgba(rgba,
+            clampCssByte(cssHueToRgb(m1, m2, h + 1 / 3) * 255),
+            clampCssByte(cssHueToRgb(m1, m2, h) * 255),
+            clampCssByte(cssHueToRgb(m1, m2, h - 1 / 3) * 255),
+            1
+        );
+
+        if (hsla.length === 4) {
+            rgba[3] = hsla[3];
+        }
+
+        return rgba;
+    }
+
+    /**
+     * @param {Array.<number>} rgba
+     * @return {Array.<number>} hsla
+     */
+    function rgba2hsla(rgba) {
+        if (!rgba) {
+            return;
+        }
+
+        // RGB from 0 to 255
+        var R = rgba[0] / 255;
+        var G = rgba[1] / 255;
+        var B = rgba[2] / 255;
+
+        var vMin = Math.min(R, G, B); // Min. value of RGB
+        var vMax = Math.max(R, G, B); // Max. value of RGB
+        var delta = vMax - vMin; // Delta RGB value
+
+        var L = (vMax + vMin) / 2;
+        var H;
+        var S;
+        // HSL results from 0 to 1
+        if (delta === 0) {
+            H = 0;
+            S = 0;
+        }
+        else {
+            if (L < 0.5) {
+                S = delta / (vMax + vMin);
+            }
+            else {
+                S = delta / (2 - vMax - vMin);
+            }
+
+            var deltaR = (((vMax - R) / 6) + (delta / 2)) / delta;
+            var deltaG = (((vMax - G) / 6) + (delta / 2)) / delta;
+            var deltaB = (((vMax - B) / 6) + (delta / 2)) / delta;
+
+            if (R === vMax) {
+                H = deltaB - deltaG;
+            }
+            else if (G === vMax) {
+                H = (1 / 3) + deltaR - deltaB;
+            }
+            else if (B === vMax) {
+                H = (2 / 3) + deltaG - deltaR;
+            }
+
+            if (H < 0) {
+                H += 1;
+            }
+
+            if (H > 1) {
+                H -= 1;
+            }
+        }
+
+        var hsla = [H * 360, S, L];
+
+        if (rgba[3] != null) {
+            hsla.push(rgba[3]);
+        }
+
+        return hsla;
+    }
+
+    /**
+     * @param {string} color
+     * @param {number} level
+     * @return {string}
+     * @memberOf module:zrender/util/color
+     */
+    function lift(color, level) {
+        var colorArr = parse(color);
+        if (colorArr) {
+            for (var i = 0; i < 3; i++) {
+                if (level < 0) {
+                    colorArr[i] = colorArr[i] * (1 - level) | 0;
+                }
+                else {
+                    colorArr[i] = ((255 - colorArr[i]) * level + colorArr[i]) | 0;
+                }
+            }
+            return stringify(colorArr, colorArr.length === 4 ? 'rgba' : 'rgb');
+        }
+    }
+
+    /**
+     * @param {string} color
+     * @return {string}
+     * @memberOf module:zrender/util/color
+     */
+    function toHex(color, level) {
+        var colorArr = parse(color);
+        if (colorArr) {
+            return ((1 << 24) + (colorArr[0] << 16) + (colorArr[1] << 8) + (+colorArr[2])).toString(16).slice(1);
+        }
+    }
+
+    /**
+     * Map value to color. Faster than mapToColor methods because color is represented by rgba array.
+     * @param {number} normalizedValue A float between 0 and 1.
+     * @param {Array.<Array.<number>>} colors List of rgba color array
+     * @param {Array.<number>} [out] Mapped gba color array
+     * @return {Array.<number>} will be null/undefined if input illegal.
+     */
+    function fastMapToColor(normalizedValue, colors, out) {
+        if (!(colors && colors.length)
+            || !(normalizedValue >= 0 && normalizedValue <= 1)
+        ) {
+            return;
+        }
+
+        out = out || [];
+
+        var value = normalizedValue * (colors.length - 1);
+        var leftIndex = Math.floor(value);
+        var rightIndex = Math.ceil(value);
+        var leftColor = colors[leftIndex];
+        var rightColor = colors[rightIndex];
+        var dv = value - leftIndex;
+        out[0] = clampCssByte(lerp(leftColor[0], rightColor[0], dv));
+        out[1] = clampCssByte(lerp(leftColor[1], rightColor[1], dv));
+        out[2] = clampCssByte(lerp(leftColor[2], rightColor[2], dv));
+        out[3] = clampCssFloat(lerp(leftColor[3], rightColor[3], dv));
+
+        return out;
+    }
+    /**
+     * @param {number} normalizedValue A float between 0 and 1.
+     * @param {Array.<string>} colors Color list.
+     * @param {boolean=} fullOutput Default false.
+     * @return {(string|Object)} Result color. If fullOutput,
+     *                           return {color: ..., leftIndex: ..., rightIndex: ..., value: ...},
+     * @memberOf module:zrender/util/color
+     */
+    function mapToColor(normalizedValue, colors, fullOutput) {
+        if (!(colors && colors.length)
+            || !(normalizedValue >= 0 && normalizedValue <= 1)
+        ) {
+            return;
+        }
+
+        var value = normalizedValue * (colors.length - 1);
+        var leftIndex = Math.floor(value);
+        var rightIndex = Math.ceil(value);
+        var leftColor = parse(colors[leftIndex]);
+        var rightColor = parse(colors[rightIndex]);
+        var dv = value - leftIndex;
+
+        var color = stringify(
+            [
+                clampCssByte(lerp(leftColor[0], rightColor[0], dv)),
+                clampCssByte(lerp(leftColor[1], rightColor[1], dv)),
+                clampCssByte(lerp(leftColor[2], rightColor[2], dv)),
+                clampCssFloat(lerp(leftColor[3], rightColor[3], dv))
+            ],
+            'rgba'
+        );
+
+        return fullOutput
+            ? {
+                color: color,
+                leftIndex: leftIndex,
+                rightIndex: rightIndex,
+                value: value
+            }
+            : color;
+    }
+
+    /**
+     * @param {string} color
+     * @param {number=} h 0 ~ 360, ignore when null.
+     * @param {number=} s 0 ~ 1, ignore when null.
+     * @param {number=} l 0 ~ 1, ignore when null.
+     * @return {string} Color string in rgba format.
+     * @memberOf module:zrender/util/color
+     */
+    function modifyHSL(color, h, s, l) {
+        color = parse(color);
+
+        if (color) {
+            color = rgba2hsla(color);
+            h != null && (color[0] = clampCssAngle(h));
+            s != null && (color[1] = parseCssFloat(s));
+            l != null && (color[2] = parseCssFloat(l));
+
+            return stringify(hsla2rgba(color), 'rgba');
+        }
+    }
+
+    /**
+     * @param {string} color
+     * @param {number=} alpha 0 ~ 1
+     * @return {string} Color string in rgba format.
+     * @memberOf module:zrender/util/color
+     */
+    function modifyAlpha(color, alpha) {
+        color = parse(color);
+
+        if (color && alpha != null) {
+            color[3] = clampCssFloat(alpha);
+            return stringify(color, 'rgba');
+        }
+    }
+
+    /**
+     * @param {Array.<number>} arrColor like [12,33,44,0.4]
+     * @param {string} type 'rgba', 'hsva', ...
+     * @return {string} Result color. (If input illegal, return undefined).
+     */
+    function stringify(arrColor, type) {
+        if (!arrColor || !arrColor.length) {
+            return;
+        }
+        var colorStr = arrColor[0] + ',' + arrColor[1] + ',' + arrColor[2];
+        if (type === 'rgba' || type === 'hsva' || type === 'hsla') {
+            colorStr += ',' + arrColor[3];
+        }
+        return type + '(' + colorStr + ')';
+    }
+
+    return {
+        parse: parse,
+        lift: lift,
+        toHex: toHex,
+        fastMapToColor: fastMapToColor,
+        mapToColor: mapToColor,
+        modifyHSL: modifyHSL,
+        modifyAlpha: modifyAlpha,
+        stringify: stringify
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+
+/***/ }),
+
+/***/ 2053:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var Path = __webpack_require__(845);
+    var PathProxy = __webpack_require__(253);
+    var transformPath = __webpack_require__(2054);
+
+    // command chars
+    var cc = [
+        'm', 'M', 'l', 'L', 'v', 'V', 'h', 'H', 'z', 'Z',
+        'c', 'C', 'q', 'Q', 't', 'T', 's', 'S', 'a', 'A'
+    ];
+
+    var mathSqrt = Math.sqrt;
+    var mathSin = Math.sin;
+    var mathCos = Math.cos;
+    var PI = Math.PI;
+
+    var vMag = function(v) {
+        return Math.sqrt(v[0] * v[0] + v[1] * v[1]);
+    };
+    var vRatio = function(u, v) {
+        return (u[0] * v[0] + u[1] * v[1]) / (vMag(u) * vMag(v));
+    };
+    var vAngle = function(u, v) {
+        return (u[0] * v[1] < u[1] * v[0] ? -1 : 1)
+                * Math.acos(vRatio(u, v));
+    };
+
+    function processArc(x1, y1, x2, y2, fa, fs, rx, ry, psiDeg, cmd, path) {
+        var psi = psiDeg * (PI / 180.0);
+        var xp = mathCos(psi) * (x1 - x2) / 2.0
+                 + mathSin(psi) * (y1 - y2) / 2.0;
+        var yp = -1 * mathSin(psi) * (x1 - x2) / 2.0
+                 + mathCos(psi) * (y1 - y2) / 2.0;
+
+        var lambda = (xp * xp) / (rx * rx) + (yp * yp) / (ry * ry);
+
+        if (lambda > 1) {
+            rx *= mathSqrt(lambda);
+            ry *= mathSqrt(lambda);
+        }
+
+        var f = (fa === fs ? -1 : 1)
+            * mathSqrt((((rx * rx) * (ry * ry))
+                    - ((rx * rx) * (yp * yp))
+                    - ((ry * ry) * (xp * xp))) / ((rx * rx) * (yp * yp)
+                    + (ry * ry) * (xp * xp))
+                ) || 0;
+
+        var cxp = f * rx * yp / ry;
+        var cyp = f * -ry * xp / rx;
+
+        var cx = (x1 + x2) / 2.0
+                 + mathCos(psi) * cxp
+                 - mathSin(psi) * cyp;
+        var cy = (y1 + y2) / 2.0
+                + mathSin(psi) * cxp
+                + mathCos(psi) * cyp;
+
+        var theta = vAngle([ 1, 0 ], [ (xp - cxp) / rx, (yp - cyp) / ry ]);
+        var u = [ (xp - cxp) / rx, (yp - cyp) / ry ];
+        var v = [ (-1 * xp - cxp) / rx, (-1 * yp - cyp) / ry ];
+        var dTheta = vAngle(u, v);
+
+        if (vRatio(u, v) <= -1) {
+            dTheta = PI;
+        }
+        if (vRatio(u, v) >= 1) {
+            dTheta = 0;
+        }
+        if (fs === 0 && dTheta > 0) {
+            dTheta = dTheta - 2 * PI;
+        }
+        if (fs === 1 && dTheta < 0) {
+            dTheta = dTheta + 2 * PI;
+        }
+
+        path.addData(cmd, cx, cy, rx, ry, theta, dTheta, psi, fs);
+    }
+
+    function createPathProxyFromString(data) {
+        if (!data) {
+            return [];
+        }
+
+        // command string
+        var cs = data.replace(/-/g, ' -')
+            .replace(/  /g, ' ')
+            .replace(/ /g, ',')
+            .replace(/,,/g, ',');
+
+        var n;
+        // create pipes so that we can split the data
+        for (n = 0; n < cc.length; n++) {
+            cs = cs.replace(new RegExp(cc[n], 'g'), '|' + cc[n]);
+        }
+
+        // create array
+        var arr = cs.split('|');
+        // init context point
+        var cpx = 0;
+        var cpy = 0;
+
+        var path = new PathProxy();
+        var CMD = PathProxy.CMD;
+
+        var prevCmd;
+        for (n = 1; n < arr.length; n++) {
+            var str = arr[n];
+            var c = str.charAt(0);
+            var off = 0;
+            var p = str.slice(1).replace(/e,-/g, 'e-').split(',');
+            var cmd;
+
+            if (p.length > 0 && p[0] === '') {
+                p.shift();
+            }
+
+            for (var i = 0; i < p.length; i++) {
+                p[i] = parseFloat(p[i]);
+            }
+            while (off < p.length && !isNaN(p[off])) {
+                if (isNaN(p[0])) {
+                    break;
+                }
+                var ctlPtx;
+                var ctlPty;
+
+                var rx;
+                var ry;
+                var psi;
+                var fa;
+                var fs;
+
+                var x1 = cpx;
+                var y1 = cpy;
+
+                // convert l, H, h, V, and v to L
+                switch (c) {
+                    case 'l':
+                        cpx += p[off++];
+                        cpy += p[off++];
+                        cmd = CMD.L;
+                        path.addData(cmd, cpx, cpy);
+                        break;
+                    case 'L':
+                        cpx = p[off++];
+                        cpy = p[off++];
+                        cmd = CMD.L;
+                        path.addData(cmd, cpx, cpy);
+                        break;
+                    case 'm':
+                        cpx += p[off++];
+                        cpy += p[off++];
+                        cmd = CMD.M;
+                        path.addData(cmd, cpx, cpy);
+                        c = 'l';
+                        break;
+                    case 'M':
+                        cpx = p[off++];
+                        cpy = p[off++];
+                        cmd = CMD.M;
+                        path.addData(cmd, cpx, cpy);
+                        c = 'L';
+                        break;
+                    case 'h':
+                        cpx += p[off++];
+                        cmd = CMD.L;
+                        path.addData(cmd, cpx, cpy);
+                        break;
+                    case 'H':
+                        cpx = p[off++];
+                        cmd = CMD.L;
+                        path.addData(cmd, cpx, cpy);
+                        break;
+                    case 'v':
+                        cpy += p[off++];
+                        cmd = CMD.L;
+                        path.addData(cmd, cpx, cpy);
+                        break;
+                    case 'V':
+                        cpy = p[off++];
+                        cmd = CMD.L;
+                        path.addData(cmd, cpx, cpy);
+                        break;
+                    case 'C':
+                        cmd = CMD.C;
+                        path.addData(
+                            cmd, p[off++], p[off++], p[off++], p[off++], p[off++], p[off++]
+                        );
+                        cpx = p[off - 2];
+                        cpy = p[off - 1];
+                        break;
+                    case 'c':
+                        cmd = CMD.C;
+                        path.addData(
+                            cmd,
+                            p[off++] + cpx, p[off++] + cpy,
+                            p[off++] + cpx, p[off++] + cpy,
+                            p[off++] + cpx, p[off++] + cpy
+                        );
+                        cpx += p[off - 2];
+                        cpy += p[off - 1];
+                        break;
+                    case 'S':
+                        ctlPtx = cpx;
+                        ctlPty = cpy;
+                        var len = path.len();
+                        var pathData = path.data;
+                        if (prevCmd === CMD.C) {
+                            ctlPtx += cpx - pathData[len - 4];
+                            ctlPty += cpy - pathData[len - 3];
+                        }
+                        cmd = CMD.C;
+                        x1 = p[off++];
+                        y1 = p[off++];
+                        cpx = p[off++];
+                        cpy = p[off++];
+                        path.addData(cmd, ctlPtx, ctlPty, x1, y1, cpx, cpy);
+                        break;
+                    case 's':
+                        ctlPtx = cpx;
+                        ctlPty = cpy;
+                        var len = path.len();
+                        var pathData = path.data;
+                        if (prevCmd === CMD.C) {
+                            ctlPtx += cpx - pathData[len - 4];
+                            ctlPty += cpy - pathData[len - 3];
+                        }
+                        cmd = CMD.C;
+                        x1 = cpx + p[off++];
+                        y1 = cpy + p[off++];
+                        cpx += p[off++];
+                        cpy += p[off++];
+                        path.addData(cmd, ctlPtx, ctlPty, x1, y1, cpx, cpy);
+                        break;
+                    case 'Q':
+                        x1 = p[off++];
+                        y1 = p[off++];
+                        cpx = p[off++];
+                        cpy = p[off++];
+                        cmd = CMD.Q;
+                        path.addData(cmd, x1, y1, cpx, cpy);
+                        break;
+                    case 'q':
+                        x1 = p[off++] + cpx;
+                        y1 = p[off++] + cpy;
+                        cpx += p[off++];
+                        cpy += p[off++];
+                        cmd = CMD.Q;
+                        path.addData(cmd, x1, y1, cpx, cpy);
+                        break;
+                    case 'T':
+                        ctlPtx = cpx;
+                        ctlPty = cpy;
+                        var len = path.len();
+                        var pathData = path.data;
+                        if (prevCmd === CMD.Q) {
+                            ctlPtx += cpx - pathData[len - 4];
+                            ctlPty += cpy - pathData[len - 3];
+                        }
+                        cpx = p[off++];
+                        cpy = p[off++];
+                        cmd = CMD.Q;
+                        path.addData(cmd, ctlPtx, ctlPty, cpx, cpy);
+                        break;
+                    case 't':
+                        ctlPtx = cpx;
+                        ctlPty = cpy;
+                        var len = path.len();
+                        var pathData = path.data;
+                        if (prevCmd === CMD.Q) {
+                            ctlPtx += cpx - pathData[len - 4];
+                            ctlPty += cpy - pathData[len - 3];
+                        }
+                        cpx += p[off++];
+                        cpy += p[off++];
+                        cmd = CMD.Q;
+                        path.addData(cmd, ctlPtx, ctlPty, cpx, cpy);
+                        break;
+                    case 'A':
+                        rx = p[off++];
+                        ry = p[off++];
+                        psi = p[off++];
+                        fa = p[off++];
+                        fs = p[off++];
+
+                        x1 = cpx, y1 = cpy;
+                        cpx = p[off++];
+                        cpy = p[off++];
+                        cmd = CMD.A;
+                        processArc(
+                            x1, y1, cpx, cpy, fa, fs, rx, ry, psi, cmd, path
+                        );
+                        break;
+                    case 'a':
+                        rx = p[off++];
+                        ry = p[off++];
+                        psi = p[off++];
+                        fa = p[off++];
+                        fs = p[off++];
+
+                        x1 = cpx, y1 = cpy;
+                        cpx += p[off++];
+                        cpy += p[off++];
+                        cmd = CMD.A;
+                        processArc(
+                            x1, y1, cpx, cpy, fa, fs, rx, ry, psi, cmd, path
+                        );
+                        break;
+                }
+            }
+
+            if (c === 'z' || c === 'Z') {
+                cmd = CMD.Z;
+                path.addData(cmd);
+            }
+
+            prevCmd = cmd;
+        }
+
+        path.toStatic();
+
+        return path;
+    }
+
+    // TODO Optimize double memory cost problem
+    function createPathOptions(str, opts) {
+        var pathProxy = createPathProxyFromString(str);
+        opts = opts || {};
+        opts.buildPath = function (path) {
+            if (path.setData) {
+                path.setData(pathProxy.data);
+                // Svg and vml renderer don't have context
+                var ctx = path.getContext();
+                if (ctx) {
+                    path.rebuildPath(ctx);
+                }
+            }
+            else {
+                var ctx = path;
+                pathProxy.rebuildPath(ctx);
+            }
+        };
+
+        opts.applyTransform = function (m) {
+            transformPath(pathProxy, m);
+
+            this.dirty(true);
+        };
+
+        return opts;
+    }
+
+    return {
+        /**
+         * Create a Path object from path string data
+         * http://www.w3.org/TR/SVG/paths.html#PathData
+         * @param  {Object} opts Other options
+         */
+        createFromString: function (str, opts) {
+            return new Path(createPathOptions(str, opts));
+        },
+
+        /**
+         * Create a Path class from path string data
+         * @param  {string} str
+         * @param  {Object} opts Other options
+         */
+        extendFromString: function (str, opts) {
+            return Path.extend(createPathOptions(str, opts));
+        },
+
+        /**
+         * Merge multiple paths
+         */
+        // TODO Apply transform
+        // TODO stroke dash
+        // TODO Optimize double memory cost problem
+        mergePath: function (pathEls, opts) {
+            var pathList = [];
+            var len = pathEls.length;
+            for (var i = 0; i < len; i++) {
+                var pathEl = pathEls[i];
+                if (!pathEl.path) {
+                    pathEl.createPathProxy();
+                }
+                if (pathEl.__dirtyPath) {
+                    pathEl.buildPath(pathEl.path, pathEl.shape, true);
+                }
+                pathList.push(pathEl.path);
+            }
+
+            var pathBundle = new Path(opts);
+            // Need path proxy.
+            pathBundle.createPathProxy();
+            pathBundle.buildPath = function (path) {
+                path.appendPath(pathList);
+                // Svg and vml renderer don't have context
+                var ctx = path.getContext();
+                if (ctx) {
+                    path.rebuildPath(ctx);
+                }
+            };
+
+            return pathBundle;
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2054:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var CMD = __webpack_require__(253).CMD;
+    var vec2 = __webpack_require__(150);
+    var v2ApplyTransform = vec2.applyTransform;
+
+    var points = [[], [], []];
+    var mathSqrt = Math.sqrt;
+    var mathAtan2 = Math.atan2;
+    function transformPath(path, m) {
+        var data = path.data;
+        var cmd;
+        var nPoint;
+        var i;
+        var j;
+        var k;
+        var p;
+
+        var M = CMD.M;
+        var C = CMD.C;
+        var L = CMD.L;
+        var R = CMD.R;
+        var A = CMD.A;
+        var Q = CMD.Q;
+
+        for (i = 0, j = 0; i < data.length;) {
+            cmd = data[i++];
+            j = i;
+            nPoint = 0;
+
+            switch (cmd) {
+                case M:
+                    nPoint = 1;
+                    break;
+                case L:
+                    nPoint = 1;
+                    break;
+                case C:
+                    nPoint = 3;
+                    break;
+                case Q:
+                    nPoint = 2;
+                    break;
+                case A:
+                    var x = m[4];
+                    var y = m[5];
+                    var sx = mathSqrt(m[0] * m[0] + m[1] * m[1]);
+                    var sy = mathSqrt(m[2] * m[2] + m[3] * m[3]);
+                    var angle = mathAtan2(-m[1] / sy, m[0] / sx);
+                    // cx
+                    data[i] *= sx;
+                    data[i++] += x;
+                    // cy
+                    data[i] *= sy;
+                    data[i++] += y;
+                    // Scale rx and ry
+                    // FIXME Assume psi is 0 here
+                    data[i++] *= sx;
+                    data[i++] *= sy;
+
+                    // Start angle
+                    data[i++] += angle;
+                    // end angle
+                    data[i++] += angle;
+                    // FIXME psi
+                    i += 2;
+                    j = i;
+                    break;
+                case R:
+                    // x0, y0
+                    p[0] = data[i++];
+                    p[1] = data[i++];
+                    v2ApplyTransform(p, p, m);
+                    data[j++] = p[0];
+                    data[j++] = p[1];
+                    // x1, y1
+                    p[0] += data[i++];
+                    p[1] += data[i++];
+                    v2ApplyTransform(p, p, m);
+                    data[j++] = p[0];
+                    data[j++] = p[1];
+            }
+
+            for (k = 0; k < nPoint; k++) {
+                var p = points[k];
+                p[0] = data[i++];
+                p[1] = data[i++];
+
+                v2ApplyTransform(p, p, m);
+                // Write back
+                data[j++] = p[0];
+                data[j++] = p[1];
+            }
+        }
+    }
+
+    return transformPath;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 2055:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * ZRender, a high performance 2d drawing library.
+ *
+ * Copyright (c) 2013, Baidu Inc.
+ * All rights reserved.
+ *
+ * LICENSE
+ * https://github.com/ecomfe/zrender/blob/master/LICENSE.txt
+ */
+// Global defines
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+    var guid = __webpack_require__(840);
+    var env = __webpack_require__(254);
+    var zrUtil = __webpack_require__(40);
+
+    var Handler = __webpack_require__(2028);
+    var Storage = __webpack_require__(2031);
+    var Animation = __webpack_require__(2032);
+    var HandlerProxy = __webpack_require__(2044);
+
+    var useVML = !env.canvasSupported;
+
+    var painterCtors = {
+        canvas: __webpack_require__(2030)
+    };
+
+    var instances = {};    // ZRender实例map索引
+
+    var zrender = {};
+
+    /**
+     * @type {string}
+     */
+    zrender.version = '3.6.1';
+
+    /**
+     * Initializing a zrender instance
+     * @param {HTMLElement} dom
+     * @param {Object} opts
+     * @param {string} [opts.renderer='canvas'] 'canvas' or 'svg'
+     * @param {number} [opts.devicePixelRatio]
+     * @param {number|string} [opts.width] Can be 'auto' (the same as null/undefined)
+     * @param {number|string} [opts.height] Can be 'auto' (the same as null/undefined)
+     * @return {module:zrender/ZRender}
+     */
+    zrender.init = function (dom, opts) {
+        var zr = new ZRender(guid(), dom, opts);
+        instances[zr.id] = zr;
+        return zr;
+    };
+
+    /**
+     * Dispose zrender instance
+     * @param {module:zrender/ZRender} zr
+     */
+    zrender.dispose = function (zr) {
+        if (zr) {
+            zr.dispose();
+        }
+        else {
+            for (var key in instances) {
+                if (instances.hasOwnProperty(key)) {
+                    instances[key].dispose();
+                }
+            }
+            instances = {};
+        }
+
+        return zrender;
+    };
+
+    /**
+     * Get zrender instance by id
+     * @param {string} id zrender instance id
+     * @return {module:zrender/ZRender}
+     */
+    zrender.getInstance = function (id) {
+        return instances[id];
+    };
+
+    zrender.registerPainter = function (name, Ctor) {
+        painterCtors[name] = Ctor;
+    };
+
+    function delInstance(id) {
+        delete instances[id];
+    }
+
+    /**
+     * @module zrender/ZRender
+     */
+    /**
+     * @constructor
+     * @alias module:zrender/ZRender
+     * @param {string} id
+     * @param {HTMLElement} dom
+     * @param {Object} opts
+     * @param {string} [opts.renderer='canvas'] 'canvas' or 'svg'
+     * @param {number} [opts.devicePixelRatio]
+     * @param {number} [opts.width] Can be 'auto' (the same as null/undefined)
+     * @param {number} [opts.height] Can be 'auto' (the same as null/undefined)
+     */
+    var ZRender = function (id, dom, opts) {
+
+        opts = opts || {};
+
+        /**
+         * @type {HTMLDomElement}
+         */
+        this.dom = dom;
+
+        /**
+         * @type {string}
+         */
+        this.id = id;
+
+        var self = this;
+        var storage = new Storage();
+
+        var rendererType = opts.renderer;
+        // TODO WebGL
+        if (useVML) {
+            if (!painterCtors.vml) {
+                throw new Error('You need to require \'zrender/vml/vml\' to support IE8');
+            }
+            rendererType = 'vml';
+        }
+        else if (!rendererType || !painterCtors[rendererType]) {
+            rendererType = 'canvas';
+        }
+        var painter = new painterCtors[rendererType](dom, storage, opts);
+
+        this.storage = storage;
+        this.painter = painter;
+
+        var handerProxy = !env.node ? new HandlerProxy(painter.getViewportRoot()) : null;
+        this.handler = new Handler(storage, painter, handerProxy, painter.root);
+
+        /**
+         * @type {module:zrender/animation/Animation}
+         */
+        this.animation = new Animation({
+            stage: {
+                update: zrUtil.bind(this.flush, this)
+            }
+        });
+        this.animation.start();
+
+        /**
+         * @type {boolean}
+         * @private
+         */
+        this._needsRefresh;
+
+        // 修改 storage.delFromStorage, 每次删除元素之前删除动画
+        // FIXME 有点ugly
+        var oldDelFromStorage = storage.delFromStorage;
+        var oldAddToStorage = storage.addToStorage;
+
+        storage.delFromStorage = function (el) {
+            oldDelFromStorage.call(storage, el);
+
+            el && el.removeSelfFromZr(self);
+        };
+
+        storage.addToStorage = function (el) {
+            oldAddToStorage.call(storage, el);
+
+            el.addSelfToZr(self);
+        };
+    };
+
+    ZRender.prototype = {
+
+        constructor: ZRender,
+        /**
+         * 获取实例唯一标识
+         * @return {string}
+         */
+        getId: function () {
+            return this.id;
+        },
+
+        /**
+         * 添加元素
+         * @param  {module:zrender/Element} el
+         */
+        add: function (el) {
+            this.storage.addRoot(el);
+            this._needsRefresh = true;
+        },
+
+        /**
+         * 删除元素
+         * @param  {module:zrender/Element} el
+         */
+        remove: function (el) {
+            this.storage.delRoot(el);
+            this._needsRefresh = true;
+        },
+
+        /**
+         * Change configuration of layer
+         * @param {string} zLevel
+         * @param {Object} config
+         * @param {string} [config.clearColor=0] Clear color
+         * @param {string} [config.motionBlur=false] If enable motion blur
+         * @param {number} [config.lastFrameAlpha=0.7] Motion blur factor. Larger value cause longer trailer
+        */
+        configLayer: function (zLevel, config) {
+            this.painter.configLayer(zLevel, config);
+            this._needsRefresh = true;
+        },
+
+        /**
+         * Repaint the canvas immediately
+         */
+        refreshImmediately: function () {
+            // var start = new Date();
+            // Clear needsRefresh ahead to avoid something wrong happens in refresh
+            // Or it will cause zrender refreshes again and again.
+            this._needsRefresh = false;
+            this.painter.refresh();
+            /**
+             * Avoid trigger zr.refresh in Element#beforeUpdate hook
+             */
+            this._needsRefresh = false;
+            // var end = new Date();
+
+            // var log = document.getElementById('log');
+            // if (log) {
+            //     log.innerHTML = log.innerHTML + '<br>' + (end - start);
+            // }
+        },
+
+        /**
+         * Mark and repaint the canvas in the next frame of browser
+         */
+        refresh: function() {
+            this._needsRefresh = true;
+        },
+
+        /**
+         * Perform all refresh
+         */
+        flush: function () {
+            if (this._needsRefresh) {
+                this.refreshImmediately();
+            }
+            if (this._needsRefreshHover) {
+                this.refreshHoverImmediately();
+            }
+        },
+
+        /**
+         * Add element to hover layer
+         * @param  {module:zrender/Element} el
+         * @param {Object} style
+         */
+        addHover: function (el, style) {
+            if (this.painter.addHover) {
+                this.painter.addHover(el, style);
+                this.refreshHover();
+            }
+        },
+
+        /**
+         * Add element from hover layer
+         * @param  {module:zrender/Element} el
+         */
+        removeHover: function (el) {
+            if (this.painter.removeHover) {
+                this.painter.removeHover(el);
+                this.refreshHover();
+            }
+        },
+
+        /**
+         * Clear all hover elements in hover layer
+         * @param  {module:zrender/Element} el
+         */
+        clearHover: function () {
+            if (this.painter.clearHover) {
+                this.painter.clearHover();
+                this.refreshHover();
+            }
+        },
+
+        /**
+         * Refresh hover in next frame
+         */
+        refreshHover: function () {
+            this._needsRefreshHover = true;
+        },
+
+        /**
+         * Refresh hover immediately
+         */
+        refreshHoverImmediately: function () {
+            this._needsRefreshHover = false;
+            this.painter.refreshHover && this.painter.refreshHover();
+        },
+
+        /**
+         * Resize the canvas.
+         * Should be invoked when container size is changed
+         * @param {Object} [opts]
+         * @param {number|string} [opts.width] Can be 'auto' (the same as null/undefined)
+         * @param {number|string} [opts.height] Can be 'auto' (the same as null/undefined)
+         */
+        resize: function(opts) {
+            opts = opts || {};
+            this.painter.resize(opts.width, opts.height);
+            this.handler.resize();
+        },
+
+        /**
+         * Stop and clear all animation immediately
+         */
+        clearAnimation: function () {
+            this.animation.clear();
+        },
+
+        /**
+         * Get container width
+         */
+        getWidth: function() {
+            return this.painter.getWidth();
+        },
+
+        /**
+         * Get container height
+         */
+        getHeight: function() {
+            return this.painter.getHeight();
+        },
+
+        /**
+         * Export the canvas as Base64 URL
+         * @param {string} type
+         * @param {string} [backgroundColor='#fff']
+         * @return {string} Base64 URL
+         */
+        // toDataURL: function(type, backgroundColor) {
+        //     return this.painter.getRenderedCanvas({
+        //         backgroundColor: backgroundColor
+        //     }).toDataURL(type);
+        // },
+
+        /**
+         * Converting a path to image.
+         * It has much better performance of drawing image rather than drawing a vector path.
+         * @param {module:zrender/graphic/Path} e
+         * @param {number} width
+         * @param {number} height
+         */
+        pathToImage: function(e, dpr) {
+            return this.painter.pathToImage(e, dpr);
+        },
+
+        /**
+         * Set default cursor
+         * @param {string} [cursorStyle='default'] 例如 crosshair
+         */
+        setCursorStyle: function (cursorStyle) {
+            this.handler.setCursorStyle(cursorStyle);
+        },
+
+        /**
+         * Find hovered element
+         * @param {number} x
+         * @param {number} y
+         * @return {Object} {target, topTarget}
+         */
+        findHover: function (x, y) {
+            return this.handler.findHover(x, y);
+        },
+
+        /**
+         * Bind event
+         *
+         * @param {string} eventName Event name
+         * @param {Function} eventHandler Handler function
+         * @param {Object} [context] Context object
+         */
+        on: function(eventName, eventHandler, context) {
+            this.handler.on(eventName, eventHandler, context);
+        },
+
+        /**
+         * Unbind event
+         * @param {string} eventName Event name
+         * @param {Function} [eventHandler] Handler function
+         */
+        off: function(eventName, eventHandler) {
+            this.handler.off(eventName, eventHandler);
+        },
+
+        /**
+         * Trigger event manually
+         *
+         * @param {string} eventName Event name
+         * @param {event=} event Event object
+         */
+        trigger: function (eventName, event) {
+            this.handler.trigger(eventName, event);
+        },
+
+
+        /**
+         * Clear all objects and the canvas.
+         */
+        clear: function () {
+            this.storage.delRoot();
+            this.painter.clear();
+        },
+
+        /**
+         * Dispose self.
+         */
+        dispose: function () {
+            this.animation.stop();
+
+            this.clear();
+            this.storage.dispose();
+            this.painter.dispose();
+            this.handler.dispose();
+
+            this.animation =
+            this.storage =
+            this.painter =
+            this.handler = null;
+
+            delInstance(this.id);
+        }
+    };
+
+    return zrender;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    var dpr = 1;
+    // If in browser environment
+    if (typeof window !== 'undefined') {
+        dpr = Math.max(window.devicePixelRatio || 1, 1);
+    }
+    /**
+     * config默认配置项
+     * @exports zrender/config
+     * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+     */
+    var config = {
+        /**
+         * debug日志选项：catchBrushException为true下有效
+         * 0 : 不生成debug数据，发布用
+         * 1 : 异常抛出，调试用
+         * 2 : 控制台输出，调试用
+         */
+        debugMode: 0,
+
+        // retina 屏幕优化
+        devicePixelRatio: dpr
+    };
+    return config;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+
+/***/ }),
+
+/***/ 253:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Path 代理，可以在`buildPath`中用于替代`ctx`, 会保存每个path操作的命令到pathCommands属性中
+ * 可以用于 isInsidePath 判断以及获取boundingRect
+ *
+ * @module zrender/core/PathProxy
+ * @author Yi Shen (http://www.github.com/pissang)
+ */
+
+ // TODO getTotalLength, getPointAtLength
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+    'use strict';
+
+    var curve = __webpack_require__(185);
+    var vec2 = __webpack_require__(150);
+    var bbox = __webpack_require__(2043);
+    var BoundingRect = __webpack_require__(149);
+    var dpr = __webpack_require__(252).devicePixelRatio;
+
+    var CMD = {
+        M: 1,
+        L: 2,
+        C: 3,
+        Q: 4,
+        A: 5,
+        Z: 6,
+        // Rect
+        R: 7
+    };
+
+    // var CMD_MEM_SIZE = {
+    //     M: 3,
+    //     L: 3,
+    //     C: 7,
+    //     Q: 5,
+    //     A: 9,
+    //     R: 5,
+    //     Z: 1
+    // };
+
+    var min = [];
+    var max = [];
+    var min2 = [];
+    var max2 = [];
+    var mathMin = Math.min;
+    var mathMax = Math.max;
+    var mathCos = Math.cos;
+    var mathSin = Math.sin;
+    var mathSqrt = Math.sqrt;
+    var mathAbs = Math.abs;
+
+    var hasTypedArray = typeof Float32Array != 'undefined';
+
+    /**
+     * @alias module:zrender/core/PathProxy
+     * @constructor
+     */
+    var PathProxy = function (notSaveData) {
+
+        this._saveData = !(notSaveData || false);
+
+        if (this._saveData) {
+            /**
+             * Path data. Stored as flat array
+             * @type {Array.<Object>}
+             */
+            this.data = [];
+        }
+
+        this._ctx = null;
+    };
+
+    /**
+     * 快速计算Path包围盒（并不是最小包围盒）
+     * @return {Object}
+     */
+    PathProxy.prototype = {
+
+        constructor: PathProxy,
+
+        _xi: 0,
+        _yi: 0,
+
+        _x0: 0,
+        _y0: 0,
+        // Unit x, Unit y. Provide for avoiding drawing that too short line segment
+        _ux: 0,
+        _uy: 0,
+
+        _len: 0,
+
+        _lineDash: null,
+
+        _dashOffset: 0,
+
+        _dashIdx: 0,
+
+        _dashSum: 0,
+
+        /**
+         * @readOnly
+         */
+        setScale: function (sx, sy) {
+            this._ux = mathAbs(1 / dpr / sx) || 0;
+            this._uy = mathAbs(1 / dpr / sy) || 0;
+        },
+
+        getContext: function () {
+            return this._ctx;
+        },
+
+        /**
+         * @param  {CanvasRenderingContext2D} ctx
+         * @return {module:zrender/core/PathProxy}
+         */
+        beginPath: function (ctx) {
+
+            this._ctx = ctx;
+
+            ctx && ctx.beginPath();
+
+            ctx && (this.dpr = ctx.dpr);
+
+            // Reset
+            if (this._saveData) {
+                this._len = 0;
+            }
+
+            if (this._lineDash) {
+                this._lineDash = null;
+
+                this._dashOffset = 0;
+            }
+
+            return this;
+        },
+
+        /**
+         * @param  {number} x
+         * @param  {number} y
+         * @return {module:zrender/core/PathProxy}
+         */
+        moveTo: function (x, y) {
+            this.addData(CMD.M, x, y);
+            this._ctx && this._ctx.moveTo(x, y);
+
+            // x0, y0, xi, yi 是记录在 _dashedXXXXTo 方法中使用
+            // xi, yi 记录当前点, x0, y0 在 closePath 的时候回到起始点。
+            // 有可能在 beginPath 之后直接调用 lineTo，这时候 x0, y0 需要
+            // 在 lineTo 方法中记录，这里先不考虑这种情况，dashed line 也只在 IE10- 中不支持
+            this._x0 = x;
+            this._y0 = y;
+
+            this._xi = x;
+            this._yi = y;
+
+            return this;
+        },
+
+        /**
+         * @param  {number} x
+         * @param  {number} y
+         * @return {module:zrender/core/PathProxy}
+         */
+        lineTo: function (x, y) {
+            var exceedUnit = mathAbs(x - this._xi) > this._ux
+                || mathAbs(y - this._yi) > this._uy
+                // Force draw the first segment
+                || this._len < 5;
+
+            this.addData(CMD.L, x, y);
+
+            if (this._ctx && exceedUnit) {
+                this._needsDash() ? this._dashedLineTo(x, y)
+                    : this._ctx.lineTo(x, y);
+            }
+            if (exceedUnit) {
+                this._xi = x;
+                this._yi = y;
+            }
+
+            return this;
+        },
+
+        /**
+         * @param  {number} x1
+         * @param  {number} y1
+         * @param  {number} x2
+         * @param  {number} y2
+         * @param  {number} x3
+         * @param  {number} y3
+         * @return {module:zrender/core/PathProxy}
+         */
+        bezierCurveTo: function (x1, y1, x2, y2, x3, y3) {
+            this.addData(CMD.C, x1, y1, x2, y2, x3, y3);
+            if (this._ctx) {
+                this._needsDash() ? this._dashedBezierTo(x1, y1, x2, y2, x3, y3)
+                    : this._ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
+            }
+            this._xi = x3;
+            this._yi = y3;
+            return this;
+        },
+
+        /**
+         * @param  {number} x1
+         * @param  {number} y1
+         * @param  {number} x2
+         * @param  {number} y2
+         * @return {module:zrender/core/PathProxy}
+         */
+        quadraticCurveTo: function (x1, y1, x2, y2) {
+            this.addData(CMD.Q, x1, y1, x2, y2);
+            if (this._ctx) {
+                this._needsDash() ? this._dashedQuadraticTo(x1, y1, x2, y2)
+                    : this._ctx.quadraticCurveTo(x1, y1, x2, y2);
+            }
+            this._xi = x2;
+            this._yi = y2;
+            return this;
+        },
+
+        /**
+         * @param  {number} cx
+         * @param  {number} cy
+         * @param  {number} r
+         * @param  {number} startAngle
+         * @param  {number} endAngle
+         * @param  {boolean} anticlockwise
+         * @return {module:zrender/core/PathProxy}
+         */
+        arc: function (cx, cy, r, startAngle, endAngle, anticlockwise) {
+            this.addData(
+                CMD.A, cx, cy, r, r, startAngle, endAngle - startAngle, 0, anticlockwise ? 0 : 1
+            );
+            this._ctx && this._ctx.arc(cx, cy, r, startAngle, endAngle, anticlockwise);
+
+            this._xi = mathCos(endAngle) * r + cx;
+            this._yi = mathSin(endAngle) * r + cx;
+            return this;
+        },
+
+        // TODO
+        arcTo: function (x1, y1, x2, y2, radius) {
+            if (this._ctx) {
+                this._ctx.arcTo(x1, y1, x2, y2, radius);
+            }
+            return this;
+        },
+
+        // TODO
+        rect: function (x, y, w, h) {
+            this._ctx && this._ctx.rect(x, y, w, h);
+            this.addData(CMD.R, x, y, w, h);
+            return this;
+        },
+
+        /**
+         * @return {module:zrender/core/PathProxy}
+         */
+        closePath: function () {
+            this.addData(CMD.Z);
+
+            var ctx = this._ctx;
+            var x0 = this._x0;
+            var y0 = this._y0;
+            if (ctx) {
+                this._needsDash() && this._dashedLineTo(x0, y0);
+                ctx.closePath();
+            }
+
+            this._xi = x0;
+            this._yi = y0;
+            return this;
+        },
+
+        /**
+         * Context 从外部传入，因为有可能是 rebuildPath 完之后再 fill。
+         * stroke 同样
+         * @param {CanvasRenderingContext2D} ctx
+         * @return {module:zrender/core/PathProxy}
+         */
+        fill: function (ctx) {
+            ctx && ctx.fill();
+            this.toStatic();
+        },
+
+        /**
+         * @param {CanvasRenderingContext2D} ctx
+         * @return {module:zrender/core/PathProxy}
+         */
+        stroke: function (ctx) {
+            ctx && ctx.stroke();
+            this.toStatic();
+        },
+
+        /**
+         * 必须在其它绘制命令前调用
+         * Must be invoked before all other path drawing methods
+         * @return {module:zrender/core/PathProxy}
+         */
+        setLineDash: function (lineDash) {
+            if (lineDash instanceof Array) {
+                this._lineDash = lineDash;
+
+                this._dashIdx = 0;
+
+                var lineDashSum = 0;
+                for (var i = 0; i < lineDash.length; i++) {
+                    lineDashSum += lineDash[i];
+                }
+                this._dashSum = lineDashSum;
+            }
+            return this;
+        },
+
+        /**
+         * 必须在其它绘制命令前调用
+         * Must be invoked before all other path drawing methods
+         * @return {module:zrender/core/PathProxy}
+         */
+        setLineDashOffset: function (offset) {
+            this._dashOffset = offset;
+            return this;
+        },
+
+        /**
+         *
+         * @return {boolean}
+         */
+        len: function () {
+            return this._len;
+        },
+
+        /**
+         * 直接设置 Path 数据
+         */
+        setData: function (data) {
+
+            var len = data.length;
+
+            if (! (this.data && this.data.length == len) && hasTypedArray) {
+                this.data = new Float32Array(len);
+            }
+
+            for (var i = 0; i < len; i++) {
+                this.data[i] = data[i];
+            }
+
+            this._len = len;
+        },
+
+        /**
+         * 添加子路径
+         * @param {module:zrender/core/PathProxy|Array.<module:zrender/core/PathProxy>} path
+         */
+        appendPath: function (path) {
+            if (!(path instanceof Array)) {
+                path = [path];
+            }
+            var len = path.length;
+            var appendSize = 0;
+            var offset = this._len;
+            for (var i = 0; i < len; i++) {
+                appendSize += path[i].len();
+            }
+            if (hasTypedArray && (this.data instanceof Float32Array)) {
+                this.data = new Float32Array(offset + appendSize);
+            }
+            for (var i = 0; i < len; i++) {
+                var appendPathData = path[i].data;
+                for (var k = 0; k < appendPathData.length; k++) {
+                    this.data[offset++] = appendPathData[k];
+                }
+            }
+            this._len = offset;
+        },
+
+        /**
+         * 填充 Path 数据。
+         * 尽量复用而不申明新的数组。大部分图形重绘的指令数据长度都是不变的。
+         */
+        addData: function (cmd) {
+            if (!this._saveData) {
+                return;
+            }
+
+            var data = this.data;
+            if (this._len + arguments.length > data.length) {
+                // 因为之前的数组已经转换成静态的 Float32Array
+                // 所以不够用时需要扩展一个新的动态数组
+                this._expandData();
+                data = this.data;
+            }
+            for (var i = 0; i < arguments.length; i++) {
+                data[this._len++] = arguments[i];
+            }
+
+            this._prevCmd = cmd;
+        },
+
+        _expandData: function () {
+            // Only if data is Float32Array
+            if (!(this.data instanceof Array)) {
+                var newData = [];
+                for (var i = 0; i < this._len; i++) {
+                    newData[i] = this.data[i];
+                }
+                this.data = newData;
+            }
+        },
+
+        /**
+         * If needs js implemented dashed line
+         * @return {boolean}
+         * @private
+         */
+        _needsDash: function () {
+            return this._lineDash;
+        },
+
+        _dashedLineTo: function (x1, y1) {
+            var dashSum = this._dashSum;
+            var offset = this._dashOffset;
+            var lineDash = this._lineDash;
+            var ctx = this._ctx;
+
+            var x0 = this._xi;
+            var y0 = this._yi;
+            var dx = x1 - x0;
+            var dy = y1 - y0;
+            var dist = mathSqrt(dx * dx + dy * dy);
+            var x = x0;
+            var y = y0;
+            var dash;
+            var nDash = lineDash.length;
+            var idx;
+            dx /= dist;
+            dy /= dist;
+
+            if (offset < 0) {
+                // Convert to positive offset
+                offset = dashSum + offset;
+            }
+            offset %= dashSum;
+            x -= offset * dx;
+            y -= offset * dy;
+
+            while ((dx > 0 && x <= x1) || (dx < 0 && x >= x1)
+            || (dx == 0 && ((dy > 0 && y <= y1) || (dy < 0 && y >= y1)))) {
+                idx = this._dashIdx;
+                dash = lineDash[idx];
+                x += dx * dash;
+                y += dy * dash;
+                this._dashIdx = (idx + 1) % nDash;
+                // Skip positive offset
+                if ((dx > 0 && x < x0) || (dx < 0 && x > x0) || (dy > 0 && y < y0) || (dy < 0 && y > y0)) {
+                    continue;
+                }
+                ctx[idx % 2 ? 'moveTo' : 'lineTo'](
+                    dx >= 0 ? mathMin(x, x1) : mathMax(x, x1),
+                    dy >= 0 ? mathMin(y, y1) : mathMax(y, y1)
+                );
+            }
+            // Offset for next lineTo
+            dx = x - x1;
+            dy = y - y1;
+            this._dashOffset = -mathSqrt(dx * dx + dy * dy);
+        },
+
+        // Not accurate dashed line to
+        _dashedBezierTo: function (x1, y1, x2, y2, x3, y3) {
+            var dashSum = this._dashSum;
+            var offset = this._dashOffset;
+            var lineDash = this._lineDash;
+            var ctx = this._ctx;
+
+            var x0 = this._xi;
+            var y0 = this._yi;
+            var t;
+            var dx;
+            var dy;
+            var cubicAt = curve.cubicAt;
+            var bezierLen = 0;
+            var idx = this._dashIdx;
+            var nDash = lineDash.length;
+
+            var x;
+            var y;
+
+            var tmpLen = 0;
+
+            if (offset < 0) {
+                // Convert to positive offset
+                offset = dashSum + offset;
+            }
+            offset %= dashSum;
+            // Bezier approx length
+            for (t = 0; t < 1; t += 0.1) {
+                dx = cubicAt(x0, x1, x2, x3, t + 0.1)
+                    - cubicAt(x0, x1, x2, x3, t);
+                dy = cubicAt(y0, y1, y2, y3, t + 0.1)
+                    - cubicAt(y0, y1, y2, y3, t);
+                bezierLen += mathSqrt(dx * dx + dy * dy);
+            }
+
+            // Find idx after add offset
+            for (; idx < nDash; idx++) {
+                tmpLen += lineDash[idx];
+                if (tmpLen > offset) {
+                    break;
+                }
+            }
+            t = (tmpLen - offset) / bezierLen;
+
+            while (t <= 1) {
+
+                x = cubicAt(x0, x1, x2, x3, t);
+                y = cubicAt(y0, y1, y2, y3, t);
+
+                // Use line to approximate dashed bezier
+                // Bad result if dash is long
+                idx % 2 ? ctx.moveTo(x, y)
+                    : ctx.lineTo(x, y);
+
+                t += lineDash[idx] / bezierLen;
+
+                idx = (idx + 1) % nDash;
+            }
+
+            // Finish the last segment and calculate the new offset
+            (idx % 2 !== 0) && ctx.lineTo(x3, y3);
+            dx = x3 - x;
+            dy = y3 - y;
+            this._dashOffset = -mathSqrt(dx * dx + dy * dy);
+        },
+
+        _dashedQuadraticTo: function (x1, y1, x2, y2) {
+            // Convert quadratic to cubic using degree elevation
+            var x3 = x2;
+            var y3 = y2;
+            x2 = (x2 + 2 * x1) / 3;
+            y2 = (y2 + 2 * y1) / 3;
+            x1 = (this._xi + 2 * x1) / 3;
+            y1 = (this._yi + 2 * y1) / 3;
+
+            this._dashedBezierTo(x1, y1, x2, y2, x3, y3);
+        },
+
+        /**
+         * 转成静态的 Float32Array 减少堆内存占用
+         * Convert dynamic array to static Float32Array
+         */
+        toStatic: function () {
+            var data = this.data;
+            if (data instanceof Array) {
+                data.length = this._len;
+                if (hasTypedArray) {
+                    this.data = new Float32Array(data);
+                }
+            }
+        },
+
+        /**
+         * @return {module:zrender/core/BoundingRect}
+         */
+        getBoundingRect: function () {
+            min[0] = min[1] = min2[0] = min2[1] = Number.MAX_VALUE;
+            max[0] = max[1] = max2[0] = max2[1] = -Number.MAX_VALUE;
+
+            var data = this.data;
+            var xi = 0;
+            var yi = 0;
+            var x0 = 0;
+            var y0 = 0;
+
+            for (var i = 0; i < data.length;) {
+                var cmd = data[i++];
+
+                if (i == 1) {
+                    // 如果第一个命令是 L, C, Q
+                    // 则 previous point 同绘制命令的第一个 point
+                    //
+                    // 第一个命令为 Arc 的情况下会在后面特殊处理
+                    xi = data[i];
+                    yi = data[i + 1];
+
+                    x0 = xi;
+                    y0 = yi;
+                }
+
+                switch (cmd) {
+                    case CMD.M:
+                        // moveTo 命令重新创建一个新的 subpath, 并且更新新的起点
+                        // 在 closePath 的时候使用
+                        x0 = data[i++];
+                        y0 = data[i++];
+                        xi = x0;
+                        yi = y0;
+                        min2[0] = x0;
+                        min2[1] = y0;
+                        max2[0] = x0;
+                        max2[1] = y0;
+                        break;
+                    case CMD.L:
+                        bbox.fromLine(xi, yi, data[i], data[i + 1], min2, max2);
+                        xi = data[i++];
+                        yi = data[i++];
+                        break;
+                    case CMD.C:
+                        bbox.fromCubic(
+                            xi, yi, data[i++], data[i++], data[i++], data[i++], data[i], data[i + 1],
+                            min2, max2
+                        );
+                        xi = data[i++];
+                        yi = data[i++];
+                        break;
+                    case CMD.Q:
+                        bbox.fromQuadratic(
+                            xi, yi, data[i++], data[i++], data[i], data[i + 1],
+                            min2, max2
+                        );
+                        xi = data[i++];
+                        yi = data[i++];
+                        break;
+                    case CMD.A:
+                        // TODO Arc 判断的开销比较大
+                        var cx = data[i++];
+                        var cy = data[i++];
+                        var rx = data[i++];
+                        var ry = data[i++];
+                        var startAngle = data[i++];
+                        var endAngle = data[i++] + startAngle;
+                        // TODO Arc 旋转
+                        var psi = data[i++];
+                        var anticlockwise = 1 - data[i++];
+
+                        if (i == 1) {
+                            // 直接使用 arc 命令
+                            // 第一个命令起点还未定义
+                            x0 = mathCos(startAngle) * rx + cx;
+                            y0 = mathSin(startAngle) * ry + cy;
+                        }
+
+                        bbox.fromArc(
+                            cx, cy, rx, ry, startAngle, endAngle,
+                            anticlockwise, min2, max2
+                        );
+
+                        xi = mathCos(endAngle) * rx + cx;
+                        yi = mathSin(endAngle) * ry + cy;
+                        break;
+                    case CMD.R:
+                        x0 = xi = data[i++];
+                        y0 = yi = data[i++];
+                        var width = data[i++];
+                        var height = data[i++];
+                        // Use fromLine
+                        bbox.fromLine(x0, y0, x0 + width, y0 + height, min2, max2);
+                        break;
+                    case CMD.Z:
+                        xi = x0;
+                        yi = y0;
+                        break;
+                }
+
+                // Union
+                vec2.min(min, min, min2);
+                vec2.max(max, max, max2);
+            }
+
+            // No data
+            if (i === 0) {
+                min[0] = min[1] = max[0] = max[1] = 0;
+            }
+
+            return new BoundingRect(
+                min[0], min[1], max[0] - min[0], max[1] - min[1]
+            );
+        },
+
+        /**
+         * Rebuild path from current data
+         * Rebuild path will not consider javascript implemented line dash.
+         * @param {CanvasRenderingContext2D} ctx
+         */
+        rebuildPath: function (ctx) {
+            var d = this.data;
+            var x0, y0;
+            var xi, yi;
+            var x, y;
+            var ux = this._ux;
+            var uy = this._uy;
+            var len = this._len;
+            for (var i = 0; i < len;) {
+                var cmd = d[i++];
+
+                if (i == 1) {
+                    // 如果第一个命令是 L, C, Q
+                    // 则 previous point 同绘制命令的第一个 point
+                    //
+                    // 第一个命令为 Arc 的情况下会在后面特殊处理
+                    xi = d[i];
+                    yi = d[i + 1];
+
+                    x0 = xi;
+                    y0 = yi;
+                }
+                switch (cmd) {
+                    case CMD.M:
+                        x0 = xi = d[i++];
+                        y0 = yi = d[i++];
+                        ctx.moveTo(xi, yi);
+                        break;
+                    case CMD.L:
+                        x = d[i++];
+                        y = d[i++];
+                        // Not draw too small seg between
+                        if (mathAbs(x - xi) > ux || mathAbs(y - yi) > uy || i === len - 1) {
+                            ctx.lineTo(x, y);
+                            xi = x;
+                            yi = y;
+                        }
+                        break;
+                    case CMD.C:
+                        ctx.bezierCurveTo(
+                            d[i++], d[i++], d[i++], d[i++], d[i++], d[i++]
+                        );
+                        xi = d[i - 2];
+                        yi = d[i - 1];
+                        break;
+                    case CMD.Q:
+                        ctx.quadraticCurveTo(d[i++], d[i++], d[i++], d[i++]);
+                        xi = d[i - 2];
+                        yi = d[i - 1];
+                        break;
+                    case CMD.A:
+                        var cx = d[i++];
+                        var cy = d[i++];
+                        var rx = d[i++];
+                        var ry = d[i++];
+                        var theta = d[i++];
+                        var dTheta = d[i++];
+                        var psi = d[i++];
+                        var fs = d[i++];
+                        var r = (rx > ry) ? rx : ry;
+                        var scaleX = (rx > ry) ? 1 : rx / ry;
+                        var scaleY = (rx > ry) ? ry / rx : 1;
+                        var isEllipse = Math.abs(rx - ry) > 1e-3;
+                        var endAngle = theta + dTheta;
+                        if (isEllipse) {
+                            ctx.translate(cx, cy);
+                            ctx.rotate(psi);
+                            ctx.scale(scaleX, scaleY);
+                            ctx.arc(0, 0, r, theta, endAngle, 1 - fs);
+                            ctx.scale(1 / scaleX, 1 / scaleY);
+                            ctx.rotate(-psi);
+                            ctx.translate(-cx, -cy);
+                        }
+                        else {
+                            ctx.arc(cx, cy, r, theta, endAngle, 1 - fs);
+                        }
+
+                        if (i == 1) {
+                            // 直接使用 arc 命令
+                            // 第一个命令起点还未定义
+                            x0 = mathCos(theta) * rx + cx;
+                            y0 = mathSin(theta) * ry + cy;
+                        }
+                        xi = mathCos(endAngle) * rx + cx;
+                        yi = mathSin(endAngle) * ry + cy;
+                        break;
+                    case CMD.R:
+                        x0 = xi = d[i];
+                        y0 = yi = d[i + 1];
+                        ctx.rect(d[i++], d[i++], d[i++], d[i++]);
+                        break;
+                    case CMD.Z:
+                        ctx.closePath();
+                        xi = x0;
+                        yi = y0;
+                }
+            }
+        }
+    };
+
+    PathProxy.CMD = CMD;
+
+    return PathProxy;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 254:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * echarts设备环境识别
+ *
+ * @desc echarts基于Canvas，纯Javascript图表库，提供直观，生动，可交互，可个性化定制的数据统计图表。
+ * @author firede[firede@firede.us]
+ * @desc thanks zepto.
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    var env = {};
+    if (typeof navigator === 'undefined') {
+        // In node
+        env = {
+            browser: {},
+            os: {},
+            node: true,
+            // Assume canvas is supported
+            canvasSupported: true
+        };
+    }
+    else {
+        env = detect(navigator.userAgent);
+    }
+
+    return env;
+
+    // Zepto.js
+    // (c) 2010-2013 Thomas Fuchs
+    // Zepto.js may be freely distributed under the MIT license.
+
+    function detect(ua) {
+        var os = {};
+        var browser = {};
+        // var webkit = ua.match(/Web[kK]it[\/]{0,1}([\d.]+)/);
+        // var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+        // var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+        // var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+        // var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+        // var webos = ua.match(/(webOS|hpwOS)[\s\/]([\d.]+)/);
+        // var touchpad = webos && ua.match(/TouchPad/);
+        // var kindle = ua.match(/Kindle\/([\d.]+)/);
+        // var silk = ua.match(/Silk\/([\d._]+)/);
+        // var blackberry = ua.match(/(BlackBerry).*Version\/([\d.]+)/);
+        // var bb10 = ua.match(/(BB10).*Version\/([\d.]+)/);
+        // var rimtabletos = ua.match(/(RIM\sTablet\sOS)\s([\d.]+)/);
+        // var playbook = ua.match(/PlayBook/);
+        // var chrome = ua.match(/Chrome\/([\d.]+)/) || ua.match(/CriOS\/([\d.]+)/);
+        var firefox = ua.match(/Firefox\/([\d.]+)/);
+        // var safari = webkit && ua.match(/Mobile\//) && !chrome;
+        // var webview = ua.match(/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/) && !chrome;
+        var ie = ua.match(/MSIE\s([\d.]+)/)
+            // IE 11 Trident/7.0; rv:11.0
+            || ua.match(/Trident\/.+?rv:(([\d.]+))/);
+        var edge = ua.match(/Edge\/([\d.]+)/); // IE 12 and 12+
+
+        var weChat = (/micromessenger/i).test(ua);
+
+        // Todo: clean this up with a better OS/browser seperation:
+        // - discern (more) between multiple browsers on android
+        // - decide if kindle fire in silk mode is android or not
+        // - Firefox on Android doesn't specify the Android version
+        // - possibly devide in os, device and browser hashes
+
+        // if (browser.webkit = !!webkit) browser.version = webkit[1];
+
+        // if (android) os.android = true, os.version = android[2];
+        // if (iphone && !ipod) os.ios = os.iphone = true, os.version = iphone[2].replace(/_/g, '.');
+        // if (ipad) os.ios = os.ipad = true, os.version = ipad[2].replace(/_/g, '.');
+        // if (ipod) os.ios = os.ipod = true, os.version = ipod[3] ? ipod[3].replace(/_/g, '.') : null;
+        // if (webos) os.webos = true, os.version = webos[2];
+        // if (touchpad) os.touchpad = true;
+        // if (blackberry) os.blackberry = true, os.version = blackberry[2];
+        // if (bb10) os.bb10 = true, os.version = bb10[2];
+        // if (rimtabletos) os.rimtabletos = true, os.version = rimtabletos[2];
+        // if (playbook) browser.playbook = true;
+        // if (kindle) os.kindle = true, os.version = kindle[1];
+        // if (silk) browser.silk = true, browser.version = silk[1];
+        // if (!silk && os.android && ua.match(/Kindle Fire/)) browser.silk = true;
+        // if (chrome) browser.chrome = true, browser.version = chrome[1];
+        if (firefox) {
+            browser.firefox = true;
+            browser.version = firefox[1];
+        }
+        // if (safari && (ua.match(/Safari/) || !!os.ios)) browser.safari = true;
+        // if (webview) browser.webview = true;
+
+        if (ie) {
+            browser.ie = true;
+            browser.version = ie[1];
+        }
+
+        if (edge) {
+            browser.edge = true;
+            browser.version = edge[1];
+        }
+
+        // It is difficult to detect WeChat in Win Phone precisely, because ua can
+        // not be set on win phone. So we do not consider Win Phone.
+        if (weChat) {
+            browser.weChat = true;
+        }
+
+        // os.tablet = !!(ipad || playbook || (android && !ua.match(/Mobile/)) ||
+        //     (firefox && ua.match(/Tablet/)) || (ie && !ua.match(/Phone/) && ua.match(/Touch/)));
+        // os.phone  = !!(!os.tablet && !os.ipod && (android || iphone || webos ||
+        //     (chrome && ua.match(/Android/)) || (chrome && ua.match(/CriOS\/([\d.]+)/)) ||
+        //     (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/))));
+
+        return {
+            browser: browser,
+            os: os,
+            node: false,
+            // 原生canvas支持，改极端点了
+            // canvasSupported : !(browser.ie && parseFloat(browser.version) < 9)
+            canvasSupported : document.createElement('canvas').getContext ? true : false,
+            // @see <http://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript>
+            // works on most browsers
+            // IE10/11 does not support touch event, and MS Edge supports them but not by
+            // default, so we dont check navigator.maxTouchPoints for them here.
+            touchEventsSupported: 'ontouchstart' in window && !browser.ie && !browser.edge,
+            // <http://caniuse.com/#search=pointer%20event>.
+            pointerEventsSupported: 'onpointerdown' in window
+                // Firefox supports pointer but not by default, only MS browsers are reliable on pointer
+                // events currently. So we dont use that on other browsers unless tested sufficiently.
+                // Although IE 10 supports pointer event, it use old style and is different from the
+                // standard. So we exclude that. (IE 10 is hardly used on touch device)
+                && (browser.edge || (browser.ie && browser.version >= 11))
+        };
+    }
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 255:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 事件扩展
+ * @module zrender/mixin/Eventful
+ * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+ *         pissang (https://www.github.com/pissang)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var arrySlice = Array.prototype.slice;
+
+    /**
+     * 事件分发器
+     * @alias module:zrender/mixin/Eventful
+     * @constructor
+     */
+    var Eventful = function () {
+        this._$handlers = {};
+    };
+
+    Eventful.prototype = {
+
+        constructor: Eventful,
+
+        /**
+         * 单次触发绑定，trigger后销毁
+         *
+         * @param {string} event 事件名
+         * @param {Function} handler 响应函数
+         * @param {Object} context
+         */
+        one: function (event, handler, context) {
+            var _h = this._$handlers;
+
+            if (!handler || !event) {
+                return this;
+            }
+
+            if (!_h[event]) {
+                _h[event] = [];
+            }
+
+            for (var i = 0; i < _h[event].length; i++) {
+                if (_h[event][i].h === handler) {
+                    return this;
+                }
+            }
+
+            _h[event].push({
+                h: handler,
+                one: true,
+                ctx: context || this
+            });
+
+            return this;
+        },
+
+        /**
+         * 绑定事件
+         * @param {string} event 事件名
+         * @param {Function} handler 事件处理函数
+         * @param {Object} [context]
+         */
+        on: function (event, handler, context) {
+            var _h = this._$handlers;
+
+            if (!handler || !event) {
+                return this;
+            }
+
+            if (!_h[event]) {
+                _h[event] = [];
+            }
+
+            for (var i = 0; i < _h[event].length; i++) {
+                if (_h[event][i].h === handler) {
+                    return this;
+                }
+            }
+
+            _h[event].push({
+                h: handler,
+                one: false,
+                ctx: context || this
+            });
+
+            return this;
+        },
+
+        /**
+         * 是否绑定了事件
+         * @param  {string}  event
+         * @return {boolean}
+         */
+        isSilent: function (event) {
+            var _h = this._$handlers;
+            return _h[event] && _h[event].length;
+        },
+
+        /**
+         * 解绑事件
+         * @param {string} event 事件名
+         * @param {Function} [handler] 事件处理函数
+         */
+        off: function (event, handler) {
+            var _h = this._$handlers;
+
+            if (!event) {
+                this._$handlers = {};
+                return this;
+            }
+
+            if (handler) {
+                if (_h[event]) {
+                    var newList = [];
+                    for (var i = 0, l = _h[event].length; i < l; i++) {
+                        if (_h[event][i]['h'] != handler) {
+                            newList.push(_h[event][i]);
+                        }
+                    }
+                    _h[event] = newList;
+                }
+
+                if (_h[event] && _h[event].length === 0) {
+                    delete _h[event];
+                }
+            }
+            else {
+                delete _h[event];
+            }
+
+            return this;
+        },
+
+        /**
+         * 事件分发
+         *
+         * @param {string} type 事件类型
+         */
+        trigger: function (type) {
+            if (this._$handlers[type]) {
+                var args = arguments;
+                var argLen = args.length;
+
+                if (argLen > 3) {
+                    args = arrySlice.call(args, 1);
+                }
+
+                var _h = this._$handlers[type];
+                var len = _h.length;
+                for (var i = 0; i < len;) {
+                    // Optimize advise from backbone
+                    switch (argLen) {
+                        case 1:
+                            _h[i]['h'].call(_h[i]['ctx']);
+                            break;
+                        case 2:
+                            _h[i]['h'].call(_h[i]['ctx'], args[1]);
+                            break;
+                        case 3:
+                            _h[i]['h'].call(_h[i]['ctx'], args[1], args[2]);
+                            break;
+                        default:
+                            // have more than 2 given arguments
+                            _h[i]['h'].apply(_h[i]['ctx'], args);
+                            break;
+                    }
+
+                    if (_h[i]['one']) {
+                        _h.splice(i, 1);
+                        len--;
+                    }
+                    else {
+                        i++;
+                    }
+                }
+            }
+
+            return this;
+        },
+
+        /**
+         * 带有context的事件分发, 最后一个参数是事件回调的context
+         * @param {string} type 事件类型
+         */
+        triggerWithContext: function (type) {
+            if (this._$handlers[type]) {
+                var args = arguments;
+                var argLen = args.length;
+
+                if (argLen > 4) {
+                    args = arrySlice.call(args, 1, args.length - 1);
+                }
+                var ctx = args[args.length - 1];
+
+                var _h = this._$handlers[type];
+                var len = _h.length;
+                for (var i = 0; i < len;) {
+                    // Optimize advise from backbone
+                    switch (argLen) {
+                        case 1:
+                            _h[i]['h'].call(ctx);
+                            break;
+                        case 2:
+                            _h[i]['h'].call(ctx, args[1]);
+                            break;
+                        case 3:
+                            _h[i]['h'].call(ctx, args[1], args[2]);
+                            break;
+                        default:
+                            // have more than 2 given arguments
+                            _h[i]['h'].apply(ctx, args);
+                            break;
+                    }
+
+                    if (_h[i]['one']) {
+                        _h.splice(i, 1);
+                        len--;
+                    }
+                    else {
+                        i++;
+                    }
+                }
+            }
+
+            return this;
+        }
+    };
+
+    // 对象可以通过 onxxxx 绑定事件
+    /**
+     * @event module:zrender/mixin/Eventful#onclick
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#onmouseover
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#onmouseout
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#onmousemove
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#onmousewheel
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#onmousedown
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#onmouseup
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondrag
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondragstart
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondragend
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondragenter
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondragleave
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondragover
+     * @type {Function}
+     * @default null
+     */
+    /**
+     * @event module:zrender/mixin/Eventful#ondrop
+     * @type {Function}
+     * @default null
+     */
+
+    return Eventful;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 260:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.getComponentLocale = getComponentLocale;
+exports.getLocaleCode = getLocaleCode;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function getComponentLocale(props, context, componentName, getDefaultLocale) {
+    var locale = {};
+    if (context && context.antLocale && context.antLocale[componentName]) {
+        locale = context.antLocale[componentName];
+    } else {
+        var defaultLocale = getDefaultLocale();
+        // TODO: make default lang of antd be English
+        // https://github.com/ant-design/ant-design/issues/6334
+        locale = defaultLocale['default'] || defaultLocale;
+    }
+    var result = (0, _extends3['default'])({}, locale, props.locale);
+    result.lang = (0, _extends3['default'])({}, locale.lang, props.locale.lang);
+    return result;
+}
+function getLocaleCode(context) {
+    var localeCode = context.antLocale && context.antLocale.locale;
+    // Had use LocaleProvide but didn't set locale
+    if (context.antLocale && context.antLocale.exist && !localeCode) {
+        return 'zh-cn';
+    }
+    return localeCode;
+}
+
+/***/ }),
+
+/***/ 261:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _warning = __webpack_require__(56);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var warned = {};
+
+exports['default'] = function (valid, message) {
+    if (!valid && !warned[message]) {
+        (0, _warning2['default'])(false, message);
+        warned[message] = true;
+    }
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 263:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var FETCH = 'fetch';
+var LOADING = 'loading';
+var END = 'end';
+var SWITCH_PAGE = 'switch_page';
+
+exports.FETCH = FETCH;
+exports.LOADING = LOADING;
+exports.END = END;
+exports.SWITCH_PAGE = SWITCH_PAGE;
+
+/***/ }),
+
+/***/ 264:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var Constant = {
+    homepage: 1,
+    traceDisplay: 2,
+    taxiDistribution: 3
+};
+
+exports.default = Constant;
+
+/***/ }),
+
+/***/ 40:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module zrender/core/util
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    // 用于处理merge时无法遍历Date等对象的问题
+    var BUILTIN_OBJECT = {
+        '[object Function]': 1,
+        '[object RegExp]': 1,
+        '[object Date]': 1,
+        '[object Error]': 1,
+        '[object CanvasGradient]': 1,
+        '[object CanvasPattern]': 1,
+        // For node-canvas
+        '[object Image]': 1,
+        '[object Canvas]': 1
+    };
+
+    var TYPED_ARRAY = {
+        '[object Int8Array]': 1,
+        '[object Uint8Array]': 1,
+        '[object Uint8ClampedArray]': 1,
+        '[object Int16Array]': 1,
+        '[object Uint16Array]': 1,
+        '[object Int32Array]': 1,
+        '[object Uint32Array]': 1,
+        '[object Float32Array]': 1,
+        '[object Float64Array]': 1
+    };
+
+    var objToString = Object.prototype.toString;
+
+    var arrayProto = Array.prototype;
+    var nativeForEach = arrayProto.forEach;
+    var nativeFilter = arrayProto.filter;
+    var nativeSlice = arrayProto.slice;
+    var nativeMap = arrayProto.map;
+    var nativeReduce = arrayProto.reduce;
+
+    /**
+     * Those data types can be cloned:
+     *     Plain object, Array, TypedArray, number, string, null, undefined.
+     * Those data types will be assgined using the orginal data:
+     *     BUILTIN_OBJECT
+     * Instance of user defined class will be cloned to a plain object, without
+     * properties in prototype.
+     * Other data types is not supported (not sure what will happen).
+     *
+     * Caution: do not support clone Date, for performance consideration.
+     * (There might be a large number of date in `series.data`).
+     * So date should not be modified in and out of echarts.
+     *
+     * @param {*} source
+     * @return {*} new
+     */
+    function clone(source) {
+        if (source == null || typeof source != 'object') {
+            return source;
+        }
+
+        var result = source;
+        var typeStr = objToString.call(source);
+
+        if (typeStr === '[object Array]') {
+            result = [];
+            for (var i = 0, len = source.length; i < len; i++) {
+                result[i] = clone(source[i]);
+            }
+        }
+        else if (TYPED_ARRAY[typeStr]) {
+            var Ctor = source.constructor;
+            if (source.constructor.from) {
+                result = Ctor.from(source);
+            }
+            else {
+                result = new Ctor(source.length);
+                for (var i = 0, len = source.length; i < len; i++) {
+                    result[i] = clone(source[i]);
+                }
+            }
+        }
+        else if (!BUILTIN_OBJECT[typeStr] && !isPrimitive(source) && !isDom(source)) {
+            result = {};
+            for (var key in source) {
+                if (source.hasOwnProperty(key)) {
+                    result[key] = clone(source[key]);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} target
+     * @param {*} source
+     * @param {boolean} [overwrite=false]
+     */
+    function merge(target, source, overwrite) {
+        // We should escapse that source is string
+        // and enter for ... in ...
+        if (!isObject(source) || !isObject(target)) {
+            return overwrite ? clone(source) : target;
+        }
+
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                var targetProp = target[key];
+                var sourceProp = source[key];
+
+                if (isObject(sourceProp)
+                    && isObject(targetProp)
+                    && !isArray(sourceProp)
+                    && !isArray(targetProp)
+                    && !isDom(sourceProp)
+                    && !isDom(targetProp)
+                    && !isBuiltInObject(sourceProp)
+                    && !isBuiltInObject(targetProp)
+                    && !isPrimitive(sourceProp)
+                    && !isPrimitive(targetProp)
+                ) {
+                    // 如果需要递归覆盖，就递归调用merge
+                    merge(targetProp, sourceProp, overwrite);
+                }
+                else if (overwrite || !(key in target)) {
+                    // 否则只处理overwrite为true，或者在目标对象中没有此属性的情况
+                    // NOTE，在 target[key] 不存在的时候也是直接覆盖
+                    target[key] = clone(source[key], true);
+                }
+            }
+        }
+
+        return target;
+    }
+
+    /**
+     * @param {Array} targetAndSources The first item is target, and the rests are source.
+     * @param {boolean} [overwrite=false]
+     * @return {*} target
+     */
+    function mergeAll(targetAndSources, overwrite) {
+        var result = targetAndSources[0];
+        for (var i = 1, len = targetAndSources.length; i < len; i++) {
+            result = merge(result, targetAndSources[i], overwrite);
+        }
+        return result;
+    }
+
+    /**
+     * @param {*} target
+     * @param {*} source
+     * @memberOf module:zrender/core/util
+     */
+    function extend(target, source) {
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                target[key] = source[key];
+            }
+        }
+        return target;
+    }
+
+    /**
+     * @param {*} target
+     * @param {*} source
+     * @param {boolean} [overlay=false]
+     * @memberOf module:zrender/core/util
+     */
+    function defaults(target, source, overlay) {
+        for (var key in source) {
+            if (source.hasOwnProperty(key)
+                && (overlay ? source[key] != null : target[key] == null)
+            ) {
+                target[key] = source[key];
+            }
+        }
+        return target;
+    }
+
+    function createCanvas() {
+        return document.createElement('canvas');
+    }
+    // FIXME
+    var _ctx;
+    function getContext() {
+        if (!_ctx) {
+            // Use util.createCanvas instead of createCanvas
+            // because createCanvas may be overwritten in different environment
+            _ctx = util.createCanvas().getContext('2d');
+        }
+        return _ctx;
+    }
+
+    /**
+     * 查询数组中元素的index
+     * @memberOf module:zrender/core/util
+     */
+    function indexOf(array, value) {
+        if (array) {
+            if (array.indexOf) {
+                return array.indexOf(value);
+            }
+            for (var i = 0, len = array.length; i < len; i++) {
+                if (array[i] === value) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 构造类继承关系
+     *
+     * @memberOf module:zrender/core/util
+     * @param {Function} clazz 源类
+     * @param {Function} baseClazz 基类
+     */
+    function inherits(clazz, baseClazz) {
+        var clazzPrototype = clazz.prototype;
+        function F() {}
+        F.prototype = baseClazz.prototype;
+        clazz.prototype = new F();
+
+        for (var prop in clazzPrototype) {
+            clazz.prototype[prop] = clazzPrototype[prop];
+        }
+        clazz.prototype.constructor = clazz;
+        clazz.superClass = baseClazz;
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {Object|Function} target
+     * @param {Object|Function} sorce
+     * @param {boolean} overlay
+     */
+    function mixin(target, source, overlay) {
+        target = 'prototype' in target ? target.prototype : target;
+        source = 'prototype' in source ? source.prototype : source;
+
+        defaults(target, source, overlay);
+    }
+
+    /**
+     * Consider typed array.
+     * @param {Array|TypedArray} data
+     */
+    function isArrayLike(data) {
+        if (! data) {
+            return;
+        }
+        if (typeof data == 'string') {
+            return false;
+        }
+        return typeof data.length == 'number';
+    }
+
+    /**
+     * 数组或对象遍历
+     * @memberOf module:zrender/core/util
+     * @param {Object|Array} obj
+     * @param {Function} cb
+     * @param {*} [context]
+     */
+    function each(obj, cb, context) {
+        if (!(obj && cb)) {
+            return;
+        }
+        if (obj.forEach && obj.forEach === nativeForEach) {
+            obj.forEach(cb, context);
+        }
+        else if (obj.length === +obj.length) {
+            for (var i = 0, len = obj.length; i < len; i++) {
+                cb.call(context, obj[i], i, obj);
+            }
+        }
+        else {
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    cb.call(context, obj[key], key, obj);
+                }
+            }
+        }
+    }
+
+    /**
+     * 数组映射
+     * @memberOf module:zrender/core/util
+     * @param {Array} obj
+     * @param {Function} cb
+     * @param {*} [context]
+     * @return {Array}
+     */
+    function map(obj, cb, context) {
+        if (!(obj && cb)) {
+            return;
+        }
+        if (obj.map && obj.map === nativeMap) {
+            return obj.map(cb, context);
+        }
+        else {
+            var result = [];
+            for (var i = 0, len = obj.length; i < len; i++) {
+                result.push(cb.call(context, obj[i], i, obj));
+            }
+            return result;
+        }
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {Array} obj
+     * @param {Function} cb
+     * @param {Object} [memo]
+     * @param {*} [context]
+     * @return {Array}
+     */
+    function reduce(obj, cb, memo, context) {
+        if (!(obj && cb)) {
+            return;
+        }
+        if (obj.reduce && obj.reduce === nativeReduce) {
+            return obj.reduce(cb, memo, context);
+        }
+        else {
+            for (var i = 0, len = obj.length; i < len; i++) {
+                memo = cb.call(context, memo, obj[i], i, obj);
+            }
+            return memo;
+        }
+    }
+
+    /**
+     * 数组过滤
+     * @memberOf module:zrender/core/util
+     * @param {Array} obj
+     * @param {Function} cb
+     * @param {*} [context]
+     * @return {Array}
+     */
+    function filter(obj, cb, context) {
+        if (!(obj && cb)) {
+            return;
+        }
+        if (obj.filter && obj.filter === nativeFilter) {
+            return obj.filter(cb, context);
+        }
+        else {
+            var result = [];
+            for (var i = 0, len = obj.length; i < len; i++) {
+                if (cb.call(context, obj[i], i, obj)) {
+                    result.push(obj[i]);
+                }
+            }
+            return result;
+        }
+    }
+
+    /**
+     * 数组项查找
+     * @memberOf module:zrender/core/util
+     * @param {Array} obj
+     * @param {Function} cb
+     * @param {*} [context]
+     * @return {Array}
+     */
+    function find(obj, cb, context) {
+        if (!(obj && cb)) {
+            return;
+        }
+        for (var i = 0, len = obj.length; i < len; i++) {
+            if (cb.call(context, obj[i], i, obj)) {
+                return obj[i];
+            }
+        }
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {Function} func
+     * @param {*} context
+     * @return {Function}
+     */
+    function bind(func, context) {
+        var args = nativeSlice.call(arguments, 2);
+        return function () {
+            return func.apply(context, args.concat(nativeSlice.call(arguments)));
+        };
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {Function} func
+     * @return {Function}
+     */
+    function curry(func) {
+        var args = nativeSlice.call(arguments, 1);
+        return function () {
+            return func.apply(this, args.concat(nativeSlice.call(arguments)));
+        };
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} value
+     * @return {boolean}
+     */
+    function isArray(value) {
+        return objToString.call(value) === '[object Array]';
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} value
+     * @return {boolean}
+     */
+    function isFunction(value) {
+        return typeof value === 'function';
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} value
+     * @return {boolean}
+     */
+    function isString(value) {
+        return objToString.call(value) === '[object String]';
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} value
+     * @return {boolean}
+     */
+    function isObject(value) {
+        // Avoid a V8 JIT bug in Chrome 19-20.
+        // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+        var type = typeof value;
+        return type === 'function' || (!!value && type == 'object');
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} value
+     * @return {boolean}
+     */
+    function isBuiltInObject(value) {
+        return !!BUILTIN_OBJECT[objToString.call(value)];
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {*} value
+     * @return {boolean}
+     */
+    function isDom(value) {
+        return typeof value === 'object'
+            && typeof value.nodeType === 'number'
+            && typeof value.ownerDocument === 'object';
+    }
+
+    /**
+     * Whether is exactly NaN. Notice isNaN('a') returns true.
+     * @param {*} value
+     * @return {boolean}
+     */
+    function eqNaN(value) {
+        return value !== value;
+    }
+
+    /**
+     * If value1 is not null, then return value1, otherwise judget rest of values.
+     * Low performance.
+     * @memberOf module:zrender/core/util
+     * @return {*} Final value
+     */
+    function retrieve(values) {
+        for (var i = 0, len = arguments.length; i < len; i++) {
+            if (arguments[i] != null) {
+                return arguments[i];
+            }
+        }
+    }
+
+    function retrieve2(value0, value1) {
+        return value0 != null
+            ? value0
+            : value1;
+    }
+
+    function retrieve3(value0, value1, value2) {
+        return value0 != null
+            ? value0
+            : value1 != null
+            ? value1
+            : value2;
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {Array} arr
+     * @param {number} startIndex
+     * @param {number} endIndex
+     * @return {Array}
+     */
+    function slice() {
+        return Function.call.apply(nativeSlice, arguments);
+    }
+
+    /**
+     * Normalize css liked array configuration
+     * e.g.
+     *  3 => [3, 3, 3, 3]
+     *  [4, 2] => [4, 2, 4, 2]
+     *  [4, 3, 2] => [4, 3, 2, 3]
+     * @param {number|Array.<number>} val
+     * @return {Array.<number>}
+     */
+    function normalizeCssArray(val) {
+        if (typeof (val) === 'number') {
+            return [val, val, val, val];
+        }
+        var len = val.length;
+        if (len === 2) {
+            // vertical | horizontal
+            return [val[0], val[1], val[0], val[1]];
+        }
+        else if (len === 3) {
+            // top | horizontal | bottom
+            return [val[0], val[1], val[2], val[1]];
+        }
+        return val;
+    }
+
+    /**
+     * @memberOf module:zrender/core/util
+     * @param {boolean} condition
+     * @param {string} message
+     */
+    function assert(condition, message) {
+        if (!condition) {
+            throw new Error(message);
+        }
+    }
+
+    var primitiveKey = '__ec_primitive__';
+    /**
+     * Set an object as primitive to be ignored traversing children in clone or merge
+     */
+    function setAsPrimitive(obj) {
+        obj[primitiveKey] = true;
+    }
+
+    function isPrimitive(obj) {
+        return obj[primitiveKey];
+    }
+
+    /**
+     * @constructor
+     * @param {Object} obj Only apply `ownProperty`.
+     */
+    function HashMap(obj) {
+        obj && each(obj, function (value, key) {
+            this.set(key, value);
+        }, this);
+    }
+
+    // Add prefix to avoid conflict with Object.prototype.
+    var HASH_MAP_PREFIX = '_ec_';
+    var HASH_MAP_PREFIX_LENGTH = 4;
+
+    HashMap.prototype = {
+        constructor: HashMap,
+        // Do not provide `has` method to avoid defining what is `has`.
+        // (We usually treat `null` and `undefined` as the same, different
+        // from ES6 Map).
+        get: function (key) {
+            return this[HASH_MAP_PREFIX + key];
+        },
+        set: function (key, value) {
+            this[HASH_MAP_PREFIX + key] = value;
+            // Comparing with invocation chaining, `return value` is more commonly
+            // used in this case: `var someVal = map.set('a', genVal());`
+            return value;
+        },
+        // Although util.each can be performed on this hashMap directly, user
+        // should not use the exposed keys, who are prefixed.
+        each: function (cb, context) {
+            context !== void 0 && (cb = bind(cb, context));
+            for (var prefixedKey in this) {
+                this.hasOwnProperty(prefixedKey)
+                    && cb(this[prefixedKey], prefixedKey.slice(HASH_MAP_PREFIX_LENGTH));
+            }
+        },
+        // Do not use this method if performance sensitive.
+        removeKey: function (key) {
+            delete this[HASH_MAP_PREFIX + key];
+        }
+    };
+
+    function createHashMap(obj) {
+        return new HashMap(obj);
+    }
+
+    var util = {
+        inherits: inherits,
+        mixin: mixin,
+        clone: clone,
+        merge: merge,
+        mergeAll: mergeAll,
+        extend: extend,
+        defaults: defaults,
+        getContext: getContext,
+        createCanvas: createCanvas,
+        indexOf: indexOf,
+        slice: slice,
+        find: find,
+        isArrayLike: isArrayLike,
+        each: each,
+        map: map,
+        reduce: reduce,
+        filter: filter,
+        bind: bind,
+        curry: curry,
+        isArray: isArray,
+        isString: isString,
+        isObject: isObject,
+        isFunction: isFunction,
+        isBuiltInObject: isBuiltInObject,
+        isDom: isDom,
+        eqNaN: eqNaN,
+        retrieve: retrieve,
+        retrieve2: retrieve2,
+        retrieve3: retrieve3,
+        assert: assert,
+        setAsPrimitive: setAsPrimitive,
+        createHashMap: createHashMap,
+        normalizeCssArray: normalizeCssArray,
+        noop: function () {}
+    };
+    return util;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 406:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 事件辅助类
+ * @module zrender/core/event
+ * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    'use strict';
+
+    var Eventful = __webpack_require__(255);
+    var env = __webpack_require__(254);
+
+    var isDomLevel2 = (typeof window !== 'undefined') && !!window.addEventListener;
+
+    function getBoundingClientRect(el) {
+        // BlackBerry 5, iOS 3 (original iPhone) don't have getBoundingRect
+        return el.getBoundingClientRect ? el.getBoundingClientRect() : {left: 0, top: 0};
+    }
+
+    // `calculate` is optional, default false
+    function clientToLocal(el, e, out, calculate) {
+        out = out || {};
+
+        // According to the W3C Working Draft, offsetX and offsetY should be relative
+        // to the padding edge of the target element. The only browser using this convention
+        // is IE. Webkit uses the border edge, Opera uses the content edge, and FireFox does
+        // not support the properties.
+        // (see http://www.jacklmoore.com/notes/mouse-position/)
+        // In zr painter.dom, padding edge equals to border edge.
+
+        // FIXME
+        // When mousemove event triggered on ec tooltip, target is not zr painter.dom, and
+        // offsetX/Y is relative to e.target, where the calculation of zrX/Y via offsetX/Y
+        // is too complex. So css-transfrom dont support in this case temporarily.
+        if (calculate || !env.canvasSupported) {
+            defaultGetZrXY(el, e, out);
+        }
+        // Caution: In FireFox, layerX/layerY Mouse position relative to the closest positioned
+        // ancestor element, so we should make sure el is positioned (e.g., not position:static).
+        // BTW1, Webkit don't return the same results as FF in non-simple cases (like add
+        // zoom-factor, overflow / opacity layers, transforms ...)
+        // BTW2, (ev.offsetY || ev.pageY - $(ev.target).offset().top) is not correct in preserve-3d.
+        // <https://bugs.jquery.com/ticket/8523#comment:14>
+        // BTW3, In ff, offsetX/offsetY is always 0.
+        else if (env.browser.firefox && e.layerX != null && e.layerX !== e.offsetX) {
+            out.zrX = e.layerX;
+            out.zrY = e.layerY;
+        }
+        // For IE6+, chrome, safari, opera. (When will ff support offsetX?)
+        else if (e.offsetX != null) {
+            out.zrX = e.offsetX;
+            out.zrY = e.offsetY;
+        }
+        // For some other device, e.g., IOS safari.
+        else {
+            defaultGetZrXY(el, e, out);
+        }
+
+        return out;
+    }
+
+    function defaultGetZrXY(el, e, out) {
+        // This well-known method below does not support css transform.
+        var box = getBoundingClientRect(el);
+        out.zrX = e.clientX - box.left;
+        out.zrY = e.clientY - box.top;
+    }
+
+    /**
+     * 如果存在第三方嵌入的一些dom触发的事件，或touch事件，需要转换一下事件坐标.
+     * `calculate` is optional, default false.
+     */
+    function normalizeEvent(el, e, calculate) {
+
+        e = e || window.event;
+
+        if (e.zrX != null) {
+            return e;
+        }
+
+        var eventType = e.type;
+        var isTouch = eventType && eventType.indexOf('touch') >= 0;
+
+        if (!isTouch) {
+            clientToLocal(el, e, e, calculate);
+            e.zrDelta = (e.wheelDelta) ? e.wheelDelta / 120 : -(e.detail || 0) / 3;
+        }
+        else {
+            var touch = eventType != 'touchend'
+                ? e.targetTouches[0]
+                : e.changedTouches[0];
+            touch && clientToLocal(el, touch, e, calculate);
+        }
+
+        return e;
+    }
+
+    function addEventListener(el, name, handler) {
+        if (isDomLevel2) {
+            el.addEventListener(name, handler);
+        }
+        else {
+            el.attachEvent('on' + name, handler);
+        }
+    }
+
+    function removeEventListener(el, name, handler) {
+        if (isDomLevel2) {
+            el.removeEventListener(name, handler);
+        }
+        else {
+            el.detachEvent('on' + name, handler);
+        }
+    }
+
+    /**
+     * preventDefault and stopPropagation.
+     * Notice: do not do that in zrender. Upper application
+     * do that if necessary.
+     *
+     * @memberOf module:zrender/core/event
+     * @method
+     * @param {Event} e : event对象
+     */
+    var stop = isDomLevel2
+        ? function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.cancelBubble = true;
+        }
+        : function (e) {
+            e.returnValue = false;
+            e.cancelBubble = true;
+        };
+
+    return {
+        clientToLocal: clientToLocal,
+        normalizeEvent: normalizeEvent,
+        addEventListener: addEventListener,
+        removeEventListener: removeEventListener,
+
+        stop: stop,
+        // 做向上兼容
+        Dispatcher: Eventful
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 407:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var LRU = __webpack_require__(839);
+    var globalImageCache = new LRU(50);
+
+    var helper = {};
+
+    /**
+     * @param {string|HTMLImageElement|HTMLCanvasElement|Canvas} newImageOrSrc
+     * @return {HTMLImageElement|HTMLCanvasElement|Canvas} image
+     */
+    helper.findExistImage = function (newImageOrSrc) {
+        if (typeof newImageOrSrc === 'string') {
+            var cachedImgObj = globalImageCache.get(newImageOrSrc);
+            return cachedImgObj && cachedImgObj.image;
+        }
+        else {
+            return newImageOrSrc;
+        }
+    };
+
+    /**
+     * Caution: User should cache loaded images, but not just count on LRU.
+     * Consider if required images more than LRU size, will dead loop occur?
+     *
+     * @param {string|HTMLImageElement|HTMLCanvasElement|Canvas} newImageOrSrc
+     * @param {HTMLImageElement|HTMLCanvasElement|Canvas} image Existent image.
+     * @param {module:zrender/Element} [hostEl] For calling `dirty`.
+     * @param {Function} [cb] params: (image, cbPayload)
+     * @param {Object} [cbPayload] Payload on cb calling.
+     * @return {HTMLImageElement|HTMLCanvasElement|Canvas} image
+     */
+    helper.createOrUpdateImage = function (newImageOrSrc, image, hostEl, cb, cbPayload) {
+        if (!newImageOrSrc) {
+            return image;
+        }
+        else if (typeof newImageOrSrc === 'string') {
+
+            // Image should not be loaded repeatly.
+            if ((image && image.__zrImageSrc === newImageOrSrc) || !hostEl) {
+                return image;
+            }
+
+            // Only when there is no existent image or existent image src
+            // is different, this method is responsible for load.
+            var cachedImgObj = globalImageCache.get(newImageOrSrc);
+
+            var pendingWrap = {hostEl: hostEl, cb: cb, cbPayload: cbPayload};
+
+            if (cachedImgObj) {
+                image = cachedImgObj.image;
+                !isImageReady(image) && cachedImgObj.pending.push(pendingWrap);
+            }
+            else {
+                !image && (image = new Image());
+                image.onload = imageOnLoad;
+
+                globalImageCache.put(
+                    newImageOrSrc,
+                    image.__cachedImgObj = {
+                        image: image,
+                        pending: [pendingWrap]
+                    }
+                );
+
+                image.src = image.__zrImageSrc = newImageOrSrc;
+            }
+
+            return image;
+        }
+        // newImageOrSrc is an HTMLImageElement or HTMLCanvasElement or Canvas
+        else {
+            return newImageOrSrc;
+        }
+    };
+
+    function imageOnLoad() {
+        var cachedImgObj = this.__cachedImgObj;
+        this.onload = this.__cachedImgObj = null;
+
+        for (var i = 0; i < cachedImgObj.pending.length; i++) {
+            var pendingWrap = cachedImgObj.pending[i];
+            var cb = pendingWrap.cb;
+            cb && cb(this, pendingWrap.cbPayload);
+            pendingWrap.hostEl.dirty();
+        }
+        cachedImgObj.pending.length = 0;
+    }
+
+    var isImageReady = helper.isImageReady = function (image) {
+        return image && image.width && image.height;
+    };
+
+    return helper;
+
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 436:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Col = exports.Row = undefined;
+
+var _row = __webpack_require__(958);
+
+var _row2 = _interopRequireDefault(_row);
+
+var _col = __webpack_require__(957);
+
+var _col2 = _interopRequireDefault(_col);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+exports.Row = _row2['default'];
+exports.Col = _col2['default'];
+
+/***/ }),
+
+/***/ 437:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _omit = __webpack_require__(34);
+
+var _omit2 = _interopRequireDefault(_omit);
+
+var _TextArea = __webpack_require__(438);
+
+var _TextArea2 = _interopRequireDefault(_TextArea);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function fixControlledValue(value) {
+    if (typeof value === 'undefined' || value === null) {
+        return '';
+    }
+    return value;
+}
+
+var Input = function (_Component) {
+    (0, _inherits3['default'])(Input, _Component);
+
+    function Input() {
+        (0, _classCallCheck3['default'])(this, Input);
+
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (Input.__proto__ || Object.getPrototypeOf(Input)).apply(this, arguments));
+
+        _this.handleKeyDown = function (e) {
+            var _this$props = _this.props,
+                onPressEnter = _this$props.onPressEnter,
+                onKeyDown = _this$props.onKeyDown;
+
+            if (e.keyCode === 13 && onPressEnter) {
+                onPressEnter(e);
+            }
+            if (onKeyDown) {
+                onKeyDown(e);
+            }
+        };
+        return _this;
+    }
+
+    (0, _createClass3['default'])(Input, [{
+        key: 'focus',
+        value: function focus() {
+            this.refs.input.focus();
+        }
+    }, {
+        key: 'blur',
+        value: function blur() {
+            this.refs.input.blur();
+        }
+    }, {
+        key: 'getInputClassName',
+        value: function getInputClassName() {
+            var _classNames;
+
+            var _props = this.props,
+                prefixCls = _props.prefixCls,
+                size = _props.size,
+                disabled = _props.disabled;
+
+            return (0, _classnames2['default'])(prefixCls, (_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-sm', size === 'small'), (0, _defineProperty3['default'])(_classNames, prefixCls + '-lg', size === 'large'), (0, _defineProperty3['default'])(_classNames, prefixCls + '-disabled', disabled), _classNames));
+        }
+    }, {
+        key: 'renderLabeledInput',
+        value: function renderLabeledInput(children) {
+            var props = this.props;
+            // Not wrap when there is not addons
+            if (!props.addonBefore && !props.addonAfter) {
+                return children;
+            }
+            var wrapperClassName = props.prefixCls + '-group';
+            var addonClassName = wrapperClassName + '-addon';
+            var addonBefore = props.addonBefore ? _react2['default'].createElement(
+                'span',
+                { className: addonClassName },
+                props.addonBefore
+            ) : null;
+            var addonAfter = props.addonAfter ? _react2['default'].createElement(
+                'span',
+                { className: addonClassName },
+                props.addonAfter
+            ) : null;
+            var className = (0, _classnames2['default'])(props.prefixCls + '-wrapper', (0, _defineProperty3['default'])({}, wrapperClassName, addonBefore || addonAfter));
+            // Need another wrapper for changing display:table to display:inline-block
+            // and put style prop in wrapper
+            if (addonBefore || addonAfter) {
+                return _react2['default'].createElement(
+                    'span',
+                    { className: props.prefixCls + '-group-wrapper', style: props.style },
+                    _react2['default'].createElement(
+                        'span',
+                        { className: className },
+                        addonBefore,
+                        (0, _react.cloneElement)(children, { style: null }),
+                        addonAfter
+                    )
+                );
+            }
+            return _react2['default'].createElement(
+                'span',
+                { className: className },
+                addonBefore,
+                children,
+                addonAfter
+            );
+        }
+    }, {
+        key: 'renderLabeledIcon',
+        value: function renderLabeledIcon(children) {
+            var props = this.props;
+
+            if (!('prefix' in props || 'suffix' in props)) {
+                return children;
+            }
+            var prefix = props.prefix ? _react2['default'].createElement(
+                'span',
+                { className: props.prefixCls + '-prefix' },
+                props.prefix
+            ) : null;
+            var suffix = props.suffix ? _react2['default'].createElement(
+                'span',
+                { className: props.prefixCls + '-suffix' },
+                props.suffix
+            ) : null;
+            return _react2['default'].createElement(
+                'span',
+                { className: (0, _classnames2['default'])(props.className, props.prefixCls + '-affix-wrapper'), style: props.style },
+                prefix,
+                (0, _react.cloneElement)(children, { style: null, className: this.getInputClassName() }),
+                suffix
+            );
+        }
+    }, {
+        key: 'renderInput',
+        value: function renderInput() {
+            var _props2 = this.props,
+                value = _props2.value,
+                className = _props2.className;
+            // Fix https://fb.me/react-unknown-prop
+
+            var otherProps = (0, _omit2['default'])(this.props, ['prefixCls', 'onPressEnter', 'addonBefore', 'addonAfter', 'prefix', 'suffix']);
+            if ('value' in this.props) {
+                otherProps.value = fixControlledValue(value);
+                // Input elements must be either controlled or uncontrolled,
+                // specify either the value prop, or the defaultValue prop, but not both.
+                delete otherProps.defaultValue;
+            }
+            return this.renderLabeledIcon(_react2['default'].createElement('input', (0, _extends3['default'])({}, otherProps, { className: (0, _classnames2['default'])(this.getInputClassName(), className), onKeyDown: this.handleKeyDown, ref: 'input' })));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            if (this.props.type === 'textarea') {
+                return _react2['default'].createElement(_TextArea2['default'], (0, _extends3['default'])({}, this.props, { ref: 'input' }));
+            }
+            return this.renderLabeledInput(this.renderInput());
+        }
+    }]);
+    return Input;
+}(_react.Component);
+
+exports['default'] = Input;
+
+Input.defaultProps = {
+    prefixCls: 'ant-input',
+    type: 'text',
+    disabled: false
+};
+Input.propTypes = {
+    type: _propTypes2['default'].string,
+    id: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].number]),
+    size: _propTypes2['default'].oneOf(['small', 'default', 'large']),
+    disabled: _propTypes2['default'].bool,
+    value: _propTypes2['default'].any,
+    defaultValue: _propTypes2['default'].any,
+    className: _propTypes2['default'].string,
+    addonBefore: _propTypes2['default'].node,
+    addonAfter: _propTypes2['default'].node,
+    prefixCls: _propTypes2['default'].string,
+    autosize: _propTypes2['default'].oneOfType([_propTypes2['default'].bool, _propTypes2['default'].object]),
+    onPressEnter: _propTypes2['default'].func,
+    onKeyDown: _propTypes2['default'].func,
+    onFocus: _propTypes2['default'].func,
+    onBlur: _propTypes2['default'].func,
+    prefix: _propTypes2['default'].node,
+    suffix: _propTypes2['default'].node
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 438:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _omit = __webpack_require__(34);
+
+var _omit2 = _interopRequireDefault(_omit);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _calculateNodeHeight = __webpack_require__(961);
+
+var _calculateNodeHeight2 = _interopRequireDefault(_calculateNodeHeight);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function onNextFrame(cb) {
+    if (window.requestAnimationFrame) {
+        return window.requestAnimationFrame(cb);
+    }
+    return window.setTimeout(cb, 1);
+}
+function clearNextFrameAction(nextFrameId) {
+    if (window.cancelAnimationFrame) {
+        window.cancelAnimationFrame(nextFrameId);
+    } else {
+        window.clearTimeout(nextFrameId);
+    }
+}
+
+var TextArea = function (_React$Component) {
+    (0, _inherits3['default'])(TextArea, _React$Component);
+
+    function TextArea() {
+        (0, _classCallCheck3['default'])(this, TextArea);
+
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (TextArea.__proto__ || Object.getPrototypeOf(TextArea)).apply(this, arguments));
+
+        _this.state = {
+            textareaStyles: null
+        };
+        _this.resizeTextarea = function () {
+            var autosize = _this.props.autosize;
+
+            if (!autosize || !_this.textAreaRef) {
+                return;
+            }
+            var minRows = autosize ? autosize.minRows : null;
+            var maxRows = autosize ? autosize.maxRows : null;
+            var textareaStyles = (0, _calculateNodeHeight2['default'])(_this.textAreaRef, false, minRows, maxRows);
+            _this.setState({ textareaStyles: textareaStyles });
+        };
+        _this.handleTextareaChange = function (e) {
+            if (!('value' in _this.props)) {
+                _this.resizeTextarea();
+            }
+            var onChange = _this.props.onChange;
+
+            if (onChange) {
+                onChange(e);
+            }
+        };
+        _this.handleKeyDown = function (e) {
+            var _this$props = _this.props,
+                onPressEnter = _this$props.onPressEnter,
+                onKeyDown = _this$props.onKeyDown;
+
+            if (e.keyCode === 13 && onPressEnter) {
+                onPressEnter(e);
+            }
+            if (onKeyDown) {
+                onKeyDown(e);
+            }
+        };
+        _this.saveTextAreaRef = function (textArea) {
+            _this.textAreaRef = textArea;
+        };
+        return _this;
+    }
+
+    (0, _createClass3['default'])(TextArea, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.resizeTextarea();
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            // Re-render with the new content then recalculate the height as required.
+            if (this.props.value !== nextProps.value) {
+                if (this.nextFrameActionId) {
+                    clearNextFrameAction(this.nextFrameActionId);
+                }
+                this.nextFrameActionId = onNextFrame(this.resizeTextarea);
+            }
+        }
+    }, {
+        key: 'focus',
+        value: function focus() {
+            this.textAreaRef.focus();
+        }
+    }, {
+        key: 'blur',
+        value: function blur() {
+            this.textAreaRef.blur();
+        }
+    }, {
+        key: 'getTextAreaClassName',
+        value: function getTextAreaClassName() {
+            var _props = this.props,
+                prefixCls = _props.prefixCls,
+                className = _props.className,
+                disabled = _props.disabled;
+
+            return (0, _classnames2['default'])(prefixCls, className, (0, _defineProperty3['default'])({}, prefixCls + '-disabled', disabled));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var props = this.props;
+            var otherProps = (0, _omit2['default'])(props, ['prefixCls', 'onPressEnter', 'autosize']);
+            var style = (0, _extends3['default'])({}, props.style, this.state.textareaStyles);
+            // Fix https://github.com/ant-design/ant-design/issues/6776
+            // Make sure it could be reset when using form.getFieldDecorator
+            if ('value' in otherProps) {
+                otherProps.value = otherProps.value || '';
+            }
+            return _react2['default'].createElement('textarea', (0, _extends3['default'])({}, otherProps, { className: this.getTextAreaClassName(), style: style, onKeyDown: this.handleKeyDown, onChange: this.handleTextareaChange, ref: this.saveTextAreaRef }));
+        }
+    }]);
+    return TextArea;
+}(_react2['default'].Component);
+
+exports['default'] = TextArea;
+
+TextArea.defaultProps = {
+    prefixCls: 'ant-input'
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 439:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var locale = {
+    placeholder: '请选择时间'
+};
+exports['default'] = locale;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 441:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _button = __webpack_require__(949);
+
+Object.defineProperty(exports, 'Button', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_button).default;
+  }
+});
+
+var _col = __webpack_require__(950);
+
+Object.defineProperty(exports, 'Col', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_col).default;
+  }
+});
+
+var _datePicker = __webpack_require__(954);
+
+Object.defineProperty(exports, 'DatePicker', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_datePicker).default;
+  }
+});
+
+var _input = __webpack_require__(962);
+
+Object.defineProperty(exports, 'Input', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_input).default;
+  }
+});
+
+var _row = __webpack_require__(964);
+
+Object.defineProperty(exports, 'Row', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_row).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+
+/***/ 442:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var AppI18n = {
+    HOME_PAGE: {
+        cn: '主页',
+        en: 'Home Page'
+    },
+    TAXI_DISTRIBUTION: {
+        cn: "分布",
+        en: "Taxi Distribution"
+    },
+    TRACE_DISPLAY: {
+        cn: "轨迹回放",
+        en: "Trace Display"
+    },
+    SEARCH: {
+        cn: "查询",
+        en: "Search"
+    }
+};
+
+exports.default = AppI18n;
+
+/***/ }),
+
+/***/ 443:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+   value: true
+});
+exports.info = undefined;
+
+var _info = __webpack_require__(1649);
+
+var _info2 = _interopRequireDefault(_info);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var config = {
+   traceTime: 5000,
+   traceLevel: 1,
+   info: _info2.default
+};
+
+exports.info = _info2.default;
+exports.default = config;
+
+/***/ }),
+
+/***/ 444:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.setNameSpace = setNameSpace;
+exports.getClassSet = getClassSet;
+var namespace = 'wind-taxi';
+
+// Get classname width namespace.
+function setNameSpace(className) {
+    return namespace + "-" + className;
+}
+
+// Set class array namespace.
+function getClassSet(classNames) {
+    return classNames.filter(function (c) {
+        return !!c;
+    }).map(function (c) {
+        return setNameSpace(c);
+    }).join(" ").trim();
+}
+
+/***/ }),
+
+/***/ 747:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _KeyCode = __webpack_require__(99);
+
+var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+var _MonthPanel = __webpack_require__(752);
+
+var _MonthPanel2 = _interopRequireDefault(_MonthPanel);
+
+var _CalendarMixin = __webpack_require__(1761);
+
+var _CalendarMixin2 = _interopRequireDefault(_CalendarMixin);
+
+var _CommonMixin = __webpack_require__(751);
+
+var _CommonMixin2 = _interopRequireDefault(_CommonMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var MonthCalendar = (0, _createReactClass2['default'])({
+  displayName: 'MonthCalendar',
+
+  propTypes: {
+    monthCellRender: _propTypes2['default'].func,
+    dateCellRender: _propTypes2['default'].func
+  },
+  mixins: [_CommonMixin2['default'], _CalendarMixin2['default']],
+
+  onKeyDown: function onKeyDown(event) {
+    var keyCode = event.keyCode;
+    var ctrlKey = event.ctrlKey || event.metaKey;
+    var stateValue = this.state.value;
+    var disabledDate = this.props.disabledDate;
+
+    var value = stateValue;
+    switch (keyCode) {
+      case _KeyCode2['default'].DOWN:
+        value = stateValue.clone();
+        value.add(3, 'months');
+        break;
+      case _KeyCode2['default'].UP:
+        value = stateValue.clone();
+        value.add(-3, 'months');
+        break;
+      case _KeyCode2['default'].LEFT:
+        value = stateValue.clone();
+        if (ctrlKey) {
+          value.add(-1, 'years');
+        } else {
+          value.add(-1, 'months');
+        }
+        break;
+      case _KeyCode2['default'].RIGHT:
+        value = stateValue.clone();
+        if (ctrlKey) {
+          value.add(1, 'years');
+        } else {
+          value.add(1, 'months');
+        }
+        break;
+      case _KeyCode2['default'].ENTER:
+        if (!disabledDate || !disabledDate(stateValue)) {
+          this.onSelect(stateValue);
+        }
+        event.preventDefault();
+        return 1;
+      default:
+        return undefined;
+    }
+    if (value !== stateValue) {
+      this.setValue(value);
+      event.preventDefault();
+      return 1;
+    }
+  },
+  render: function render() {
+    var props = this.props;
+    var children = _react2['default'].createElement(_MonthPanel2['default'], {
+      locale: props.locale,
+      disabledDate: props.disabledDate,
+      style: { position: 'relative' },
+      value: this.state.value,
+      cellRender: props.monthCellRender,
+      contentRender: props.monthCellContentRender,
+      rootPrefixCls: props.prefixCls,
+      onChange: this.setValue,
+      onSelect: this.onSelect
+    });
+    return this.renderRoot({
+      children: children
+    });
+  }
+});
+
+exports['default'] = MonthCalendar;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 748:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _createChainedFunction = __webpack_require__(785);
+
+var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+
+var _KeyCode = __webpack_require__(99);
+
+var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+var _placements = __webpack_require__(1763);
+
+var _placements2 = _interopRequireDefault(_placements);
+
+var _rcTrigger = __webpack_require__(86);
+
+var _rcTrigger2 = _interopRequireDefault(_rcTrigger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function noop() {}
+
+function refFn(field, component) {
+  this[field] = component;
+}
+
+var Picker = (0, _createReactClass2['default'])({
+  displayName: 'Picker',
+
+  propTypes: {
+    animation: _propTypes2['default'].oneOfType([_propTypes2['default'].func, _propTypes2['default'].string]),
+    disabled: _propTypes2['default'].bool,
+    transitionName: _propTypes2['default'].string,
+    onChange: _propTypes2['default'].func,
+    onOpenChange: _propTypes2['default'].func,
+    children: _propTypes2['default'].func,
+    getCalendarContainer: _propTypes2['default'].func,
+    calendar: _propTypes2['default'].element,
+    style: _propTypes2['default'].object,
+    open: _propTypes2['default'].bool,
+    defaultOpen: _propTypes2['default'].bool,
+    prefixCls: _propTypes2['default'].string,
+    placement: _propTypes2['default'].any,
+    value: _propTypes2['default'].oneOfType([_propTypes2['default'].object, _propTypes2['default'].array]),
+    defaultValue: _propTypes2['default'].oneOfType([_propTypes2['default'].object, _propTypes2['default'].array]),
+    align: _propTypes2['default'].object
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      prefixCls: 'rc-calendar-picker',
+      style: {},
+      align: {},
+      placement: 'bottomLeft',
+      defaultOpen: false,
+      onChange: noop,
+      onOpenChange: noop
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    var open = void 0;
+    if ('open' in props) {
+      open = props.open;
+    } else {
+      open = props.defaultOpen;
+    }
+    var value = props.value || props.defaultValue;
+    this.saveCalendarRef = refFn.bind(this, 'calendarInstance');
+    return {
+      open: open,
+      value: value
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    var value = nextProps.value,
+        open = nextProps.open;
+
+    if ('value' in nextProps) {
+      this.setState({
+        value: value
+      });
+    }
+    if (open !== undefined) {
+      this.setState({
+        open: open
+      });
+    }
+  },
+  componentDidUpdate: function componentDidUpdate(_, prevState) {
+    if (!prevState.open && this.state.open) {
+      // setTimeout is for making sure saveCalendarRef happen before focusCalendar
+      this.focusTimeout = setTimeout(this.focusCalendar, 0, this);
+    }
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    clearTimeout(this.focusTimeout);
+  },
+  onCalendarKeyDown: function onCalendarKeyDown(event) {
+    if (event.keyCode === _KeyCode2['default'].ESC) {
+      event.stopPropagation();
+      this.close(this.focus);
+    }
+  },
+  onCalendarSelect: function onCalendarSelect(value) {
+    var cause = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var props = this.props;
+    if (!('value' in props)) {
+      this.setState({
+        value: value
+      });
+    }
+    if (cause.source === 'keyboard' || !props.calendar.props.timePicker && cause.source !== 'dateInput' || cause.source === 'todayButton') {
+      this.close(this.focus);
+    }
+    props.onChange(value);
+  },
+  onKeyDown: function onKeyDown(event) {
+    if (event.keyCode === _KeyCode2['default'].DOWN && !this.state.open) {
+      this.open();
+      event.preventDefault();
+    }
+  },
+  onCalendarOk: function onCalendarOk() {
+    this.close(this.focus);
+  },
+  onCalendarClear: function onCalendarClear() {
+    this.close(this.focus);
+  },
+  onVisibleChange: function onVisibleChange(open) {
+    this.setOpen(open);
+  },
+  getCalendarElement: function getCalendarElement() {
+    var props = this.props;
+    var state = this.state;
+    var calendarProps = props.calendar.props;
+    var value = state.value;
+
+    var defaultValue = value;
+    var extraProps = {
+      ref: this.saveCalendarRef,
+      defaultValue: defaultValue || calendarProps.defaultValue,
+      selectedValue: value,
+      onKeyDown: this.onCalendarKeyDown,
+      onOk: (0, _createChainedFunction2['default'])(calendarProps.onOk, this.onCalendarOk),
+      onSelect: (0, _createChainedFunction2['default'])(calendarProps.onSelect, this.onCalendarSelect),
+      onClear: (0, _createChainedFunction2['default'])(calendarProps.onClear, this.onCalendarClear)
+    };
+
+    return _react2['default'].cloneElement(props.calendar, extraProps);
+  },
+  setOpen: function setOpen(open, callback) {
+    var onOpenChange = this.props.onOpenChange;
+
+    if (this.state.open !== open) {
+      if (!('open' in this.props)) {
+        this.setState({
+          open: open
+        }, callback);
+      }
+      onOpenChange(open);
+    }
+  },
+  open: function open(callback) {
+    this.setOpen(true, callback);
+  },
+  close: function close(callback) {
+    this.setOpen(false, callback);
+  },
+  focus: function focus() {
+    if (!this.state.open) {
+      _reactDom2['default'].findDOMNode(this).focus();
+    }
+  },
+  focusCalendar: function focusCalendar() {
+    if (this.state.open && this.calendarInstance !== null) {
+      this.calendarInstance.focus();
+    }
+  },
+  render: function render() {
+    var props = this.props;
+    var prefixCls = props.prefixCls,
+        placement = props.placement,
+        style = props.style,
+        getCalendarContainer = props.getCalendarContainer,
+        align = props.align,
+        animation = props.animation,
+        disabled = props.disabled,
+        transitionName = props.transitionName,
+        children = props.children;
+
+    var state = this.state;
+    return _react2['default'].createElement(
+      _rcTrigger2['default'],
+      {
+        popup: this.getCalendarElement(),
+        popupAlign: align,
+        builtinPlacements: _placements2['default'],
+        popupPlacement: placement,
+        action: disabled && !state.open ? [] : ['click'],
+        destroyPopupOnHide: true,
+        getPopupContainer: getCalendarContainer,
+        popupStyle: style,
+        popupAnimation: animation,
+        popupTransitionName: transitionName,
+        popupVisible: state.open,
+        onPopupVisibleChange: this.onVisibleChange,
+        prefixCls: prefixCls
+      },
+      _react2['default'].cloneElement(children(state, props), { onKeyDown: this.onKeyDown })
+    );
+  }
+});
+
+exports['default'] = Picker;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 749:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = {
+  DATE_ROW_COUNT: 6,
+  DATE_COL_COUNT: 7
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 750:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports['default'] = {
+  today: '今天',
+  now: '此刻',
+  backToToday: '返回今天',
+  ok: '确定',
+  timeSelect: '选择时间',
+  dateSelect: '选择日期',
+  clear: '清除',
+  month: '月',
+  year: '年',
+  previousMonth: '上个月 (翻页上键)',
+  nextMonth: '下个月 (翻页下键)',
+  monthSelect: '选择月份',
+  yearSelect: '选择年份',
+  decadeSelect: '选择年代',
+  yearFormat: 'YYYY年',
+  dayFormat: 'D日',
+  dateFormat: 'YYYY年M月D日',
+  dateTimeFormat: 'YYYY年M月D日 HH时mm分ss秒',
+  previousYear: '上一年 (Control键加左方向键)',
+  nextYear: '下一年 (Control键加右方向键)',
+  previousDecade: '上一年代',
+  nextDecade: '下一年代',
+  previousCentury: '上一世纪',
+  nextCentury: '下一世纪'
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 751:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _en_US = __webpack_require__(1760);
+
+var _en_US2 = _interopRequireDefault(_en_US);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function noop() {}
+
+exports['default'] = {
+  propTypes: {
+    className: _propTypes2['default'].string,
+    locale: _propTypes2['default'].object,
+    style: _propTypes2['default'].object,
+    visible: _propTypes2['default'].bool,
+    onSelect: _propTypes2['default'].func,
+    prefixCls: _propTypes2['default'].string,
+    onChange: _propTypes2['default'].func,
+    onOk: _propTypes2['default'].func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      locale: _en_US2['default'],
+      style: {},
+      visible: true,
+      prefixCls: 'rc-calendar',
+      className: '',
+      onSelect: noop,
+      onChange: noop,
+      onClear: noop,
+      renderFooter: function renderFooter() {
+        return null;
+      },
+      renderSidebar: function renderSidebar() {
+        return null;
+      }
+    };
+  },
+  shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
+    return this.props.visible || nextProps.visible;
+  },
+  getFormat: function getFormat() {
+    var format = this.props.format;
+    var _props = this.props,
+        locale = _props.locale,
+        timePicker = _props.timePicker;
+
+    if (!format) {
+      if (timePicker) {
+        format = locale.dateTimeFormat;
+      } else {
+        format = locale.dateFormat;
+      }
+    }
+    return format;
+  },
+  focus: function focus() {
+    if (this.rootInstance) {
+      this.rootInstance.focus();
+    }
+  },
+  saveRoot: function saveRoot(root) {
+    this.rootInstance = root;
+  }
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 752:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _createReactClass = __webpack_require__(18);
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _YearPanel = __webpack_require__(753);
+
+var _YearPanel2 = _interopRequireDefault(_YearPanel);
+
+var _MonthTable = __webpack_require__(1762);
+
+var _MonthTable2 = _interopRequireDefault(_MonthTable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function goYear(direction) {
+  var next = this.state.value.clone();
+  next.add(direction, 'year');
+  this.setAndChangeValue(next);
+}
+
+function noop() {}
+
+var MonthPanel = (0, _createReactClass2['default'])({
+  displayName: 'MonthPanel',
+
+  propTypes: {
+    onChange: _propTypes2['default'].func,
+    disabledDate: _propTypes2['default'].func,
+    onSelect: _propTypes2['default'].func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      onChange: noop,
+      onSelect: noop
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    // bind methods
+    this.nextYear = goYear.bind(this, 1);
+    this.previousYear = goYear.bind(this, -1);
+    this.prefixCls = props.rootPrefixCls + '-month-panel';
+    return {
+      value: props.value || props.defaultValue
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    if ('value' in nextProps) {
+      this.setState({
+        value: nextProps.value
+      });
+    }
+  },
+  onYearPanelSelect: function onYearPanelSelect(current) {
+    this.setState({
+      showYearPanel: 0
+    });
+    this.setAndChangeValue(current);
+  },
+  setAndChangeValue: function setAndChangeValue(value) {
+    this.setValue(value);
+    this.props.onChange(value);
+  },
+  setAndSelectValue: function setAndSelectValue(value) {
+    this.setValue(value);
+    this.props.onSelect(value);
+  },
+  setValue: function setValue(value) {
+    if (!('value' in this.props)) {
+      this.setState({
+        value: value
+      });
+    }
+  },
+  showYearPanel: function showYearPanel() {
+    this.setState({
+      showYearPanel: 1
+    });
+  },
+  render: function render() {
+    var props = this.props;
+    var value = this.state.value;
+    var cellRender = props.cellRender;
+    var contentRender = props.contentRender;
+    var locale = props.locale;
+    var year = value.year();
+    var prefixCls = this.prefixCls;
+    var yearPanel = void 0;
+    if (this.state.showYearPanel) {
+      yearPanel = _react2['default'].createElement(_YearPanel2['default'], {
+        locale: locale,
+        value: value,
+        rootPrefixCls: props.rootPrefixCls,
+        onSelect: this.onYearPanelSelect
+      });
+    }
+    return _react2['default'].createElement(
+      'div',
+      { className: prefixCls, style: props.style },
+      _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(
+          'div',
+          { className: prefixCls + '-header' },
+          _react2['default'].createElement('a', {
+            className: prefixCls + '-prev-year-btn',
+            role: 'button',
+            onClick: this.previousYear,
+            title: locale.previousYear
+          }),
+          _react2['default'].createElement(
+            'a',
+            {
+              className: prefixCls + '-year-select',
+              role: 'button',
+              onClick: this.showYearPanel,
+              title: locale.yearSelect
+            },
+            _react2['default'].createElement(
+              'span',
+              { className: prefixCls + '-year-select-content' },
+              year
+            ),
+            _react2['default'].createElement(
+              'span',
+              { className: prefixCls + '-year-select-arrow' },
+              'x'
+            )
+          ),
+          _react2['default'].createElement('a', {
+            className: prefixCls + '-next-year-btn',
+            role: 'button',
+            onClick: this.nextYear,
+            title: locale.nextYear
+          })
+        ),
+        _react2['default'].createElement(
+          'div',
+          { className: prefixCls + '-body' },
+          _react2['default'].createElement(_MonthTable2['default'], {
+            disabledDate: props.disabledDate,
+            onSelect: this.setAndSelectValue,
+            locale: locale,
+            value: value,
+            cellRender: cellRender,
+            contentRender: contentRender,
+            prefixCls: prefixCls
+          })
+        )
+      ),
+      yearPanel
+    );
+  }
+});
+
+exports['default'] = MonthPanel;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 753:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _DecadePanel = __webpack_require__(1759);
+
+var _DecadePanel2 = _interopRequireDefault(_DecadePanel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var ROW = 4;
+var COL = 3;
+
+function goYear(direction) {
+  var value = this.state.value.clone();
+  value.add(direction, 'year');
+  this.setState({
+    value: value
+  });
+}
+
+function chooseYear(year) {
+  var value = this.state.value.clone();
+  value.year(year);
+  value.month(this.state.value.month());
+  this.props.onSelect(value);
+}
+
+var YearPanel = function (_React$Component) {
+  (0, _inherits3['default'])(YearPanel, _React$Component);
+
+  function YearPanel(props) {
+    (0, _classCallCheck3['default'])(this, YearPanel);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, (YearPanel.__proto__ || Object.getPrototypeOf(YearPanel)).call(this, props));
+
+    _this.prefixCls = props.rootPrefixCls + '-year-panel';
+    _this.state = {
+      value: props.value || props.defaultValue
+    };
+    _this.nextDecade = goYear.bind(_this, 10);
+    _this.previousDecade = goYear.bind(_this, -10);
+    ['showDecadePanel', 'onDecadePanelSelect'].forEach(function (method) {
+      _this[method] = _this[method].bind(_this);
+    });
+    return _this;
+  }
+
+  (0, _createClass3['default'])(YearPanel, [{
+    key: 'onDecadePanelSelect',
+    value: function onDecadePanelSelect(current) {
+      this.setState({
+        value: current,
+        showDecadePanel: 0
+      });
+    }
+  }, {
+    key: 'years',
+    value: function years() {
+      var value = this.state.value;
+      var currentYear = value.year();
+      var startYear = parseInt(currentYear / 10, 10) * 10;
+      var previousYear = startYear - 1;
+      var years = [];
+      var index = 0;
+      for (var rowIndex = 0; rowIndex < ROW; rowIndex++) {
+        years[rowIndex] = [];
+        for (var colIndex = 0; colIndex < COL; colIndex++) {
+          var year = previousYear + index;
+          var content = String(year);
+          years[rowIndex][colIndex] = {
+            content: content,
+            year: year,
+            title: content
+          };
+          index++;
+        }
+      }
+      return years;
+    }
+  }, {
+    key: 'showDecadePanel',
+    value: function showDecadePanel() {
+      this.setState({
+        showDecadePanel: 1
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var props = this.props;
+      var value = this.state.value;
+      var locale = props.locale;
+      var years = this.years();
+      var currentYear = value.year();
+      var startYear = parseInt(currentYear / 10, 10) * 10;
+      var endYear = startYear + 9;
+      var prefixCls = this.prefixCls;
+
+      var yeasEls = years.map(function (row, index) {
+        var tds = row.map(function (yearData) {
+          var _classNameMap;
+
+          var classNameMap = (_classNameMap = {}, (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-cell', 1), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-selected-cell', yearData.year === currentYear), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-last-decade-cell', yearData.year < startYear), (0, _defineProperty3['default'])(_classNameMap, prefixCls + '-next-decade-cell', yearData.year > endYear), _classNameMap);
+          var clickHandler = void 0;
+          if (yearData.year < startYear) {
+            clickHandler = _this2.previousDecade;
+          } else if (yearData.year > endYear) {
+            clickHandler = _this2.nextDecade;
+          } else {
+            clickHandler = chooseYear.bind(_this2, yearData.year);
+          }
+          return _react2['default'].createElement(
+            'td',
+            {
+              role: 'gridcell',
+              title: yearData.title,
+              key: yearData.content,
+              onClick: clickHandler,
+              className: (0, _classnames2['default'])(classNameMap)
+            },
+            _react2['default'].createElement(
+              'a',
+              {
+                className: prefixCls + '-year'
+              },
+              yearData.content
+            )
+          );
+        });
+        return _react2['default'].createElement(
+          'tr',
+          { key: index, role: 'row' },
+          tds
+        );
+      });
+
+      var decadePanel = void 0;
+      if (this.state.showDecadePanel) {
+        decadePanel = _react2['default'].createElement(_DecadePanel2['default'], {
+          locale: locale,
+          value: value,
+          rootPrefixCls: props.rootPrefixCls,
+          onSelect: this.onDecadePanelSelect
+        });
+      }
+
+      return _react2['default'].createElement(
+        'div',
+        { className: this.prefixCls },
+        _react2['default'].createElement(
+          'div',
+          null,
+          _react2['default'].createElement(
+            'div',
+            { className: prefixCls + '-header' },
+            _react2['default'].createElement('a', {
+              className: prefixCls + '-prev-decade-btn',
+              role: 'button',
+              onClick: this.previousDecade,
+              title: locale.previousDecade
+            }),
+            _react2['default'].createElement(
+              'a',
+              {
+                className: prefixCls + '-decade-select',
+                role: 'button',
+                onClick: this.showDecadePanel,
+                title: locale.decadeSelect
+              },
+              _react2['default'].createElement(
+                'span',
+                { className: prefixCls + '-decade-select-content' },
+                startYear,
+                '-',
+                endYear
+              ),
+              _react2['default'].createElement(
+                'span',
+                { className: prefixCls + '-decade-select-arrow' },
+                'x'
+              )
+            ),
+            _react2['default'].createElement('a', {
+              className: prefixCls + '-next-decade-btn',
+              role: 'button',
+              onClick: this.nextDecade,
+              title: locale.nextDecade
+            })
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: prefixCls + '-body' },
+            _react2['default'].createElement(
+              'table',
+              { className: prefixCls + '-table', cellSpacing: '0', role: 'grid' },
+              _react2['default'].createElement(
+                'tbody',
+                { className: prefixCls + '-tbody' },
+                yeasEls
+              )
+            )
+          )
+        ),
+        decadePanel
+      );
+    }
+  }]);
+  return YearPanel;
+}(_react2['default'].Component);
+
+exports['default'] = YearPanel;
+
+
+YearPanel.propTypes = {
+  rootPrefixCls: _propTypes2['default'].string,
+  value: _propTypes2['default'].object,
+  defaultValue: _propTypes2['default'].object
+};
+
+YearPanel.defaultProps = {
+  onSelect: function onSelect() {}
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 774:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Header = __webpack_require__(1865);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Combobox = __webpack_require__(1864);
+
+var _Combobox2 = _interopRequireDefault(_Combobox);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function noop() {}
+
+function generateOptions(length, disabledOptions, hideDisabledOptions) {
+  var arr = [];
+  for (var value = 0; value < length; value++) {
+    if (!disabledOptions || disabledOptions.indexOf(value) < 0 || !hideDisabledOptions) {
+      arr.push(value);
+    }
+  }
+  return arr;
+}
+
+var Panel = function (_Component) {
+  (0, _inherits3['default'])(Panel, _Component);
+
+  function Panel(props) {
+    (0, _classCallCheck3['default'])(this, Panel);
+
+    var _this = (0, _possibleConstructorReturn3['default'])(this, (Panel.__proto__ || Object.getPrototypeOf(Panel)).call(this, props));
+
+    _this.onChange = function (newValue) {
+      _this.setState({ value: newValue });
+      _this.props.onChange(newValue);
+    };
+
+    _this.onCurrentSelectPanelChange = function (currentSelectPanel) {
+      _this.setState({ currentSelectPanel: currentSelectPanel });
+    };
+
+    _this.state = {
+      value: props.value,
+      selectionRange: []
+    };
+    return _this;
+  }
+
+  (0, _createClass3['default'])(Panel, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var value = nextProps.value;
+      if (value) {
+        this.setState({
+          value: value
+        });
+      }
+    }
+  }, {
+    key: 'close',
+
+
+    // https://github.com/ant-design/ant-design/issues/5829
+    value: function close() {
+      this.props.onEsc();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _classNames;
+
+      var _props = this.props,
+          prefixCls = _props.prefixCls,
+          className = _props.className,
+          placeholder = _props.placeholder,
+          disabledHours = _props.disabledHours,
+          disabledMinutes = _props.disabledMinutes,
+          disabledSeconds = _props.disabledSeconds,
+          hideDisabledOptions = _props.hideDisabledOptions,
+          allowEmpty = _props.allowEmpty,
+          showHour = _props.showHour,
+          showMinute = _props.showMinute,
+          showSecond = _props.showSecond,
+          format = _props.format,
+          defaultOpenValue = _props.defaultOpenValue,
+          clearText = _props.clearText,
+          onEsc = _props.onEsc,
+          addon = _props.addon,
+          use12Hours = _props.use12Hours,
+          onClear = _props.onClear;
+      var _state = this.state,
+          value = _state.value,
+          currentSelectPanel = _state.currentSelectPanel;
+
+      var disabledHourOptions = disabledHours();
+      var disabledMinuteOptions = disabledMinutes(value ? value.hour() : null);
+      var disabledSecondOptions = disabledSeconds(value ? value.hour() : null, value ? value.minute() : null);
+      var hourOptions = generateOptions(24, disabledHourOptions, hideDisabledOptions);
+      var minuteOptions = generateOptions(60, disabledMinuteOptions, hideDisabledOptions);
+      var secondOptions = generateOptions(60, disabledSecondOptions, hideDisabledOptions);
+
+      return _react2['default'].createElement(
+        'div',
+        { className: (0, _classnames2['default'])((_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-inner', true), (0, _defineProperty3['default'])(_classNames, className, !!className), _classNames)) },
+        _react2['default'].createElement(_Header2['default'], {
+          clearText: clearText,
+          prefixCls: prefixCls,
+          defaultOpenValue: defaultOpenValue,
+          value: value,
+          currentSelectPanel: currentSelectPanel,
+          onEsc: onEsc,
+          format: format,
+          placeholder: placeholder,
+          hourOptions: hourOptions,
+          minuteOptions: minuteOptions,
+          secondOptions: secondOptions,
+          disabledHours: disabledHours,
+          disabledMinutes: disabledMinutes,
+          disabledSeconds: disabledSeconds,
+          onChange: this.onChange,
+          onClear: onClear,
+          allowEmpty: allowEmpty
+        }),
+        _react2['default'].createElement(_Combobox2['default'], {
+          prefixCls: prefixCls,
+          value: value,
+          defaultOpenValue: defaultOpenValue,
+          format: format,
+          onChange: this.onChange,
+          showHour: showHour,
+          showMinute: showMinute,
+          showSecond: showSecond,
+          hourOptions: hourOptions,
+          minuteOptions: minuteOptions,
+          secondOptions: secondOptions,
+          disabledHours: disabledHours,
+          disabledMinutes: disabledMinutes,
+          disabledSeconds: disabledSeconds,
+          onCurrentSelectPanelChange: this.onCurrentSelectPanelChange,
+          use12Hours: use12Hours
+        }),
+        addon(this)
+      );
+    }
+  }]);
+  return Panel;
+}(_react.Component);
+
+Panel.propTypes = {
+  clearText: _propTypes2['default'].string,
+  prefixCls: _propTypes2['default'].string,
+  className: _propTypes2['default'].string,
+  defaultOpenValue: _propTypes2['default'].object,
+  value: _propTypes2['default'].object,
+  placeholder: _propTypes2['default'].string,
+  format: _propTypes2['default'].string,
+  disabledHours: _propTypes2['default'].func,
+  disabledMinutes: _propTypes2['default'].func,
+  disabledSeconds: _propTypes2['default'].func,
+  hideDisabledOptions: _propTypes2['default'].bool,
+  onChange: _propTypes2['default'].func,
+  onEsc: _propTypes2['default'].func,
+  allowEmpty: _propTypes2['default'].bool,
+  showHour: _propTypes2['default'].bool,
+  showMinute: _propTypes2['default'].bool,
+  showSecond: _propTypes2['default'].bool,
+  onClear: _propTypes2['default'].func,
+  use12Hours: _propTypes2['default'].bool,
+  addon: _propTypes2['default'].func
+};
+Panel.defaultProps = {
+  prefixCls: 'rc-time-picker-panel',
+  onChange: noop,
+  onClear: noop,
+  disabledHours: noop,
+  disabledMinutes: noop,
+  disabledSeconds: noop,
+  defaultOpenValue: (0, _moment2['default'])(),
+  use12Hours: false,
+  addon: noop
+};
+exports['default'] = Panel;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 834:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module zrender/Element
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+    'use strict';
+
+    var guid = __webpack_require__(840);
+    var Eventful = __webpack_require__(255);
+    var Transformable = __webpack_require__(2051);
+    var Animatable = __webpack_require__(2049);
+    var zrUtil = __webpack_require__(40);
+
+    /**
+     * @alias module:zrender/Element
+     * @constructor
+     * @extends {module:zrender/mixin/Animatable}
+     * @extends {module:zrender/mixin/Transformable}
+     * @extends {module:zrender/mixin/Eventful}
+     */
+    var Element = function (opts) {
+
+        Transformable.call(this, opts);
+        Eventful.call(this, opts);
+        Animatable.call(this, opts);
+
+        /**
+         * 画布元素ID
+         * @type {string}
+         */
+        this.id = opts.id || guid();
+    };
+
+    Element.prototype = {
+
+        /**
+         * 元素类型
+         * Element type
+         * @type {string}
+         */
+        type: 'element',
+
+        /**
+         * 元素名字
+         * Element name
+         * @type {string}
+         */
+        name: '',
+
+        /**
+         * ZRender 实例对象，会在 element 添加到 zrender 实例中后自动赋值
+         * ZRender instance will be assigned when element is associated with zrender
+         * @name module:/zrender/Element#__zr
+         * @type {module:zrender/ZRender}
+         */
+        __zr: null,
+
+        /**
+         * 图形是否忽略，为true时忽略图形的绘制以及事件触发
+         * If ignore drawing and events of the element object
+         * @name module:/zrender/Element#ignore
+         * @type {boolean}
+         * @default false
+         */
+        ignore: false,
+
+        /**
+         * 用于裁剪的路径(shape)，所有 Group 内的路径在绘制时都会被这个路径裁剪
+         * 该路径会继承被裁减对象的变换
+         * @type {module:zrender/graphic/Path}
+         * @see http://www.w3.org/TR/2dcontext/#clipping-region
+         * @readOnly
+         */
+        clipPath: null,
+
+        /**
+         * Drift element
+         * @param  {number} dx dx on the global space
+         * @param  {number} dy dy on the global space
+         */
+        drift: function (dx, dy) {
+            switch (this.draggable) {
+                case 'horizontal':
+                    dy = 0;
+                    break;
+                case 'vertical':
+                    dx = 0;
+                    break;
+            }
+
+            var m = this.transform;
+            if (!m) {
+                m = this.transform = [1, 0, 0, 1, 0, 0];
+            }
+            m[4] += dx;
+            m[5] += dy;
+
+            this.decomposeTransform();
+            this.dirty(false);
+        },
+
+        /**
+         * Hook before update
+         */
+        beforeUpdate: function () {},
+        /**
+         * Hook after update
+         */
+        afterUpdate: function () {},
+        /**
+         * Update each frame
+         */
+        update: function () {
+            this.updateTransform();
+        },
+
+        /**
+         * @param  {Function} cb
+         * @param  {}   context
+         */
+        traverse: function (cb, context) {},
+
+        /**
+         * @protected
+         */
+        attrKV: function (key, value) {
+            if (key === 'position' || key === 'scale' || key === 'origin') {
+                // Copy the array
+                if (value) {
+                    var target = this[key];
+                    if (!target) {
+                        target = this[key] = [];
+                    }
+                    target[0] = value[0];
+                    target[1] = value[1];
+                }
+            }
+            else {
+                this[key] = value;
+            }
+        },
+
+        /**
+         * Hide the element
+         */
+        hide: function () {
+            this.ignore = true;
+            this.__zr && this.__zr.refresh();
+        },
+
+        /**
+         * Show the element
+         */
+        show: function () {
+            this.ignore = false;
+            this.__zr && this.__zr.refresh();
+        },
+
+        /**
+         * @param {string|Object} key
+         * @param {*} value
+         */
+        attr: function (key, value) {
+            if (typeof key === 'string') {
+                this.attrKV(key, value);
+            }
+            else if (zrUtil.isObject(key)) {
+                for (var name in key) {
+                    if (key.hasOwnProperty(name)) {
+                        this.attrKV(name, key[name]);
+                    }
+                }
+            }
+
+            this.dirty(false);
+
+            return this;
+        },
+
+        /**
+         * @param {module:zrender/graphic/Path} clipPath
+         */
+        setClipPath: function (clipPath) {
+            var zr = this.__zr;
+            if (zr) {
+                clipPath.addSelfToZr(zr);
+            }
+
+            // Remove previous clip path
+            if (this.clipPath && this.clipPath !== clipPath) {
+                this.removeClipPath();
+            }
+
+            this.clipPath = clipPath;
+            clipPath.__zr = zr;
+            clipPath.__clipTarget = this;
+
+            this.dirty(false);
+        },
+
+        /**
+         */
+        removeClipPath: function () {
+            var clipPath = this.clipPath;
+            if (clipPath) {
+                if (clipPath.__zr) {
+                    clipPath.removeSelfFromZr(clipPath.__zr);
+                }
+
+                clipPath.__zr = null;
+                clipPath.__clipTarget = null;
+                this.clipPath = null;
+
+                this.dirty(false);
+            }
+        },
+
+        /**
+         * Add self from zrender instance.
+         * Not recursively because it will be invoked when element added to storage.
+         * @param {module:zrender/ZRender} zr
+         */
+        addSelfToZr: function (zr) {
+            this.__zr = zr;
+            // 添加动画
+            var animators = this.animators;
+            if (animators) {
+                for (var i = 0; i < animators.length; i++) {
+                    zr.animation.addAnimator(animators[i]);
+                }
+            }
+
+            if (this.clipPath) {
+                this.clipPath.addSelfToZr(zr);
+            }
+        },
+
+        /**
+         * Remove self from zrender instance.
+         * Not recursively because it will be invoked when element added to storage.
+         * @param {module:zrender/ZRender} zr
+         */
+        removeSelfFromZr: function (zr) {
+            this.__zr = null;
+            // 移除动画
+            var animators = this.animators;
+            if (animators) {
+                for (var i = 0; i < animators.length; i++) {
+                    zr.animation.removeAnimator(animators[i]);
+                }
+            }
+
+            if (this.clipPath) {
+                this.clipPath.removeSelfFromZr(zr);
+            }
+        }
+    };
+
+    zrUtil.mixin(Element, Animatable);
+    zrUtil.mixin(Element, Transformable);
+    zrUtil.mixin(Element, Eventful);
+
+    return Element;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 835:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module echarts/animation/Animator
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var Clip = __webpack_require__(2033);
+    var color = __webpack_require__(2052);
+    var util = __webpack_require__(40);
+    var isArrayLike = util.isArrayLike;
+
+    var arraySlice = Array.prototype.slice;
+
+    function defaultGetter(target, key) {
+        return target[key];
+    }
+
+    function defaultSetter(target, key, value) {
+        target[key] = value;
+    }
+
+    /**
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} percent
+     * @return {number}
+     */
+    function interpolateNumber(p0, p1, percent) {
+        return (p1 - p0) * percent + p0;
+    }
+
+    /**
+     * @param  {string} p0
+     * @param  {string} p1
+     * @param  {number} percent
+     * @return {string}
+     */
+    function interpolateString(p0, p1, percent) {
+        return percent > 0.5 ? p1 : p0;
+    }
+
+    /**
+     * @param  {Array} p0
+     * @param  {Array} p1
+     * @param  {number} percent
+     * @param  {Array} out
+     * @param  {number} arrDim
+     */
+    function interpolateArray(p0, p1, percent, out, arrDim) {
+        var len = p0.length;
+        if (arrDim == 1) {
+            for (var i = 0; i < len; i++) {
+                out[i] = interpolateNumber(p0[i], p1[i], percent);
+            }
+        }
+        else {
+            var len2 = len && p0[0].length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len2; j++) {
+                    out[i][j] = interpolateNumber(
+                        p0[i][j], p1[i][j], percent
+                    );
+                }
+            }
+        }
+    }
+
+    // arr0 is source array, arr1 is target array.
+    // Do some preprocess to avoid error happened when interpolating from arr0 to arr1
+    function fillArr(arr0, arr1, arrDim) {
+        var arr0Len = arr0.length;
+        var arr1Len = arr1.length;
+        if (arr0Len !== arr1Len) {
+            // FIXME Not work for TypedArray
+            var isPreviousLarger = arr0Len > arr1Len;
+            if (isPreviousLarger) {
+                // Cut the previous
+                arr0.length = arr1Len;
+            }
+            else {
+                // Fill the previous
+                for (var i = arr0Len; i < arr1Len; i++) {
+                    arr0.push(
+                        arrDim === 1 ? arr1[i] : arraySlice.call(arr1[i])
+                    );
+                }
+            }
+        }
+        // Handling NaN value
+        var len2 = arr0[0] && arr0[0].length;
+        for (var i = 0; i < arr0.length; i++) {
+            if (arrDim === 1) {
+                if (isNaN(arr0[i])) {
+                    arr0[i] = arr1[i];
+                }
+            }
+            else {
+                for (var j = 0; j < len2; j++) {
+                    if (isNaN(arr0[i][j])) {
+                        arr0[i][j] = arr1[i][j];
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @param  {Array} arr0
+     * @param  {Array} arr1
+     * @param  {number} arrDim
+     * @return {boolean}
+     */
+    function isArraySame(arr0, arr1, arrDim) {
+        if (arr0 === arr1) {
+            return true;
+        }
+        var len = arr0.length;
+        if (len !== arr1.length) {
+            return false;
+        }
+        if (arrDim === 1) {
+            for (var i = 0; i < len; i++) {
+                if (arr0[i] !== arr1[i]) {
+                    return false;
+                }
+            }
+        }
+        else {
+            var len2 = arr0[0].length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len2; j++) {
+                    if (arr0[i][j] !== arr1[i][j]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Catmull Rom interpolate array
+     * @param  {Array} p0
+     * @param  {Array} p1
+     * @param  {Array} p2
+     * @param  {Array} p3
+     * @param  {number} t
+     * @param  {number} t2
+     * @param  {number} t3
+     * @param  {Array} out
+     * @param  {number} arrDim
+     */
+    function catmullRomInterpolateArray(
+        p0, p1, p2, p3, t, t2, t3, out, arrDim
+    ) {
+        var len = p0.length;
+        if (arrDim == 1) {
+            for (var i = 0; i < len; i++) {
+                out[i] = catmullRomInterpolate(
+                    p0[i], p1[i], p2[i], p3[i], t, t2, t3
+                );
+            }
+        }
+        else {
+            var len2 = p0[0].length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len2; j++) {
+                    out[i][j] = catmullRomInterpolate(
+                        p0[i][j], p1[i][j], p2[i][j], p3[i][j],
+                        t, t2, t3
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Catmull Rom interpolate number
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {number} t
+     * @param  {number} t2
+     * @param  {number} t3
+     * @return {number}
+     */
+    function catmullRomInterpolate(p0, p1, p2, p3, t, t2, t3) {
+        var v0 = (p2 - p0) * 0.5;
+        var v1 = (p3 - p1) * 0.5;
+        return (2 * (p1 - p2) + v0 + v1) * t3
+                + (-3 * (p1 - p2) - 2 * v0 - v1) * t2
+                + v0 * t + p1;
+    }
+
+    function cloneValue(value) {
+        if (isArrayLike(value)) {
+            var len = value.length;
+            if (isArrayLike(value[0])) {
+                var ret = [];
+                for (var i = 0; i < len; i++) {
+                    ret.push(arraySlice.call(value[i]));
+                }
+                return ret;
+            }
+
+            return arraySlice.call(value);
+        }
+
+        return value;
+    }
+
+    function rgba2String(rgba) {
+        rgba[0] = Math.floor(rgba[0]);
+        rgba[1] = Math.floor(rgba[1]);
+        rgba[2] = Math.floor(rgba[2]);
+
+        return 'rgba(' + rgba.join(',') + ')';
+    }
+
+    function getArrayDim(keyframes) {
+        var lastValue = keyframes[keyframes.length - 1].value;
+        return isArrayLike(lastValue && lastValue[0]) ? 2 : 1;
+    }
+
+    function createTrackClip(animator, easing, oneTrackDone, keyframes, propName, forceAnimate) {
+        var getter = animator._getter;
+        var setter = animator._setter;
+        var useSpline = easing === 'spline';
+
+        var trackLen = keyframes.length;
+        if (!trackLen) {
+            return;
+        }
+        // Guess data type
+        var firstVal = keyframes[0].value;
+        var isValueArray = isArrayLike(firstVal);
+        var isValueColor = false;
+        var isValueString = false;
+
+        // For vertices morphing
+        var arrDim = isValueArray ? getArrayDim(keyframes) : 0;
+
+        var trackMaxTime;
+        // Sort keyframe as ascending
+        keyframes.sort(function(a, b) {
+            return a.time - b.time;
+        });
+
+        trackMaxTime = keyframes[trackLen - 1].time;
+        // Percents of each keyframe
+        var kfPercents = [];
+        // Value of each keyframe
+        var kfValues = [];
+        var prevValue = keyframes[0].value;
+        var isAllValueEqual = true;
+        for (var i = 0; i < trackLen; i++) {
+            kfPercents.push(keyframes[i].time / trackMaxTime);
+            // Assume value is a color when it is a string
+            var value = keyframes[i].value;
+
+            // Check if value is equal, deep check if value is array
+            if (!((isValueArray && isArraySame(value, prevValue, arrDim))
+                || (!isValueArray && value === prevValue))) {
+                isAllValueEqual = false;
+            }
+            prevValue = value;
+
+            // Try converting a string to a color array
+            if (typeof value == 'string') {
+                var colorArray = color.parse(value);
+                if (colorArray) {
+                    value = colorArray;
+                    isValueColor = true;
+                }
+                else {
+                    isValueString = true;
+                }
+            }
+            kfValues.push(value);
+        }
+        if (!forceAnimate && isAllValueEqual) {
+            return;
+        }
+
+        var lastValue = kfValues[trackLen - 1];
+        // Polyfill array and NaN value
+        for (var i = 0; i < trackLen - 1; i++) {
+            if (isValueArray) {
+                fillArr(kfValues[i], lastValue, arrDim);
+            }
+            else {
+                if (isNaN(kfValues[i]) && !isNaN(lastValue) && !isValueString && !isValueColor) {
+                    kfValues[i] = lastValue;
+                }
+            }
+        }
+        isValueArray && fillArr(getter(animator._target, propName), lastValue, arrDim);
+
+        // Cache the key of last frame to speed up when
+        // animation playback is sequency
+        var lastFrame = 0;
+        var lastFramePercent = 0;
+        var start;
+        var w;
+        var p0;
+        var p1;
+        var p2;
+        var p3;
+
+        if (isValueColor) {
+            var rgba = [0, 0, 0, 0];
+        }
+
+        var onframe = function (target, percent) {
+            // Find the range keyframes
+            // kf1-----kf2---------current--------kf3
+            // find kf2 and kf3 and do interpolation
+            var frame;
+            // In the easing function like elasticOut, percent may less than 0
+            if (percent < 0) {
+                frame = 0;
+            }
+            else if (percent < lastFramePercent) {
+                // Start from next key
+                // PENDING start from lastFrame ?
+                start = Math.min(lastFrame + 1, trackLen - 1);
+                for (frame = start; frame >= 0; frame--) {
+                    if (kfPercents[frame] <= percent) {
+                        break;
+                    }
+                }
+                // PENDING really need to do this ?
+                frame = Math.min(frame, trackLen - 2);
+            }
+            else {
+                for (frame = lastFrame; frame < trackLen; frame++) {
+                    if (kfPercents[frame] > percent) {
+                        break;
+                    }
+                }
+                frame = Math.min(frame - 1, trackLen - 2);
+            }
+            lastFrame = frame;
+            lastFramePercent = percent;
+
+            var range = (kfPercents[frame + 1] - kfPercents[frame]);
+            if (range === 0) {
+                return;
+            }
+            else {
+                w = (percent - kfPercents[frame]) / range;
+            }
+            if (useSpline) {
+                p1 = kfValues[frame];
+                p0 = kfValues[frame === 0 ? frame : frame - 1];
+                p2 = kfValues[frame > trackLen - 2 ? trackLen - 1 : frame + 1];
+                p3 = kfValues[frame > trackLen - 3 ? trackLen - 1 : frame + 2];
+                if (isValueArray) {
+                    catmullRomInterpolateArray(
+                        p0, p1, p2, p3, w, w * w, w * w * w,
+                        getter(target, propName),
+                        arrDim
+                    );
+                }
+                else {
+                    var value;
+                    if (isValueColor) {
+                        value = catmullRomInterpolateArray(
+                            p0, p1, p2, p3, w, w * w, w * w * w,
+                            rgba, 1
+                        );
+                        value = rgba2String(rgba);
+                    }
+                    else if (isValueString) {
+                        // String is step(0.5)
+                        return interpolateString(p1, p2, w);
+                    }
+                    else {
+                        value = catmullRomInterpolate(
+                            p0, p1, p2, p3, w, w * w, w * w * w
+                        );
+                    }
+                    setter(
+                        target,
+                        propName,
+                        value
+                    );
+                }
+            }
+            else {
+                if (isValueArray) {
+                    interpolateArray(
+                        kfValues[frame], kfValues[frame + 1], w,
+                        getter(target, propName),
+                        arrDim
+                    );
+                }
+                else {
+                    var value;
+                    if (isValueColor) {
+                        interpolateArray(
+                            kfValues[frame], kfValues[frame + 1], w,
+                            rgba, 1
+                        );
+                        value = rgba2String(rgba);
+                    }
+                    else if (isValueString) {
+                        // String is step(0.5)
+                        return interpolateString(kfValues[frame], kfValues[frame + 1], w);
+                    }
+                    else {
+                        value = interpolateNumber(kfValues[frame], kfValues[frame + 1], w);
+                    }
+                    setter(
+                        target,
+                        propName,
+                        value
+                    );
+                }
+            }
+        };
+
+        var clip = new Clip({
+            target: animator._target,
+            life: trackMaxTime,
+            loop: animator._loop,
+            delay: animator._delay,
+            onframe: onframe,
+            ondestroy: oneTrackDone
+        });
+
+        if (easing && easing !== 'spline') {
+            clip.easing = easing;
+        }
+
+        return clip;
+    }
+
+    /**
+     * @alias module:zrender/animation/Animator
+     * @constructor
+     * @param {Object} target
+     * @param {boolean} loop
+     * @param {Function} getter
+     * @param {Function} setter
+     */
+    var Animator = function(target, loop, getter, setter) {
+        this._tracks = {};
+        this._target = target;
+
+        this._loop = loop || false;
+
+        this._getter = getter || defaultGetter;
+        this._setter = setter || defaultSetter;
+
+        this._clipCount = 0;
+
+        this._delay = 0;
+
+        this._doneList = [];
+
+        this._onframeList = [];
+
+        this._clipList = [];
+    };
+
+    Animator.prototype = {
+        /**
+         * 设置动画关键帧
+         * @param  {number} time 关键帧时间，单位是ms
+         * @param  {Object} props 关键帧的属性值，key-value表示
+         * @return {module:zrender/animation/Animator}
+         */
+        when: function(time /* ms */, props) {
+            var tracks = this._tracks;
+            for (var propName in props) {
+                if (!props.hasOwnProperty(propName)) {
+                    continue;
+                }
+
+                if (!tracks[propName]) {
+                    tracks[propName] = [];
+                    // Invalid value
+                    var value = this._getter(this._target, propName);
+                    if (value == null) {
+                        // zrLog('Invalid property ' + propName);
+                        continue;
+                    }
+                    // If time is 0
+                    //  Then props is given initialize value
+                    // Else
+                    //  Initialize value from current prop value
+                    if (time !== 0) {
+                        tracks[propName].push({
+                            time: 0,
+                            value: cloneValue(value)
+                        });
+                    }
+                }
+                tracks[propName].push({
+                    time: time,
+                    value: props[propName]
+                });
+            }
+            return this;
+        },
+        /**
+         * 添加动画每一帧的回调函数
+         * @param  {Function} callback
+         * @return {module:zrender/animation/Animator}
+         */
+        during: function (callback) {
+            this._onframeList.push(callback);
+            return this;
+        },
+
+        pause: function () {
+            for (var i = 0; i < this._clipList.length; i++) {
+                this._clipList[i].pause();
+            }
+            this._paused = true;
+        },
+
+        resume: function () {
+            for (var i = 0; i < this._clipList.length; i++) {
+                this._clipList[i].resume();
+            }
+            this._paused = false;
+        },
+
+        isPaused: function () {
+            return !!this._paused;
+        },
+
+        _doneCallback: function () {
+            // Clear all tracks
+            this._tracks = {};
+            // Clear all clips
+            this._clipList.length = 0;
+
+            var doneList = this._doneList;
+            var len = doneList.length;
+            for (var i = 0; i < len; i++) {
+                doneList[i].call(this);
+            }
+        },
+        /**
+         * 开始执行动画
+         * @param  {string|Function} [easing]
+         *         动画缓动函数，详见{@link module:zrender/animation/easing}
+         * @param  {boolean} forceAnimate
+         * @return {module:zrender/animation/Animator}
+         */
+        start: function (easing, forceAnimate) {
+
+            var self = this;
+            var clipCount = 0;
+
+            var oneTrackDone = function() {
+                clipCount--;
+                if (!clipCount) {
+                    self._doneCallback();
+                }
+            };
+
+            var lastClip;
+            for (var propName in this._tracks) {
+                if (!this._tracks.hasOwnProperty(propName)) {
+                    continue;
+                }
+                var clip = createTrackClip(
+                    this, easing, oneTrackDone,
+                    this._tracks[propName], propName, forceAnimate
+                );
+                if (clip) {
+                    this._clipList.push(clip);
+                    clipCount++;
+
+                    // If start after added to animation
+                    if (this.animation) {
+                        this.animation.addClip(clip);
+                    }
+
+                    lastClip = clip;
+                }
+            }
+
+            // Add during callback on the last clip
+            if (lastClip) {
+                var oldOnFrame = lastClip.onframe;
+                lastClip.onframe = function (target, percent) {
+                    oldOnFrame(target, percent);
+
+                    for (var i = 0; i < self._onframeList.length; i++) {
+                        self._onframeList[i](target, percent);
+                    }
+                };
+            }
+
+            // This optimization will help the case that in the upper application
+            // the view may be refreshed frequently, where animation will be
+            // called repeatly but nothing changed.
+            if (!clipCount) {
+                this._doneCallback();
+            }
+            return this;
+        },
+        /**
+         * 停止动画
+         * @param {boolean} forwardToLast If move to last frame before stop
+         */
+        stop: function (forwardToLast) {
+            var clipList = this._clipList;
+            var animation = this.animation;
+            for (var i = 0; i < clipList.length; i++) {
+                var clip = clipList[i];
+                if (forwardToLast) {
+                    // Move to last frame before stop
+                    clip.onframe(this._target, 1);
+                }
+                animation && animation.removeClip(clip);
+            }
+            clipList.length = 0;
+        },
+        /**
+         * 设置动画延迟开始的时间
+         * @param  {number} time 单位ms
+         * @return {module:zrender/animation/Animator}
+         */
+        delay: function (time) {
+            this._delay = time;
+            return this;
+        },
+        /**
+         * 添加动画结束的回调
+         * @param  {Function} cb
+         * @return {module:zrender/animation/Animator}
+         */
+        done: function(cb) {
+            if (cb) {
+                this._doneList.push(cb);
+            }
+            return this;
+        },
+
+        /**
+         * @return {Array.<module:zrender/animation/Clip>}
+         */
+        getClips: function () {
+            return this._clipList;
+        }
+    };
+
+    return Animator;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 836:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require) {
+
+    return (typeof window !== 'undefined' &&
+                ((window.requestAnimationFrame && window.requestAnimationFrame.bind(window))
+                // https://github.com/ecomfe/zrender/issues/189#issuecomment-224919809
+                || (window.msRequestAnimationFrame && window.msRequestAnimationFrame.bind(window))
+                || window.mozRequestAnimationFrame
+                || window.webkitRequestAnimationFrame)
+            )
+            || function (func) {
+                setTimeout(func, 16);
+            };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 837:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var PI2 = Math.PI * 2;
+    return {
+        normalizeRadian: function(angle) {
+            angle %= PI2;
+            if (angle < 0) {
+                angle += PI2;
+            }
+            return angle;
+        }
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 838:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Group是一个容器，可以插入子节点，Group的变换也会被应用到子节点上
+ * @module zrender/graphic/Group
+ * @example
+ *     var Group = require('zrender/container/Group');
+ *     var Circle = require('zrender/graphic/shape/Circle');
+ *     var g = new Group();
+ *     g.position[0] = 100;
+ *     g.position[1] = 100;
+ *     g.add(new Circle({
+ *         style: {
+ *             x: 100,
+ *             y: 100,
+ *             r: 20,
+ *         }
+ *     }));
+ *     zr.add(g);
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var zrUtil = __webpack_require__(40);
+    var Element = __webpack_require__(834);
+    var BoundingRect = __webpack_require__(149);
+
+    /**
+     * @alias module:zrender/graphic/Group
+     * @constructor
+     * @extends module:zrender/mixin/Transformable
+     * @extends module:zrender/mixin/Eventful
+     */
+    var Group = function (opts) {
+
+        opts = opts || {};
+
+        Element.call(this, opts);
+
+        for (var key in opts) {
+            if (opts.hasOwnProperty(key)) {
+                this[key] = opts[key];
+            }
+        }
+
+        this._children = [];
+
+        this.__storage = null;
+
+        this.__dirty = true;
+    };
+
+    Group.prototype = {
+
+        constructor: Group,
+
+        isGroup: true,
+
+        /**
+         * @type {string}
+         */
+        type: 'group',
+
+        /**
+         * 所有子孙元素是否响应鼠标事件
+         * @name module:/zrender/container/Group#silent
+         * @type {boolean}
+         * @default false
+         */
+        silent: false,
+
+        /**
+         * @return {Array.<module:zrender/Element>}
+         */
+        children: function () {
+            return this._children.slice();
+        },
+
+        /**
+         * 获取指定 index 的儿子节点
+         * @param  {number} idx
+         * @return {module:zrender/Element}
+         */
+        childAt: function (idx) {
+            return this._children[idx];
+        },
+
+        /**
+         * 获取指定名字的儿子节点
+         * @param  {string} name
+         * @return {module:zrender/Element}
+         */
+        childOfName: function (name) {
+            var children = this._children;
+            for (var i = 0; i < children.length; i++) {
+                if (children[i].name === name) {
+                    return children[i];
+                }
+             }
+        },
+
+        /**
+         * @return {number}
+         */
+        childCount: function () {
+            return this._children.length;
+        },
+
+        /**
+         * 添加子节点到最后
+         * @param {module:zrender/Element} child
+         */
+        add: function (child) {
+            if (child && child !== this && child.parent !== this) {
+
+                this._children.push(child);
+
+                this._doAdd(child);
+            }
+
+            return this;
+        },
+
+        /**
+         * 添加子节点在 nextSibling 之前
+         * @param {module:zrender/Element} child
+         * @param {module:zrender/Element} nextSibling
+         */
+        addBefore: function (child, nextSibling) {
+            if (child && child !== this && child.parent !== this
+                && nextSibling && nextSibling.parent === this) {
+
+                var children = this._children;
+                var idx = children.indexOf(nextSibling);
+
+                if (idx >= 0) {
+                    children.splice(idx, 0, child);
+                    this._doAdd(child);
+                }
+            }
+
+            return this;
+        },
+
+        _doAdd: function (child) {
+            if (child.parent) {
+                child.parent.remove(child);
+            }
+
+            child.parent = this;
+
+            var storage = this.__storage;
+            var zr = this.__zr;
+            if (storage && storage !== child.__storage) {
+
+                storage.addToStorage(child);
+
+                if (child instanceof Group) {
+                    child.addChildrenToStorage(storage);
+                }
+            }
+
+            zr && zr.refresh();
+        },
+
+        /**
+         * 移除子节点
+         * @param {module:zrender/Element} child
+         */
+        remove: function (child) {
+            var zr = this.__zr;
+            var storage = this.__storage;
+            var children = this._children;
+
+            var idx = zrUtil.indexOf(children, child);
+            if (idx < 0) {
+                return this;
+            }
+            children.splice(idx, 1);
+
+            child.parent = null;
+
+            if (storage) {
+
+                storage.delFromStorage(child);
+
+                if (child instanceof Group) {
+                    child.delChildrenFromStorage(storage);
+                }
+            }
+
+            zr && zr.refresh();
+
+            return this;
+        },
+
+        /**
+         * 移除所有子节点
+         */
+        removeAll: function () {
+            var children = this._children;
+            var storage = this.__storage;
+            var child;
+            var i;
+            for (i = 0; i < children.length; i++) {
+                child = children[i];
+                if (storage) {
+                    storage.delFromStorage(child);
+                    if (child instanceof Group) {
+                        child.delChildrenFromStorage(storage);
+                    }
+                }
+                child.parent = null;
+            }
+            children.length = 0;
+
+            return this;
+        },
+
+        /**
+         * 遍历所有子节点
+         * @param  {Function} cb
+         * @param  {}   context
+         */
+        eachChild: function (cb, context) {
+            var children = this._children;
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];
+                cb.call(context, child, i);
+            }
+            return this;
+        },
+
+        /**
+         * 深度优先遍历所有子孙节点
+         * @param  {Function} cb
+         * @param  {}   context
+         */
+        traverse: function (cb, context) {
+            for (var i = 0; i < this._children.length; i++) {
+                var child = this._children[i];
+                cb.call(context, child);
+
+                if (child.type === 'group') {
+                    child.traverse(cb, context);
+                }
+            }
+            return this;
+        },
+
+        addChildrenToStorage: function (storage) {
+            for (var i = 0; i < this._children.length; i++) {
+                var child = this._children[i];
+                storage.addToStorage(child);
+                if (child instanceof Group) {
+                    child.addChildrenToStorage(storage);
+                }
+            }
+        },
+
+        delChildrenFromStorage: function (storage) {
+            for (var i = 0; i < this._children.length; i++) {
+                var child = this._children[i];
+                storage.delFromStorage(child);
+                if (child instanceof Group) {
+                    child.delChildrenFromStorage(storage);
+                }
+            }
+        },
+
+        dirty: function () {
+            this.__dirty = true;
+            this.__zr && this.__zr.refresh();
+            return this;
+        },
+
+        /**
+         * @return {module:zrender/core/BoundingRect}
+         */
+        getBoundingRect: function (includeChildren) {
+            // TODO Caching
+            var rect = null;
+            var tmpRect = new BoundingRect(0, 0, 0, 0);
+            var children = includeChildren || this._children;
+            var tmpMat = [];
+
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];
+                if (child.ignore || child.invisible) {
+                    continue;
+                }
+
+                var childRect = child.getBoundingRect();
+                var transform = child.getLocalTransform(tmpMat);
+                // TODO
+                // The boundingRect cacluated by transforming original
+                // rect may be bigger than the actual bundingRect when rotation
+                // is used. (Consider a circle rotated aginst its center, where
+                // the actual boundingRect should be the same as that not be
+                // rotated.) But we can not find better approach to calculate
+                // actual boundingRect yet, considering performance.
+                if (transform) {
+                    tmpRect.copy(childRect);
+                    tmpRect.applyTransform(transform);
+                    rect = rect || tmpRect.clone();
+                    rect.union(tmpRect);
+                }
+                else {
+                    rect = rect || childRect.clone();
+                    rect.union(childRect);
+                }
+            }
+            return rect || tmpRect;
+        }
+    };
+
+    zrUtil.inherits(Group, Element);
+
+    return Group;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 839:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;// Simple LRU cache use doubly linked list
+// @module zrender/core/LRU
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    /**
+     * Simple double linked list. Compared with array, it has O(1) remove operation.
+     * @constructor
+     */
+    var LinkedList = function () {
+
+        /**
+         * @type {module:zrender/core/LRU~Entry}
+         */
+        this.head = null;
+
+        /**
+         * @type {module:zrender/core/LRU~Entry}
+         */
+        this.tail = null;
+
+        this._len = 0;
+    };
+
+    var linkedListProto = LinkedList.prototype;
+    /**
+     * Insert a new value at the tail
+     * @param  {} val
+     * @return {module:zrender/core/LRU~Entry}
+     */
+    linkedListProto.insert = function (val) {
+        var entry = new Entry(val);
+        this.insertEntry(entry);
+        return entry;
+    };
+
+    /**
+     * Insert an entry at the tail
+     * @param  {module:zrender/core/LRU~Entry} entry
+     */
+    linkedListProto.insertEntry = function (entry) {
+        if (!this.head) {
+            this.head = this.tail = entry;
+        }
+        else {
+            this.tail.next = entry;
+            entry.prev = this.tail;
+            entry.next = null;
+            this.tail = entry;
+        }
+        this._len++;
+    };
+
+    /**
+     * Remove entry.
+     * @param  {module:zrender/core/LRU~Entry} entry
+     */
+    linkedListProto.remove = function (entry) {
+        var prev = entry.prev;
+        var next = entry.next;
+        if (prev) {
+            prev.next = next;
+        }
+        else {
+            // Is head
+            this.head = next;
+        }
+        if (next) {
+            next.prev = prev;
+        }
+        else {
+            // Is tail
+            this.tail = prev;
+        }
+        entry.next = entry.prev = null;
+        this._len--;
+    };
+
+    /**
+     * @return {number}
+     */
+    linkedListProto.len = function () {
+        return this._len;
+    };
+
+    /**
+     * Clear list
+     */
+    linkedListProto.clear = function () {
+        this.head = this.tail = null;
+        this._len = 0;
+    };
+
+    /**
+     * @constructor
+     * @param {} val
+     */
+    var Entry = function (val) {
+        /**
+         * @type {}
+         */
+        this.value = val;
+
+        /**
+         * @type {module:zrender/core/LRU~Entry}
+         */
+        this.next;
+
+        /**
+         * @type {module:zrender/core/LRU~Entry}
+         */
+        this.prev;
+    };
+
+    /**
+     * LRU Cache
+     * @constructor
+     * @alias module:zrender/core/LRU
+     */
+    var LRU = function (maxSize) {
+
+        this._list = new LinkedList();
+
+        this._map = {};
+
+        this._maxSize = maxSize || 10;
+
+        this._lastRemovedEntry = null;
+    };
+
+    var LRUProto = LRU.prototype;
+
+    /**
+     * @param  {string} key
+     * @param  {} value
+     * @return {} Removed value
+     */
+    LRUProto.put = function (key, value) {
+        var list = this._list;
+        var map = this._map;
+        var removed = null;
+        if (map[key] == null) {
+            var len = list.len();
+            // Reuse last removed entry
+            var entry = this._lastRemovedEntry;
+
+            if (len >= this._maxSize && len > 0) {
+                // Remove the least recently used
+                var leastUsedEntry = list.head;
+                list.remove(leastUsedEntry);
+                delete map[leastUsedEntry.key];
+
+                removed = leastUsedEntry.value;
+                this._lastRemovedEntry = leastUsedEntry;
+            }
+
+            if (entry) {
+                entry.value = value;
+            }
+            else {
+                entry = new Entry(value);
+            }
+            entry.key = key;
+            list.insertEntry(entry);
+            map[key] = entry;
+        }
+
+        return removed;
+    };
+
+    /**
+     * @param  {string} key
+     * @return {}
+     */
+    LRUProto.get = function (key) {
+        var entry = this._map[key];
+        var list = this._list;
+        if (entry != null) {
+            // Put the latest used entry in the tail
+            if (entry !== list.tail) {
+                list.remove(entry);
+                list.insertEntry(entry);
+            }
+
+            return entry.value;
+        }
+    };
+
+    /**
+     * Clear the cache
+     */
+    LRUProto.clear = function () {
+        this._list.clear();
+        this._map = {};
+    };
+
+    return LRU;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 840:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * zrender: 生成唯一id
+ *
+ * @author errorrik (errorrik@gmail.com)
+ */
+
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+    var idStart = 0x0907;
+
+    return function () {
+        return idStart++;
+    };
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 841:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+        var config = __webpack_require__(252);
+
+        /**
+         * @exports zrender/tool/log
+         * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
+         */
+        return function() {
+            if (config.debugMode === 0) {
+                return;
+            }
+            else if (config.debugMode == 1) {
+                for (var k in arguments) {
+                    throw new Error(arguments[k]);
+                }
+            }
+            else if (config.debugMode > 1) {
+                for (var k in arguments) {
+                    console.log(arguments[k]);
+                }
+            }
+        };
+
+        /* for debug
+        return function(mes) {
+            document.getElementById('wrong-message').innerHTML =
+                mes + ' ' + (new Date() - 0)
+                + '<br/>'
+                + document.getElementById('wrong-message').innerHTML;
+        };
+        */
+    }.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 842:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    var ArrayCtor = typeof Float32Array === 'undefined'
+        ? Array
+        : Float32Array;
+    /**
+     * 3x2矩阵操作类
+     * @exports zrender/tool/matrix
+     */
+    var matrix = {
+        /**
+         * 创建一个单位矩阵
+         * @return {Float32Array|Array.<number>}
+         */
+        create : function() {
+            var out = new ArrayCtor(6);
+            matrix.identity(out);
+
+            return out;
+        },
+        /**
+         * 设置矩阵为单位矩阵
+         * @param {Float32Array|Array.<number>} out
+         */
+        identity : function(out) {
+            out[0] = 1;
+            out[1] = 0;
+            out[2] = 0;
+            out[3] = 1;
+            out[4] = 0;
+            out[5] = 0;
+            return out;
+        },
+        /**
+         * 复制矩阵
+         * @param {Float32Array|Array.<number>} out
+         * @param {Float32Array|Array.<number>} m
+         */
+        copy: function(out, m) {
+            out[0] = m[0];
+            out[1] = m[1];
+            out[2] = m[2];
+            out[3] = m[3];
+            out[4] = m[4];
+            out[5] = m[5];
+            return out;
+        },
+        /**
+         * 矩阵相乘
+         * @param {Float32Array|Array.<number>} out
+         * @param {Float32Array|Array.<number>} m1
+         * @param {Float32Array|Array.<number>} m2
+         */
+        mul : function (out, m1, m2) {
+            // Consider matrix.mul(m, m2, m);
+            // where out is the same as m2.
+            // So use temp variable to escape error.
+            var out0 = m1[0] * m2[0] + m1[2] * m2[1];
+            var out1 = m1[1] * m2[0] + m1[3] * m2[1];
+            var out2 = m1[0] * m2[2] + m1[2] * m2[3];
+            var out3 = m1[1] * m2[2] + m1[3] * m2[3];
+            var out4 = m1[0] * m2[4] + m1[2] * m2[5] + m1[4];
+            var out5 = m1[1] * m2[4] + m1[3] * m2[5] + m1[5];
+            out[0] = out0;
+            out[1] = out1;
+            out[2] = out2;
+            out[3] = out3;
+            out[4] = out4;
+            out[5] = out5;
+            return out;
+        },
+        /**
+         * 平移变换
+         * @param {Float32Array|Array.<number>} out
+         * @param {Float32Array|Array.<number>} a
+         * @param {Float32Array|Array.<number>} v
+         */
+        translate : function(out, a, v) {
+            out[0] = a[0];
+            out[1] = a[1];
+            out[2] = a[2];
+            out[3] = a[3];
+            out[4] = a[4] + v[0];
+            out[5] = a[5] + v[1];
+            return out;
+        },
+        /**
+         * 旋转变换
+         * @param {Float32Array|Array.<number>} out
+         * @param {Float32Array|Array.<number>} a
+         * @param {number} rad
+         */
+        rotate : function(out, a, rad) {
+            var aa = a[0];
+            var ac = a[2];
+            var atx = a[4];
+            var ab = a[1];
+            var ad = a[3];
+            var aty = a[5];
+            var st = Math.sin(rad);
+            var ct = Math.cos(rad);
+
+            out[0] = aa * ct + ab * st;
+            out[1] = -aa * st + ab * ct;
+            out[2] = ac * ct + ad * st;
+            out[3] = -ac * st + ct * ad;
+            out[4] = ct * atx + st * aty;
+            out[5] = ct * aty - st * atx;
+            return out;
+        },
+        /**
+         * 缩放变换
+         * @param {Float32Array|Array.<number>} out
+         * @param {Float32Array|Array.<number>} a
+         * @param {Float32Array|Array.<number>} v
+         */
+        scale : function(out, a, v) {
+            var vx = v[0];
+            var vy = v[1];
+            out[0] = a[0] * vx;
+            out[1] = a[1] * vy;
+            out[2] = a[2] * vx;
+            out[3] = a[3] * vy;
+            out[4] = a[4] * vx;
+            out[5] = a[5] * vy;
+            return out;
+        },
+        /**
+         * 求逆矩阵
+         * @param {Float32Array|Array.<number>} out
+         * @param {Float32Array|Array.<number>} a
+         */
+        invert : function(out, a) {
+
+            var aa = a[0];
+            var ac = a[2];
+            var atx = a[4];
+            var ab = a[1];
+            var ad = a[3];
+            var aty = a[5];
+
+            var det = aa * ad - ab * ac;
+            if (!det) {
+                return null;
+            }
+            det = 1.0 / det;
+
+            out[0] = ad * det;
+            out[1] = -ab * det;
+            out[2] = -ac * det;
+            out[3] = aa * det;
+            out[4] = (ac * aty - ad * atx) * det;
+            out[5] = (ab * atx - aa * aty) * det;
+            return out;
+        }
+    };
+
+    return matrix;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 843:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;// https://github.com/mziccard/node-timsort
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    var DEFAULT_MIN_MERGE = 32;
+
+    var DEFAULT_MIN_GALLOPING = 7;
+
+    var DEFAULT_TMP_STORAGE_LENGTH = 256;
+
+    function minRunLength(n) {
+        var r = 0;
+
+        while (n >= DEFAULT_MIN_MERGE) {
+            r |= n & 1;
+            n >>= 1;
+        }
+
+        return n + r;
+    }
+
+    function makeAscendingRun(array, lo, hi, compare) {
+        var runHi = lo + 1;
+
+        if (runHi === hi) {
+            return 1;
+        }
+
+        if (compare(array[runHi++], array[lo]) < 0) {
+            while (runHi < hi && compare(array[runHi], array[runHi - 1]) < 0) {
+                runHi++;
+            }
+
+            reverseRun(array, lo, runHi);
+        }
+        else {
+            while (runHi < hi && compare(array[runHi], array[runHi - 1]) >= 0) {
+                runHi++;
+            }
+        }
+
+        return runHi - lo;
+    }
+
+    function reverseRun(array, lo, hi) {
+        hi--;
+
+        while (lo < hi) {
+            var t = array[lo];
+            array[lo++] = array[hi];
+            array[hi--] = t;
+        }
+    }
+
+    function binaryInsertionSort(array, lo, hi, start, compare) {
+        if (start === lo) {
+            start++;
+        }
+
+        for (; start < hi; start++) {
+            var pivot = array[start];
+
+            var left = lo;
+            var right = start;
+            var mid;
+
+            while (left < right) {
+                mid = left + right >>> 1;
+
+                if (compare(pivot, array[mid]) < 0) {
+                    right = mid;
+                }
+                else {
+                    left = mid + 1;
+                }
+            }
+
+            var n = start - left;
+
+            switch (n) {
+                case 3:
+                    array[left + 3] = array[left + 2];
+
+                case 2:
+                    array[left + 2] = array[left + 1];
+
+                case 1:
+                    array[left + 1] = array[left];
+                    break;
+                default:
+                    while (n > 0) {
+                        array[left + n] = array[left + n - 1];
+                        n--;
+                    }
+            }
+
+            array[left] = pivot;
+        }
+    }
+
+    function gallopLeft(value, array, start, length, hint, compare) {
+        var lastOffset = 0;
+        var maxOffset = 0;
+        var offset = 1;
+
+        if (compare(value, array[start + hint]) > 0) {
+            maxOffset = length - hint;
+
+            while (offset < maxOffset && compare(value, array[start + hint + offset]) > 0) {
+                lastOffset = offset;
+                offset = (offset << 1) + 1;
+
+                if (offset <= 0) {
+                    offset = maxOffset;
+                }
+            }
+
+            if (offset > maxOffset) {
+                offset = maxOffset;
+            }
+
+            lastOffset += hint;
+            offset += hint;
+        }
+        else {
+            maxOffset = hint + 1;
+            while (offset < maxOffset && compare(value, array[start + hint - offset]) <= 0) {
+                lastOffset = offset;
+                offset = (offset << 1) + 1;
+
+                if (offset <= 0) {
+                    offset = maxOffset;
+                }
+            }
+            if (offset > maxOffset) {
+                offset = maxOffset;
+            }
+
+            var tmp = lastOffset;
+            lastOffset = hint - offset;
+            offset = hint - tmp;
+        }
+
+        lastOffset++;
+        while (lastOffset < offset) {
+            var m = lastOffset + (offset - lastOffset >>> 1);
+
+            if (compare(value, array[start + m]) > 0) {
+                lastOffset = m + 1;
+            }
+            else {
+                offset = m;
+            }
+        }
+        return offset;
+    }
+
+    function gallopRight(value, array, start, length, hint, compare) {
+        var lastOffset = 0;
+        var maxOffset = 0;
+        var offset = 1;
+
+        if (compare(value, array[start + hint]) < 0) {
+            maxOffset = hint + 1;
+
+            while (offset < maxOffset && compare(value, array[start + hint - offset]) < 0) {
+                lastOffset = offset;
+                offset = (offset << 1) + 1;
+
+                if (offset <= 0) {
+                    offset = maxOffset;
+                }
+            }
+
+            if (offset > maxOffset) {
+                offset = maxOffset;
+            }
+
+            var tmp = lastOffset;
+            lastOffset = hint - offset;
+            offset = hint - tmp;
+        }
+        else {
+            maxOffset = length - hint;
+
+            while (offset < maxOffset && compare(value, array[start + hint + offset]) >= 0) {
+                lastOffset = offset;
+                offset = (offset << 1) + 1;
+
+                if (offset <= 0) {
+                    offset = maxOffset;
+                }
+            }
+
+            if (offset > maxOffset) {
+                offset = maxOffset;
+            }
+
+            lastOffset += hint;
+            offset += hint;
+        }
+
+        lastOffset++;
+
+        while (lastOffset < offset) {
+            var m = lastOffset + (offset - lastOffset >>> 1);
+
+            if (compare(value, array[start + m]) < 0) {
+                offset = m;
+            }
+            else {
+                lastOffset = m + 1;
+            }
+        }
+
+        return offset;
+    }
+
+    function TimSort(array, compare) {
+        var minGallop = DEFAULT_MIN_GALLOPING;
+        var length = 0;
+        var tmpStorageLength = DEFAULT_TMP_STORAGE_LENGTH;
+        var stackLength = 0;
+        var runStart;
+        var runLength;
+        var stackSize = 0;
+
+        length = array.length;
+
+        if (length < 2 * DEFAULT_TMP_STORAGE_LENGTH) {
+            tmpStorageLength = length >>> 1;
+        }
+
+        var tmp = [];
+
+        stackLength = length < 120 ? 5 : length < 1542 ? 10 : length < 119151 ? 19 : 40;
+
+        runStart = [];
+        runLength = [];
+
+        function pushRun(_runStart, _runLength) {
+            runStart[stackSize] = _runStart;
+            runLength[stackSize] = _runLength;
+            stackSize += 1;
+        }
+
+        function mergeRuns() {
+            while (stackSize > 1) {
+                var n = stackSize - 2;
+
+                if (n >= 1 && runLength[n - 1] <= runLength[n] + runLength[n + 1] || n >= 2 && runLength[n - 2] <= runLength[n] + runLength[n - 1]) {
+                    if (runLength[n - 1] < runLength[n + 1]) {
+                        n--;
+                    }
+                }
+                else if (runLength[n] > runLength[n + 1]) {
+                    break;
+                }
+                mergeAt(n);
+            }
+        }
+
+        function forceMergeRuns() {
+            while (stackSize > 1) {
+                var n = stackSize - 2;
+
+                if (n > 0 && runLength[n - 1] < runLength[n + 1]) {
+                    n--;
+                }
+
+                mergeAt(n);
+            }
+        }
+
+        function mergeAt(i) {
+            var start1 = runStart[i];
+            var length1 = runLength[i];
+            var start2 = runStart[i + 1];
+            var length2 = runLength[i + 1];
+
+            runLength[i] = length1 + length2;
+
+            if (i === stackSize - 3) {
+                runStart[i + 1] = runStart[i + 2];
+                runLength[i + 1] = runLength[i + 2];
+            }
+
+            stackSize--;
+
+            var k = gallopRight(array[start2], array, start1, length1, 0, compare);
+            start1 += k;
+            length1 -= k;
+
+            if (length1 === 0) {
+                return;
+            }
+
+            length2 = gallopLeft(array[start1 + length1 - 1], array, start2, length2, length2 - 1, compare);
+
+            if (length2 === 0) {
+                return;
+            }
+
+            if (length1 <= length2) {
+                mergeLow(start1, length1, start2, length2);
+            }
+            else {
+                mergeHigh(start1, length1, start2, length2);
+            }
+        }
+
+        function mergeLow(start1, length1, start2, length2) {
+            var i = 0;
+
+            for (i = 0; i < length1; i++) {
+                tmp[i] = array[start1 + i];
+            }
+
+            var cursor1 = 0;
+            var cursor2 = start2;
+            var dest = start1;
+
+            array[dest++] = array[cursor2++];
+
+            if (--length2 === 0) {
+                for (i = 0; i < length1; i++) {
+                    array[dest + i] = tmp[cursor1 + i];
+                }
+                return;
+            }
+
+            if (length1 === 1) {
+                for (i = 0; i < length2; i++) {
+                    array[dest + i] = array[cursor2 + i];
+                }
+                array[dest + length2] = tmp[cursor1];
+                return;
+            }
+
+            var _minGallop = minGallop;
+            var count1, count2, exit;
+
+            while (1) {
+                count1 = 0;
+                count2 = 0;
+                exit = false;
+
+                do {
+                    if (compare(array[cursor2], tmp[cursor1]) < 0) {
+                        array[dest++] = array[cursor2++];
+                        count2++;
+                        count1 = 0;
+
+                        if (--length2 === 0) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    else {
+                        array[dest++] = tmp[cursor1++];
+                        count1++;
+                        count2 = 0;
+                        if (--length1 === 1) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                } while ((count1 | count2) < _minGallop);
+
+                if (exit) {
+                    break;
+                }
+
+                do {
+                    count1 = gallopRight(array[cursor2], tmp, cursor1, length1, 0, compare);
+
+                    if (count1 !== 0) {
+                        for (i = 0; i < count1; i++) {
+                            array[dest + i] = tmp[cursor1 + i];
+                        }
+
+                        dest += count1;
+                        cursor1 += count1;
+                        length1 -= count1;
+                        if (length1 <= 1) {
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    array[dest++] = array[cursor2++];
+
+                    if (--length2 === 0) {
+                        exit = true;
+                        break;
+                    }
+
+                    count2 = gallopLeft(tmp[cursor1], array, cursor2, length2, 0, compare);
+
+                    if (count2 !== 0) {
+                        for (i = 0; i < count2; i++) {
+                            array[dest + i] = array[cursor2 + i];
+                        }
+
+                        dest += count2;
+                        cursor2 += count2;
+                        length2 -= count2;
+
+                        if (length2 === 0) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    array[dest++] = tmp[cursor1++];
+
+                    if (--length1 === 1) {
+                        exit = true;
+                        break;
+                    }
+
+                    _minGallop--;
+                } while (count1 >= DEFAULT_MIN_GALLOPING || count2 >= DEFAULT_MIN_GALLOPING);
+
+                if (exit) {
+                    break;
+                }
+
+                if (_minGallop < 0) {
+                    _minGallop = 0;
+                }
+
+                _minGallop += 2;
+            }
+
+            minGallop = _minGallop;
+
+            minGallop < 1 && (minGallop = 1);
+
+            if (length1 === 1) {
+                for (i = 0; i < length2; i++) {
+                    array[dest + i] = array[cursor2 + i];
+                }
+                array[dest + length2] = tmp[cursor1];
+            }
+            else if (length1 === 0) {
+                throw new Error();
+                // throw new Error('mergeLow preconditions were not respected');
+            }
+            else {
+                for (i = 0; i < length1; i++) {
+                    array[dest + i] = tmp[cursor1 + i];
+                }
+            }
+        }
+
+        function mergeHigh (start1, length1, start2, length2) {
+            var i = 0;
+
+            for (i = 0; i < length2; i++) {
+                tmp[i] = array[start2 + i];
+            }
+
+            var cursor1 = start1 + length1 - 1;
+            var cursor2 = length2 - 1;
+            var dest = start2 + length2 - 1;
+            var customCursor = 0;
+            var customDest = 0;
+
+            array[dest--] = array[cursor1--];
+
+            if (--length1 === 0) {
+                customCursor = dest - (length2 - 1);
+
+                for (i = 0; i < length2; i++) {
+                    array[customCursor + i] = tmp[i];
+                }
+
+                return;
+            }
+
+            if (length2 === 1) {
+                dest -= length1;
+                cursor1 -= length1;
+                customDest = dest + 1;
+                customCursor = cursor1 + 1;
+
+                for (i = length1 - 1; i >= 0; i--) {
+                    array[customDest + i] = array[customCursor + i];
+                }
+
+                array[dest] = tmp[cursor2];
+                return;
+            }
+
+            var _minGallop = minGallop;
+
+            while (true) {
+                var count1 = 0;
+                var count2 = 0;
+                var exit = false;
+
+                do {
+                    if (compare(tmp[cursor2], array[cursor1]) < 0) {
+                        array[dest--] = array[cursor1--];
+                        count1++;
+                        count2 = 0;
+                        if (--length1 === 0) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    else {
+                        array[dest--] = tmp[cursor2--];
+                        count2++;
+                        count1 = 0;
+                        if (--length2 === 1) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                } while ((count1 | count2) < _minGallop);
+
+                if (exit) {
+                    break;
+                }
+
+                do {
+                    count1 = length1 - gallopRight(tmp[cursor2], array, start1, length1, length1 - 1, compare);
+
+                    if (count1 !== 0) {
+                        dest -= count1;
+                        cursor1 -= count1;
+                        length1 -= count1;
+                        customDest = dest + 1;
+                        customCursor = cursor1 + 1;
+
+                        for (i = count1 - 1; i >= 0; i--) {
+                            array[customDest + i] = array[customCursor + i];
+                        }
+
+                        if (length1 === 0) {
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    array[dest--] = tmp[cursor2--];
+
+                    if (--length2 === 1) {
+                        exit = true;
+                        break;
+                    }
+
+                    count2 = length2 - gallopLeft(array[cursor1], tmp, 0, length2, length2 - 1, compare);
+
+                    if (count2 !== 0) {
+                        dest -= count2;
+                        cursor2 -= count2;
+                        length2 -= count2;
+                        customDest = dest + 1;
+                        customCursor = cursor2 + 1;
+
+                        for (i = 0; i < count2; i++) {
+                            array[customDest + i] = tmp[customCursor + i];
+                        }
+
+                        if (length2 <= 1) {
+                            exit = true;
+                            break;
+                        }
+                    }
+
+                    array[dest--] = array[cursor1--];
+
+                    if (--length1 === 0) {
+                        exit = true;
+                        break;
+                    }
+
+                    _minGallop--;
+                } while (count1 >= DEFAULT_MIN_GALLOPING || count2 >= DEFAULT_MIN_GALLOPING);
+
+                if (exit) {
+                    break;
+                }
+
+                if (_minGallop < 0) {
+                    _minGallop = 0;
+                }
+
+                _minGallop += 2;
+            }
+
+            minGallop = _minGallop;
+
+            if (minGallop < 1) {
+                minGallop = 1;
+            }
+
+            if (length2 === 1) {
+                dest -= length1;
+                cursor1 -= length1;
+                customDest = dest + 1;
+                customCursor = cursor1 + 1;
+
+                for (i = length1 - 1; i >= 0; i--) {
+                    array[customDest + i] = array[customCursor + i];
+                }
+
+                array[dest] = tmp[cursor2];
+            }
+            else if (length2 === 0) {
+                throw new Error();
+                // throw new Error('mergeHigh preconditions were not respected');
+            }
+            else {
+                customCursor = dest - (length2 - 1);
+                for (i = 0; i < length2; i++) {
+                    array[customCursor + i] = tmp[i];
+                }
+            }
+        }
+
+        this.mergeRuns = mergeRuns;
+        this.forceMergeRuns = forceMergeRuns;
+        this.pushRun = pushRun;
+    }
+
+    function sort(array, compare, lo, hi) {
+        if (!lo) {
+            lo = 0;
+        }
+        if (!hi) {
+            hi = array.length;
+        }
+
+        var remaining = hi - lo;
+
+        if (remaining < 2) {
+            return;
+        }
+
+        var runLength = 0;
+
+        if (remaining < DEFAULT_MIN_MERGE) {
+            runLength = makeAscendingRun(array, lo, hi, compare);
+            binaryInsertionSort(array, lo, hi, lo + runLength, compare);
+            return;
+        }
+
+        var ts = new TimSort(array, compare);
+
+        var minRun = minRunLength(remaining);
+
+        do {
+            runLength = makeAscendingRun(array, lo, hi, compare);
+            if (runLength < minRun) {
+                var force = remaining;
+                if (force > minRun) {
+                    force = minRun;
+                }
+
+                binaryInsertionSort(array, lo, lo + force, lo + runLength, compare);
+                runLength = force;
+            }
+
+            ts.pushRun(lo, runLength);
+            ts.mergeRuns();
+
+            remaining -= runLength;
+            lo += runLength;
+        } while (remaining !== 0);
+
+        ts.forceMergeRuns();
+    }
+
+    return sort;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 844:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * 可绘制的图形基类
+ * Base class of all displayable graphic objects
+ * @module zrender/graphic/Displayable
+ */
+
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var zrUtil = __webpack_require__(40);
+
+    var Style = __webpack_require__(847);
+
+    var Element = __webpack_require__(834);
+    var RectText = __webpack_require__(2047);
+    // var Stateful = require('./mixin/Stateful');
+
+    /**
+     * @alias module:zrender/graphic/Displayable
+     * @extends module:zrender/Element
+     * @extends module:zrender/graphic/mixin/RectText
+     */
+    function Displayable(opts) {
+
+        opts = opts || {};
+
+        Element.call(this, opts);
+
+        // Extend properties
+        for (var name in opts) {
+            if (
+                opts.hasOwnProperty(name) &&
+                name !== 'style'
+            ) {
+                this[name] = opts[name];
+            }
+        }
+
+        /**
+         * @type {module:zrender/graphic/Style}
+         */
+        this.style = new Style(opts.style, this);
+
+        this._rect = null;
+        // Shapes for cascade clipping.
+        this.__clipPaths = [];
+
+        // FIXME Stateful must be mixined after style is setted
+        // Stateful.call(this, opts);
+    }
+
+    Displayable.prototype = {
+
+        constructor: Displayable,
+
+        type: 'displayable',
+
+        /**
+         * Displayable 是否为脏，Painter 中会根据该标记判断是否需要是否需要重新绘制
+         * Dirty flag. From which painter will determine if this displayable object needs brush
+         * @name module:zrender/graphic/Displayable#__dirty
+         * @type {boolean}
+         */
+        __dirty: true,
+
+        /**
+         * 图形是否可见，为true时不绘制图形，但是仍能触发鼠标事件
+         * If ignore drawing of the displayable object. Mouse event will still be triggered
+         * @name module:/zrender/graphic/Displayable#invisible
+         * @type {boolean}
+         * @default false
+         */
+        invisible: false,
+
+        /**
+         * @name module:/zrender/graphic/Displayable#z
+         * @type {number}
+         * @default 0
+         */
+        z: 0,
+
+        /**
+         * @name module:/zrender/graphic/Displayable#z
+         * @type {number}
+         * @default 0
+         */
+        z2: 0,
+
+        /**
+         * z层level，决定绘画在哪层canvas中
+         * @name module:/zrender/graphic/Displayable#zlevel
+         * @type {number}
+         * @default 0
+         */
+        zlevel: 0,
+
+        /**
+         * 是否可拖拽
+         * @name module:/zrender/graphic/Displayable#draggable
+         * @type {boolean}
+         * @default false
+         */
+        draggable: false,
+
+        /**
+         * 是否正在拖拽
+         * @name module:/zrender/graphic/Displayable#draggable
+         * @type {boolean}
+         * @default false
+         */
+        dragging: false,
+
+        /**
+         * 是否相应鼠标事件
+         * @name module:/zrender/graphic/Displayable#silent
+         * @type {boolean}
+         * @default false
+         */
+        silent: false,
+
+        /**
+         * If enable culling
+         * @type {boolean}
+         * @default false
+         */
+        culling: false,
+
+        /**
+         * Mouse cursor when hovered
+         * @name module:/zrender/graphic/Displayable#cursor
+         * @type {string}
+         */
+        cursor: 'pointer',
+
+        /**
+         * If hover area is bounding rect
+         * @name module:/zrender/graphic/Displayable#rectHover
+         * @type {string}
+         */
+        rectHover: false,
+
+        /**
+         * Render the element progressively when the value >= 0,
+         * usefull for large data.
+         * @type {number}
+         */
+        progressive: -1,
+
+        beforeBrush: function (ctx) {},
+
+        afterBrush: function (ctx) {},
+
+        /**
+         * 图形绘制方法
+         * @param {CanvasRenderingContext2D} ctx
+         */
+        // Interface
+        brush: function (ctx, prevEl) {},
+
+        /**
+         * 获取最小包围盒
+         * @return {module:zrender/core/BoundingRect}
+         */
+        // Interface
+        getBoundingRect: function () {},
+
+        /**
+         * 判断坐标 x, y 是否在图形上
+         * If displayable element contain coord x, y
+         * @param  {number} x
+         * @param  {number} y
+         * @return {boolean}
+         */
+        contain: function (x, y) {
+            return this.rectContain(x, y);
+        },
+
+        /**
+         * @param  {Function} cb
+         * @param  {}   context
+         */
+        traverse: function (cb, context) {
+            cb.call(context, this);
+        },
+
+        /**
+         * 判断坐标 x, y 是否在图形的包围盒上
+         * If bounding rect of element contain coord x, y
+         * @param  {number} x
+         * @param  {number} y
+         * @return {boolean}
+         */
+        rectContain: function (x, y) {
+            var coord = this.transformCoordToLocal(x, y);
+            var rect = this.getBoundingRect();
+            return rect.contain(coord[0], coord[1]);
+        },
+
+        /**
+         * 标记图形元素为脏，并且在下一帧重绘
+         * Mark displayable element dirty and refresh next frame
+         */
+        dirty: function () {
+            this.__dirty = true;
+
+            this._rect = null;
+
+            this.__zr && this.__zr.refresh();
+        },
+
+        /**
+         * 图形是否会触发事件
+         * If displayable object binded any event
+         * @return {boolean}
+         */
+        // TODO, 通过 bind 绑定的事件
+        // isSilent: function () {
+        //     return !(
+        //         this.hoverable || this.draggable
+        //         || this.onmousemove || this.onmouseover || this.onmouseout
+        //         || this.onmousedown || this.onmouseup || this.onclick
+        //         || this.ondragenter || this.ondragover || this.ondragleave
+        //         || this.ondrop
+        //     );
+        // },
+        /**
+         * Alias for animate('style')
+         * @param {boolean} loop
+         */
+        animateStyle: function (loop) {
+            return this.animate('style', loop);
+        },
+
+        attrKV: function (key, value) {
+            if (key !== 'style') {
+                Element.prototype.attrKV.call(this, key, value);
+            }
+            else {
+                this.style.set(value);
+            }
+        },
+
+        /**
+         * @param {Object|string} key
+         * @param {*} value
+         */
+        setStyle: function (key, value) {
+            this.style.set(key, value);
+            this.dirty(false);
+            return this;
+        },
+
+        /**
+         * Use given style object
+         * @param  {Object} obj
+         */
+        useStyle: function (obj) {
+            this.style = new Style(obj, this);
+            this.dirty(false);
+            return this;
+        }
+    };
+
+    zrUtil.inherits(Displayable, Element);
+
+    zrUtil.mixin(Displayable, RectText);
+    // zrUtil.mixin(Displayable, Stateful);
+
+    return Displayable;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 845:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * Path element
+ * @module zrender/graphic/Path
+ */
+
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var Displayable = __webpack_require__(844);
+    var zrUtil = __webpack_require__(40);
+    var PathProxy = __webpack_require__(253);
+    var pathContain = __webpack_require__(2038);
+
+    var Pattern = __webpack_require__(846);
+    var getCanvasPattern = Pattern.prototype.getCanvasPattern;
+
+    var abs = Math.abs;
+
+    var pathProxyForDraw = new PathProxy(true);
+    /**
+     * @alias module:zrender/graphic/Path
+     * @extends module:zrender/graphic/Displayable
+     * @constructor
+     * @param {Object} opts
+     */
+    function Path(opts) {
+        Displayable.call(this, opts);
+
+        /**
+         * @type {module:zrender/core/PathProxy}
+         * @readOnly
+         */
+        this.path = null;
+    }
+
+    Path.prototype = {
+
+        constructor: Path,
+
+        type: 'path',
+
+        __dirtyPath: true,
+
+        strokeContainThreshold: 5,
+
+        brush: function (ctx, prevEl) {
+            var style = this.style;
+            var path = this.path || pathProxyForDraw;
+            var hasStroke = style.hasStroke();
+            var hasFill = style.hasFill();
+            var fill = style.fill;
+            var stroke = style.stroke;
+            var hasFillGradient = hasFill && !!(fill.colorStops);
+            var hasStrokeGradient = hasStroke && !!(stroke.colorStops);
+            var hasFillPattern = hasFill && !!(fill.image);
+            var hasStrokePattern = hasStroke && !!(stroke.image);
+
+            style.bind(ctx, this, prevEl);
+            this.setTransform(ctx);
+
+            if (this.__dirty) {
+                var rect;
+                // Update gradient because bounding rect may changed
+                if (hasFillGradient) {
+                    rect = rect || this.getBoundingRect();
+                    this._fillGradient = style.getGradient(ctx, fill, rect);
+                }
+                if (hasStrokeGradient) {
+                    rect = rect || this.getBoundingRect();
+                    this._strokeGradient = style.getGradient(ctx, stroke, rect);
+                }
+            }
+            // Use the gradient or pattern
+            if (hasFillGradient) {
+                // PENDING If may have affect the state
+                ctx.fillStyle = this._fillGradient;
+            }
+            else if (hasFillPattern) {
+                ctx.fillStyle = getCanvasPattern.call(fill, ctx);
+            }
+            if (hasStrokeGradient) {
+                ctx.strokeStyle = this._strokeGradient;
+            }
+            else if (hasStrokePattern) {
+                ctx.strokeStyle = getCanvasPattern.call(stroke, ctx);
+            }
+
+            var lineDash = style.lineDash;
+            var lineDashOffset = style.lineDashOffset;
+
+            var ctxLineDash = !!ctx.setLineDash;
+
+            // Update path sx, sy
+            var scale = this.getGlobalScale();
+            path.setScale(scale[0], scale[1]);
+
+            // Proxy context
+            // Rebuild path in following 2 cases
+            // 1. Path is dirty
+            // 2. Path needs javascript implemented lineDash stroking.
+            //    In this case, lineDash information will not be saved in PathProxy
+            if (this.__dirtyPath
+                || (lineDash && !ctxLineDash && hasStroke)
+            ) {
+                path.beginPath(ctx);
+
+                // Setting line dash before build path
+                if (lineDash && !ctxLineDash) {
+                    path.setLineDash(lineDash);
+                    path.setLineDashOffset(lineDashOffset);
+                }
+
+                this.buildPath(path, this.shape, false);
+
+                // Clear path dirty flag
+                if (this.path) {
+                    this.__dirtyPath = false;
+                }
+            }
+            else {
+                // Replay path building
+                ctx.beginPath();
+                this.path.rebuildPath(ctx);
+            }
+
+            hasFill && path.fill(ctx);
+
+            if (lineDash && ctxLineDash) {
+                ctx.setLineDash(lineDash);
+                ctx.lineDashOffset = lineDashOffset;
+            }
+
+            hasStroke && path.stroke(ctx);
+
+            if (lineDash && ctxLineDash) {
+                // PENDING
+                // Remove lineDash
+                ctx.setLineDash([]);
+            }
+
+            this.restoreTransform(ctx);
+
+            // Draw rect text
+            if (style.text != null) {
+                this.drawRectText(ctx, this.getBoundingRect());
+            }
+        },
+
+        // When bundling path, some shape may decide if use moveTo to begin a new subpath or closePath
+        // Like in circle
+        buildPath: function (ctx, shapeCfg, inBundle) {},
+
+        createPathProxy: function () {
+            this.path = new PathProxy();
+        },
+
+        getBoundingRect: function () {
+            var rect = this._rect;
+            var style = this.style;
+            var needsUpdateRect = !rect;
+            if (needsUpdateRect) {
+                var path = this.path;
+                if (!path) {
+                    // Create path on demand.
+                    path = this.path = new PathProxy();
+                }
+                if (this.__dirtyPath) {
+                    path.beginPath();
+                    this.buildPath(path, this.shape, false);
+                }
+                rect = path.getBoundingRect();
+            }
+            this._rect = rect;
+
+            if (style.hasStroke()) {
+                // Needs update rect with stroke lineWidth when
+                // 1. Element changes scale or lineWidth
+                // 2. Shape is changed
+                var rectWithStroke = this._rectWithStroke || (this._rectWithStroke = rect.clone());
+                if (this.__dirty || needsUpdateRect) {
+                    rectWithStroke.copy(rect);
+                    // FIXME Must after updateTransform
+                    var w = style.lineWidth;
+                    // PENDING, Min line width is needed when line is horizontal or vertical
+                    var lineScale = style.strokeNoScale ? this.getLineScale() : 1;
+
+                    // Only add extra hover lineWidth when there are no fill
+                    if (!style.hasFill()) {
+                        w = Math.max(w, this.strokeContainThreshold || 4);
+                    }
+                    // Consider line width
+                    // Line scale can't be 0;
+                    if (lineScale > 1e-10) {
+                        rectWithStroke.width += w / lineScale;
+                        rectWithStroke.height += w / lineScale;
+                        rectWithStroke.x -= w / lineScale / 2;
+                        rectWithStroke.y -= w / lineScale / 2;
+                    }
+                }
+
+                // Return rect with stroke
+                return rectWithStroke;
+            }
+
+            return rect;
+        },
+
+        contain: function (x, y) {
+            var localPos = this.transformCoordToLocal(x, y);
+            var rect = this.getBoundingRect();
+            var style = this.style;
+            x = localPos[0];
+            y = localPos[1];
+
+            if (rect.contain(x, y)) {
+                var pathData = this.path.data;
+                if (style.hasStroke()) {
+                    var lineWidth = style.lineWidth;
+                    var lineScale = style.strokeNoScale ? this.getLineScale() : 1;
+                    // Line scale can't be 0;
+                    if (lineScale > 1e-10) {
+                        // Only add extra hover lineWidth when there are no fill
+                        if (!style.hasFill()) {
+                            lineWidth = Math.max(lineWidth, this.strokeContainThreshold);
+                        }
+                        if (pathContain.containStroke(
+                            pathData, lineWidth / lineScale, x, y
+                        )) {
+                            return true;
+                        }
+                    }
+                }
+                if (style.hasFill()) {
+                    return pathContain.contain(pathData, x, y);
+                }
+            }
+            return false;
+        },
+
+        /**
+         * @param  {boolean} dirtyPath
+         */
+        dirty: function (dirtyPath) {
+            if (dirtyPath == null) {
+                dirtyPath = true;
+            }
+            // Only mark dirty, not mark clean
+            if (dirtyPath) {
+                this.__dirtyPath = dirtyPath;
+                this._rect = null;
+            }
+
+            this.__dirty = true;
+
+            this.__zr && this.__zr.refresh();
+
+            // Used as a clipping path
+            if (this.__clipTarget) {
+                this.__clipTarget.dirty();
+            }
+        },
+
+        /**
+         * Alias for animate('shape')
+         * @param {boolean} loop
+         */
+        animateShape: function (loop) {
+            return this.animate('shape', loop);
+        },
+
+        // Overwrite attrKV
+        attrKV: function (key, value) {
+            // FIXME
+            if (key === 'shape') {
+                this.setShape(value);
+                this.__dirtyPath = true;
+                this._rect = null;
+            }
+            else {
+                Displayable.prototype.attrKV.call(this, key, value);
+            }
+        },
+
+        /**
+         * @param {Object|string} key
+         * @param {*} value
+         */
+        setShape: function (key, value) {
+            var shape = this.shape;
+            // Path from string may not have shape
+            if (shape) {
+                if (zrUtil.isObject(key)) {
+                    for (var name in key) {
+                        if (key.hasOwnProperty(name)) {
+                            shape[name] = key[name];
+                        }
+                    }
+                }
+                else {
+                    shape[key] = value;
+                }
+                this.dirty(true);
+            }
+            return this;
+        },
+
+        getLineScale: function () {
+            var m = this.transform;
+            // Get the line scale.
+            // Determinant of `m` means how much the area is enlarged by the
+            // transformation. So its square root can be used as a scale factor
+            // for width.
+            return m && abs(m[0] - 1) > 1e-10 && abs(m[3] - 1) > 1e-10
+                ? Math.sqrt(abs(m[0] * m[3] - m[2] * m[1]))
+                : 1;
+        }
+    };
+
+    /**
+     * 扩展一个 Path element, 比如星形，圆等。
+     * Extend a path element
+     * @param {Object} props
+     * @param {string} props.type Path type
+     * @param {Function} props.init Initialize
+     * @param {Function} props.buildPath Overwrite buildPath method
+     * @param {Object} [props.style] Extended default style config
+     * @param {Object} [props.shape] Extended default shape config
+     */
+    Path.extend = function (defaults) {
+        var Sub = function (opts) {
+            Path.call(this, opts);
+
+            if (defaults.style) {
+                // Extend default style
+                this.style.extendFrom(defaults.style, false);
+            }
+
+            // Extend default shape
+            var defaultShape = defaults.shape;
+            if (defaultShape) {
+                this.shape = this.shape || {};
+                var thisShape = this.shape;
+                for (var name in defaultShape) {
+                    if (
+                        ! thisShape.hasOwnProperty(name)
+                        && defaultShape.hasOwnProperty(name)
+                    ) {
+                        thisShape[name] = defaultShape[name];
+                    }
+                }
+            }
+
+            defaults.init && defaults.init.call(this, opts);
+        };
+
+        zrUtil.inherits(Sub, Path);
+
+        // FIXME 不能 extend position, rotation 等引用对象
+        for (var name in defaults) {
+            // Extending prototype values and methods
+            if (name !== 'style' && name !== 'shape') {
+                Sub.prototype[name] = defaults[name];
+            }
+        }
+
+        return Sub;
+    };
+
+    zrUtil.inherits(Path, Displayable);
+
+    return Path;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 846:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var Pattern = function (image, repeat) {
+        // Should do nothing more in this constructor. Because gradient can be
+        // declard by `color: {image: ...}`, where this constructor will not be called.
+
+        this.image = image;
+        this.repeat = repeat;
+
+        // Can be cloned
+        this.type = 'pattern';
+    };
+
+    Pattern.prototype.getCanvasPattern = function (ctx) {
+        return ctx.createPattern(this.image, this.repeat || 'repeat');
+    };
+
+    return Pattern;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 847:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @module zrender/graphic/Style
+ */
+!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var textHelper = __webpack_require__(848);
+
+    var STYLE_COMMON_PROPS = [
+        ['shadowBlur', 0], ['shadowOffsetX', 0], ['shadowOffsetY', 0], ['shadowColor', '#000'],
+        ['lineCap', 'butt'], ['lineJoin', 'miter'], ['miterLimit', 10]
+    ];
+
+    // var SHADOW_PROPS = STYLE_COMMON_PROPS.slice(0, 4);
+    // var LINE_PROPS = STYLE_COMMON_PROPS.slice(4);
+
+    var Style = function (opts, host) {
+        this.extendFrom(opts, false);
+        this.host = host;
+    };
+
+    function createLinearGradient(ctx, obj, rect) {
+        var x = obj.x == null ? 0 : obj.x;
+        var x2 = obj.x2 == null ? 1 : obj.x2;
+        var y = obj.y == null ? 0 : obj.y;
+        var y2 = obj.y2 == null ? 0 : obj.y2;
+
+        if (!obj.global) {
+            x = x * rect.width + rect.x;
+            x2 = x2 * rect.width + rect.x;
+            y = y * rect.height + rect.y;
+            y2 = y2 * rect.height + rect.y;
+        }
+
+        var canvasGradient = ctx.createLinearGradient(x, y, x2, y2);
+
+        return canvasGradient;
+    }
+
+    function createRadialGradient(ctx, obj, rect) {
+        var width = rect.width;
+        var height = rect.height;
+        var min = Math.min(width, height);
+
+        var x = obj.x == null ? 0.5 : obj.x;
+        var y = obj.y == null ? 0.5 : obj.y;
+        var r = obj.r == null ? 0.5 : obj.r;
+        if (!obj.global) {
+            x = x * width + rect.x;
+            y = y * height + rect.y;
+            r = r * min;
+        }
+
+        var canvasGradient = ctx.createRadialGradient(x, y, 0, x, y, r);
+
+        return canvasGradient;
+    }
+
+
+    Style.prototype = {
+
+        constructor: Style,
+
+        /**
+         * @type {module:zrender/graphic/Displayable}
+         */
+        host: null,
+
+        /**
+         * @type {string}
+         */
+        fill: '#000',
+
+        /**
+         * @type {string}
+         */
+        stroke: null,
+
+        /**
+         * @type {number}
+         */
+        opacity: 1,
+
+        /**
+         * @type {Array.<number>}
+         */
+        lineDash: null,
+
+        /**
+         * @type {number}
+         */
+        lineDashOffset: 0,
+
+        /**
+         * @type {number}
+         */
+        shadowBlur: 0,
+
+        /**
+         * @type {number}
+         */
+        shadowOffsetX: 0,
+
+        /**
+         * @type {number}
+         */
+        shadowOffsetY: 0,
+
+        /**
+         * @type {number}
+         */
+        lineWidth: 1,
+
+        /**
+         * If stroke ignore scale
+         * @type {Boolean}
+         */
+        strokeNoScale: false,
+
+        // Bounding rect text configuration
+        // Not affected by element transform
+        /**
+         * @type {string}
+         */
+        text: null,
+
+        /**
+         * If `fontSize` or `fontFamily` exists, `font` will be reset by
+         * `fontSize`, `fontStyle`, `fontWeight`, `fontFamily`.
+         * So do not visit it directly in upper application (like echarts),
+         * but use `contain/text#makeFont` instead.
+         * @type {string}
+         */
+        font: null,
+
+        /**
+         * The same as font. Use font please.
+         * @deprecated
+         * @type {string}
+         */
+        textFont: null,
+
+        /**
+         * It helps merging respectively, rather than parsing an entire font string.
+         * @type {string}
+         */
+        fontStyle: null,
+
+        /**
+         * It helps merging respectively, rather than parsing an entire font string.
+         * @type {string}
+         */
+        fontWeight: null,
+
+        /**
+         * It helps merging respectively, rather than parsing an entire font string.
+         * Should be 12 but not '12px'.
+         * @type {number}
+         */
+        fontSize: null,
+
+        /**
+         * It helps merging respectively, rather than parsing an entire font string.
+         * @type {string}
+         */
+        fontFamily: null,
+
+        /**
+         * Reserved for special functinality, like 'hr'.
+         * @type {string}
+         */
+        textTag: null,
+
+        /**
+         * @type {string}
+         */
+        textFill: '#000',
+
+        /**
+         * @type {string}
+         */
+        textStroke: null,
+
+        /**
+         * @type {number}
+         */
+        textWidth: null,
+
+        /**
+         * Only for textBackground.
+         * @type {number}
+         */
+        textHeight: null,
+
+        /**
+         * textStroke may be set as some color as a default
+         * value in upper applicaion, where the default value
+         * of textLineWidth should be 0 to make sure that
+         * user can choose to do not use text stroke.
+         * @type {number}
+         */
+        textLineWidth: 0,
+
+        /**
+         * @type {number}
+         */
+        textLineHeight: null,
+
+        /**
+         * 'inside', 'left', 'right', 'top', 'bottom'
+         * [x, y]
+         * Based on x, y of rect.
+         * @type {string|Array.<number>}
+         * @default 'inside'
+         */
+        textPosition: 'inside',
+
+        /**
+         * If not specified, use the boundingRect of a `displayable`.
+         * @type {Object}
+         */
+        textRect: null,
+
+        /**
+         * [x, y]
+         * @type {Array.<number>}
+         */
+        textOffset: null,
+
+        /**
+         * @type {string}
+         */
+        textAlign: null,
+
+        /**
+         * @type {string}
+         */
+        textVerticalAlign: null,
+
+        /**
+         * @type {number}
+         */
+        textDistance: 5,
+
+        /**
+         * @type {string}
+         */
+        textShadowColor: 'transparent',
+
+        /**
+         * @type {number}
+         */
+        textShadowBlur: 0,
+
+        /**
+         * @type {number}
+         */
+        textShadowOffsetX: 0,
+
+        /**
+         * @type {number}
+         */
+        textShadowOffsetY: 0,
+
+        /**
+         * @type {string}
+         */
+        textBoxShadowColor: 'transparent',
+
+        /**
+         * @type {number}
+         */
+        textBoxShadowBlur: 0,
+
+        /**
+         * @type {number}
+         */
+        textBoxShadowOffsetX: 0,
+
+        /**
+         * @type {number}
+         */
+        textBoxShadowOffsetY: 0,
+
+        /**
+         * Whether transform text.
+         * Only useful in Path and Image element
+         * @type {boolean}
+         */
+        transformText: false,
+
+        /**
+         * Text rotate around position of Path or Image
+         * Only useful in Path and Image element and transformText is false.
+         */
+        textRotation: 0,
+
+        /**
+         * Text origin of text rotation, like [10, 40].
+         * Based on x, y of rect.
+         * Useful in label rotation of circular symbol.
+         * By default, this origin is textPosition.
+         * Can be 'center'.
+         * @type {string|Array.<number>}
+         */
+        textOrigin: null,
+
+        /**
+         * @type {string}
+         */
+        textBackgroundColor: null,
+
+        /**
+         * @type {string}
+         */
+        textBorderColor: null,
+
+        /**
+         * @type {number}
+         */
+        textBorderWidth: 0,
+
+        /**
+         * @type {number}
+         */
+        textBorderRadius: 0,
+
+        /**
+         * Can be `2` or `[2, 4]` or `[2, 3, 4, 5]`
+         * @type {number|Array.<number>}
+         */
+        textPadding: null,
+
+        /**
+         * Text styles for rich text.
+         * @type {Object}
+         */
+        rich: null,
+
+        /**
+         * {outerWidth, outerHeight, ellipsis, placeholder}
+         * @type {Object}
+         */
+        truncate: null,
+
+        /**
+         * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+         * @type {string}
+         */
+        blend: null,
+
+        /**
+         * @param {CanvasRenderingContext2D} ctx
+         */
+        bind: function (ctx, el, prevEl) {
+            var style = this;
+            var prevStyle = prevEl && prevEl.style;
+            var firstDraw = !prevStyle;
+
+            for (var i = 0; i < STYLE_COMMON_PROPS.length; i++) {
+                var prop = STYLE_COMMON_PROPS[i];
+                var styleName = prop[0];
+
+                if (firstDraw || style[styleName] !== prevStyle[styleName]) {
+                    // FIXME Invalid property value will cause style leak from previous element.
+                    ctx[styleName] = style[styleName] || prop[1];
+                }
+            }
+
+            if ((firstDraw || style.fill !== prevStyle.fill)) {
+                ctx.fillStyle = style.fill;
+            }
+            if ((firstDraw || style.stroke !== prevStyle.stroke)) {
+                ctx.strokeStyle = style.stroke;
+            }
+            if ((firstDraw || style.opacity !== prevStyle.opacity)) {
+                ctx.globalAlpha = style.opacity == null ? 1 : style.opacity;
+            }
+
+            if ((firstDraw || style.blend !== prevStyle.blend)) {
+                ctx.globalCompositeOperation = style.blend || 'source-over';
+            }
+            if (this.hasStroke()) {
+                var lineWidth = style.lineWidth;
+                ctx.lineWidth = lineWidth / (
+                    (this.strokeNoScale && el && el.getLineScale) ? el.getLineScale() : 1
+                );
+            }
+        },
+
+        hasFill: function () {
+            var fill = this.fill;
+            return fill != null && fill !== 'none';
+        },
+
+        hasStroke: function () {
+            var stroke = this.stroke;
+            return stroke != null && stroke !== 'none' && this.lineWidth > 0;
+        },
+
+        /**
+         * Extend from other style
+         * @param {zrender/graphic/Style} otherStyle
+         * @param {boolean} overwrite true: overwrirte any way.
+         *                            false: overwrite only when !target.hasOwnProperty
+         *                            others: overwrite when property is not null/undefined.
+         */
+        extendFrom: function (otherStyle, overwrite) {
+            if (otherStyle) {
+                for (var name in otherStyle) {
+                    if (otherStyle.hasOwnProperty(name)
+                        && (overwrite === true
+                            || (
+                                overwrite === false
+                                    ? !this.hasOwnProperty(name)
+                                    : otherStyle[name] != null
+                            )
+                        )
+                    ) {
+                        this[name] = otherStyle[name];
+                    }
+                }
+            }
+        },
+
+        /**
+         * Batch setting style with a given object
+         * @param {Object|string} obj
+         * @param {*} [obj]
+         */
+        set: function (obj, value) {
+            if (typeof obj === 'string') {
+                this[obj] = value;
+            }
+            else {
+                this.extendFrom(obj, true);
+            }
+        },
+
+        /**
+         * Clone
+         * @return {zrender/graphic/Style} [description]
+         */
+        clone: function () {
+            var newStyle = new this.constructor();
+            newStyle.extendFrom(this, true);
+            return newStyle;
+        },
+
+        getGradient: function (ctx, obj, rect) {
+            var method = obj.type === 'radial' ? createRadialGradient : createLinearGradient;
+            var canvasGradient = method(ctx, obj, rect);
+            var colorStops = obj.colorStops;
+            for (var i = 0; i < colorStops.length; i++) {
+                canvasGradient.addColorStop(
+                    colorStops[i].offset, colorStops[i].color
+                );
+            }
+            return canvasGradient;
+        }
+
+    };
+
+    var styleProto = Style.prototype;
+    for (var i = 0; i < STYLE_COMMON_PROPS.length; i++) {
+        var prop = STYLE_COMMON_PROPS[i];
+        if (!(prop[0] in styleProto)) {
+            styleProto[prop[0]] = prop[1];
+        }
+    }
+
+    // Provide for others
+    Style.getGradient = styleProto.getGradient;
+
+    return Style;
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 848:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
+
+    var textContain = __webpack_require__(2040);
+    var util = __webpack_require__(40);
+    var roundRectHelper = __webpack_require__(2046);
+    var imageHelper = __webpack_require__(407);
+
+    var retrieve3 = util.retrieve3;
+    var retrieve2 = util.retrieve2;
+
+    // TODO: Have not support 'start', 'end' yet.
+    var VALID_TEXT_ALIGN = {left: 1, right: 1, center: 1};
+    var VALID_TEXT_VERTICAL_ALIGN = {top: 1, bottom: 1, middle: 1};
+
+    var helper = {};
+
+    /**
+     * @param {module:zrender/graphic/Style} style
+     * @return {module:zrender/graphic/Style} The input style.
+     */
+    helper.normalizeTextStyle = function (style) {
+        normalizeStyle(style);
+        util.each(style.rich, normalizeStyle);
+        return style;
+    };
+
+    function normalizeStyle(style) {
+        if (style) {
+
+            style.font = textContain.makeFont(style);
+
+            var textAlign = style.textAlign;
+            textAlign === 'middle' && (textAlign = 'center');
+            style.textAlign = (
+                textAlign == null || VALID_TEXT_ALIGN[textAlign]
+            ) ? textAlign : 'left';
+
+            // Compatible with textBaseline.
+            var textVerticalAlign = style.textVerticalAlign || style.textBaseline;
+            textVerticalAlign === 'center' && (textVerticalAlign = 'middle');
+            style.textVerticalAlign = (
+                textVerticalAlign == null || VALID_TEXT_VERTICAL_ALIGN[textVerticalAlign]
+            ) ? textVerticalAlign : 'top';
+
+            var textPadding = style.textPadding;
+            if (textPadding) {
+                style.textPadding = util.normalizeCssArray(style.textPadding);
+            }
+        }
+    }
+
+    /**
+     * @param {CanvasRenderingContext2D} ctx
+     * @param {string} text
+     * @param {module:zrender/graphic/Style} style
+     * @param {Object|boolean} [rect] {x, y, width, height}
+     *                  If set false, rect text is not used.
+     */
+    helper.renderText = function (hostEl, ctx, text, style, rect) {
+        style.rich
+            ? renderRichText(hostEl, ctx, text, style, rect)
+            : renderPlainText(hostEl, ctx, text, style, rect);
+    };
+
+    function renderPlainText(hostEl, ctx, text, style, rect) {
+        var font = setCtx(ctx, 'font', style.font || textContain.DEFAULT_FONT);
+
+        var textPadding = style.textPadding;
+
+        var contentBlock = hostEl.__textCotentBlock;
+        if (!contentBlock || hostEl.__dirty) {
+            contentBlock = hostEl.__textCotentBlock = textContain.parsePlainText(
+                text, font, textPadding, style.truncate
+            );
+        }
+
+        var outerHeight = contentBlock.outerHeight;
+
+        var textLines = contentBlock.lines;
+        var lineHeight = contentBlock.lineHeight;
+
+        var boxPos = getBoxPosition(outerHeight, style, rect);
+        var baseX = boxPos.baseX;
+        var baseY = boxPos.baseY;
+        var textAlign = boxPos.textAlign;
+        var textVerticalAlign = boxPos.textVerticalAlign;
+
+        // Origin of textRotation should be the base point of text drawing.
+        applyTextRotation(ctx, style, rect, baseX, baseY);
+
+        var boxY = textContain.adjustTextY(baseY, outerHeight, textVerticalAlign);
+        var textX = baseX;
+        var textY = boxY;
+
+        var needDrawBg = needDrawBackground(style);
+        if (needDrawBg || textPadding) {
+            // Consider performance, do not call getTextWidth util necessary.
+            var textWidth = textContain.getWidth(text, font);
+            var outerWidth = textWidth;
+            textPadding && (outerWidth += textPadding[1] + textPadding[3]);
+            var boxX = textContain.adjustTextX(baseX, outerWidth, textAlign);
+
+            needDrawBg && drawBackground(hostEl, ctx, style, boxX, boxY, outerWidth, outerHeight);
+
+            if (textPadding) {
+                textX = getTextXForPadding(baseX, textAlign, textPadding);
+                textY += textPadding[0];
+            }
+        }
+
+        setCtx(ctx, 'textAlign', textAlign || 'left');
+        // Force baseline to be "middle". Otherwise, if using "top", the
+        // text will offset downward a little bit in font "Microsoft YaHei".
+        setCtx(ctx, 'textBaseline', 'middle');
+
+        // Always set shadowBlur and shadowOffset to avoid leak from displayable.
+        setCtx(ctx, 'shadowBlur', style.textShadowBlur || 0);
+        setCtx(ctx, 'shadowColor', style.textShadowColor || 'transparent');
+        setCtx(ctx, 'shadowOffsetX', style.textShadowOffsetX || 0);
+        setCtx(ctx, 'shadowOffsetY', style.textShadowOffsetY || 0);
+
+        // `textBaseline` is set as 'middle'.
+        textY += lineHeight / 2;
+
+        var textLineWidth = style.textLineWidth;
+        var textStroke = getStroke(style.textStroke, textLineWidth);
+        var textFill = getFill(style.textFill);
+
+        if (textStroke) {
+            setCtx(ctx, 'lineWidth', textLineWidth);
+            setCtx(ctx, 'strokeStyle', textStroke);
+        }
+        if (textFill) {
+            setCtx(ctx, 'fillStyle', textFill);
+        }
+
+        for (var i = 0; i < textLines.length; i++) {
+            // Fill after stroke so the outline will not cover the main part.
+            textStroke && ctx.strokeText(textLines[i], textX, textY);
+            textFill && ctx.fillText(textLines[i], textX, textY);
+            textY += lineHeight;
+        }
+    }
+
+    function renderRichText(hostEl, ctx, text, style, rect) {
+        var contentBlock = hostEl.__textCotentBlock;
+
+        if (!contentBlock || hostEl.__dirty) {
+            contentBlock = hostEl.__textCotentBlock = textContain.parseRichText(text, style);
+        }
+
+        drawRichText(hostEl, ctx, contentBlock, style, rect);
+    }
+
+    function drawRichText(hostEl, ctx, contentBlock, style, rect) {
+        var contentWidth = contentBlock.width;
+        var outerWidth = contentBlock.outerWidth;
+        var outerHeight = contentBlock.outerHeight;
+        var textPadding = style.textPadding;
+
+        var boxPos = getBoxPosition(outerHeight, style, rect);
+        var baseX = boxPos.baseX;
+        var baseY = boxPos.baseY;
+        var textAlign = boxPos.textAlign;
+        var textVerticalAlign = boxPos.textVerticalAlign;
+
+        // Origin of textRotation should be the base point of text drawing.
+        applyTextRotation(ctx, style, rect, baseX, baseY);
+
+        var boxX = textContain.adjustTextX(baseX, outerWidth, textAlign);
+        var boxY = textContain.adjustTextY(baseY, outerHeight, textVerticalAlign);
+        var xLeft = boxX;
+        var lineTop = boxY;
+        if (textPadding) {
+            xLeft += textPadding[3];
+            lineTop += textPadding[0];
+        }
+        var xRight = xLeft + contentWidth;
+
+        needDrawBackground(style) && drawBackground(
+            hostEl, ctx, style, boxX, boxY, outerWidth, outerHeight
+        );
+
+        for (var i = 0; i < contentBlock.lines.length; i++) {
+            var line = contentBlock.lines[i];
+            var tokens = line.tokens;
+            var tokenCount = tokens.length;
+            var lineHeight = line.lineHeight;
+            var usedWidth = line.width;
+
+            var leftIndex = 0;
+            var lineXLeft = xLeft;
+            var lineXRight = xRight;
+            var rightIndex = tokenCount - 1;
+            var token;
+
+            while (
+                leftIndex < tokenCount
+                && (token = tokens[leftIndex], !token.textAlign || token.textAlign === 'left')
+            ) {
+                placeToken(hostEl, ctx, token, style, lineHeight, lineTop, lineXLeft, 'left');
+                usedWidth -= token.width;
+                lineXLeft += token.width;
+                leftIndex++;
+            }
+
+            while (
+                rightIndex >= 0
+                && (token = tokens[rightIndex], token.textAlign === 'right')
+            ) {
+                placeToken(hostEl, ctx, token, style, lineHeight, lineTop, lineXRight, 'right');
+                usedWidth -= token.width;
+                lineXRight -= token.width;
+                rightIndex--;
+            }
+
+            // The other tokens are placed as textAlign 'center' if there is enough space.
+            lineXLeft += (contentWidth - (lineXLeft - xLeft) - (xRight - lineXRight) - usedWidth) / 2;
+            while (leftIndex <= rightIndex) {
+                token = tokens[leftIndex];
+                // Consider width specified by user, use 'center' rather than 'left'.
+                placeToken(hostEl, ctx, token, style, lineHeight, lineTop, lineXLeft + token.width / 2, 'center');
+                lineXLeft += token.width;
+                leftIndex++;
+            }
+
+            lineTop += lineHeight;
+        }
+    }
+
+    function applyTextRotation(ctx, style, rect, x, y) {
+        // textRotation only apply in RectText.
+        if (rect && style.textRotation) {
+            var origin = style.textOrigin;
+            if (origin === 'center') {
+                x = rect.width / 2 + rect.x;
+                y = rect.height / 2 + rect.y;
+            }
+            else if (origin) {
+                x = origin[0] + rect.x;
+                y = origin[1] + rect.y;
+            }
+
+            ctx.translate(x, y);
+            // Positive: anticlockwise
+            ctx.rotate(-style.textRotation);
+            ctx.translate(-x, -y);
+        }
+    }
+
+    function placeToken(hostEl, ctx, token, style, lineHeight, lineTop, x, textAlign) {
+        var tokenStyle = style.rich[token.styleName] || {};
+
+        // 'ctx.textBaseline' is always set as 'middle', for sake of
+        // the bias of "Microsoft YaHei".
+        var textVerticalAlign = token.textVerticalAlign;
+        var y = lineTop + lineHeight / 2;
+        if (textVerticalAlign === 'top') {
+            y = lineTop + token.height / 2;
+        }
+        else if (textVerticalAlign === 'bottom') {
+            y = lineTop + lineHeight - token.height / 2;
+        }
+
+        !token.isLineHolder && needDrawBackground(tokenStyle) && drawBackground(
+            hostEl,
+            ctx,
+            tokenStyle,
+            textAlign === 'right'
+                ? x - token.width
+                : textAlign === 'center'
+                ? x - token.width / 2
+                : x,
+            y - token.height / 2,
+            token.width,
+            token.height
+        );
+
+        var textPadding = token.textPadding;
+        if (textPadding) {
+            x = getTextXForPadding(x, textAlign, textPadding);
+            y -= token.height / 2 - textPadding[2] - token.textHeight / 2;
+        }
+
+        setCtx(ctx, 'shadowBlur', retrieve3(tokenStyle.textShadowBlur, style.textShadowBlur, 0));
+        setCtx(ctx, 'shadowColor', tokenStyle.textShadowColor || style.textShadowColor || 'transparent');
+        setCtx(ctx, 'shadowOffsetX', retrieve3(tokenStyle.textShadowOffsetX, style.textShadowOffsetX, 0));
+        setCtx(ctx, 'shadowOffsetY', retrieve3(tokenStyle.textShadowOffsetY, style.textShadowOffsetY, 0));
+
+        setCtx(ctx, 'textAlign', textAlign);
+        // Force baseline to be "middle". Otherwise, if using "top", the
+        // text will offset downward a little bit in font "Microsoft YaHei".
+        setCtx(ctx, 'textBaseline', 'middle');
+
+        setCtx(ctx, 'font', token.font || textContain.DEFAULT_FONT);
+
+        var textStroke = getStroke(tokenStyle.textStroke || style.textStroke, textLineWidth);
+        var textFill = getFill(tokenStyle.textFill || style.textFill);
+        var textLineWidth = retrieve2(tokenStyle.textLineWidth, style.textLineWidth);
+
+        // Fill after stroke so the outline will not cover the main part.
+        if (textStroke) {
+            setCtx(ctx, 'lineWidth', textLineWidth);
+            setCtx(ctx, 'strokeStyle', textStroke);
+            ctx.strokeText(token.text, x, y);
+        }
+        if (textFill) {
+            setCtx(ctx, 'fillStyle', textFill);
+            ctx.fillText(token.text, x, y);
+        }
+    }
+
+    function needDrawBackground(style) {
+        return style.textBackgroundColor
+            || (style.textBorderWidth && style.textBorderColor);
+    }
+
+    // style: {textBackgroundColor, textBorderWidth, textBorderColor, textBorderRadius}
+    // shape: {x, y, width, height}
+    function drawBackground(hostEl, ctx, style, x, y, width, height) {
+        var textBackgroundColor = style.textBackgroundColor;
+        var textBorderWidth = style.textBorderWidth;
+        var textBorderColor = style.textBorderColor;
+        var isPlainBg = util.isString(textBackgroundColor);
+
+        setCtx(ctx, 'shadowBlur', style.textBoxShadowBlur || 0);
+        setCtx(ctx, 'shadowColor', style.textBoxShadowColor || 'transparent');
+        setCtx(ctx, 'shadowOffsetX', style.textBoxShadowOffsetX || 0);
+        setCtx(ctx, 'shadowOffsetY', style.textBoxShadowOffsetY || 0);
+
+        if (isPlainBg || (textBorderWidth && textBorderColor)) {
+            ctx.beginPath();
+            var textBorderRadius = style.textBorderRadius;
+            if (!textBorderRadius) {
+                ctx.rect(x, y, width, height);
+            }
+            else {
+                roundRectHelper.buildPath(ctx, {
+                    x: x, y: y, width: width, height: height, r: textBorderRadius
+                });
+            }
+            ctx.closePath();
+        }
+
+        if (isPlainBg) {
+            setCtx(ctx, 'fillStyle', textBackgroundColor);
+            ctx.fill();
+        }
+        else if (util.isObject(textBackgroundColor)) {
+            var image = textBackgroundColor.image;
+
+            image = imageHelper.createOrUpdateImage(
+                image, null, hostEl, onBgImageLoaded, textBackgroundColor
+            );
+            if (image && imageHelper.isImageReady(image)) {
+                ctx.drawImage(image, x, y, width, height);
+            }
+        }
+
+        if (textBorderWidth && textBorderColor) {
+            setCtx(ctx, 'lineWidth', textBorderWidth);
+            setCtx(ctx, 'strokeStyle', textBorderColor);
+            ctx.stroke();
+        }
+    }
+
+    function onBgImageLoaded(image, textBackgroundColor) {
+        // Replace image, so that `contain/text.js#parseRichText`
+        // will get correct result in next tick.
+        textBackgroundColor.image = image;
+    }
+
+    function getBoxPosition(blockHeiht, style, rect) {
+        var baseX = style.x || 0;
+        var baseY = style.y || 0;
+        var textAlign = style.textAlign;
+        var textVerticalAlign = style.textVerticalAlign;
+
+        // Text position represented by coord
+        if (rect) {
+            var textPosition = style.textPosition;
+            if (textPosition instanceof Array) {
+                // Percent
+                baseX = rect.x + parsePercent(textPosition[0], rect.width);
+                baseY = rect.y + parsePercent(textPosition[1], rect.height);
+            }
+            else {
+                var res = textContain.adjustTextPositionOnRect(
+                    textPosition, rect, style.textDistance
+                );
+                baseX = res.x;
+                baseY = res.y;
+                // Default align and baseline when has textPosition
+                textAlign = textAlign || res.textAlign;
+                textVerticalAlign = textVerticalAlign || res.textVerticalAlign;
+            }
+
+            // textOffset is only support in RectText, otherwise
+            // we have to adjust boundingRect for textOffset.
+            var textOffset = style.textOffset;
+            if (textOffset) {
+                baseX += textOffset[0];
+                baseY += textOffset[1];
+            }
+        }
+
+        return {
+            baseX: baseX,
+            baseY: baseY,
+            textAlign: textAlign,
+            textVerticalAlign: textVerticalAlign
+        };
+    }
+
+    function setCtx(ctx, prop, value) {
+        // FIXME ??? performance try
+        // if (ctx.__currentValues[prop] !== value) {
+            ctx[prop] = ctx.__currentValues[prop] = value;
+        // }
+        return ctx[prop];
+    }
+
+    /**
+     * @param {string} [stroke] If specified, do not check style.textStroke.
+     * @param {string} [lineWidth] If specified, do not check style.textStroke.
+     * @param {number} style
+     */
+    var getStroke = helper.getStroke = function (stroke, lineWidth) {
+        return (stroke == null || lineWidth <= 0 || stroke === 'transparent' || stroke === 'none')
+            ? null
+            // TODO pattern and gradient?
+            : (stroke.image || stroke.colorStops)
+            ? '#000'
+            : stroke;
+    };
+
+    var getFill = helper.getFill = function (fill) {
+        return (fill == null || fill === 'none')
+            ? null
+            // TODO pattern and gradient?
+            : (fill.image || fill.colorStops)
+            ? '#000'
+            : fill;
+    };
+
+    function parsePercent(value, maxValue) {
+        if (typeof value === 'string') {
+            if (value.lastIndexOf('%') >= 0) {
+                return parseFloat(value) / 100 * maxValue;
+            }
+            return parseFloat(value);
+        }
+        return value;
+    }
+
+    function getTextXForPadding(x, textAlign, textPadding) {
+        return textAlign === 'right'
+            ? (x - textPadding[1])
+            : textAlign === 'center'
+            ? (x + textPadding[3] / 2 - textPadding[1] / 2)
+            : (x + textPadding[3]);
+    }
+
+    /**
+     * @param {string} text
+     * @param {module:zrender/Style} style
+     * @return {boolean}
+     */
+    helper.needDrawText = function (text, style) {
+        return text != null
+            && (text
+                || style.textBackgroundColor
+                || (style.textBorderWidth && style.textBorderColor)
+                || style.textPadding
+            );
+    };
+
+    return helper;
+
+}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
+/***/ 850:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _App = __webpack_require__(989);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _reducer = __webpack_require__(993);
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reduxDevtoolsExtension = __webpack_require__(410);
+
+var _reduxLogger = __webpack_require__(1996);
+
+var _redux = __webpack_require__(186);
+
+var _reactRedux = __webpack_require__(126);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var loggerMiddleware = (0, _reduxLogger.createLogger)({ collapsed: true });
+var store = (0, _redux.createStore)(_reducer2.default, (0, _reduxDevtoolsExtension.composeWithDevTools)(), (0, _redux.applyMiddleware)(loggerMiddleware));
+
+var AppContainer = function (_Component) {
+    _inherits(AppContainer, _Component);
+
+    function AppContainer(props) {
+        _classCallCheck(this, AppContainer);
+
+        return _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this, props));
+    }
+
+    _createClass(AppContainer, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _reactRedux.Provider,
+                { store: store },
+                _react2.default.createElement(_App2.default, null)
+            );
+        }
+    }]);
+
+    return AppContainer;
+}(_react.Component);
+
+exports.default = AppContainer;
+
+/***/ }),
+
+/***/ 947:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var ButtonGroup = function ButtonGroup(props) {
+    var _props$prefixCls = props.prefixCls,
+        prefixCls = _props$prefixCls === undefined ? 'ant-btn-group' : _props$prefixCls,
+        _props$size = props.size,
+        size = _props$size === undefined ? '' : _props$size,
+        className = props.className,
+        others = __rest(props, ["prefixCls", "size", "className"]);
+    // large => lg
+    // small => sm
+
+
+    var sizeCls = '';
+    switch (size) {
+        case 'large':
+            sizeCls = 'lg';
+            break;
+        case 'small':
+            sizeCls = 'sm';
+        default:
+            break;
+    }
+    var classes = (0, _classnames2['default'])(prefixCls, (0, _defineProperty3['default'])({}, prefixCls + '-' + sizeCls, sizeCls), className);
+    return _react2['default'].createElement('div', (0, _extends3['default'])({}, others, { className: classes }));
+};
+exports['default'] = ButtonGroup;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 948:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _omit = __webpack_require__(34);
+
+var _omit2 = _interopRequireDefault(_omit);
+
+var _icon = __webpack_require__(191);
+
+var _icon2 = _interopRequireDefault(_icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
+var isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
+function isString(str) {
+    return typeof str === 'string';
+}
+// Insert one space between two chinese characters automatically.
+function insertSpace(child, needInserted) {
+    // Check the child if is undefined or null.
+    if (child == null) {
+        return;
+    }
+    var SPACE = needInserted ? ' ' : '';
+    // strictNullChecks oops.
+    if (typeof child !== 'string' && typeof child !== 'number' && isString(child.type) && isTwoCNChar(child.props.children)) {
+        return _react2['default'].cloneElement(child, {}, child.props.children.split('').join(SPACE));
+    }
+    if (typeof child === 'string') {
+        if (isTwoCNChar(child)) {
+            child = child.split('').join(SPACE);
+        }
+        return _react2['default'].createElement(
+            'span',
+            null,
+            child
+        );
+    }
+    return child;
+}
+
+var Button = function (_React$Component) {
+    (0, _inherits3['default'])(Button, _React$Component);
+
+    function Button(props) {
+        (0, _classCallCheck3['default'])(this, Button);
+
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));
+
+        _this.handleClick = function (e) {
+            // Add click effect
+            _this.setState({ clicked: true });
+            clearTimeout(_this.timeout);
+            _this.timeout = setTimeout(function () {
+                return _this.setState({ clicked: false });
+            }, 500);
+            var onClick = _this.props.onClick;
+            if (onClick) {
+                onClick(e);
+            }
+        };
+        _this.state = {
+            loading: props.loading
+        };
+        return _this;
+    }
+
+    (0, _createClass3['default'])(Button, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            var _this2 = this;
+
+            var currentLoading = this.props.loading;
+            var loading = nextProps.loading;
+            if (currentLoading) {
+                clearTimeout(this.delayTimeout);
+            }
+            if (typeof loading !== 'boolean' && loading && loading.delay) {
+                this.delayTimeout = setTimeout(function () {
+                    return _this2.setState({ loading: loading });
+                }, loading.delay);
+            } else {
+                this.setState({ loading: loading });
+            }
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+            }
+            if (this.delayTimeout) {
+                clearTimeout(this.delayTimeout);
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _classNames;
+
+            var _a = this.props,
+                type = _a.type,
+                shape = _a.shape,
+                _a$size = _a.size,
+                size = _a$size === undefined ? '' : _a$size,
+                className = _a.className,
+                htmlType = _a.htmlType,
+                children = _a.children,
+                icon = _a.icon,
+                prefixCls = _a.prefixCls,
+                ghost = _a.ghost,
+                others = __rest(_a, ["type", "shape", "size", "className", "htmlType", "children", "icon", "prefixCls", "ghost"]);var _state = this.state,
+                loading = _state.loading,
+                clicked = _state.clicked;
+            // large => lg
+            // small => sm
+
+            var sizeCls = '';
+            switch (size) {
+                case 'large':
+                    sizeCls = 'lg';
+                    break;
+                case 'small':
+                    sizeCls = 'sm';
+                default:
+                    break;
+            }
+            var classes = (0, _classnames2['default'])(prefixCls, className, (_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + type, type), (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + shape, shape), (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + sizeCls, sizeCls), (0, _defineProperty3['default'])(_classNames, prefixCls + '-icon-only', !children && icon && !loading), (0, _defineProperty3['default'])(_classNames, prefixCls + '-loading', loading), (0, _defineProperty3['default'])(_classNames, prefixCls + '-clicked', clicked), (0, _defineProperty3['default'])(_classNames, prefixCls + '-background-ghost', ghost), _classNames));
+            var iconType = loading ? 'loading' : icon;
+            var iconNode = iconType ? _react2['default'].createElement(_icon2['default'], { type: iconType }) : null;
+            var needInserted = _react2['default'].Children.count(children) === 1 && (!iconType || iconType === 'loading');
+            var kids = _react2['default'].Children.map(children, function (child) {
+                return insertSpace(child, needInserted);
+            });
+            return _react2['default'].createElement(
+                'button',
+                (0, _extends3['default'])({}, (0, _omit2['default'])(others, ['loading', 'clicked']), { type: htmlType || 'button', className: classes, onClick: this.handleClick }),
+                iconNode,
+                kids
+            );
+        }
+    }]);
+    return Button;
+}(_react2['default'].Component);
+
+exports['default'] = Button;
+
+Button.__ANT_BUTTON = true;
+Button.defaultProps = {
+    prefixCls: 'ant-btn',
+    loading: false,
+    clicked: false,
+    ghost: false
+};
+Button.propTypes = {
+    type: _propTypes2['default'].string,
+    shape: _propTypes2['default'].oneOf(['circle', 'circle-outline']),
+    size: _propTypes2['default'].oneOf(['large', 'default', 'small']),
+    htmlType: _propTypes2['default'].oneOf(['submit', 'button', 'reset']),
+    onClick: _propTypes2['default'].func,
+    loading: _propTypes2['default'].oneOfType([_propTypes2['default'].bool, _propTypes2['default'].object]),
+    className: _propTypes2['default'].string,
+    icon: _propTypes2['default'].string
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 949:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _button = __webpack_require__(948);
+
+var _button2 = _interopRequireDefault(_button);
+
+var _buttonGroup = __webpack_require__(947);
+
+var _buttonGroup2 = _interopRequireDefault(_buttonGroup);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+_button2['default'].Group = _buttonGroup2['default'];
+exports['default'] = _button2['default'];
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 950:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _grid = __webpack_require__(436);
+
+exports['default'] = _grid.Col;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 951:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _zh_CN = __webpack_require__(750);
+
+var _zh_CN2 = _interopRequireDefault(_zh_CN);
+
+var _rcCalendar = __webpack_require__(239);
+
+var _rcCalendar2 = _interopRequireDefault(_rcCalendar);
+
+var _warning = __webpack_require__(56);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Calendar = function (_React$Component) {
+    (0, _inherits3['default'])(Calendar, _React$Component);
+
+    function Calendar() {
+        (0, _classCallCheck3['default'])(this, Calendar);
+        return (0, _possibleConstructorReturn3['default'])(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).apply(this, arguments));
+    }
+
+    (0, _createClass3['default'])(Calendar, [{
+        key: 'render',
+        value: function render() {
+            (0, _warning2['default'])(false, 'DatePicker.Calendar is deprecated, use Calendar instead.');
+            return _react2['default'].createElement(_rcCalendar2['default'], this.props);
+        }
+    }]);
+    return Calendar;
+}(_react2['default'].Component);
+
+exports['default'] = Calendar;
+
+Calendar.defaultProps = {
+    locale: _zh_CN2['default'],
+    prefixCls: 'ant-calendar'
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 952:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _slicedToArray2 = __webpack_require__(192);
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _RangeCalendar = __webpack_require__(1750);
+
+var _RangeCalendar2 = _interopRequireDefault(_RangeCalendar);
+
+var _Picker = __webpack_require__(748);
+
+var _Picker2 = _interopRequireDefault(_Picker);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _icon = __webpack_require__(191);
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _getLocale = __webpack_require__(260);
+
+var _warning = __webpack_require__(261);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function getShowDateFromValue(value) {
+    var _value = (0, _slicedToArray3['default'])(value, 2),
+        start = _value[0],
+        end = _value[1];
+    // value could be an empty array, then we should not reset showDate
+
+
+    if (!start && !end) {
+        return;
+    }
+    var newEnd = end && end.isSame(start, 'month') ? end.clone().add(1, 'month') : end;
+    return [start, newEnd];
+} /* tslint:disable jsx-no-multiline-js */
+
+function formatValue(value, format) {
+    return value && value.format(format) || '';
+}
+function pickerValueAdapter(value) {
+    if (!value) {
+        return;
+    }
+    if (Array.isArray(value)) {
+        return value;
+    }
+    return [value, value.clone().add(1, 'month')];
+}
+function isEmptyArray(arr) {
+    if (Array.isArray(arr)) {
+        return arr.length === 0 || arr.every(function (i) {
+            return !i;
+        });
+    }
+    return false;
+}
+
+var RangePicker = function (_React$Component) {
+    (0, _inherits3['default'])(RangePicker, _React$Component);
+
+    function RangePicker(props) {
+        (0, _classCallCheck3['default'])(this, RangePicker);
+
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (RangePicker.__proto__ || Object.getPrototypeOf(RangePicker)).call(this, props));
+
+        _this.clearSelection = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            _this.setState({ value: [] });
+            _this.handleChange([]);
+        };
+        _this.clearHoverValue = function () {
+            return _this.setState({ hoverValue: [] });
+        };
+        _this.handleChange = function (value) {
+            var props = _this.props;
+            if (!('value' in props)) {
+                _this.setState(function (_ref) {
+                    var showDate = _ref.showDate;
+                    return {
+                        value: value,
+                        showDate: getShowDateFromValue(value) || showDate
+                    };
+                });
+            }
+            props.onChange(value, [formatValue(value[0], props.format), formatValue(value[1], props.format)]);
+        };
+        _this.handleOpenChange = function (open) {
+            _this.setState({ open: open });
+            var onOpenChange = _this.props.onOpenChange;
+
+            if (onOpenChange) {
+                onOpenChange(open);
+            }
+        };
+        _this.handleShowDateChange = function (showDate) {
+            return _this.setState({ showDate: showDate });
+        };
+        _this.handleHoverChange = function (hoverValue) {
+            return _this.setState({ hoverValue: hoverValue });
+        };
+        _this.renderFooter = function () {
+            var _this$props = _this.props,
+                prefixCls = _this$props.prefixCls,
+                ranges = _this$props.ranges,
+                renderExtraFooter = _this$props.renderExtraFooter;
+
+            if (!ranges && !renderExtraFooter) {
+                return null;
+            }
+            var customFooter = renderExtraFooter ? _react2['default'].createElement(
+                'div',
+                { className: prefixCls + '-footer-extra', key: 'extra' },
+                renderExtraFooter.apply(undefined, arguments)
+            ) : null;
+            var operations = Object.keys(ranges || {}).map(function (range) {
+                var value = ranges[range];
+                return _react2['default'].createElement(
+                    'a',
+                    { key: range, onClick: function onClick() {
+                            return _this.setValue(value);
+                        }, onMouseEnter: function onMouseEnter() {
+                            return _this.setState({ hoverValue: value });
+                        }, onMouseLeave: _this.clearHoverValue },
+                    range
+                );
+            });
+            var rangeNode = _react2['default'].createElement(
+                'div',
+                { className: prefixCls + '-footer-extra ' + prefixCls + '-range-quick-selector', key: 'range' },
+                operations
+            );
+            return [rangeNode, customFooter];
+        };
+        var value = props.value || props.defaultValue || [];
+        if (value[0] && !_moment2['default'].isMoment(value[0]) || value[1] && !_moment2['default'].isMoment(value[1])) {
+            throw new Error('The value/defaultValue of RangePicker must be a moment object array after `antd@2.0`, ' + 'see: https://u.ant.design/date-picker-value');
+        }
+        var pickerValue = !value || isEmptyArray(value) ? props.defaultPickerValue : value;
+        _this.state = {
+            value: value,
+            showDate: pickerValueAdapter(pickerValue || (0, _moment2['default'])()),
+            open: props.open,
+            hoverValue: []
+        };
+        return _this;
+    }
+
+    (0, _createClass3['default'])(RangePicker, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if ('value' in nextProps) {
+                var state = this.state;
+                var value = nextProps.value || [];
+                this.setState({
+                    value: value,
+                    showDate: getShowDateFromValue(value) || state.showDate
+                });
+            }
+            if ('open' in nextProps) {
+                this.setState({
+                    open: nextProps.open
+                });
+            }
+        }
+    }, {
+        key: 'setValue',
+        value: function setValue(value) {
+            this.handleChange(value);
+            if (!this.props.showTime) {
+                this.setState({ open: false });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _classNames,
+                _this2 = this;
+
+            var state = this.state,
+                props = this.props,
+                context = this.context;
+            var value = state.value,
+                showDate = state.showDate,
+                hoverValue = state.hoverValue,
+                open = state.open;
+
+            var localeCode = (0, _getLocale.getLocaleCode)(context);
+            if (value && localeCode) {
+                if (value[0]) {
+                    value[0].locale(localeCode);
+                }
+                if (value[1]) {
+                    value[1].locale(localeCode);
+                }
+            }
+            var prefixCls = props.prefixCls,
+                popupStyle = props.popupStyle,
+                style = props.style,
+                disabledDate = props.disabledDate,
+                disabledTime = props.disabledTime,
+                showTime = props.showTime,
+                showToday = props.showToday,
+                ranges = props.ranges,
+                onOk = props.onOk,
+                locale = props.locale,
+                format = props.format;
+
+            (0, _warning2['default'])(!('onOK' in props), 'It should be `RangePicker[onOk]`, instead of `onOK`!');
+            var calendarClassName = (0, _classnames2['default'])((_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-time', showTime), (0, _defineProperty3['default'])(_classNames, prefixCls + '-range-with-ranges', ranges), _classNames));
+            // 需要选择时间时，点击 ok 时才触发 onChange
+            var pickerChangeHandler = {
+                onChange: this.handleChange
+            };
+            var calendarHandler = {
+                onOk: this.handleChange
+            };
+            if (props.timePicker) {
+                pickerChangeHandler.onChange = function (changedValue) {
+                    return _this2.handleChange(changedValue);
+                };
+            } else {
+                calendarHandler = {};
+            }
+            var startPlaceholder = 'placeholder' in props ? props.placeholder[0] : locale.lang.rangePlaceholder[0];
+            var endPlaceholder = 'placeholder' in props ? props.placeholder[1] : locale.lang.rangePlaceholder[1];
+            var calendar = _react2['default'].createElement(_RangeCalendar2['default'], (0, _extends3['default'])({}, calendarHandler, { format: format, prefixCls: prefixCls, className: calendarClassName, renderFooter: this.renderFooter, timePicker: props.timePicker, disabledDate: disabledDate, disabledTime: disabledTime, dateInputPlaceholder: [startPlaceholder, endPlaceholder], locale: locale.lang, onOk: onOk, value: showDate, onValueChange: this.handleShowDateChange, hoverValue: hoverValue, onHoverChange: this.handleHoverChange, showToday: showToday }));
+            // default width for showTime
+            var pickerStyle = {};
+            if (props.showTime) {
+                pickerStyle.width = style && style.width || 300;
+            }
+            var clearIcon = !props.disabled && props.allowClear && value && (value[0] || value[1]) ? _react2['default'].createElement(_icon2['default'], { type: 'cross-circle', className: prefixCls + '-picker-clear', onClick: this.clearSelection }) : null;
+            var input = function input(_ref2) {
+                var inputValue = _ref2.value;
+
+                var start = inputValue[0];
+                var end = inputValue[1];
+                return _react2['default'].createElement(
+                    'span',
+                    { className: props.pickerInputClass },
+                    _react2['default'].createElement('input', { disabled: props.disabled, readOnly: true, value: start && start.format(props.format) || '', placeholder: startPlaceholder, className: prefixCls + '-range-picker-input' }),
+                    _react2['default'].createElement(
+                        'span',
+                        { className: prefixCls + '-range-picker-separator' },
+                        ' ~ '
+                    ),
+                    _react2['default'].createElement('input', { disabled: props.disabled, readOnly: true, value: end && end.format(props.format) || '', placeholder: endPlaceholder, className: prefixCls + '-range-picker-input' }),
+                    clearIcon,
+                    _react2['default'].createElement('span', { className: prefixCls + '-picker-icon' })
+                );
+            };
+            return _react2['default'].createElement(
+                'span',
+                { className: (0, _classnames2['default'])(props.className, props.pickerClass), style: (0, _extends3['default'])({}, style, pickerStyle) },
+                _react2['default'].createElement(
+                    _Picker2['default'],
+                    (0, _extends3['default'])({}, props, pickerChangeHandler, { calendar: calendar, value: value, open: open, onOpenChange: this.handleOpenChange, prefixCls: prefixCls + '-picker-container', style: popupStyle }),
+                    input
+                )
+            );
+        }
+    }]);
+    return RangePicker;
+}(_react2['default'].Component);
+
+exports['default'] = RangePicker;
+
+RangePicker.contextTypes = {
+    antLocale: _propTypes2['default'].object
+};
+RangePicker.defaultProps = {
+    prefixCls: 'ant-calendar',
+    allowClear: true,
+    showToday: false
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 953:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+exports['default'] = createPicker;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _MonthCalendar = __webpack_require__(747);
+
+var _MonthCalendar2 = _interopRequireDefault(_MonthCalendar);
+
+var _Picker = __webpack_require__(748);
+
+var _Picker2 = _interopRequireDefault(_Picker);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _omit = __webpack_require__(34);
+
+var _omit2 = _interopRequireDefault(_omit);
+
+var _icon = __webpack_require__(191);
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _getLocale = __webpack_require__(260);
+
+var _warning = __webpack_require__(261);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function createPicker(TheCalendar) {
+    return _a = function (_React$Component) {
+        (0, _inherits3['default'])(CalenderWrapper, _React$Component);
+
+        function CalenderWrapper(props) {
+            (0, _classCallCheck3['default'])(this, CalenderWrapper);
+
+            var _this = (0, _possibleConstructorReturn3['default'])(this, (CalenderWrapper.__proto__ || Object.getPrototypeOf(CalenderWrapper)).call(this, props));
+
+            _this.renderFooter = function () {
+                var _this$props = _this.props,
+                    prefixCls = _this$props.prefixCls,
+                    renderExtraFooter = _this$props.renderExtraFooter;
+
+                return renderExtraFooter ? _react2['default'].createElement(
+                    'div',
+                    { className: prefixCls + '-footer-extra' },
+                    renderExtraFooter.apply(undefined, arguments)
+                ) : null;
+            };
+            _this.clearSelection = function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                _this.handleChange(null);
+            };
+            _this.handleChange = function (value) {
+                var props = _this.props;
+                if (!('value' in props)) {
+                    _this.setState({ value: value });
+                }
+                props.onChange(value, value && value.format(props.format) || '');
+            };
+            var value = props.value || props.defaultValue;
+            if (value && !_moment2['default'].isMoment(value)) {
+                throw new Error('The value/defaultValue of DatePicker or MonthPicker must be ' + 'a moment object after `antd@2.0`, see: https://u.ant.design/date-picker-value');
+            }
+            _this.state = {
+                value: value
+            };
+            return _this;
+        }
+
+        (0, _createClass3['default'])(CalenderWrapper, [{
+            key: 'componentWillReceiveProps',
+            value: function componentWillReceiveProps(nextProps) {
+                if ('value' in nextProps) {
+                    this.setState({
+                        value: nextProps.value
+                    });
+                }
+            }
+        }, {
+            key: 'render',
+            value: function render() {
+                var _classNames;
+
+                var value = this.state.value;
+
+                var props = (0, _omit2['default'])(this.props, ['onChange']);
+                var prefixCls = props.prefixCls,
+                    locale = props.locale;
+
+                var placeholder = 'placeholder' in props ? props.placeholder : locale.lang.placeholder;
+                var disabledTime = props.showTime ? props.disabledTime : null;
+                var calendarClassName = (0, _classnames2['default'])((_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-time', props.showTime), (0, _defineProperty3['default'])(_classNames, prefixCls + '-month', _MonthCalendar2['default'] === TheCalendar), _classNames));
+                var pickerChangeHandler = {};
+                var calendarHandler = {};
+                if (props.showTime) {
+                    calendarHandler = {
+                        // fix https://github.com/ant-design/ant-design/issues/1902
+                        onSelect: this.handleChange
+                    };
+                } else {
+                    pickerChangeHandler = {
+                        onChange: this.handleChange
+                    };
+                }
+                (0, _warning2['default'])(!('onOK' in props), 'It should be `DatePicker[onOk]` or `MonthPicker[onOk]`, instead of `onOK`!');
+                var calendar = _react2['default'].createElement(TheCalendar, (0, _extends3['default'])({}, calendarHandler, { disabledDate: props.disabledDate, disabledTime: disabledTime, locale: locale.lang, timePicker: props.timePicker, defaultValue: props.defaultPickerValue || (0, _moment2['default'])(), dateInputPlaceholder: placeholder, prefixCls: prefixCls, className: calendarClassName, onOk: props.onOk, format: props.format, showToday: props.showToday, monthCellContentRender: props.monthCellContentRender, renderFooter: this.renderFooter }));
+                // default width for showTime
+                var pickerStyle = {};
+                if (props.showTime) {
+                    pickerStyle.width = props.style && props.style.width || 154;
+                }
+                var clearIcon = !props.disabled && props.allowClear && value ? _react2['default'].createElement(_icon2['default'], { type: 'cross-circle', className: prefixCls + '-picker-clear', onClick: this.clearSelection }) : null;
+                var input = function input(_ref) {
+                    var inputValue = _ref.value;
+                    return _react2['default'].createElement(
+                        'div',
+                        null,
+                        _react2['default'].createElement('input', { disabled: props.disabled, readOnly: true, value: inputValue && inputValue.format(props.format) || '', placeholder: placeholder, className: props.pickerInputClass }),
+                        clearIcon,
+                        _react2['default'].createElement('span', { className: prefixCls + '-picker-icon' })
+                    );
+                };
+                var pickerValue = value;
+                var localeCode = (0, _getLocale.getLocaleCode)(this.context);
+                if (pickerValue && localeCode) {
+                    pickerValue.locale(localeCode);
+                }
+                var style = (0, _extends3['default'])({}, props.style, pickerStyle);
+                return _react2['default'].createElement(
+                    'span',
+                    { className: (0, _classnames2['default'])(props.className, props.pickerClass), style: style },
+                    _react2['default'].createElement(
+                        _Picker2['default'],
+                        (0, _extends3['default'])({}, props, pickerChangeHandler, { calendar: calendar, value: pickerValue, prefixCls: prefixCls + '-picker-container', style: props.popupStyle }),
+                        input
+                    )
+                );
+            }
+        }]);
+        return CalenderWrapper;
+    }(_react2['default'].Component), _a.contextTypes = {
+        antLocale: _propTypes2['default'].object
+    }, _a.defaultProps = {
+        prefixCls: 'ant-calendar',
+        allowClear: true,
+        showToday: true
+    }, _a;
+    var _a;
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 954:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _rcCalendar = __webpack_require__(239);
+
+var _rcCalendar2 = _interopRequireDefault(_rcCalendar);
+
+var _MonthCalendar = __webpack_require__(747);
+
+var _MonthCalendar2 = _interopRequireDefault(_MonthCalendar);
+
+var _createPicker = __webpack_require__(953);
+
+var _createPicker2 = _interopRequireDefault(_createPicker);
+
+var _wrapPicker = __webpack_require__(956);
+
+var _wrapPicker2 = _interopRequireDefault(_wrapPicker);
+
+var _RangePicker = __webpack_require__(952);
+
+var _RangePicker2 = _interopRequireDefault(_RangePicker);
+
+var _Calendar = __webpack_require__(951);
+
+var _Calendar2 = _interopRequireDefault(_Calendar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var DatePicker = (0, _wrapPicker2['default'])((0, _createPicker2['default'])(_rcCalendar2['default']));
+var MonthPicker = (0, _wrapPicker2['default'])((0, _createPicker2['default'])(_MonthCalendar2['default']), 'YYYY-MM');
+(0, _extends3['default'])(DatePicker, {
+    RangePicker: (0, _wrapPicker2['default'])(_RangePicker2['default']),
+    Calendar: _Calendar2['default'],
+    MonthPicker: MonthPicker
+});
+exports['default'] = DatePicker;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 955:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _zh_CN = __webpack_require__(750);
+
+var _zh_CN2 = _interopRequireDefault(_zh_CN);
+
+var _zh_CN3 = __webpack_require__(439);
+
+var _zh_CN4 = _interopRequireDefault(_zh_CN3);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+__webpack_require__(238);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+// 备注：以下代码无法完全按最初设计运行，但为了保证兼容性，需要保留，直至 antd 默认语言改为英文
+//  1. 如果用户不给时间类组件传入 value defaultValue，则运行符合预期
+//  2. 如果用户传入 value defaultValue，因为这段代码没有在用户代码之前运行，所以用户调用 moment 时，默认语言依然为英文
+// To set the default locale of moment to zh-cn globally.
+_moment2['default'].locale('zh-cn');
+// Merge into a locale object
+var locale = {
+    lang: (0, _extends3['default'])({ placeholder: '请选择日期', rangePlaceholder: ['开始日期', '结束日期'] }, _zh_CN2['default']),
+    timePickerLocale: (0, _extends3['default'])({}, _zh_CN4['default'])
+};
+// should add whitespace between char in Button
+locale.lang.ok = '确 定';
+// All settings at:
+// https://github.com/ant-design/ant-design/blob/master/components/date-picker/locale/example.json
+exports['default'] = locale;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 956:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+exports['default'] = wrapPicker;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Panel = __webpack_require__(774);
+
+var _Panel2 = _interopRequireDefault(_Panel);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _timePicker = __webpack_require__(965);
+
+var _warning = __webpack_require__(261);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _getLocale = __webpack_require__(260);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function getColumns(_ref) {
+    var showHour = _ref.showHour,
+        showMinute = _ref.showMinute,
+        showSecond = _ref.showSecond,
+        use12Hours = _ref.use12Hours;
+
+    var column = 0;
+    if (showHour) {
+        column += 1;
+    }
+    if (showMinute) {
+        column += 1;
+    }
+    if (showSecond) {
+        column += 1;
+    }
+    if (use12Hours) {
+        column += 1;
+    }
+    return column;
+}
+function wrapPicker(Picker, defaultFormat) {
+    return _a = function (_React$Component) {
+        (0, _inherits3['default'])(PickerWrapper, _React$Component);
+
+        function PickerWrapper() {
+            (0, _classCallCheck3['default'])(this, PickerWrapper);
+
+            var _this = (0, _possibleConstructorReturn3['default'])(this, (PickerWrapper.__proto__ || Object.getPrototypeOf(PickerWrapper)).apply(this, arguments));
+
+            _this.handleOpenChange = function (open) {
+                var _this$props = _this.props,
+                    onOpenChange = _this$props.onOpenChange,
+                    toggleOpen = _this$props.toggleOpen;
+
+                onOpenChange(open);
+                if (toggleOpen) {
+                    (0, _warning2['default'])(false, '`toggleOpen` is deprecated and will be removed in the future, ' + 'please use `onOpenChange` instead, see: https://u.ant.design/date-picker-on-open-change');
+                    toggleOpen({ open: open });
+                }
+            };
+            return _this;
+        }
+
+        (0, _createClass3['default'])(PickerWrapper, [{
+            key: 'render',
+            value: function render() {
+                var _classNames2;
+
+                var props = this.props;
+                var prefixCls = props.prefixCls,
+                    inputPrefixCls = props.inputPrefixCls;
+
+                var pickerClass = (0, _classnames2['default'])((0, _defineProperty3['default'])({}, prefixCls + '-picker', true));
+                var pickerInputClass = (0, _classnames2['default'])(prefixCls + '-picker-input', inputPrefixCls, (_classNames2 = {}, (0, _defineProperty3['default'])(_classNames2, inputPrefixCls + '-lg', props.size === 'large'), (0, _defineProperty3['default'])(_classNames2, inputPrefixCls + '-sm', props.size === 'small'), (0, _defineProperty3['default'])(_classNames2, inputPrefixCls + '-disabled', props.disabled), _classNames2));
+                var locale = (0, _getLocale.getComponentLocale)(props, this.context, 'DatePicker', function () {
+                    return __webpack_require__(955);
+                });
+                var timeFormat = props.showTime && props.showTime.format || 'HH:mm:ss';
+                var rcTimePickerProps = (0, _extends3['default'])({}, (0, _timePicker.generateShowHourMinuteSecond)(timeFormat), { format: timeFormat, use12Hours: props.showTime && props.showTime.use12Hours });
+                var columns = getColumns(rcTimePickerProps);
+                var timePickerCls = prefixCls + '-time-picker-column-' + columns;
+                var timePicker = props.showTime ? _react2['default'].createElement(_Panel2['default'], (0, _extends3['default'])({}, rcTimePickerProps, props.showTime, { prefixCls: prefixCls + '-time-picker', className: timePickerCls, placeholder: locale.timePickerLocale.placeholder, transitionName: 'slide-up' })) : null;
+                return _react2['default'].createElement(Picker, (0, _extends3['default'])({}, props, { pickerClass: pickerClass, pickerInputClass: pickerInputClass, locale: locale, timePicker: timePicker, onOpenChange: this.handleOpenChange }));
+            }
+        }]);
+        return PickerWrapper;
+    }(_react2['default'].Component), _a.contextTypes = {
+        antLocale: _propTypes2['default'].object
+    }, _a.defaultProps = {
+        format: defaultFormat || 'YYYY-MM-DD',
+        transitionName: 'slide-up',
+        popupStyle: {},
+        onChange: function onChange() {},
+        onOk: function onOk() {},
+        onOpenChange: function onOpenChange() {},
+
+        locale: {},
+        prefixCls: 'ant-calendar',
+        inputPrefixCls: 'ant-input'
+    }, _a;
+    var _a;
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 957:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _extends3 = __webpack_require__(2);
+
+var _extends4 = _interopRequireDefault(_extends3);
+
+var _typeof2 = __webpack_require__(32);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var stringOrNumber = _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].number]);
+var objectOrNumber = _propTypes2['default'].oneOfType([_propTypes2['default'].object, _propTypes2['default'].number]);
+
+var Col = function (_React$Component) {
+    (0, _inherits3['default'])(Col, _React$Component);
+
+    function Col() {
+        (0, _classCallCheck3['default'])(this, Col);
+        return (0, _possibleConstructorReturn3['default'])(this, (Col.__proto__ || Object.getPrototypeOf(Col)).apply(this, arguments));
+    }
+
+    (0, _createClass3['default'])(Col, [{
+        key: 'render',
+        value: function render() {
+            var _classNames;
+
+            var props = this.props;
+
+            var span = props.span,
+                order = props.order,
+                offset = props.offset,
+                push = props.push,
+                pull = props.pull,
+                className = props.className,
+                children = props.children,
+                _props$prefixCls = props.prefixCls,
+                prefixCls = _props$prefixCls === undefined ? 'ant-col' : _props$prefixCls,
+                others = __rest(props, ["span", "order", "offset", "push", "pull", "className", "children", "prefixCls"]);
+
+            var sizeClassObj = {};
+            ['xs', 'sm', 'md', 'lg', 'xl'].forEach(function (size) {
+                var _extends2;
+
+                var sizeProps = {};
+                if (typeof props[size] === 'number') {
+                    sizeProps.span = props[size];
+                } else if ((0, _typeof3['default'])(props[size]) === 'object') {
+                    sizeProps = props[size] || {};
+                }
+                delete others[size];
+                sizeClassObj = (0, _extends4['default'])({}, sizeClassObj, (_extends2 = {}, (0, _defineProperty3['default'])(_extends2, prefixCls + '-' + size + '-' + sizeProps.span, sizeProps.span !== undefined), (0, _defineProperty3['default'])(_extends2, prefixCls + '-' + size + '-order-' + sizeProps.order, sizeProps.order || sizeProps.order === 0), (0, _defineProperty3['default'])(_extends2, prefixCls + '-' + size + '-offset-' + sizeProps.offset, sizeProps.offset || sizeProps.offset === 0), (0, _defineProperty3['default'])(_extends2, prefixCls + '-' + size + '-push-' + sizeProps.push, sizeProps.push || sizeProps.push === 0), (0, _defineProperty3['default'])(_extends2, prefixCls + '-' + size + '-pull-' + sizeProps.pull, sizeProps.pull || sizeProps.pull === 0), _extends2));
+            });
+            var classes = (0, _classnames2['default'])((_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + span, span !== undefined), (0, _defineProperty3['default'])(_classNames, prefixCls + '-order-' + order, order), (0, _defineProperty3['default'])(_classNames, prefixCls + '-offset-' + offset, offset), (0, _defineProperty3['default'])(_classNames, prefixCls + '-push-' + push, push), (0, _defineProperty3['default'])(_classNames, prefixCls + '-pull-' + pull, pull), _classNames), className, sizeClassObj);
+            return _react2['default'].createElement(
+                'div',
+                (0, _extends4['default'])({}, others, { className: classes }),
+                children
+            );
+        }
+    }]);
+    return Col;
+}(_react2['default'].Component);
+
+exports['default'] = Col;
+
+Col.propTypes = {
+    span: stringOrNumber,
+    order: stringOrNumber,
+    offset: stringOrNumber,
+    push: stringOrNumber,
+    pull: stringOrNumber,
+    className: _propTypes2['default'].string,
+    children: _propTypes2['default'].node,
+    xs: objectOrNumber,
+    sm: objectOrNumber,
+    md: objectOrNumber,
+    lg: objectOrNumber,
+    xl: objectOrNumber
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 958:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var Row = function (_React$Component) {
+    (0, _inherits3['default'])(Row, _React$Component);
+
+    function Row() {
+        (0, _classCallCheck3['default'])(this, Row);
+        return (0, _possibleConstructorReturn3['default'])(this, (Row.__proto__ || Object.getPrototypeOf(Row)).apply(this, arguments));
+    }
+
+    (0, _createClass3['default'])(Row, [{
+        key: 'render',
+        value: function render() {
+            var _classNames;
+
+            var _a = this.props,
+                type = _a.type,
+                justify = _a.justify,
+                align = _a.align,
+                className = _a.className,
+                gutter = _a.gutter,
+                style = _a.style,
+                children = _a.children,
+                _a$prefixCls = _a.prefixCls,
+                prefixCls = _a$prefixCls === undefined ? 'ant-row' : _a$prefixCls,
+                others = __rest(_a, ["type", "justify", "align", "className", "gutter", "style", "children", "prefixCls"]);
+            var classes = (0, _classnames2['default'])((_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls, !type), (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + type, type), (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + type + '-' + justify, type && justify), (0, _defineProperty3['default'])(_classNames, prefixCls + '-' + type + '-' + align, type && align), _classNames), className);
+            var rowStyle = gutter > 0 ? (0, _extends3['default'])({ marginLeft: gutter / -2, marginRight: gutter / -2 }, style) : style;
+            var cols = _react.Children.map(children, function (col) {
+                if (!col) {
+                    return null;
+                }
+                if (col.props && gutter > 0) {
+                    return (0, _react.cloneElement)(col, {
+                        style: (0, _extends3['default'])({ paddingLeft: gutter / 2, paddingRight: gutter / 2 }, col.props.style)
+                    });
+                }
+                return col;
+            });
+            return _react2['default'].createElement(
+                'div',
+                (0, _extends3['default'])({}, others, { className: classes, style: rowStyle }),
+                cols
+            );
+        }
+    }]);
+    return Row;
+}(_react2['default'].Component);
+
+exports['default'] = Row;
+
+Row.defaultProps = {
+    gutter: 0
+};
+Row.propTypes = {
+    type: _propTypes2['default'].string,
+    align: _propTypes2['default'].string,
+    justify: _propTypes2['default'].string,
+    className: _propTypes2['default'].string,
+    children: _propTypes2['default'].node,
+    gutter: _propTypes2['default'].number,
+    prefixCls: _propTypes2['default'].string
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 959:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Group = function Group(props) {
+    var _classNames;
+
+    var _props$prefixCls = props.prefixCls,
+        prefixCls = _props$prefixCls === undefined ? 'ant-input-group' : _props$prefixCls,
+        _props$className = props.className,
+        className = _props$className === undefined ? '' : _props$className;
+
+    var cls = (0, _classnames2['default'])(prefixCls, (_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls + '-lg', props.size === 'large'), (0, _defineProperty3['default'])(_classNames, prefixCls + '-sm', props.size === 'small'), (0, _defineProperty3['default'])(_classNames, prefixCls + '-compact', props.compact), _classNames), className);
+    return _react2['default'].createElement(
+        'span',
+        { className: cls, style: props.style },
+        props.children
+    );
+};
+exports['default'] = Group;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 960:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Input = __webpack_require__(437);
+
+var _Input2 = _interopRequireDefault(_Input);
+
+var _icon = __webpack_require__(191);
+
+var _icon2 = _interopRequireDefault(_icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var __rest = undefined && undefined.__rest || function (s, e) {
+    var t = {};
+    for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+    }if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+        if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    }return t;
+};
+
+var Search = function (_React$Component) {
+    (0, _inherits3['default'])(Search, _React$Component);
+
+    function Search() {
+        (0, _classCallCheck3['default'])(this, Search);
+
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (Search.__proto__ || Object.getPrototypeOf(Search)).apply(this, arguments));
+
+        _this.onSearch = function () {
+            var onSearch = _this.props.onSearch;
+
+            if (onSearch) {
+                onSearch(_this.input.refs.input.value);
+            }
+            _this.input.focus();
+        };
+        return _this;
+    }
+
+    (0, _createClass3['default'])(Search, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var _a = this.props,
+                className = _a.className,
+                prefixCls = _a.prefixCls,
+                others = __rest(_a, ["className", "prefixCls"]);
+            delete others.onSearch;
+            var searchSuffix = _react2['default'].createElement(_icon2['default'], { className: prefixCls + '-icon', onClick: this.onSearch, type: 'search' });
+            return _react2['default'].createElement(_Input2['default'], (0, _extends3['default'])({ onPressEnter: this.onSearch }, others, { className: (0, _classnames2['default'])(prefixCls, className), suffix: searchSuffix, ref: function ref(node) {
+                    return _this2.input = node;
+                } }));
+        }
+    }]);
+    return Search;
+}(_react2['default'].Component);
+
+exports['default'] = Search;
+
+Search.defaultProps = {
+    prefixCls: 'ant-input-search'
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 961:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports['default'] = calculateNodeHeight;
+// Thanks to https://github.com/andreypopp/react-textarea-autosize/
+/**
+ * calculateNodeHeight(uiTextNode, useCache = false)
+ */
+var HIDDEN_TEXTAREA_STYLE = '\n  min-height:0 !important;\n  max-height:none !important;\n  height:0 !important;\n  visibility:hidden !important;\n  overflow:hidden !important;\n  position:absolute !important;\n  z-index:-1000 !important;\n  top:0 !important;\n  right:0 !important\n';
+var SIZING_STYLE = ['letter-spacing', 'line-height', 'padding-top', 'padding-bottom', 'font-family', 'font-weight', 'font-size', 'text-rendering', 'text-transform', 'width', 'text-indent', 'padding-left', 'padding-right', 'border-width', 'box-sizing'];
+var computedStyleCache = {};
+var hiddenTextarea = void 0;
+function calculateNodeStyling(node) {
+    var useCache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    var nodeRef = node.getAttribute('id') || node.getAttribute('data-reactid') || node.getAttribute('name');
+    if (useCache && computedStyleCache[nodeRef]) {
+        return computedStyleCache[nodeRef];
+    }
+    var style = window.getComputedStyle(node);
+    var boxSizing = style.getPropertyValue('box-sizing') || style.getPropertyValue('-moz-box-sizing') || style.getPropertyValue('-webkit-box-sizing');
+    var paddingSize = parseFloat(style.getPropertyValue('padding-bottom')) + parseFloat(style.getPropertyValue('padding-top'));
+    var borderSize = parseFloat(style.getPropertyValue('border-bottom-width')) + parseFloat(style.getPropertyValue('border-top-width'));
+    var sizingStyle = SIZING_STYLE.map(function (name) {
+        return name + ':' + style.getPropertyValue(name);
+    }).join(';');
+    var nodeInfo = {
+        sizingStyle: sizingStyle,
+        paddingSize: paddingSize,
+        borderSize: borderSize,
+        boxSizing: boxSizing
+    };
+    if (useCache && nodeRef) {
+        computedStyleCache[nodeRef] = nodeInfo;
+    }
+    return nodeInfo;
+}
+function calculateNodeHeight(uiTextNode) {
+    var useCache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var minRows = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var maxRows = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+    if (!hiddenTextarea) {
+        hiddenTextarea = document.createElement('textarea');
+        document.body.appendChild(hiddenTextarea);
+    }
+    // Fix wrap="off" issue
+    // https://github.com/ant-design/ant-design/issues/6577
+    if (uiTextNode.getAttribute('wrap')) {
+        hiddenTextarea.setAttribute('wrap', uiTextNode.getAttribute('wrap'));
+    } else {
+        hiddenTextarea.removeAttribute('wrap');
+    }
+    // Copy all CSS properties that have an impact on the height of the content in
+    // the textbox
+
+    var _calculateNodeStyling = calculateNodeStyling(uiTextNode, useCache),
+        paddingSize = _calculateNodeStyling.paddingSize,
+        borderSize = _calculateNodeStyling.borderSize,
+        boxSizing = _calculateNodeStyling.boxSizing,
+        sizingStyle = _calculateNodeStyling.sizingStyle;
+    // Need to have the overflow attribute to hide the scrollbar otherwise
+    // text-lines will not calculated properly as the shadow will technically be
+    // narrower for content
+
+
+    hiddenTextarea.setAttribute('style', sizingStyle + ';' + HIDDEN_TEXTAREA_STYLE);
+    hiddenTextarea.value = uiTextNode.value || uiTextNode.placeholder || '';
+    var minHeight = -Infinity;
+    var maxHeight = Infinity;
+    var height = hiddenTextarea.scrollHeight;
+    var overflowY = void 0;
+    if (boxSizing === 'border-box') {
+        // border-box: add border, since height = content + padding + border
+        height = height + borderSize;
+    } else if (boxSizing === 'content-box') {
+        // remove padding, since height = content
+        height = height - paddingSize;
+    }
+    if (minRows !== null || maxRows !== null) {
+        // measure height of a textarea with a single row
+        hiddenTextarea.value = '';
+        var singleRowHeight = hiddenTextarea.scrollHeight - paddingSize;
+        if (minRows !== null) {
+            minHeight = singleRowHeight * minRows;
+            if (boxSizing === 'border-box') {
+                minHeight = minHeight + paddingSize + borderSize;
+            }
+            height = Math.max(minHeight, height);
+        }
+        if (maxRows !== null) {
+            maxHeight = singleRowHeight * maxRows;
+            if (boxSizing === 'border-box') {
+                maxHeight = maxHeight + paddingSize + borderSize;
+            }
+            overflowY = height > maxHeight ? '' : 'hidden';
+            height = Math.min(maxHeight, height);
+        }
+    }
+    // Remove scroll bar flash when autosize without maxRows
+    if (!maxRows) {
+        overflowY = 'hidden';
+    }
+    return { height: height, minHeight: minHeight, maxHeight: maxHeight, overflowY: overflowY };
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 962:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Input = __webpack_require__(437);
+
+var _Input2 = _interopRequireDefault(_Input);
+
+var _Group = __webpack_require__(959);
+
+var _Group2 = _interopRequireDefault(_Group);
+
+var _Search = __webpack_require__(960);
+
+var _Search2 = _interopRequireDefault(_Search);
+
+var _TextArea = __webpack_require__(438);
+
+var _TextArea2 = _interopRequireDefault(_TextArea);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+_Input2['default'].Group = _Group2['default'];
+_Input2['default'].Search = _Search2['default'];
+_Input2['default'].TextArea = _TextArea2['default'];
+exports['default'] = _Input2['default'];
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 963:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _propTypes = __webpack_require__(5);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+exports['default'] = function (componentName, defaultLocale) {
+    return function (Component) {
+        var ComponentWithStatics = Component;
+        return _a = function (_Component) {
+            (0, _inherits3['default'])(_a, _Component);
+
+            function _a() {
+                (0, _classCallCheck3['default'])(this, _a);
+                return (0, _possibleConstructorReturn3['default'])(this, (_a.__proto__ || Object.getPrototypeOf(_a)).apply(this, arguments));
+            }
+
+            (0, _createClass3['default'])(_a, [{
+                key: 'getLocale',
+                value: function getLocale() {
+                    var antLocale = this.context.antLocale;
+
+                    var localeFromContext = antLocale && antLocale[componentName];
+                    var localeFromProps = this.props.locale || {};
+                    return (0, _extends3['default'])({}, defaultLocale, localeFromContext || {}, localeFromProps);
+                }
+            }]);
+            return _a;
+        }(Component), _a.propTypes = ComponentWithStatics.propTypes, _a.defaultProps = ComponentWithStatics.defaultProps, _a.contextTypes = (0, _extends3['default'])({}, ComponentWithStatics.context || {}, { antLocale: _propTypes2['default'].object }), _a;
+        var _a;
+    };
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 964:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _grid = __webpack_require__(436);
+
+exports['default'] = _grid.Row;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 965:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _defineProperty2 = __webpack_require__(11);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _extends2 = __webpack_require__(2);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = __webpack_require__(1);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+exports.generateShowHourMinuteSecond = generateShowHourMinuteSecond;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _TimePicker = __webpack_require__(1867);
+
+var _TimePicker2 = _interopRequireDefault(_TimePicker);
+
+var _classnames = __webpack_require__(8);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _injectLocale = __webpack_require__(963);
+
+var _injectLocale2 = _interopRequireDefault(_injectLocale);
+
+var _zh_CN = __webpack_require__(439);
+
+var _zh_CN2 = _interopRequireDefault(_zh_CN);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function generateShowHourMinuteSecond(format) {
+    // Ref: http://momentjs.com/docs/#/parsing/string-format/
+    return {
+        showHour: format.indexOf('H') > -1 || format.indexOf('h') > -1 || format.indexOf('k') > -1,
+        showMinute: format.indexOf('m') > -1,
+        showSecond: format.indexOf('s') > -1
+    };
+}
+
+var TimePicker = function (_React$Component) {
+    (0, _inherits3['default'])(TimePicker, _React$Component);
+
+    function TimePicker(props) {
+        (0, _classCallCheck3['default'])(this, TimePicker);
+
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (TimePicker.__proto__ || Object.getPrototypeOf(TimePicker)).call(this, props));
+
+        _this.handleChange = function (value) {
+            if (!('value' in _this.props)) {
+                _this.setState({ value: value });
+            }
+            var _this$props = _this.props,
+                onChange = _this$props.onChange,
+                _this$props$format = _this$props.format,
+                format = _this$props$format === undefined ? 'HH:mm:ss' : _this$props$format;
+
+            if (onChange) {
+                onChange(value, value && value.format(format) || '');
+            }
+        };
+        _this.handleOpenClose = function (_ref) {
+            var open = _ref.open;
+            var onOpenChange = _this.props.onOpenChange;
+
+            if (onOpenChange) {
+                onOpenChange(open);
+            }
+        };
+        _this.saveTimePicker = function (timePickerRef) {
+            _this.timePickerRef = timePickerRef;
+        };
+        var value = props.value || props.defaultValue;
+        if (value && !_moment2['default'].isMoment(value)) {
+            throw new Error('The value/defaultValue of TimePicker must be a moment object after `antd@2.0`, ' + 'see: https://u.ant.design/time-picker-value');
+        }
+        _this.state = {
+            value: value
+        };
+        return _this;
+    }
+
+    (0, _createClass3['default'])(TimePicker, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if ('value' in nextProps) {
+                this.setState({ value: nextProps.value });
+            }
+        }
+    }, {
+        key: 'focus',
+        value: function focus() {
+            this.timePickerRef.focus();
+        }
+    }, {
+        key: 'getDefaultFormat',
+        value: function getDefaultFormat() {
+            var _props = this.props,
+                format = _props.format,
+                use12Hours = _props.use12Hours;
+
+            if (format) {
+                return format;
+            } else if (use12Hours) {
+                return 'h:mm:ss a';
+            }
+            return 'HH:mm:ss';
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var props = (0, _extends3['default'])({}, this.props);
+            delete props.defaultValue;
+            var format = this.getDefaultFormat();
+            var className = (0, _classnames2['default'])(props.className, (0, _defineProperty3['default'])({}, props.prefixCls + '-' + props.size, !!props.size));
+            var addon = function addon(panel) {
+                return props.addon ? _react2['default'].createElement(
+                    'div',
+                    { className: props.prefixCls + '-panel-addon' },
+                    props.addon(panel)
+                ) : null;
+            };
+            return _react2['default'].createElement(_TimePicker2['default'], (0, _extends3['default'])({}, generateShowHourMinuteSecond(format), props, { ref: this.saveTimePicker, format: format, className: className, value: this.state.value, placeholder: props.placeholder === undefined ? this.getLocale().placeholder : props.placeholder, onChange: this.handleChange, onOpen: this.handleOpenClose, onClose: this.handleOpenClose, addon: addon }));
+        }
+    }]);
+    return TimePicker;
+}(_react2['default'].Component);
+
+TimePicker.defaultProps = {
+    prefixCls: 'ant-time-picker',
+    align: {
+        offset: [0, -2]
+    },
+    disabled: false,
+    disabledHours: undefined,
+    disabledMinutes: undefined,
+    disabledSeconds: undefined,
+    hideDisabledOptions: false,
+    placement: 'bottomLeft',
+    transitionName: 'slide-up'
+};
+var injectTimePickerLocale = (0, _injectLocale2['default'])('TimePicker', _zh_CN2['default']);
+exports['default'] = injectTimePickerLocale(TimePicker);
+
+/***/ }),
+
+/***/ 989:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _actions = __webpack_require__(263);
+
+var actions = _interopRequireWildcard(_actions);
+
+var _constant = __webpack_require__(264);
+
+var _constant2 = _interopRequireDefault(_constant);
+
+var _HomePage = __webpack_require__(990);
+
+var _HomePage2 = _interopRequireDefault(_HomePage);
+
+var _TraceDisplay = __webpack_require__(992);
+
+var _TraceDisplay2 = _interopRequireDefault(_TraceDisplay);
+
+var _TaxiDistribution = __webpack_require__(991);
+
+var _TaxiDistribution2 = _interopRequireDefault(_TaxiDistribution);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(126);
+
+__webpack_require__(1625);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_Component) {
+    _inherits(App, _Component);
+
+    function App(props) {
+        _classCallCheck(this, App);
+
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+        _this.Page = null;
+        _this._pressToSwitchPage = _this._pressToSwitchPage.bind(_this);
+        return _this;
+    }
+
+    _createClass(App, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            // document.addEventListener('keydown', this._pressToSwitchPage);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            // document.removeEventListener('keydown', this._pressToSwitchPage);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var Page = this._switchPage(this.props.pageName);
+
+            return _react2.default.createElement(Page, null);
+        }
+    }, {
+        key: '_switchPage',
+        value: function _switchPage(pageName) {
+            switch (pageName) {
+                case _constant2.default.homepage:
+                    this.Page = _HomePage2.default;
+                    break;
+                case _constant2.default.traceDisplay:
+                    this.Page = _TraceDisplay2.default;
+                    break;
+                case _constant2.default.taxiDistribution:
+                    this.Page = _TaxiDistribution2.default;
+                    break;
+                default:
+                // Page = HomePage;
+            }
+
+            return this.Page;
+        }
+    }, {
+        key: '_pressToSwitchPage',
+        value: function _pressToSwitchPage(e) {
+            this.props.keyToSwitchPage(e.key);
+        }
+    }]);
+
+    return App;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+    return {
+        pageName: state.pageName
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        keyToSwitchPage: function keyToSwitchPage(pageName) {
+            dispatch({
+                type: actions.SWITCH_PAGE,
+                pageName: parseInt(pageName)
+            });
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
+
+/***/ }),
+
+/***/ 990:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _actions = __webpack_require__(263);
+
+var actions = _interopRequireWildcard(_actions);
+
+var _ClassNameUtil = __webpack_require__(444);
+
+var _index = __webpack_require__(441);
+
+var _constant = __webpack_require__(264);
+
+var _constant2 = _interopRequireDefault(_constant);
+
+var _AppI18n = __webpack_require__(442);
+
+var _AppI18n2 = _interopRequireDefault(_AppI18n);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(126);
+
+__webpack_require__(1623);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Home page for app.
+ */
+var HomePage = function (_Component) {
+    _inherits(HomePage, _Component);
+
+    function HomePage(props) {
+        _classCallCheck(this, HomePage);
+
+        return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
+    }
+
+    _createClass(HomePage, [{
+        key: 'render',
+        value: function render() {
+            var classes = (0, _ClassNameUtil.getClassSet)(['homePage']);
+            var _props = this.props,
+                clickToOpenHomePage = _props.clickToOpenHomePage,
+                clickToOpenDistributionPage = _props.clickToOpenDistributionPage,
+                clickToOpenTracePage = _props.clickToOpenTracePage;
+
+
+            return _react2.default.createElement(
+                'div',
+                { className: classes },
+                _react2.default.createElement(
+                    _index.Button,
+                    { onclick: clickToOpenHomePage },
+                    _AppI18n2.default.HOME_PAGE
+                ),
+                _react2.default.createElement(
+                    _index.Button,
+                    { onclick: clickToOpenTracePage },
+                    _AppI18n2.default.TRACE_DISPLAY
+                ),
+                _react2.default.createElement(
+                    _index.Button,
+                    { onclick: clickToOpenDistributionPage },
+                    _AppI18n2.default.TAXI_DISTRIBUTION
+                )
+            );
+        }
+    }]);
+
+    return HomePage;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+    return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        /**
+         * Switch to home page.
+         * @param {Event} e
+         */
+        clickToOpenHomePage: function clickToOpenHomePage(e) {
+            dispatch({
+                type: actions.SWITCH_PAGE,
+                pageName: _constant2.default.homepage
+            });
+        },
+        /**
+         * Switch to trace display page.
+         * @param {Event} e
+         */
+        clickToOpenTracePage: function clickToOpenTracePage(e) {
+            dispatch({
+                type: actions.SWITCH_PAGE,
+                pageName: _constant2.default.traceDisplay
+            });
+        },
+        /**
+         * Switch to distribution page.
+         * @param {Event} e
+         */
+        clickToOpenDistributionPage: function clickToOpenDistributionPage(e) {
+            dispatch({
+                type: actions.SWITCH_PAGE,
+                pageName: _constant2.default.taxiDistribution
+            });
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(HomePage);
+
+/***/ }),
+
+/***/ 991:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(126);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Show the distribution of taxi.
+ */
+var TaxiDistribution = function (_Component) {
+    _inherits(TaxiDistribution, _Component);
+
+    function TaxiDistribution(props) {
+        _classCallCheck(this, TaxiDistribution);
+
+        return _possibleConstructorReturn(this, (TaxiDistribution.__proto__ || Object.getPrototypeOf(TaxiDistribution)).call(this, props));
+    }
+
+    _createClass(TaxiDistribution, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                ' I am distribution page.'
+            );
+        }
+    }]);
+
+    return TaxiDistribution;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+    return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(TaxiDistribution);
+
+/***/ }),
+
+/***/ 992:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _req = __webpack_require__(995);
+
+var _ClassNameUtil = __webpack_require__(444);
+
+var _config = __webpack_require__(443);
+
+var _index = __webpack_require__(441);
+
+var _moment = __webpack_require__(7);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _AppI18n = __webpack_require__(442);
+
+var _AppI18n2 = _interopRequireDefault(_AppI18n);
+
+var _Map = __webpack_require__(996);
+
+var _Map2 = _interopRequireDefault(_Map);
+
+var _util = __webpack_require__(997);
+
+var _util2 = _interopRequireDefault(_util);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(126);
+
+__webpack_require__(1624);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Show the trace of taxi.
+ */
+var TraceDisplay = function (_Component) {
+    _inherits(TraceDisplay, _Component);
+
+    function TraceDisplay(props) {
+        _classCallCheck(this, TraceDisplay);
+
+        var _this = _possibleConstructorReturn(this, (TraceDisplay.__proto__ || Object.getPrototypeOf(TraceDisplay)).call(this, props));
+
+        _this.canvas = null;
+        _this.success = _this.success.bind(_this);
+        _this.drawTrace = _this.drawTrace.bind(_this);
+        _this.error = _this.error.bind(_this);
+
+        _this.state = {
+            number: null,
+            date: null
+        };
+        return _this;
+    }
+
+    _createClass(TraceDisplay, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            (0, _req.fire)({ url: '/data/beijing.json', method: 'get' }, this.success, this.error);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var classes = (0, _ClassNameUtil.getClassSet)(["trace-display"]);
+
+            return _react2.default.createElement(
+                'div',
+                { className: classes },
+                _react2.default.createElement(
+                    _index.Row,
+                    { className: (0, _ClassNameUtil.getClassSet)(['row']) },
+                    _react2.default.createElement(
+                        _index.Col,
+                        { className: (0, _ClassNameUtil.getClassSet)(['col']), span: 6 },
+                        _react2.default.createElement(
+                            _index.Row,
+                            null,
+                            _react2.default.createElement(
+                                _index.Col,
+                                { span: 24 },
+                                _react2.default.createElement(_index.Input, { value: this.state.number, onChange: function onChange(e) {
+                                        _this2.setState({ number: e.target.value });
+                                    } })
+                            ),
+                            _react2.default.createElement(
+                                _index.Col,
+                                { span: 24 },
+                                _react2.default.createElement(_index.DatePicker, { defaultValue: (0, _moment2.default)('2008/08/08', 'YYYY/MM/DD'), value: this.state.date, onChange: function onChange(date, dateString) {
+                                        {/* console.log(date, dateString); */}
+                                        _this2.setState({ date: date });
+                                    } })
+                            ),
+                            _react2.default.createElement(
+                                _index.Col,
+                                { span: 24 },
+                                _react2.default.createElement(
+                                    _index.Button,
+                                    { onClick: function onClick(e) {} },
+                                    _util2.default.getI18n(_AppI18n2.default.SEARCH)
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _index.Col,
+                        { className: (0, _ClassNameUtil.getClassSet)(['col']), span: 18 },
+                        _react2.default.createElement('div', { className: (0, _ClassNameUtil.getClassSet)(["canvas"]), ref: function ref(canvas) {
+                                _this2.canvas = canvas;
+                            } })
+                    )
+                )
+            );
+        }
+    }, {
+        key: 'success',
+        value: function success(data) {
+            // 绘制地图
+            var map = new _Map2.default({
+                dom: this.canvas,
+                geojson: data
+            });
+
+            map.createMap();
+            map.drawTrace([{
+                id: 100, trace: [{ x: 100, y: 200 }, { x: 300, y: 400 }, { x: 500, y: 120 }, { x: 300, y: 200 }]
+            }]);
+
+            //绘制轨迹
+            (0, _req.fire)({ url: _config.info.sv_trace_getTraceRoute, method: "post" }, this.drawTrace, this.error);
+        }
+    }, {
+        key: 'drawTrace',
+        value: function drawTrace(data) {
+            console.log(data);
+        }
+    }, {
+        key: 'error',
+        value: function error(err) {
+            console.error(err);
+        }
+    }]);
+
+    return TraceDisplay;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+    return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(TraceDisplay);
+
+/***/ }),
+
+/***/ 993:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _actions = __webpack_require__(263);
+
+var actions = _interopRequireWildcard(_actions);
+
+var _constant = __webpack_require__(264);
+
+var _constant2 = _interopRequireDefault(_constant);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var initState = {
+    pageName: _constant2.default.traceDisplay
+};
+
+function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case actions.FETCH:
+            return _extends({}, state);
+            break;
+        case actions.LOADING:
+            return _extends({}, state);
+            break;
+        case actions.END:
+            return _extends({}, state);
+            break;
+        case actions.SWITCH_PAGE:
+            return Object.assign({}, state, { pageName: action.pageName });
+            break;
+        default:
+            return _extends({}, state);
+            break;
+    }
+}
+
+exports.default = reducer;
+
+/***/ }),
+
+/***/ 994:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var config = {
+    language: 'cn'
+};
+
+exports.default = config;
+
+/***/ }),
+
+/***/ 995:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.fire = undefined;
+
+var _jquery = __webpack_require__(409);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function fire(info, _success, _error) {
+    _jquery2.default.ajax({
+        url: info.url,
+        data: info.data,
+        type: info.method || 'post',
+        success: function success(data) {
+            if (_success) {
+                _success(data);
+            }
+        },
+        error: function error(err) {
+            if (_error) {
+                _error(err);
+            }
+        }
+    });
+}
+
+exports.fire = fire;
+
+/***/ }),
+
+/***/ 996:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _d = __webpack_require__(408);
+
+var d3 = _interopRequireWildcard(_d);
+
+var _config = __webpack_require__(443);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _zrender = __webpack_require__(2055);
+
+var _zrender2 = _interopRequireDefault(_zrender);
+
+var _Circle = __webpack_require__(2048);
+
+var _Circle2 = _interopRequireDefault(_Circle);
+
+var _Group = __webpack_require__(838);
+
+var _Group2 = _interopRequireDefault(_Group);
+
+var _path = __webpack_require__(2053);
+
+var _path2 = _interopRequireDefault(_path);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Draw map using zrender and d3.
+ */
+var Map = function () {
+    function Map(opts) {
+        _classCallCheck(this, Map);
+
+        this.projection = null;
+        this.dom = opts.dom;
+        this.geojson = opts.geojson;
+
+        if (!this.dom) {
+            throw new Error("not dom element.");
+            return;
+        }
+
+        if (!this.geojson) {
+            throw new Error("not geojson");
+            return;
+        }
+
+        this.zr = _zrender2.default.init(this.dom, {
+            width: getComputedStyle(this.dom).width.replace('px', ''),
+            height: getComputedStyle(this.dom).height.replace('px', '')
+        });
+    }
+
+    _createClass(Map, [{
+        key: 'createMap',
+        value: function createMap() {
+            if (!this.zr) {
+                throw new Error("zrender init error");
+            }
+
+            var g = new _Group2.default();
+            this.zr.add(g);
+            this.projection = d3.geoMercator().center([116.5, 40.5]).scale(20000);
+            var path = d3.geoPath().projection(this.projection);
+
+            var features = this.geojson.features;
+
+            for (var i = 0; i < features.length; i++) {
+                var p = _path2.default.createFromString(path(features[i]), {
+                    style: {
+                        lineWidth: 1,
+                        stroke: 'rgba(120, 120, 120, 0.8)'
+                    }
+                });
+
+                g.add(p);
+            }
+
+            return this;
+        }
+
+        /**
+         * [{id: id, trace:[{x, y}]}]
+         * @param {Array[{id: id, trace:[{x, y}]}]} data 
+         */
+
+    }, {
+        key: 'drawTrace',
+        value: function drawTrace(data, opts) {
+            if (!this.zr) {
+                throw new Error("zrender init error");
+            }
+
+            var g = new _Group2.default();
+            this.zr.add(g);
+            this.zr.configLayer(_config2.default.traceLevel, {
+                motionBlur: true,
+                lastFrameAlpha: 0.97
+            });
+
+            for (var i = 0; i < data.length; i++) {
+                var _data$i = data[i],
+                    id = _data$i.id,
+                    trace = _data$i.trace;
+
+                var c = new _Circle2.default({
+                    shape: {
+                        cx: trace[0].x,
+                        cy: trace[0].y,
+                        r: 1.5
+                    },
+                    style: {
+                        fill: 'yellow'
+                    },
+                    zlevel: _config2.default.traceLevel,
+                    silent: true
+                });
+
+                var animator = null;
+
+                if (trace[1]) {
+                    animator = c.animateShape(true).when(_config2.default.traceTime, {
+                        cx: trace[1].x,
+                        cy: trace[1].y
+                    });
+                }
+
+                if (trace[2]) {
+                    for (var j = 2; j < trace.length; j++) {
+                        animator.when(_config2.default.traceTime * j, {
+                            cx: trace[j].x,
+                            cy: trace[j].y
+                        });
+                    }
+                }
+
+                if (animator) {
+                    animator.start();
+                }
+
+                this.zr.add(c);
+            }
+        }
+    }]);
+
+    return Map;
+}();
+
+exports.default = Map;
+
+/***/ }),
+
+/***/ 997:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = __webpack_require__(994);
+
+var _config2 = _interopRequireDefault(_config);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Util = function () {
+    function Util() {
+        _classCallCheck(this, Util);
+    }
+
+    _createClass(Util, null, [{
+        key: 'getI18n',
+
+
+        // Get i18n from label.
+        value: function getI18n(label) {
+            return !!label ? label[_config2.default.language] ? label[_config2.default.language] : label : '';
+        }
+    }]);
+
+    return Util;
+}();
+
+exports.default = Util;
+
+/***/ }),
+
+/***/ 998:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _AppContainer = __webpack_require__(850);
+
+var _AppContainer2 = _interopRequireDefault(_AppContainer);
+
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(_AppContainer2.default, null), document.getElementById('app'));
+
+/***/ })
+
+},[998]);
