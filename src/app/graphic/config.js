@@ -1,5 +1,5 @@
 const config = {
-   traceTime: 5000,
+   traceTime: 1000,
    traceLevel: 1
 };
 

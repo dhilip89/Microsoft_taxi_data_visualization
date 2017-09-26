@@ -60,7 +60,7 @@ class Map {
     }
 
     /**
-     * [{id: id, trace:[{x, y}]}]
+     * [{id: id, trace:[{x, y}, {x, y}]}]
      * @param {Array[{id: id, trace:[{x, y}]}]} data 
      */
     drawTrace(data, opts) {

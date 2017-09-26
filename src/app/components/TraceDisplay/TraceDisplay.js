@@ -18,6 +18,7 @@ class TraceDisplay extends Component {
         super(props);
 
         this.canvas = null;
+        this.map = null;
         this.success = this.success.bind(this);
         this.drawTrace = this.drawTrace.bind(this);
         this.error = this.error.bind(this);
@@ -82,29 +83,26 @@ class TraceDisplay extends Component {
 
     success(data) {
         // 绘制地图
-        let map = new Map({
+        this.map = new Map({
             dom: this.canvas,
             geojson: data,
         });
 
-        map.createMap();
-        map.drawTrace([
-            {
-                id: 100, trace: [
-                    { x: 100, y: 200 },
-                    { x: 300, y: 400 },
-                    { x: 500, y: 120 },
-                    { x: 300, y: 200 }
-                ]
-            }
-        ]);
-
-        //绘制轨迹
-        // fire({ url: info.sv_trace_getTraceRoute, method: "post" }, this.drawTrace, this.error);
+        this.map.createMap();
     }
 
     drawTrace(data) {
-        console.log(data);
+        data = JSON.parse(data);
+
+        let input = {};
+        input.id = data[0].id;
+        input.trace = data.map((d) => {
+            let coord = this.map.projection([d.lat, d.lng]);
+            return { x: coord[0], y: coord[1] };
+        });
+
+        console.log(input);
+        this.map.drawTrace([input]);
     }
 
     error(err) {
