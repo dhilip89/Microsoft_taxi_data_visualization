@@ -18,6 +18,7 @@ class TraceDisplay extends Component {
         super(props);
 
         this.canvas = null;
+        this.zrDom = null;
         this.map = null;
         this.success = this.success.bind(this);
         this.drawTrace = this.drawTrace.bind(this);
@@ -74,7 +75,9 @@ class TraceDisplay extends Component {
                     <Col className={getClassSet(['col'])} span={18}>
                         <div className={getClassSet(["canvas"])} ref={(canvas) => {
                             this.canvas = canvas;
-                        }}></div>
+                        }}>
+                            <div id='zrDom' ref={(dom) => { this.zrDom = dom; }} className={getClassSet(['traceCanvas'])}></div>
+                        </div>
                     </Col>
                 </Row>
             </div>
@@ -85,10 +88,13 @@ class TraceDisplay extends Component {
         // 绘制地图
         this.map = new Map({
             dom: this.canvas,
+            zrDom: this.zrDom,
             geojson: data,
         });
 
-        this.map.createMap();
+        this.map.initZr();
+        // this.map.createMap();
+        this.map.createLeafletMap();
     }
 
     drawTrace(data) {
@@ -96,9 +102,12 @@ class TraceDisplay extends Component {
 
         let input = {};
         input.id = data[0].id;
+        // input.trace = data.map((d) => {
+        //     let coord = this.map.projection([d.lat, d.lng]);
+        //     return { x: coord[0], y: coord[1] };
+        // });
         input.trace = data.map((d) => {
-            let coord = this.map.projection([d.lat, d.lng]);
-            return { x: coord[0], y: coord[1] };
+            return this.map.map.latLngToContainerPoint([d.lng, d.lat]);
         });
 
         console.log(input);

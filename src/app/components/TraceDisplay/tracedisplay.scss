@@ -39,4 +39,11 @@ $height: 100%;
     width: 80%;
     height: $height;
   }
+
+  .#{$namespace}-traceCanvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+  }
 }

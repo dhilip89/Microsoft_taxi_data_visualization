@@ -2,9 +2,10 @@ import * as d3 from 'd3';
 import config from 'app/graphic/config';
 import zrender from 'zrender/src/zrender';
 import Circle from 'zrender/src/graphic/shape/Circle';
+import * as L from 'leaflet';
 import Group from 'zrender/src/container/Group';
 import PathTool from 'zrender/src/tool/path';
-
+import 'leaflet/dist/leaflet.css';
 /**
  * Draw map using zrender and d3.
  */
@@ -12,7 +13,10 @@ class Map {
     constructor(opts) {
         this.projection = null;
         this.dom = opts.dom;
+        this.zrDom = opts.zrDom;
         this.geojson = opts.geojson;
+        this.map = null; // for leafletmap.
+        this.center = [116.3809, 39.903415];
 
         if(!this.dom) {
             throw new Error("not dom element.");
@@ -23,8 +27,10 @@ class Map {
             throw new Error("not geojson");
             return;
         }
+    }
 
-        this.zr = zrender.init(this.dom, {
+    initZr() {
+        this.zr = zrender.init(this.zrDom, {
             width: getComputedStyle(this.dom).width.replace('px', ''),
             height: getComputedStyle(this.dom).height.replace('px', '')
         });
@@ -38,7 +44,7 @@ class Map {
         let g = new Group();
         this.zr.add(g);
         this.projection = d3.geoMercator()
-            .center([116.5, 40.5])
+            .center(this.center)
             .scale(20000);
         let path = d3.geoPath()
             .projection(this.projection);
@@ -57,6 +63,12 @@ class Map {
         }
 
         return this;
+    }
+
+    createLeafletMap() {
+        this.map = L.map(this.dom).setView(this.center.reverse(), 12);
+        let tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/traffic-night-v2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2luZHloIiwiYSI6ImNpbHdiazZyazAxcTV2Z2tzbnNwcG1xbTMifQ.jz162pjSUZ957Vv_wP6i1A');
+        tileLayer.addTo(this.map);
     }
 
     /**
