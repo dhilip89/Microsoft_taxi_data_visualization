@@ -67,7 +67,7 @@ class Map {
 
     createLeafletMap() {
         this.map = L.map(this.dom).setView(this.center.reverse(), 12);
-        let tileLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/traffic-night-v2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2luZHloIiwiYSI6ImNpbHdiazZyazAxcTV2Z2tzbnNwcG1xbTMifQ.jz162pjSUZ957Vv_wP6i1A');
+        let tileLayer = L.tileLayer(config.map.url);
         tileLayer.addTo(this.map);
     }
 
@@ -126,6 +126,12 @@ class Map {
             }
 
             this.zr.add(c);
+        }
+    }
+
+    clearZr() {
+        if(this.zr) {
+            this.zr.clear();
         }
     }
 }

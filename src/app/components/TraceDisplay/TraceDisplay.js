@@ -99,7 +99,29 @@ class TraceDisplay extends Component {
 
     drawTrace(data) {
         data = JSON.parse(data);
+        let input = this.processTraceData(data);
+        this.map.drawTrace([input]);
 
+        // let input = {};
+        // input.id = data[0].id;
+        // // input.trace = data.map((d) => {
+        // //     let coord = this.map.projection([d.lat, d.lng]);
+        // //     return { x: coord[0], y: coord[1] };
+        // // });
+        // input.trace = data.map((d) => {
+        //     return this.map.map.latLngToContainerPoint([d.lng, d.lat]);
+        // });
+
+        // this.map.drawTrace([input]);
+
+        this.map.map.on('move', () => {
+            this.map.clearZr();
+            let input = this.processTraceData(data);
+            this.map.drawTrace([input]);
+        });
+    }
+
+    processTraceData(data) {
         let input = {};
         input.id = data[0].id;
         // input.trace = data.map((d) => {
@@ -110,8 +132,7 @@ class TraceDisplay extends Component {
             return this.map.map.latLngToContainerPoint([d.lng, d.lat]);
         });
 
-        console.log(input);
-        this.map.drawTrace([input]);
+        return input;
     }
 
     error(err) {
