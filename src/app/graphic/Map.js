@@ -7,7 +7,7 @@ import Group from 'zrender/src/container/Group';
 import PathTool from 'zrender/src/tool/path';
 import 'leaflet/dist/leaflet.css';
 /**
- * Draw map using zrender and d3.
+ * Draw map using zrender, d3, leaflet and mapbox.
  */
 class Map {
     constructor(opts) {
@@ -27,6 +27,10 @@ class Map {
             throw new Error("not geojson");
             return;
         }
+
+        this.initZr = this.initZr.bind(this);
+        this.clearZr =this.clearZr.bind(this);
+        this.disposeZr = this.disposeZr.bind(this);
     }
 
     initZr() {
@@ -34,6 +38,18 @@ class Map {
             width: getComputedStyle(this.dom).width.replace('px', ''),
             height: getComputedStyle(this.dom).height.replace('px', '')
         });
+    }
+
+    clearZr() {
+        if(this.zr) {
+            this.zr.clear();
+        }
+    }
+
+    disposeZr() {
+        if(this.zr) {
+            this.zr.dispose();
+        }
     }
 
     createMap() {
@@ -84,7 +100,7 @@ class Map {
         this.zr.add(g);
         this.zr.configLayer(config.traceLevel, {
             motionBlur: true,
-            lastFrameAlpha: 0.97
+            lastFrameAlpha: 0.95
         });
 
         for(let i = 0; i < data.length; i++) {
@@ -93,7 +109,7 @@ class Map {
                 shape: {
                     cx: trace[0].x,
                     cy: trace[0].y,
-                    r: 1.5
+                    r: 1
                 },
                 style: {
                     fill: 'yellow'
@@ -126,12 +142,6 @@ class Map {
             }
 
             this.zr.add(c);
-        }
-    }
-
-    clearZr() {
-        if(this.zr) {
-            this.zr.clear();
         }
     }
 }

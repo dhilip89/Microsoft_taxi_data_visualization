@@ -17,6 +17,15 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column; }
+  .wind-taxi-homePage .wind-taxi-btn {
+    width: 200px;
+    height: 30px;
+    margin: 5px 0px;
+    background-color: #0c1524;
+    color: white;
+    border: solid 1px white; }
+    .wind-taxi-homePage .wind-taxi-btn:hover {
+      background-color: rgba(12, 21, 35, 0.8); }
 /* required styles */
 
 .leaflet-pane,

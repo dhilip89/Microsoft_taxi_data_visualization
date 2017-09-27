@@ -1,2 +1,19 @@
 // Set classes namespace.
 $namespace: 'wind-taxi';
+
+// My base color.
+$myblue: rgba(12, 21, 36, 1);
+$mypink: rgba(255, 94, 146, 1);
+$myorange: rgba(244, 91, 60, 1);
+$myskyblue: rgba(103, 135, 254, 1);
+
+// Set Button default style.
+@mixin btn {
+   background-color: $myblue;
+   color: white;
+   border: solid 1px rgba(255, 255, 255, 1);
+
+   &:hover {
+      background-color: rgba(12, 21, 35, 0.8);
+   }
+}

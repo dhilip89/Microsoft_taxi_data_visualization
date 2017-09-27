@@ -10,4 +10,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  .#{$namespace}-btn {
+    width: 200px;
+    height: 30px;
+    margin: 5px 0px;
+
+    @include btn;
+  }
 }

@@ -114,7 +114,10 @@ class TraceDisplay extends Component {
 
         // this.map.drawTrace([input]);
 
+        //当地图移动的时候, zrender重绘.
         this.map.map.on('move', () => {
+            // this.map.disposeZr();
+            // this.map.initZr();
             this.map.clearZr();
             let input = this.processTraceData(data);
             this.map.drawTrace([input]);

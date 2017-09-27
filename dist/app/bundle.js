@@ -21715,7 +21715,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var initState = {
-    pageName: _constant2.default.traceDisplay
+    pageName: _constant2.default.homepage
 };
 
 function reducer() {
@@ -30747,6 +30747,10 @@ var _AppI18n = __webpack_require__(529);
 
 var _AppI18n2 = _interopRequireDefault(_AppI18n);
 
+var _util = __webpack_require__(1258);
+
+var _util2 = _interopRequireDefault(_util);
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -30792,18 +30796,18 @@ var HomePage = function (_Component) {
                 { className: classes },
                 _react2.default.createElement(
                     _index.Button,
-                    { onclick: clickToOpenHomePage },
-                    _AppI18n2.default.HOME_PAGE
+                    { className: (0, _ClassNameUtil.getClassSet)(['btn']), key: 'home', onClick: clickToOpenHomePage },
+                    _util2.default.getI18n(_AppI18n2.default.HOME_PAGE)
                 ),
                 _react2.default.createElement(
                     _index.Button,
-                    { onclick: clickToOpenTracePage },
-                    _AppI18n2.default.TRACE_DISPLAY
+                    { className: (0, _ClassNameUtil.getClassSet)(['btn']), key: 'trace', onClick: clickToOpenTracePage },
+                    _util2.default.getI18n(_AppI18n2.default.TRACE_DISPLAY)
                 ),
                 _react2.default.createElement(
                     _index.Button,
-                    { onclick: clickToOpenDistributionPage },
-                    _AppI18n2.default.TAXI_DISTRIBUTION
+                    { className: (0, _ClassNameUtil.getClassSet)(['btn']), key: 'distribution', onClick: clickToOpenDistributionPage },
+                    _util2.default.getI18n(_AppI18n2.default.TAXI_DISTRIBUTION)
                 )
             );
         }
@@ -36700,7 +36704,10 @@ var TraceDisplay = function (_Component) {
 
             // this.map.drawTrace([input]);
 
+            //当地图移动的时候, zrender重绘.
             this.map.map.on('move', function () {
+                // this.map.disposeZr();
+                // this.map.initZr();
                 _this3.map.clearZr();
                 var input = _this3.processTraceData(data);
                 _this3.map.drawTrace([input]);
@@ -36836,7 +36843,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Draw map using zrender and d3.
+ * Draw map using zrender, d3, leaflet and mapbox.
  */
 var Map = function () {
     function Map(opts) {
@@ -36858,6 +36865,10 @@ var Map = function () {
             throw new Error("not geojson");
             return;
         }
+
+        this.initZr = this.initZr.bind(this);
+        this.clearZr = this.clearZr.bind(this);
+        this.disposeZr = this.disposeZr.bind(this);
     }
 
     _createClass(Map, [{
@@ -36867,6 +36878,20 @@ var Map = function () {
                 width: getComputedStyle(this.dom).width.replace('px', ''),
                 height: getComputedStyle(this.dom).height.replace('px', '')
             });
+        }
+    }, {
+        key: 'clearZr',
+        value: function clearZr() {
+            if (this.zr) {
+                this.zr.clear();
+            }
+        }
+    }, {
+        key: 'disposeZr',
+        value: function disposeZr() {
+            if (this.zr) {
+                this.zr.dispose();
+            }
         }
     }, {
         key: 'createMap',
@@ -36919,7 +36944,7 @@ var Map = function () {
             this.zr.add(g);
             this.zr.configLayer(_config2.default.traceLevel, {
                 motionBlur: true,
-                lastFrameAlpha: 0.97
+                lastFrameAlpha: 0.95
             });
 
             for (var i = 0; i < data.length; i++) {
@@ -36931,7 +36956,7 @@ var Map = function () {
                     shape: {
                         cx: trace[0].x,
                         cy: trace[0].y,
-                        r: 1.5
+                        r: 1
                     },
                     style: {
                         fill: 'yellow'
@@ -36963,13 +36988,6 @@ var Map = function () {
                 }
 
                 this.zr.add(c);
-            }
-        }
-    }, {
-        key: 'clearZr',
-        value: function clearZr() {
-            if (this.zr) {
-                this.zr.clear();
             }
         }
     }]);
