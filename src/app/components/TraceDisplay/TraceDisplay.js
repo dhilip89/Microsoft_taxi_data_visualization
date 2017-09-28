@@ -98,6 +98,8 @@ class TraceDisplay extends Component {
     }
 
     drawTrace(data) {
+        this.map.disposeZr();
+        this.map.initZr();
         data = JSON.parse(data);
         let input = this.processTraceData(data);
         this.map.drawTrace([input]);

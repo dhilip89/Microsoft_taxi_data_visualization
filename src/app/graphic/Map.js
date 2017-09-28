@@ -17,6 +17,7 @@ class Map {
         this.geojson = opts.geojson;
         this.map = null; // for leafletmap.
         this.center = [116.3809, 39.903415];
+        this.loop = opts['loop']; //是否循环路径动画.
 
         if(!this.dom) {
             throw new Error("not dom element.");
@@ -121,7 +122,7 @@ class Map {
             let animator = null;
 
             if(trace[1]) {
-                animator = c.animateShape(true)
+                animator = c.animateShape(this.loop)
                     .when(config.traceTime, {
                         cx: trace[1].x,
                         cy: trace[1].y
