@@ -14,6 +14,14 @@ const AppI18n = {
     SEARCH: {
         cn: "查询",
         en: "Search"
+    },
+    INPUT_ID:{
+        cn: "请输入出租车id",
+        en: "Please input the id of taxi"
+    },
+    GO_BACK:{
+        cn:"返回",
+        en:"Go back to homepage"
     }
 };
 

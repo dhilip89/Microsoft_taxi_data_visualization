@@ -1,13 +1,13 @@
-import { fire } from 'app/data/req';
-import { getClassSet } from "app/util/ClassNameUtil";
-import { routers } from 'app/config/config';
-import { DatePicker, Button, Input, Row, Col } from 'app/components/widget/index';
+import {fire} from 'app/data/req';
+import {getClassSet} from "app/util/ClassNameUtil";
+import {routers} from 'app/config/config';
+import {GoBackBtn, DatePicker, Button, Input, Row, Col} from 'app/components/widget';
 import moment from 'moment';
 import AppI18n from 'app/config/AppI18n';
 import Map from 'app/graphic/Map';
 import Util from 'app/util/util';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import 'app/components/TraceDisplay/tracedisplay.scss';
 
 /**
@@ -31,7 +31,7 @@ class TraceDisplay extends Component {
     }
 
     componentDidMount() {
-        fire({ url: '/data/beijing.json', method: 'get' }, this.success, this.error);
+        fire({url: '/data/beijing.json', method: 'get'}, this.success, this.error);
     }
 
     render() {
@@ -42,29 +42,36 @@ class TraceDisplay extends Component {
                 <Row className={getClassSet(['row'])}>
                     <Col className={getClassSet(['col'])} span={6}>
                         <Row>
-                            <Col span={24}>
-                                <Input value={this.state.id} onChange={(e) => {
-                                    this.setState({ id: e.target.value })
-                                }} />
+                            <Col className={getClassSet(['input-container'])} span={24}>
+                                <GoBackBtn />
                             </Col>
-                            <Col span={24}>
-                                <DatePicker defaultValue={moment('2008/01/02', 'YYYY/MM/DD')}
-                                    value={this.state.date}
-                                    onChange={(date, dateString) => {
-                                        this.setState({ date: date });
-                                    }} />
+                            <Col className={getClassSet(['input-container'])} span={24}>
+                                <Input placeholder={Util.getI18n(AppI18n.INPUT_ID)}
+                                       className={getClassSet(['commonInput'])}
+                                       value={this.state.id}
+                                       onChange={(e) => {
+                                           this.setState({id: e.target.value})
+                                       }}/>
                             </Col>
-                            <Col span={24}>
-                                <Button onClick={(e) => {
+                            <Col className={getClassSet(['input-container'])} span={24}>
+                                <DatePicker className={getClassSet(['date-picker', 'date-picker-input'])}
+                                            defaultValue={moment('2008/01/02', 'YYYY/MM/DD')}
+                                            value={this.state.date}
+                                            onChange={(date, dateString) => {
+                                                this.setState({date: date});
+                                            }}/>
+                            </Col>
+                            <Col className={getClassSet(['input-container'])} span={24}>
+                                <Button className={getClassSet(['commonInput'])} onClick={(e) => {
                                     let info = {};
                                     info.date = this.state.date && this.state.date.valueOf();
                                     info.id = this.state.id;
 
                                     fire({
-                                        url: routers.sv_trace_getTraceRoute,
-                                        method: "post",
-                                        data: info
-                                    },
+                                            url: routers.sv_trace_getTraceRoute,
+                                            method: "post",
+                                            data: info
+                                        },
                                         this.drawTrace,
                                         this.error
                                     );
@@ -76,7 +83,9 @@ class TraceDisplay extends Component {
                         <div className={getClassSet(["canvas"])} ref={(canvas) => {
                             this.canvas = canvas;
                         }}>
-                            <div id='zrDom' ref={(dom) => { this.zrDom = dom; }} className={getClassSet(['traceCanvas'])}></div>
+                            <div id='zrDom' ref={(dom) => {
+                                this.zrDom = dom;
+                            }} className={getClassSet(['traceCanvas'])}></div>
                         </div>
                     </Col>
                 </Row>
@@ -101,6 +110,11 @@ class TraceDisplay extends Component {
         this.map.disposeZr();
         this.map.initZr();
         data = JSON.parse(data);
+
+        if(data.length == 0) {
+            return;
+        }
+
         let input = this.processTraceData(data);
         this.map.drawTrace([input]);
 

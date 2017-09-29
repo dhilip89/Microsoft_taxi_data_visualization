@@ -1,3 +1,5 @@
+// ----------------- component from antd ----------------------------------------
+
 // export { default as Affix } from 'antd/lib/affix';
 // export { default as Anchor } from 'antd/lib/anchor';
 // export { default as AutoComplete } from 'antd/lib/auto-complete';
@@ -6,19 +8,19 @@
 // export { default as BackTop } from 'antd/lib/back-top';
 // export { default as Badge } from 'antd/lib/badge';
 // export { default as Breadcrumb } from 'antd/lib/breadcrumb';
-export { default as Button } from 'antd/lib/button';
+export {default as Button} from 'antd/lib/button';
 // export { default as Calendar } from 'antd/lib/calendar';
 // export { default as Card } from 'antd/lib/card';
 // export { default as Collapse } from 'antd/lib/collapse';
 // export { default as Carousel } from 'antd/lib/carousel';
 // export { default as Cascader } from 'antd/lib/cascader';
 // export { default as Checkbox } from 'antd/lib/checkbox';
-export { default as Col } from 'antd/lib/col';
-export { default as DatePicker } from 'antd/lib/date-picker';
+export {default as Col} from 'antd/lib/col';
+export {default as DatePicker} from 'antd/lib/date-picker';
 // export { default as Dropdown } from 'antd/lib/dropdown';
 // export { default as Form } from 'antd/lib/form';
 // export { default as Icon } from 'antd/lib/icon';
-export { default as Input } from 'antd/lib/input';
+export {default as Input} from 'antd/lib/input';
 // export { default as InputNumber } from 'antd/lib/input-number';
 // export { default as Layout } from 'antd/lib/layout';
 // export { default as LocaleProvider } from 'antd/lib/locale-provider';
@@ -32,7 +34,7 @@ export { default as Input } from 'antd/lib/input';
 // export { default as Progress } from 'antd/lib/progress';
 // export { default as Radio } from 'antd/lib/radio';
 // export { default as Rate } from 'antd/lib/rate';
-export { default as Row } from 'antd/lib/row';
+export {default as Row} from 'antd/lib/row';
 // export { default as Select } from 'antd/lib/select';
 // export { default as Slider } from 'antd/lib/slider';
 // export { default as Spin } from 'antd/lib/spin';
@@ -50,3 +52,6 @@ export { default as Row } from 'antd/lib/row';
 // export { default as Mention } from 'antd/lib/mention';
 // export { default as Upload } from 'antd/lib/upload';
 // export { default as version } from 'antd/lib/version';
+
+// ---------------------------------------  my base components ------------------
+export {default as GoBackBtn} from 'app/components/widget/GoBackBtn/GoBackBtn';

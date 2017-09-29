@@ -1,7 +1,7 @@
 import routers from  '../../../config/info.json';
 
 const config = {
-    language: 'cn'
+    language: 'en'
 };
 
 export {routers};
