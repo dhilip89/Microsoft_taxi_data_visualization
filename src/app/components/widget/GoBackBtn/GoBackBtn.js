@@ -1,5 +1,4 @@
 import {getClassSet} from "app/util/ClassNameUtil";
-import Util from 'app/util/util';
 import * as actions from 'app/components/actions';
 import constants from 'app/components/constant';
 import AppI18n from 'app/config/AppI18n';
@@ -14,7 +13,7 @@ class GoBackBtn extends Component {
 
     render() {
         return (
-            <div title={Util.getI18n(AppI18n.GO_BACK)} className={getClassSet(['go-back-btn'])} onClick={this.props.toHomePage}>{"<--"}</div>
+            <div title={AppI18n.GO_BACK} className={getClassSet(['go-back-btn'])} onClick={this.props.toHomePage}>{"<--"}</div>
         );
     }
 }

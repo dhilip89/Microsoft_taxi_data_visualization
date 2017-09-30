@@ -5,7 +5,6 @@ import {GoBackBtn, DatePicker, Button, Input, Row, Col} from 'app/components/wid
 import moment from 'moment';
 import AppI18n from 'app/config/AppI18n';
 import Map from 'app/graphic/Map';
-import Util from 'app/util/util';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import 'app/components/TraceDisplay/tracedisplay.scss';
@@ -46,7 +45,7 @@ class TraceDisplay extends Component {
                                 <GoBackBtn />
                             </Col>
                             <Col className={getClassSet(['input-container'])} span={24}>
-                                <Input placeholder={Util.getI18n(AppI18n.INPUT_ID)}
+                                <Input placeholder={AppI18n.INPUT_ID}
                                        className={getClassSet(['commonInput'])}
                                        value={this.state.id}
                                        onChange={(e) => {
@@ -75,7 +74,7 @@ class TraceDisplay extends Component {
                                         this.drawTrace,
                                         this.error
                                     );
-                                }}>{Util.getI18n(AppI18n.SEARCH)}</Button>
+                                }}>{AppI18n.SEARCH}</Button>
                             </Col>
                         </Row>
                     </Col>
