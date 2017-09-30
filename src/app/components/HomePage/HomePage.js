@@ -13,17 +13,46 @@ import 'app/components/HomePage/homepage.scss';
 class HomePage extends Component {
     constructor(props) {
         super(props);
+
+        let { clickToOpenHomePage, clickToOpenDistributionPage, clickToOpenTracePage } = this.props;
+        this.btnsModel = [
+            {
+                event: clickToOpenHomePage,
+                label: AppI18n.HOME_PAGE
+            },
+            {
+                event: clickToOpenTracePage,
+                label: AppI18n.TRACE_DISPLAY,
+            },
+            {
+                event: clickToOpenDistributionPage,
+                label: AppI18n.TAXI_DISTRIBUTION
+            }
+        ];
+    }
+
+    componentWillMount() {
+        let btnClasses = getClassSet(['btn']);
+
+        this.btns = this.btnsModel.map((btn, i) => {
+            return (
+                <Button
+                    className={btnClasses}
+                    key={`btn-${i}`}
+                    onClick={btn.event}
+                >
+                    {btn.label}
+                </Button>
+            );
+        })
     }
 
     render() {
         let classes = getClassSet(['homePage']);
-        let { clickToOpenHomePage, clickToOpenDistributionPage, clickToOpenTracePage } = this.props;
 
         return (
             <div className={classes}>
-                <Button className={getClassSet(['btn'])} key={'home'} onClick={clickToOpenHomePage}>{AppI18n.HOME_PAGE}</Button>
-                <Button className={getClassSet(['btn'])} key={'trace'} onClick={clickToOpenTracePage}>{AppI18n.TRACE_DISPLAY}</Button>
-                <Button className={getClassSet(['btn'])} key={'distribution'} onClick={clickToOpenDistributionPage}>{AppI18n.TAXI_DISTRIBUTION}</Button>
+                {this.btns}
             </div>
         );
     }
