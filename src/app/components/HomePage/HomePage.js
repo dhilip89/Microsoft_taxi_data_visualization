@@ -22,7 +22,7 @@ class HomePage extends Component {
             },
             {
                 event: clickToOpenTracePage,
-                label: AppI18n.TRACE_DISPLAY,
+                label: AppI18n.TRACE_DISPLAY
             },
             {
                 event: clickToOpenDistributionPage,

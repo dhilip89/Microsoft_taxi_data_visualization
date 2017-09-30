@@ -10,6 +10,10 @@ $myskyblue: rgba(103, 135, 254, 1);
 $text-color: rgba(255, 255, 255, 1);
 $darker-text-color: rgba(255, 255, 255, 0.8);
 
+
+//alert z-index. It is on the top of app.
+$alertZIndex: 10000;
+
 // For input common style. for instance, label, input and button.
 @mixin btn {
    background-color: $myblue;
