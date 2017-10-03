@@ -147,7 +147,7 @@ class TraceDisplay extends Component {
         //     return { x: coord[0], y: coord[1] };
         // });
         input.trace = data.map((d) => {
-            return this.map.map.latLngToContainerPoint([d.lng, d.lat]);
+            return this.map.map.latLngToContainerPoint([d.lat, d.lng]);
         });
 
         return input;
