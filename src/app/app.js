@@ -1,10 +1,12 @@
 import * as actions from 'app/components/actions';
+import config from 'app/config/config';
 import Constant from 'app/components/constant'
 import HomePage from 'app/components/HomePage/HomePage';
 import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
 import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import 'app/style/app.scss';
 
 class App extends Component {
@@ -31,7 +33,7 @@ class App extends Component {
     }
 
     _switchPage(pageName) {
-        switch (pageName) {
+        switch(pageName) {
             case Constant.homepage:
                 this.Page = HomePage;
                 break;
@@ -42,7 +44,7 @@ class App extends Component {
                 this.Page = TaxiDistribution;
                 break;
             default:
-                // Page = HomePage;
+            // Page = HomePage;
         }
 
         return this.Page;

@@ -1,7 +1,12 @@
 import routers from  '../../../config/info.json';
 
 const config = {
-    language: 'en'
+    language: 'en',
+    route: {
+        home: '/home',
+        traceDistribution: '/traceDistribution',
+        traceDisplay: '/traceDisplay'
+    }
 };
 
 export {routers};
