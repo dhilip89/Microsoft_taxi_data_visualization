@@ -5,7 +5,7 @@ import HomePage from 'app/components/HomePage/HomePage';
 import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
 import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
 import React, { Component } from 'react';
-import { BrowserRouter, Route, IndexRoute } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'app/style/app.scss';
 
@@ -26,20 +26,22 @@ class App extends Component {
 
     render() {
         let Page = this._switchPage(this.props.pageName);
-        let route = {config};
+        let route = config.route;
 
         return (
             // <Page />
             <BrowserRouter>
-               <IndexRoute component={HomePage}/>
-               <Route path={route.traceDisplay} component={TraceDisplay}/>
-               <Route path={route.traceDistribution} component={TaxiDistribution}/>
+                <Switch>
+                    <Route path={route.home} component={HomePage} />
+                    <Route path={route.traceDisplay} component={TraceDisplay} />
+                    <Route path={route.traceDistribution} component={TaxiDistribution} />
+                </Switch>
             </BrowserRouter>
         );
     }
 
     _switchPage(pageName) {
-        switch(pageName) {
+        switch (pageName) {
             case Constant.homepage:
                 this.Page = HomePage;
                 break;

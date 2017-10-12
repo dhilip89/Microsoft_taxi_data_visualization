@@ -5,7 +5,7 @@ var babelpolyfill = require("babel-polyfill");
 
 module.exports = {
     // devtool: 'inline-source-map', //可以在调试面板source中打开源文件
-    watch: true,
+    // watch: true,
     entry: {
         bundle: './src/app/view.js',
         vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-devtools-extension',
