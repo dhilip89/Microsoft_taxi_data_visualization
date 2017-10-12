@@ -18,11 +18,11 @@ class HomePage extends Component {
 
         let { clickToOpenHomePage, clickToOpenDistributionPage, clickToOpenTracePage } = this.props;
         this.btnsModel = [
-            {
-                event: clickToOpenHomePage,
-                label: AppI18n.HOME_PAGE,
-                // route: config.route.home
-            },
+            // {
+            //     event: clickToOpenHomePage,
+            //     label: AppI18n.HOME_PAGE,
+            //     // route: config.route.home
+            // },
             {
                 event: clickToOpenTracePage,
                 label: AppI18n.TRACE_DISPLAY,

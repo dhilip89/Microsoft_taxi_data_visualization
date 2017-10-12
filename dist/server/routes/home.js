@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var router = _express2.default.Router();
 
-router.get('/', function (req, res, next) {
+router.get('*', function (req, res, next) {
   res.setHeader('Content-type', 'text/html');
   res.sendFile(_path2.default.join(__dirname, '../../../index.html'));
 });
