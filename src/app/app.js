@@ -1,11 +1,11 @@
 import * as actions from 'app/components/actions';
-import config from 'app/config/config';
+// import config from 'app/config/config';
 import Constant from 'app/components/constant'
 import HomePage from 'app/components/HomePage/HomePage';
 import TraceDisplay from 'app/components/TraceDisplay/TraceDisplay';
 import TaxiDistribution from 'app/components/TaxiDistribution/TaxiDistribution';
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+// import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'app/style/app.scss';
 
@@ -28,7 +28,7 @@ class App extends Component {
         let Page = this._switchPage(this.props.pageName);
 
         return (
-            <Page />
+            <TraceDisplay />
         );
     }
 

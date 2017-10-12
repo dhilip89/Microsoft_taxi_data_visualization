@@ -2,6 +2,7 @@ import {fire} from 'app/data/req';
 import {getClassSet} from "app/util/ClassNameUtil";
 import {routers} from 'app/config/config';
 import {GoBackBtn, DatePicker, Button, Input, Row, Col} from 'app/components/widget';
+import config from 'app/graphic/config';
 import moment from 'moment';
 import AppI18n from 'app/config/AppI18n';
 import Map from 'app/graphic/Map';
@@ -133,7 +134,8 @@ class TraceDisplay extends Component {
         this.map.map.on('move', () => {
             // this.map.disposeZr();
             // this.map.initZr();
-            this.map.clearZr();
+            this.map.clearZr(); //清空画布的其他内容.
+            this.map.zr.painter.getLayer(config.traceLevel).clear(true); //清空动态模糊的效果.
             let input = this.processTraceData(data);
             this.map.drawTrace([input]);
         });
@@ -147,7 +149,7 @@ class TraceDisplay extends Component {
         //     return { x: coord[0], y: coord[1] };
         // });
         input.trace = data.map((d) => {
-            return this.map.map.latLngToContainerPoint([d.lat, d.lng]);
+            return this.map.map.latLngToContainerPoint([d.lng, d.lat]);
         });
 
         return input;

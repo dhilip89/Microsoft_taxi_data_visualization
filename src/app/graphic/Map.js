@@ -109,7 +109,7 @@ class Map {
                 shape: {
                     cx: trace[0].x,
                     cy: trace[0].y,
-                    r: 1
+                    r: 5
                 },
                 style: {
                     fill: 'yellow'
