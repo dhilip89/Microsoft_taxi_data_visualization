@@ -1,7 +1,8 @@
-import $ from 'jquery';
+// import ajax from 'jquery/src/ajax';
+import {ajax} from 'jquery';
 
 function fire(info, success, error) {
-    $.ajax({
+    ajax({
         url: info.url,
         data: info.data,
         type: info.method || 'post',

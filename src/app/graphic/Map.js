@@ -1,4 +1,7 @@
-import * as d3 from 'd3';
+// import * as d3 from 'd3';
+// import {geoMercator, geoPath} from 'd3-geo';
+import geoMercator from 'd3-geo/src/projection/mercator';
+import geoPath from 'd3-geo/src/path/index';
 import config from 'app/graphic/config';
 import zrender from 'zrender/src/zrender';
 import Circle from 'zrender/src/graphic/shape/Circle';
@@ -59,10 +62,21 @@ class Map {
 
         let g = new Group();
         this.zr.add(g);
-        this.projection = d3.geoMercator()
+        let c = new Circle({
+            shape:{
+                cx:300,
+                cy:300,
+                r:50
+            },
+            style:{
+                fill:'red'
+            }
+        });
+        g.add(c);
+        this.projection = geoMercator()
             .center(this.center)
             .scale(20000);
-        let path = d3.geoPath()
+        let path = geoPath()
             .projection(this.projection);
 
         let features = this.geojson.features;
