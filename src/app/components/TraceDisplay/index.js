@@ -3,12 +3,12 @@ import {getClassSet} from "app/util/ClassNameUtil";
 import {routers} from 'app/config/config';
 import {GoBackBtn, DatePicker, Button, Input, Row, Col} from 'app/components/widget';
 import config from 'app/graphic/config';
-import moment from 'moment';
 import AppI18n from 'app/config/AppI18n';
 import Map from 'app/graphic/Map';
 import React, {Component} from 'react';
+import moment from 'moment';
 import {connect} from 'react-redux';
-import 'app/components/TraceDisplay/tracedisplay.scss';
+import './style.scss';
 
 /**
  * Show the trace of taxi.
@@ -32,6 +32,7 @@ class TraceDisplay extends Component {
 
     componentDidMount() {
         fire({url: '/data/beijing.json', method: 'get'}, this.success, this.error);
+        // this.success();
     }
 
     render() {

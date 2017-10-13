@@ -1,7 +1,7 @@
 import { getClassSet } from 'app/util/ClassNameUtil';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './alert.scss';
+import './style.scss';
 
 class Alert extends Component {
    constructor(props) {

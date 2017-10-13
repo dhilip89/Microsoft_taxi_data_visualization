@@ -1,13 +1,13 @@
 import * as actions from 'app/components/actions';
 import { getClassSet } from 'app/util/ClassNameUtil';
 import { Button } from 'app/components/widget/index';
-// import config from 'app/config/config';
+import config from 'app/config/config';
 import constants from 'app/components/constant';
 import AppI18n from 'app/config/AppI18n';
 import React, { Component } from 'react';
-// import {BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import 'app/components/HomePage/homepage.scss';
+import './style.scss';
 
 /**
  * Home page for app.
@@ -26,12 +26,12 @@ class HomePage extends Component {
             {
                 event: clickToOpenTracePage,
                 label: AppI18n.TRACE_DISPLAY,
-                // route: config.route.traceDisplay
+                route: config.route.traceDisplay
             },
             {
                 event: clickToOpenDistributionPage,
                 label: AppI18n.TAXI_DISTRIBUTION,
-                // route: config.route.traceDistribution
+                route: config.route.traceDistribution
             }
         ];
     }
@@ -41,13 +41,11 @@ class HomePage extends Component {
 
         this.btns = this.btnsModel.map((btn, i) => {
             return (
-                <Button
-                    className={btnClasses}
-                    key={`btn-${i}`}
-                    onClick={btn.event}
-                >
-                    {btn.label}
-                </Button>
+                <Link to={btn.route} key={`btn-${i}`}>
+                    <Button className={btnClasses}>
+                        {btn.label}
+                    </Button>
+                </Link>
             );
         })
     }
@@ -67,39 +65,4 @@ const mapStateToProps = (state, ownProps) => {
     return {};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        /**
-         * Switch to home page.
-         * @param {Event} e
-         */
-        clickToOpenHomePage: (e) => {
-            dispatch({
-                type: actions.SWITCH_PAGE,
-                pageName: constants.homepage
-            });
-        },
-        /**
-         * Switch to trace display page.
-         * @param {Event} e
-         */
-        clickToOpenTracePage: (e) => {
-            dispatch({
-                type: actions.SWITCH_PAGE,
-                pageName: constants.traceDisplay
-            });
-        },
-        /**
-         * Switch to distribution page.
-         * @param {Event} e
-         */
-        clickToOpenDistributionPage: (e) => {
-            dispatch({
-                type: actions.SWITCH_PAGE,
-                pageName: constants.taxiDistribution
-            });
-        }
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps)(HomePage);

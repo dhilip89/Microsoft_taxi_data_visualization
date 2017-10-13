@@ -54,4 +54,4 @@ export {default as Row} from 'antd/lib/row';
 // export { default as version } from 'antd/lib/version';
 
 // ---------------------------------------  my base components ------------------
-export {default as GoBackBtn} from 'app/components/widget/GoBackBtn/GoBackBtn';
+export {default as GoBackBtn} from 'app/components/widget/GoBackBtn';
