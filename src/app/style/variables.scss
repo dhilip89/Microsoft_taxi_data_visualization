@@ -15,39 +15,39 @@ $darker-text-color: rgba(255, 255, 255, 0.8);
 $alertZIndex: 10000;
 
 // For input common style. for instance, label, input and button.
-@mixin btn {
-   background-color: $myblue;
-   color: white;
-   border: solid 1px rgba(255, 255, 255, 1);
+// @mixin btn {
+//    background-color: $myblue;
+//    color: white;
+//    border: solid 1px rgba(255, 255, 255, 1);
 
-   &:hover {
-      background-color: rgba(12, 21, 35, 0.6);
-   }
+//    &:hover {
+//       background-color: rgba(12, 21, 35, 0.6);
+//    }
 
-   &:focus {
-      background-color: $myblue;
-   }
-}
+//    &:focus {
+//       background-color: $myblue;
+//    }
+// }
 
 // For date common style.
-@mixin date-picker-input {
-   background-color: $myblue;
-}
+// @mixin date-picker-input {
+//    background-color: $myblue;
+// }
 
-.#{$namespace}-date-picker-input {
-   & input {
-      color: $text-color;
-      background-color: $myblue;
-   }
-}
+// .#{$namespace}-date-picker-input {
+//    & input {
+//       color: $text-color;
+//       background-color: $myblue;
+//    }
+// }
 
-div[class='ant-calendar-panel'] {
-   & *{
-      color: $text-color;
-      background-color: $myblue;
-   }
+// div[class='ant-calendar-panel'] {
+//    & *{
+//       color: $text-color;
+//       background-color: $myblue;
+//    }
 
-   div[class='ant-calendar-header'] a {
-      color: $text-color;
-   }
-}
+//    div[class='ant-calendar-header'] a {
+//       color: $text-color;
+//    }
+// }

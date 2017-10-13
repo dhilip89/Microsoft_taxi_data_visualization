@@ -126,7 +126,7 @@ class Map {
                     r: 5
                 },
                 style: {
-                    fill: 'yellow'
+                    fill: 'blue'
                 },
                 zlevel: config.traceLevel,
                 silent: true

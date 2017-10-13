@@ -57,11 +57,11 @@ $input-width: 80%;
 
   .#{$namespace}-commonInput {
     @include input;
-    @include btn;
+    // @include btn;
   }
 
   .#{$namespace}-date-picker {
     @include input;
-    @include date-picker-input;
+    // @include date-picker-input;
   }
 }
