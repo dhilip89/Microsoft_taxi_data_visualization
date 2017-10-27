@@ -2,13 +2,14 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // var babelpolyfill = require("babel-polyfill");
+// import * as Decorators  from 'core-decorators';
 
 module.exports = {
     // devtool: 'inline-source-map', //可以在调试面板source中打开源文件
     // watch: true,
     entry: {
         bundle: './src/app/view.js',
-        vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-devtools-extension']
+        vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-devtools-extension', 'core-decorators']
             // "babel-polyfill"]
     },
     output: {

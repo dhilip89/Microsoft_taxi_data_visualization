@@ -12,7 +12,8 @@ import './style.scss';
 /**
  * Home page for app.
  */
-class HomePage extends Component {
+@connect(mapStateToProps)
+export default class HomePage extends Component {
     constructor(props) {
         super(props);
 
@@ -64,5 +65,3 @@ class HomePage extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {};
 };
-
-export default connect(mapStateToProps)(HomePage);
