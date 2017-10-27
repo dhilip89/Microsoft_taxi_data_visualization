@@ -63,4 +63,5 @@ db
 
 .idea
 
-./dist
+# dist
+/dist/**
